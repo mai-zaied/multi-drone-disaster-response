@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/PKG-INFO
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/SOURCES.txt
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/dependency_links.txt
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/entry_points.txt
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/requires.txt
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/top_level.txt
+../../build/multi_drone_offboard/multi_drone_offboard.egg-info/zip-safe
+multi_drone_offboard/__init__.py
+multi_drone_offboard/offboard_control.py
+multi_drone_offboard/swarm_monitor.py
+resource/multi_drone_offboard
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

@@ -1,0 +1,3 @@
+[console_scripts]
+fog_server = fog_node.fog_server:main
+

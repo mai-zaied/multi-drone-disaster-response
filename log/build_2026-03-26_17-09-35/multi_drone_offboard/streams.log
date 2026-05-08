@@ -1,0 +1,28 @@
+[0.443s] Invoking command in '/home/maizaied03/ros2_ws/src/multi_drone_offboard': PYTHONPATH=/home/maizaied03/ros2_ws/build/multi_drone_offboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/multi_drone_offboard build --build-base /home/maizaied03/ros2_ws/build/multi_drone_offboard/build install --record /home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log --single-version-externally-managed install_data
+[0.589s] running egg_info
+[0.589s] writing ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/PKG-INFO
+[0.589s] writing dependency_links to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/dependency_links.txt
+[0.589s] writing entry points to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/entry_points.txt
+[0.589s] writing requirements to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/requires.txt
+[0.589s] writing top-level names to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/top_level.txt
+[0.590s] reading manifest file '../../build/multi_drone_offboard/multi_drone_offboard.egg-info/SOURCES.txt'
+[0.591s] writing manifest file '../../build/multi_drone_offboard/multi_drone_offboard.egg-info/SOURCES.txt'
+[0.591s] running build
+[0.591s] running build_py
+[0.591s] copying multi_drone_offboard/swarm_monitor.py -> /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard
+[0.592s] copying multi_drone_offboard/offboard_control.py -> /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard
+[0.592s] running install
+[0.592s] running install_lib
+[0.593s] copying /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard/swarm_monitor.py -> /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard
+[0.593s] copying /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard/offboard_control.py -> /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard
+[0.593s] byte-compiling /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard/swarm_monitor.py to swarm_monitor.cpython-310.pyc
+[0.594s] byte-compiling /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard/offboard_control.py to offboard_control.cpython-310.pyc
+[0.595s] running install_data
+[0.595s] running install_egg_info
+[0.596s] removing '/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard-0.0.0-py3.10.egg-info' (and everything under it)
+[0.597s] Copying ../../build/multi_drone_offboard/multi_drone_offboard.egg-info to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard-0.0.0-py3.10.egg-info
+[0.597s] running install_scripts
+[0.611s] Installing monitor script to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/multi_drone_offboard
+[0.611s] Installing offboard script to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/multi_drone_offboard
+[0.611s] writing list of installed files to '/home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log'
+[0.629s] Invoked command in '/home/maizaied03/ros2_ws/src/multi_drone_offboard' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/multi_drone_offboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/multi_drone_offboard build --build-base /home/maizaied03/ros2_ws/build/multi_drone_offboard/build install --record /home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log --single-version-externally-managed install_data

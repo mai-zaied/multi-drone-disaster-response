@@ -1,0 +1,23 @@
+running egg_info
+writing ../../build/fog_node/fog_node.egg-info/PKG-INFO
+writing dependency_links to ../../build/fog_node/fog_node.egg-info/dependency_links.txt
+writing entry points to ../../build/fog_node/fog_node.egg-info/entry_points.txt
+writing requirements to ../../build/fog_node/fog_node.egg-info/requires.txt
+writing top-level names to ../../build/fog_node/fog_node.egg-info/top_level.txt
+reading manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+writing manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+running build
+running build_py
+copying fog_node/fog_server.py -> /home/maizaied03/ros2_ws/build/fog_node/build/lib/fog_node
+running install
+running install_lib
+copying /home/maizaied03/ros2_ws/build/fog_node/build/lib/fog_node/fog_server.py -> /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node
+byte-compiling /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node/fog_server.py to fog_server.cpython-310.pyc
+running install_data
+copying package.xml -> /home/maizaied03/ros2_ws/install/fog_node/share/fog_node
+running install_egg_info
+removing '/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/fog_node/fog_node.egg-info to /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info
+running install_scripts
+Installing fog_server script to /home/maizaied03/ros2_ws/install/fog_node/lib/fog_node
+writing list of installed files to '/home/maizaied03/ros2_ws/build/fog_node/install.log'

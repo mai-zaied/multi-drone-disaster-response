@@ -1,0 +1,6 @@
+source;share/fog_node/hook/pythonpath.ps1
+source;share/fog_node/hook/pythonpath.dsv
+source;share/fog_node/hook/pythonpath.sh
+source;share/fog_node/hook/ament_prefix_path.ps1
+source;share/fog_node/hook/ament_prefix_path.dsv
+source;share/fog_node/hook/ament_prefix_path.sh

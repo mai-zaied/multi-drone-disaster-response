@@ -1,0 +1,4 @@
+[console_scripts]
+drone_reactor = drone_node.drone_reactor:main
+drone_status_publisher = drone_node.drone_status_publisher:main
+

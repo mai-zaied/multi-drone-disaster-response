@@ -1,0 +1,26 @@
+running egg_info
+writing ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/PKG-INFO
+writing dependency_links to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/dependency_links.txt
+writing entry points to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/entry_points.txt
+writing requirements to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/requires.txt
+writing top-level names to ../../build/multi_drone_offboard/multi_drone_offboard.egg-info/top_level.txt
+reading manifest file '../../build/multi_drone_offboard/multi_drone_offboard.egg-info/SOURCES.txt'
+writing manifest file '../../build/multi_drone_offboard/multi_drone_offboard.egg-info/SOURCES.txt'
+running build
+running build_py
+copying multi_drone_offboard/swarm_monitor.py -> /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard
+copying multi_drone_offboard/offboard_control.py -> /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard
+running install
+running install_lib
+copying /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard/swarm_monitor.py -> /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard
+copying /home/maizaied03/ros2_ws/build/multi_drone_offboard/build/lib/multi_drone_offboard/offboard_control.py -> /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard
+byte-compiling /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard/swarm_monitor.py to swarm_monitor.cpython-310.pyc
+byte-compiling /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard/offboard_control.py to offboard_control.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/multi_drone_offboard/multi_drone_offboard.egg-info to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages/multi_drone_offboard-0.0.0-py3.10.egg-info
+running install_scripts
+Installing monitor script to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/multi_drone_offboard
+Installing offboard script to /home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/multi_drone_offboard
+writing list of installed files to '/home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log'

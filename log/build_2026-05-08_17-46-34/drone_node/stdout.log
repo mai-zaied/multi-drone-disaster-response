@@ -1,0 +1,39 @@
+running egg_info
+creating ../../build/drone_node/drone_node.egg-info
+writing ../../build/drone_node/drone_node.egg-info/PKG-INFO
+writing dependency_links to ../../build/drone_node/drone_node.egg-info/dependency_links.txt
+writing entry points to ../../build/drone_node/drone_node.egg-info/entry_points.txt
+writing requirements to ../../build/drone_node/drone_node.egg-info/requires.txt
+writing top-level names to ../../build/drone_node/drone_node.egg-info/top_level.txt
+writing manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+reading manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+writing manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/maizaied03/ros2_ws/build/drone_node/build
+creating /home/maizaied03/ros2_ws/build/drone_node/build/lib
+creating /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+copying drone_node/drone_reactor.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+copying drone_node/drone_status_publisher.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+copying drone_node/__init__.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+running install
+running install_lib
+creating /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/drone_reactor.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/drone_status_publisher.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/__init__.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/drone_reactor.py to drone_reactor.cpython-310.pyc
+byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/drone_status_publisher.py to drone_status_publisher.cpython-310.pyc
+byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/maizaied03/ros2_ws/install/drone_node/share/ament_index
+creating /home/maizaied03/ros2_ws/install/drone_node/share/ament_index/resource_index
+creating /home/maizaied03/ros2_ws/install/drone_node/share/ament_index/resource_index/packages
+copying resource/drone_node -> /home/maizaied03/ros2_ws/install/drone_node/share/ament_index/resource_index/packages
+copying package.xml -> /home/maizaied03/ros2_ws/install/drone_node/share/drone_node
+running install_egg_info
+Copying ../../build/drone_node/drone_node.egg-info to /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node-0.0.0-py3.10.egg-info
+running install_scripts
+Installing drone_reactor script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+Installing drone_status_publisher script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+writing list of installed files to '/home/maizaied03/ros2_ws/build/drone_node/install.log'

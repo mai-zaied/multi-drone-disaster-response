@@ -1,0 +1,248 @@
+[0.106s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.106s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7a2cb052fa30>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7a2cb06e10f0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7a2cb06e10f0>>)
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.342s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.342s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/maizaied03/ros2_ws'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['ignore', 'ignore_ament_install']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ignore'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ignore_ament_install'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['colcon_pkg']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'colcon_pkg'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['colcon_meta']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'colcon_meta'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['ros']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ros'
+[0.353s] DEBUG:colcon.colcon_core.package_identification:Package 'src/fog_node' with type 'ros.ament_python' and name 'fog_node'
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['ignore', 'ignore_ament_install']
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ignore'
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ignore_ament_install'
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['colcon_pkg']
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'colcon_pkg'
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['colcon_meta']
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'colcon_meta'
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['ros']
+[0.353s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ros'
+[0.354s] DEBUG:colcon.colcon_core.package_identification:Package 'src/multi_drone_offboard' with type 'ros.ament_python' and name 'multi_drone_offboard'
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ignore'
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ignore_ament_install'
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['colcon_pkg']
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'colcon_pkg'
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['colcon_meta']
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'colcon_meta'
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['ros']
+[0.354s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ros'
+[0.355s] DEBUG:colcon.colcon_core.package_identification:Package 'src/px4_msgs' with type 'ros.ament_cmake' and name 'px4_msgs'
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.379s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.379s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.389s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 291 installed packages in /opt/ros/humble
+[0.390s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_target' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_clean_cache' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_clean_first' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_force_configure' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'ament_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'catkin_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.413s] DEBUG:colcon.colcon_core.verb:Building package 'fog_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/maizaied03/ros2_ws/build/fog_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/maizaied03/ros2_ws/install/fog_node', 'merge_install': False, 'path': '/home/maizaied03/ros2_ws/src/fog_node', 'symlink_install': False, 'test_result_base': None}
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_target' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'px4_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.413s] DEBUG:colcon.colcon_core.verb:Building package 'px4_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/maizaied03/ros2_ws/build/px4_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/maizaied03/ros2_ws/install/px4_msgs', 'merge_install': False, 'path': '/home/maizaied03/ros2_ws/src/px4_msgs', 'symlink_install': False, 'test_result_base': None}
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_target' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_clean_cache' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_clean_first' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'cmake_force_configure' from command line to 'False'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'ament_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'catkin_cmake_args' from command line to 'None'
+[0.413s] Level 5:colcon.colcon_core.verb:set package 'multi_drone_offboard' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.414s] DEBUG:colcon.colcon_core.verb:Building package 'multi_drone_offboard' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/maizaied03/ros2_ws/build/multi_drone_offboard', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/maizaied03/ros2_ws/install/multi_drone_offboard', 'merge_install': False, 'path': '/home/maizaied03/ros2_ws/src/multi_drone_offboard', 'symlink_install': False, 'test_result_base': None}
+[0.414s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.414s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.414s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/maizaied03/ros2_ws/src/px4_msgs' with build type 'ament_cmake'
+[0.415s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/maizaied03/ros2_ws/src/px4_msgs'
+[0.418s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.418s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.418s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.420s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/maizaied03/ros2_ws/src/fog_node' with build type 'ament_python'
+[0.420s] Level 1:colcon.colcon_core.shell:create_environment_hook('fog_node', 'ament_prefix_path')
+[0.420s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.ps1'
+[0.421s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.dsv'
+[0.421s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.sh'
+[0.422s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.422s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.426s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/build/px4_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/maizaied03/ros2_ws/build/px4_msgs -- -j8 -l8
+[0.579s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/maizaied03/ros2_ws/src/fog_node'
+[0.579s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.579s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.841s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/src/fog_node': PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data
+[1.104s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/src/fog_node' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data
+[1.111s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node' for CMake module files
+[1.112s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node' for CMake config files
+[1.113s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib'
+[1.113s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/bin'
+[1.114s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib/pkgconfig/fog_node.pc'
+[1.114s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages'
+[1.114s] Level 1:colcon.colcon_core.shell:create_environment_hook('fog_node', 'pythonpath')
+[1.114s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.ps1'
+[1.118s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.dsv'
+[1.118s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.sh'
+[1.119s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/bin'
+[1.119s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(fog_node)
+[1.120s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.ps1'
+[1.124s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.dsv'
+[1.125s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.sh'
+[1.127s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.bash'
+[1.128s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.zsh'
+[1.129s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/fog_node/share/colcon-core/packages/fog_node)
+[55.436s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/build/px4_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/maizaied03/ros2_ws/build/px4_msgs -- -j8 -l8
+[55.443s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/build/px4_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/maizaied03/ros2_ws/build/px4_msgs
+[55.773s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(px4_msgs)
+[55.773s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs' for CMake module files
+[55.773s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/build/px4_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/maizaied03/ros2_ws/build/px4_msgs
+[55.774s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs' for CMake config files
+[55.777s] Level 1:colcon.colcon_core.shell:create_environment_hook('px4_msgs', 'cmake_prefix_path')
+[55.777s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.ps1'
+[55.777s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.dsv'
+[55.778s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.sh'
+[55.778s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib'
+[55.778s] Level 1:colcon.colcon_core.shell:create_environment_hook('px4_msgs', 'ld_library_path_lib')
+[55.778s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.ps1'
+[55.778s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.dsv'
+[55.779s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.sh'
+[55.779s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/bin'
+[55.779s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib/pkgconfig/px4_msgs.pc'
+[55.779s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib/python3.10/site-packages'
+[55.779s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/bin'
+[55.779s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.ps1'
+[55.780s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.dsv'
+[55.780s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.sh'
+[55.780s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.bash'
+[55.780s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.zsh'
+[55.781s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/px4_msgs/share/colcon-core/packages/px4_msgs)
+[55.781s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(px4_msgs)
+[55.781s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs' for CMake module files
+[55.781s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs' for CMake config files
+[55.784s] Level 1:colcon.colcon_core.shell:create_environment_hook('px4_msgs', 'cmake_prefix_path')
+[55.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.ps1'
+[55.785s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.dsv'
+[55.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/cmake_prefix_path.sh'
+[55.785s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib'
+[55.785s] Level 1:colcon.colcon_core.shell:create_environment_hook('px4_msgs', 'ld_library_path_lib')
+[55.786s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.ps1'
+[55.786s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.dsv'
+[55.786s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/hook/ld_library_path_lib.sh'
+[55.786s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/bin'
+[55.786s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib/pkgconfig/px4_msgs.pc'
+[55.786s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/lib/python3.10/site-packages'
+[55.787s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/px4_msgs/bin'
+[55.787s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.ps1'
+[55.787s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.dsv'
+[55.787s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.sh'
+[55.788s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.bash'
+[55.788s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/px4_msgs/share/px4_msgs/package.zsh'
+[55.788s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/px4_msgs/share/colcon-core/packages/px4_msgs)
+[55.788s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/maizaied03/ros2_ws/src/multi_drone_offboard' with build type 'ament_python'
+[55.788s] Level 1:colcon.colcon_core.shell:create_environment_hook('multi_drone_offboard', 'ament_prefix_path')
+[55.788s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/ament_prefix_path.ps1'
+[55.789s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/ament_prefix_path.dsv'
+[55.789s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/ament_prefix_path.sh'
+[55.789s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[55.789s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[55.947s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/maizaied03/ros2_ws/src/multi_drone_offboard'
+[55.948s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[55.948s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[56.152s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/src/multi_drone_offboard': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/multi_drone_offboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/multi_drone_offboard build --build-base /home/maizaied03/ros2_ws/build/multi_drone_offboard/build install --record /home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log --single-version-externally-managed install_data
+[56.327s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard' for CMake module files
+[56.328s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/src/multi_drone_offboard' returned '0': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/multi_drone_offboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/multi_drone_offboard build --build-base /home/maizaied03/ros2_ws/build/multi_drone_offboard/build install --record /home/maizaied03/ros2_ws/build/multi_drone_offboard/install.log --single-version-externally-managed install_data
+[56.328s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard' for CMake config files
+[56.328s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib'
+[56.328s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard/bin'
+[56.328s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/pkgconfig/multi_drone_offboard.pc'
+[56.328s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard/lib/python3.10/site-packages'
+[56.328s] Level 1:colcon.colcon_core.shell:create_environment_hook('multi_drone_offboard', 'pythonpath')
+[56.329s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/pythonpath.ps1'
+[56.329s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/pythonpath.dsv'
+[56.329s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/hook/pythonpath.sh'
+[56.330s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/multi_drone_offboard/bin'
+[56.330s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(multi_drone_offboard)
+[56.330s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/package.ps1'
+[56.330s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/package.dsv'
+[56.330s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/package.sh'
+[56.331s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/package.bash'
+[56.331s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/multi_drone_offboard/package.zsh'
+[56.331s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/multi_drone_offboard/share/colcon-core/packages/multi_drone_offboard)
+[56.331s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[56.331s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[56.331s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[56.331s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[56.336s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[56.336s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[56.336s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[56.351s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[56.351s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.ps1'
+[56.352s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/maizaied03/ros2_ws/install/_local_setup_util_ps1.py'
+[56.354s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.ps1'
+[56.354s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.sh'
+[56.355s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/maizaied03/ros2_ws/install/_local_setup_util_sh.py'
+[56.355s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.sh'
+[56.356s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.bash'
+[56.357s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.bash'
+[56.357s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.zsh'
+[56.358s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.zsh'

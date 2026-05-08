@@ -1,0 +1,25 @@
+[0.565s] Invoking command in '/home/maizaied03/ros2_ws/src/fog_node': PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data
+[0.731s] running egg_info
+[0.731s] writing ../../build/fog_node/fog_node.egg-info/PKG-INFO
+[0.731s] writing dependency_links to ../../build/fog_node/fog_node.egg-info/dependency_links.txt
+[0.732s] writing entry points to ../../build/fog_node/fog_node.egg-info/entry_points.txt
+[0.732s] writing requirements to ../../build/fog_node/fog_node.egg-info/requires.txt
+[0.732s] writing top-level names to ../../build/fog_node/fog_node.egg-info/top_level.txt
+[0.733s] reading manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+[0.734s] writing manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+[0.734s] running build
+[0.734s] running build_py
+[0.735s] copying fog_node/fog_server.py -> /home/maizaied03/ros2_ws/build/fog_node/build/lib/fog_node
+[0.735s] running install
+[0.735s] running install_lib
+[0.735s] copying /home/maizaied03/ros2_ws/build/fog_node/build/lib/fog_node/fog_server.py -> /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node
+[0.736s] byte-compiling /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node/fog_server.py to fog_server.cpython-310.pyc
+[0.736s] running install_data
+[0.737s] copying package.xml -> /home/maizaied03/ros2_ws/install/fog_node/share/fog_node
+[0.737s] running install_egg_info
+[0.738s] removing '/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info' (and everything under it)
+[0.738s] Copying ../../build/fog_node/fog_node.egg-info to /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info
+[0.739s] running install_scripts
+[0.754s] Installing fog_server script to /home/maizaied03/ros2_ws/install/fog_node/lib/fog_node
+[0.755s] writing list of installed files to '/home/maizaied03/ros2_ws/build/fog_node/install.log'
+[0.779s] Invoked command in '/home/maizaied03/ros2_ws/src/fog_node' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data
