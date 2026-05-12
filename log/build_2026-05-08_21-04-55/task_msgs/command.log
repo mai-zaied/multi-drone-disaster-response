@@ -1,0 +1,6 @@
+Invoking command in '/home/maizaied03/ros2_ws/build/task_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/maizaied03/ros2_ws/src/task_msgs -DCMAKE_INSTALL_PREFIX=/home/maizaied03/ros2_ws/install/task_msgs
+Invoked command in '/home/maizaied03/ros2_ws/build/task_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/maizaied03/ros2_ws/src/task_msgs -DCMAKE_INSTALL_PREFIX=/home/maizaied03/ros2_ws/install/task_msgs
+Invoking command in '/home/maizaied03/ros2_ws/build/task_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/maizaied03/ros2_ws/build/task_msgs -- -j8 -l8
+Invoked command in '/home/maizaied03/ros2_ws/build/task_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/maizaied03/ros2_ws/build/task_msgs -- -j8 -l8
+Invoking command in '/home/maizaied03/ros2_ws/build/task_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/maizaied03/ros2_ws/build/task_msgs
+Invoked command in '/home/maizaied03/ros2_ws/build/task_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/maizaied03/ros2_ws/build/task_msgs

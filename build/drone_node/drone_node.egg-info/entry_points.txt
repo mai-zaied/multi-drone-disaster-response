@@ -1,4 +1,6 @@
 [console_scripts]
+camera_bridge_simple = drone_node.camera_bridge_simple:main
 drone_reactor = drone_node.drone_reactor:main
 drone_status_publisher = drone_node.drone_status_publisher:main
+drone_task_publisher = drone_node.drone_task_publisher:main
 

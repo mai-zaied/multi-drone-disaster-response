@@ -26,6 +26,10 @@ setup(
     'console_scripts': [
         'drone_status_publisher = drone_node.drone_status_publisher:main',
         'drone_reactor = drone_node.drone_reactor:main',
+        'drone_task_publisher = drone_node.drone_task_publisher:main',
+        'camera_bridge_simple = drone_node.camera_bridge_simple:main',
+
+
     ],
 },
 )

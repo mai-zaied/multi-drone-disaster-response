@@ -1,0 +1,27 @@
+[0.386s] Invoking command in '/home/maizaied03/ros2_ws/src/drone_node': PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/drone_node build --build-base /home/maizaied03/ros2_ws/build/drone_node/build install --record /home/maizaied03/ros2_ws/build/drone_node/install.log --single-version-externally-managed install_data
+[0.551s] running egg_info
+[0.551s] writing ../../build/drone_node/drone_node.egg-info/PKG-INFO
+[0.551s] writing dependency_links to ../../build/drone_node/drone_node.egg-info/dependency_links.txt
+[0.551s] writing entry points to ../../build/drone_node/drone_node.egg-info/entry_points.txt
+[0.551s] writing requirements to ../../build/drone_node/drone_node.egg-info/requires.txt
+[0.552s] writing top-level names to ../../build/drone_node/drone_node.egg-info/top_level.txt
+[0.553s] reading manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+[0.554s] writing manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+[0.554s] running build
+[0.554s] running build_py
+[0.554s] copying drone_node/drone_task_publisher.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+[0.554s] running install
+[0.554s] running install_lib
+[0.555s] copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/drone_task_publisher.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+[0.555s] byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/drone_task_publisher.py to drone_task_publisher.cpython-310.pyc
+[0.556s] running install_data
+[0.556s] copying package.xml -> /home/maizaied03/ros2_ws/install/drone_node/share/drone_node
+[0.556s] running install_egg_info
+[0.557s] removing '/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node-0.0.0-py3.10.egg-info' (and everything under it)
+[0.557s] Copying ../../build/drone_node/drone_node.egg-info to /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node-0.0.0-py3.10.egg-info
+[0.558s] running install_scripts
+[0.572s] Installing drone_reactor script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.572s] Installing drone_status_publisher script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.572s] Installing drone_task_publisher script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.573s] writing list of installed files to '/home/maizaied03/ros2_ws/build/drone_node/install.log'
+[0.592s] Invoked command in '/home/maizaied03/ros2_ws/src/drone_node' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/drone_node build --build-base /home/maizaied03/ros2_ws/build/drone_node/build install --record /home/maizaied03/ros2_ws/build/drone_node/install.log --single-version-externally-managed install_data

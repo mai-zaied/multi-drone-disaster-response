@@ -1,0 +1,271 @@
+[0.000000] (-) TimerEvent: {}
+[0.000228] (-) JobUnselected: {'identifier': 'drone_node'}
+[0.000415] (-) JobUnselected: {'identifier': 'fog_node'}
+[0.000427] (-) JobUnselected: {'identifier': 'multi_drone_offboard'}
+[0.000437] (-) JobUnselected: {'identifier': 'px4_msgs'}
+[0.000448] (task_msgs) JobQueued: {'identifier': 'task_msgs', 'dependencies': OrderedDict()}
+[0.000460] (task_msgs) JobStarted: {'identifier': 'task_msgs'}
+[0.006347] (task_msgs) JobProgress: {'identifier': 'task_msgs', 'progress': 'cmake'}
+[0.006680] (task_msgs) Command: {'cmd': ['/usr/bin/cmake', '/home/maizaied03/ros2_ws/src/task_msgs', '-DCMAKE_INSTALL_PREFIX=/home/maizaied03/ros2_ws/install/task_msgs'], 'cwd': '/home/maizaied03/ros2_ws/build/task_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', ':/home/maizaied03/PX4-Autopilot/Tools/simulation/gz/models'), ('USER', 'maizaied03'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/maizaied03'), ('OLDPWD', '/home/maizaied03/ros2_ws/src/task_msgs'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1934'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'maizaied03'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'maizaied03'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/maizaied03/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:@/tmp/.ICE-unix/1895,unix/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:/tmp/.ICE-unix/1895'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/0e11dde9_cf08_4a3a_99b1_098943e15e08'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.168'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/maizaied03/ros2_ws/build/task_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/home/maizaied03/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099924] (-) TimerEvent: {}
+[0.200315] (-) TimerEvent: {}
+[0.269741] (task_msgs) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.300444] (-) TimerEvent: {}
+[0.314511] (task_msgs) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.322928] (task_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.400540] (-) TimerEvent: {}
+[0.401493] (task_msgs) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.406263] (task_msgs) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.406965] (task_msgs) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.407458] (task_msgs) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.410418] (task_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.489356] (task_msgs) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.494388] (task_msgs) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.494566] (task_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.494860] (task_msgs) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.500580] (-) TimerEvent: {}
+[0.515747] (task_msgs) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.600684] (-) TimerEvent: {}
+[0.638643] (task_msgs) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.700857] (-) TimerEvent: {}
+[0.750766] (task_msgs) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.757695] (task_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.764258] (task_msgs) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.800951] (-) TimerEvent: {}
+[0.826371] (task_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.874802] (task_msgs) StdoutLine: {'line': b'-- Found builtin_interfaces: 1.2.2 (/opt/ros/humble/share/builtin_interfaces/cmake)\n'}
+[0.901050] (-) TimerEvent: {}
+[1.001308] (-) TimerEvent: {}
+[1.063739] (task_msgs) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[1.101441] (-) TimerEvent: {}
+[1.194800] (task_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.201553] (-) TimerEvent: {}
+[1.301792] (-) TimerEvent: {}
+[1.365390] (task_msgs) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.383756] (task_msgs) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[1.385162] (task_msgs) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[1.401921] (-) TimerEvent: {}
+[1.409368] (task_msgs) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[1.409539] (task_msgs) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.409591] (task_msgs) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[1.409625] (task_msgs) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[1.424777] (task_msgs) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[1.456170] (task_msgs) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.478095] (task_msgs) StdoutLine: {'line': b'-- Generating done\n'}
+[1.485168] (task_msgs) StdoutLine: {'line': b'-- Build files have been written to: /home/maizaied03/ros2_ws/build/task_msgs\n'}
+[1.489719] (task_msgs) CommandEnded: {'returncode': 0}
+[1.490307] (task_msgs) JobProgress: {'identifier': 'task_msgs', 'progress': 'build'}
+[1.490978] (task_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/maizaied03/ros2_ws/build/task_msgs', '--', '-j8', '-l8'], 'cwd': '/home/maizaied03/ros2_ws/build/task_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', ':/home/maizaied03/PX4-Autopilot/Tools/simulation/gz/models'), ('USER', 'maizaied03'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/maizaied03'), ('OLDPWD', '/home/maizaied03/ros2_ws/src/task_msgs'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1934'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'maizaied03'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'maizaied03'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/maizaied03/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:@/tmp/.ICE-unix/1895,unix/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:/tmp/.ICE-unix/1895'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/0e11dde9_cf08_4a3a_99b1_098943e15e08'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.168'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/maizaied03/ros2_ws/build/task_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/home/maizaied03/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.502028] (-) TimerEvent: {}
+[1.517863] (task_msgs) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[1.524640] (task_msgs) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[1.532535] (task_msgs) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_copy_task_msgs\n'}
+[1.602125] (-) TimerEvent: {}
+[1.692540] (task_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[1.692892] (task_msgs) StdoutLine: {'line': b'creating task_msgs.egg-info\n'}
+[1.693016] (task_msgs) StdoutLine: {'line': b'writing task_msgs.egg-info/PKG-INFO\n'}
+[1.693126] (task_msgs) StdoutLine: {'line': b'writing dependency_links to task_msgs.egg-info/dependency_links.txt\n'}
+[1.693221] (task_msgs) StdoutLine: {'line': b'writing top-level names to task_msgs.egg-info/top_level.txt\n'}
+[1.693336] (task_msgs) StdoutLine: {'line': b"writing manifest file 'task_msgs.egg-info/SOURCES.txt'\n"}
+[1.694502] (task_msgs) StdoutLine: {'line': b"reading manifest file 'task_msgs.egg-info/SOURCES.txt'\n"}
+[1.694819] (task_msgs) StdoutLine: {'line': b"writing manifest file 'task_msgs.egg-info/SOURCES.txt'\n"}
+[1.702251] (-) TimerEvent: {}
+[1.713838] (task_msgs) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_build_task_msgs_egg\n'}
+[1.756896] (task_msgs) StdoutLine: {'line': b'[  6%] Built target task_msgs__cpp\n'}
+[1.763201] (task_msgs) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.763420] (task_msgs) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[1.763489] (task_msgs) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[1.766995] (task_msgs) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_generator_c.dir/rosidl_generator_c/task_msgs/msg/detail/task__functions.c.o\x1b[0m\n'}
+[1.802357] (-) TimerEvent: {}
+[1.821294] (task_msgs) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libtask_msgs__rosidl_generator_c.so\x1b[0m\n'}
+[1.846360] (task_msgs) StdoutLine: {'line': b'[ 22%] Built target task_msgs__rosidl_generator_c\n'}
+[1.855735] (task_msgs) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[1.856012] (task_msgs) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.856092] (task_msgs) StdoutLine: {'line': b'[ 32%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[1.902446] (-) TimerEvent: {}
+[2.002981] (-) TimerEvent: {}
+[2.010617] (task_msgs) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/task_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/task_msgs/msg/detail/task__type_support.cpp.o\x1b[0m\n'}
+[2.047655] (task_msgs) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/task_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/task_msgs/msg/task__type_support.cpp.o\x1b[0m\n'}
+[2.049202] (task_msgs) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/task_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/task_msgs/msg/detail/dds_fastrtps/task__type_support.cpp.o\x1b[0m\n'}
+[2.103378] (-) TimerEvent: {}
+[2.203831] (-) TimerEvent: {}
+[2.224510] (task_msgs) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/task_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/task_msgs/msg/task__type_support.cpp.o\x1b[0m\n'}
+[2.251618] (task_msgs) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding CXX object CMakeFiles/task_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/task_msgs/msg/detail/task__type_support_c.cpp.o\x1b[0m\n'}
+[2.252964] (task_msgs) StdoutLine: {'line': b'[ 51%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/task_msgs/msg/detail/task__type_support.c.o\x1b[0m\n'}
+[2.260504] (task_msgs) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libtask_msgs__rosidl_typesupport_c.so\x1b[0m\n'}
+[2.295686] (task_msgs) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking C shared library libtask_msgs__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[2.296062] (task_msgs) StdoutLine: {'line': b'[ 58%] Built target task_msgs__rosidl_typesupport_c\n'}
+[2.303918] (-) TimerEvent: {}
+[2.322665] (task_msgs) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libtask_msgs__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[2.322999] (task_msgs) StdoutLine: {'line': b'[ 61%] Built target task_msgs__rosidl_typesupport_introspection_c\n'}
+[2.338750] (task_msgs) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking CXX shared library libtask_msgs__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[2.354698] (task_msgs) StdoutLine: {'line': b'[ 64%] Built target task_msgs__rosidl_typesupport_cpp\n'}
+[2.377727] (task_msgs) StdoutLine: {'line': b'[ 67%] \x1b[32m\x1b[1mLinking CXX shared library libtask_msgs__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[2.388264] (task_msgs) StdoutLine: {'line': b'[ 67%] Built target task_msgs__rosidl_typesupport_introspection_cpp\n'}
+[2.404140] (-) TimerEvent: {}
+[2.435891] (task_msgs) StdoutLine: {'line': b'[ 67%] Built target task_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[2.504235] (-) TimerEvent: {}
+[2.548830] (task_msgs) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libtask_msgs__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[2.602818] (task_msgs) StdoutLine: {'line': b'[ 70%] Built target task_msgs__rosidl_typesupport_fastrtps_c\n'}
+[2.604337] (-) TimerEvent: {}
+[2.615066] (task_msgs) StdoutLine: {'line': b'[ 70%] Built target task_msgs\n'}
+[2.627207] (task_msgs) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[2.704514] (-) TimerEvent: {}
+[2.804769] (-) TimerEvent: {}
+[2.910572] (-) TimerEvent: {}
+[2.947993] (task_msgs) StdoutLine: {'line': b'[ 74%] Built target task_msgs__py\n'}
+[2.969766] (task_msgs) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_generator_py.dir/rosidl_generator_py/task_msgs/msg/_task_s.c.o\x1b[0m\n'}
+[3.010660] (-) TimerEvent: {}
+[3.110931] (-) TimerEvent: {}
+[3.208727] (task_msgs) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/task_msgs/libtask_msgs__rosidl_generator_py.so\x1b[0m\n'}
+[3.210996] (-) TimerEvent: {}
+[3.239553] (task_msgs) StdoutLine: {'line': b'[ 80%] Built target task_msgs__rosidl_generator_py\n'}
+[3.254013] (task_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[3.254291] (task_msgs) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[3.254354] (task_msgs) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/task_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[3.311128] (-) TimerEvent: {}
+[3.321081] (task_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/task_msgs/task_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.321232] (task_msgs) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/task_msgs/task_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.324921] (task_msgs) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/task_msgs/task_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.346681] (task_msgs) StdoutLine: {'line': b'[100%] Built target task_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[3.346944] (task_msgs) StdoutLine: {'line': b'[100%] Built target task_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[3.350958] (task_msgs) StdoutLine: {'line': b'[100%] Built target task_msgs__rosidl_typesupport_c__pyext\n'}
+[3.359994] (task_msgs) CommandEnded: {'returncode': 0}
+[3.360546] (task_msgs) JobProgress: {'identifier': 'task_msgs', 'progress': 'install'}
+[3.366650] (task_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/maizaied03/ros2_ws/build/task_msgs'], 'cwd': '/home/maizaied03/ros2_ws/build/task_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('GZ_SIM_RESOURCE_PATH', ':/home/maizaied03/PX4-Autopilot/Tools/simulation/gz/models'), ('USER', 'maizaied03'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/maizaied03'), ('OLDPWD', '/home/maizaied03/ros2_ws/src/task_msgs'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1934'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'maizaied03'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'maizaied03'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/maizaied03/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:@/tmp/.ICE-unix/1895,unix/maizaied03-ASUS-TUF-Dash-F15-FX516PE-FX516PE:/tmp/.ICE-unix/1895'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/0e11dde9_cf08_4a3a_99b1_098943e15e08'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.168'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/maizaied03/ros2_ws/build/task_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/home/maizaied03/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[3.373252] (task_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.373509] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/ament_index/resource_index/rosidl_interfaces/task_msgs\n'}
+[3.373630] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.373672] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.373711] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/task.h\n'}
+[3.373750] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[3.373832] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.373868] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__functions.c\n'}
+[3.373905] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__functions.h\n'}
+[3.373940] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__struct.h\n'}
+[3.373995] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__type_support.h\n'}
+[3.374051] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/library_path.sh\n'}
+[3.374143] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/library_path.dsv\n'}
+[3.374200] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_generator_c.so\n'}
+[3.374373] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_generator_c.so" to ""\n'}
+[3.374436] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.374498] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.374550] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[3.374612] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.374648] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__rosidl_typesupport_fastrtps_c.h\n'}
+[3.374702] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[3.374848] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[3.374908] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.374945] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.374995] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[3.375057] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.375093] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__rosidl_typesupport_introspection_c.h\n'}
+[3.375147] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__type_support.c\n'}
+[3.375201] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_introspection_c.so\n'}
+[3.375370] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_introspection_c.so" to ""\n'}
+[3.375422] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_c.so\n'}
+[3.375577] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_c.so" to ""\n'}
+[3.375642] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.375678] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.375761] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/task.hpp\n'}
+[3.375817] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[3.375874] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.375917] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__struct.hpp\n'}
+[3.375952] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__traits.hpp\n'}
+[3.376011] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__type_support.hpp\n'}
+[3.376046] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__builder.hpp\n'}
+[3.376096] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.376150] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.376215] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[3.376251] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.376286] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/dds_fastrtps\n'}
+[3.376340] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[3.376395] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[3.376573] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[3.376640] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs\n'}
+[3.376691] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg\n'}
+[3.376737] (task_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail\n'}
+[3.376770] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__type_support.cpp\n'}
+[3.376803] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/include/task_msgs/task_msgs/msg/detail/task__rosidl_typesupport_introspection_cpp.hpp\n'}
+[3.376858] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[3.377010] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[3.377055] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_cpp.so\n'}
+[3.377206] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_typesupport_cpp.so" to ""\n'}
+[3.377252] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/pythonpath.sh\n'}
+[3.377311] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/pythonpath.dsv\n'}
+[3.377374] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs-0.0.1-py3.10.egg-info\n'}
+[3.377452] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs-0.0.1-py3.10.egg-info/SOURCES.txt\n'}
+[3.377514] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs-0.0.1-py3.10.egg-info/top_level.txt\n'}
+[3.377565] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs-0.0.1-py3.10.egg-info/dependency_links.txt\n'}
+[3.377616] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs-0.0.1-py3.10.egg-info/PKG-INFO\n'}
+[3.377696] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs\n'}
+[3.377757] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.377835] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/libtask_msgs__rosidl_generator_py.so\n'}
+[3.377910] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/_task_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[3.377981] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.378052] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/__init__.py\n'}
+[3.378100] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/_task_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[3.378178] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.378330] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg\n'}
+[3.378420] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg/_task_s.c\n'}
+[3.378490] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg/__init__.py\n'}
+[3.378568] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg/_task.py\n'}
+[3.378623] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/_task_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[3.402319] (task_msgs) StdoutLine: {'line': b"Listing '/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs'...\n"}
+[3.402474] (task_msgs) StdoutLine: {'line': b"Compiling '/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/__init__.py'...\n"}
+[3.402519] (task_msgs) StdoutLine: {'line': b"Listing '/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg'...\n"}
+[3.402554] (task_msgs) StdoutLine: {'line': b"Compiling '/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg/__init__.py'...\n"}
+[3.402590] (task_msgs) StdoutLine: {'line': b"Compiling '/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/msg/_task.py'...\n"}
+[3.405711] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.405931] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.406132] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.406255] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.406367] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[3.406568] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages/task_msgs/task_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[3.406659] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_generator_py.so\n'}
+[3.406850] (task_msgs) StdoutLine: {'line': b'-- Set runtime path of "/home/maizaied03/ros2_ws/install/task_msgs/lib/libtask_msgs__rosidl_generator_py.so" to ""\n'}
+[3.407051] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/msg/Task.idl\n'}
+[3.407147] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/msg/Task.msg\n'}
+[3.407228] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/ament_index/resource_index/package_run_dependencies/task_msgs\n'}
+[3.407308] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/ament_index/resource_index/parent_prefix_path/task_msgs\n'}
+[3.407411] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/ament_prefix_path.sh\n'}
+[3.407516] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/ament_prefix_path.dsv\n'}
+[3.407616] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/path.sh\n'}
+[3.407714] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/environment/path.dsv\n'}
+[3.407807] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/local_setup.bash\n'}
+[3.407900] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/local_setup.sh\n'}
+[3.408014] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/local_setup.zsh\n'}
+[3.408094] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/local_setup.dsv\n'}
+[3.408191] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/package.dsv\n'}
+[3.408309] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/ament_index/resource_index/packages/task_msgs\n'}
+[3.408431] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_generator_cExport.cmake\n'}
+[3.408539] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[3.408646] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[3.408752] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[3.408872] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[3.408983] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[3.409083] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_cExport.cmake\n'}
+[3.409181] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[3.409284] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_generator_cppExport.cmake\n'}
+[3.409387] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[3.409493] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[3.409600] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[3.409699] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[3.409808] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[3.409906] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[3.410009] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_generator_pyExport.cmake\n'}
+[3.410107] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/export_task_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[3.410206] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[3.410301] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.410402] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[3.410506] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[3.410607] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[3.410702] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[3.410814] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[3.410899] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgsConfig.cmake\n'}
+[3.410980] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/cmake/task_msgsConfig-version.cmake\n'}
+[3.411076] (task_msgs) StdoutLine: {'line': b'-- Installing: /home/maizaied03/ros2_ws/install/task_msgs/share/task_msgs/package.xml\n'}
+[3.411140] (-) TimerEvent: {}
+[3.412664] (task_msgs) CommandEnded: {'returncode': 0}
+[3.426941] (task_msgs) JobEnded: {'identifier': 'task_msgs', 'rc': 0}
+[3.427398] (-) EventReactorShutdown: {}
