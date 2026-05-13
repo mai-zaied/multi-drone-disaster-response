@@ -9,6 +9,7 @@ setup.py
 ../../build/fog_node/fog_node.egg-info/top_level.txt
 ../../build/fog_node/fog_node.egg-info/zip-safe
 fog_node/__init__.py
+fog_node/drone_naming.py
 fog_node/fog_server.py
 resource/fog_node
 test/test_copyright.py

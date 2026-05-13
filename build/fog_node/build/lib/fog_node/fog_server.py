@@ -1,18 +1,18 @@
 """
 fog_server.py
 
-Fog node: receives data from the drone swarm and processes it locally.
+Fog node — scalable to N drones via the 'num_drones' parameter.
 
-In Task 2, the fog subscribed only to PX4 VehicleStatus and emitted simple
-decisions back to each drone.
+For each drone in [0, num_drones), the fog subscribes to:
+  - The drone's PX4 VehicleStatus topic
+  - The drone's fog-tier Task topic   (/{drone_id}/task/fog)
+  - The drone's camera topic          (/{drone_id}/camera/image)
 
-In Task 3 (this revision), the fog additionally subscribes to:
-  - Per-drone Task topics  (control plane, /{drone_id}/task)
-  - Per-drone camera topics (data plane,    /{drone_id}/camera/image)
+And it publishes a Task-2-style decision per drone on:
+  - /fog/{drone_id}/decision
 
-For now the fog only logs what it receives. The actual offloading-decision
-logic that uses task metadata to route work to drone/fog/cloud will be added
-in Task 3.4.
+The 'num_drones' parameter defaults to 3 for backward compatibility.
+Pass -p num_drones:=N to support more.
 """
 
 import time
@@ -27,92 +27,81 @@ from sensor_msgs.msg import Image
 from px4_msgs.msg import VehicleStatus
 from task_msgs.msg import Task
 
+from fog_node.drone_naming import (
+    drone_id_for,
+    px4_topic_for,
+)
+
 
 class FogServer(Node):
     def __init__(self):
         super().__init__('fog_server')
 
-        # ---- PX4 QoS: must match PX4's BEST_EFFORT + TRANSIENT_LOCAL ----
+        # ---- Parameters ----
+        self.declare_parameter('num_drones', 3)
+        self.num_drones = int(self.get_parameter('num_drones').value)
+        if self.num_drones < 1:
+            raise ValueError(f'num_drones must be >= 1, got {self.num_drones}')
+
+        # ---- PX4 QoS ----
         px4_qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
             durability=DurabilityPolicy.TRANSIENT_LOCAL,
-            depth=10
+            depth=10,
         )
 
-        # ---- Drone roster ----
-        # Each drone has three associated topics:
-        #   - PX4 VehicleStatus (existing from Task 2)
-        #   - Task topic         (Task 3.3, new)
-        #   - Camera topic       (Task 3.3, new)
-        self.drones = {
-            'drone0': {
-                'status_topic': '/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone0/task/fog',          
-                'camera_topic': '/drone0/camera/image',
-            },
-            'drone1': {
-                'status_topic': '/px4_1/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone1/task/fog',          
-                'camera_topic': '/drone1/camera/image',
-            },
-            'drone2': {
-                'status_topic': '/px4_2/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone2/task/fog',         
-                'camera_topic': '/drone2/camera/image',
-            },
-        }
-
+        # ---- Build per-drone subscriptions dynamically ----
         self.decision_publishers = {}
+        self.stats = {}
 
-        # ---- Per-drone counters for logging visibility ----
-        self.stats = {
-            d: {'status': 0, 'tasks': 0, 'frames': 0}
-            for d in self.drones
-        }
+        for instance in range(self.num_drones):
+            drone_id = drone_id_for(instance)
+            status_topic = px4_topic_for(instance, 'vehicle_status_v1')
+            task_topic = f'/{drone_id}/task/fog'
+            camera_topic = f'/{drone_id}/camera/image'
 
-        for drone_id, topics in self.drones.items():
-            # PX4 VehicleStatus subscriber (from Task 2)
+            # PX4 status subscriber
             self.create_subscription(
-                VehicleStatus,
-                topics['status_topic'],
+                VehicleStatus, status_topic,
                 lambda msg, d=drone_id: self.status_callback(msg, d),
-                px4_qos
+                px4_qos,
             )
 
-            # Task subscriber (NEW in Task 3.3)
+            # Task subscriber (fog-tier only)
             self.create_subscription(
-                Task,
-                topics['task_topic'],
+                Task, task_topic,
                 lambda msg, d=drone_id: self.task_callback(msg, d),
-                10
+                10,
             )
 
-            # Camera subscriber (NEW in Task 3.3)
-            # Default RELIABLE QoS to match the bridge's publisher.
-            # Depth 1 — we only need the latest frame; we drop older ones.
+            # Camera subscriber
             self.create_subscription(
-                Image,
-                topics['camera_topic'],
+                Image, camera_topic,
                 lambda msg, d=drone_id: self.camera_callback(msg, d),
-                1
+                1,
             )
 
-            # Decision publisher (from Task 2)
+            # Decision publisher (Task-2-style commands back to drone)
             decision_topic = f'/fog/{drone_id}/decision'
             self.decision_publishers[drone_id] = self.create_publisher(
                 String, decision_topic, 10
             )
 
+            # Stats
+            self.stats[drone_id] = {'status': 0, 'tasks': 0, 'frames': 0}
+
             self.get_logger().info(
-                f'[FOG] {drone_id}: status={topics["status_topic"]}, '
-                f'task={topics["task_topic"]}, camera={topics["camera_topic"]}'
+                f'[FOG] {drone_id} (instance={instance}): '
+                f'status={status_topic}, task={task_topic}, camera={camera_topic}'
             )
 
-        # Periodic summary log
+        self.get_logger().info(
+            f'[FOG] tracking {self.num_drones} drone(s)'
+        )
+
+        # Periodic stats
         self.create_timer(5.0, self.log_stats)
 
-    # ------------------------------------------------------------------
-    # PX4 VehicleStatus -> simple Task 2 decision logic
     # ------------------------------------------------------------------
     def status_callback(self, msg: VehicleStatus, drone_id: str):
         self.stats[drone_id]['status'] += 1
@@ -126,53 +115,47 @@ class FogServer(Node):
         else:
             decision.data = f'{drone_id}: COMMAND_NORMAL_OPERATION'
 
-        # Simulated fog processing delay (Task 2.9). We keep it short to
-        # avoid blocking the executor — sleeping inside callbacks isn't
-        # ideal but for a graduation demo it's acceptable.
-        time.sleep(0.05)
-
+        time.sleep(0.05)  # short simulated processing — Task 3.7 makes this non-blocking
         self.decision_publishers[drone_id].publish(decision)
 
-    # ------------------------------------------------------------------
-    # Task control plane
     # ------------------------------------------------------------------
     def task_callback(self, msg: Task, drone_id: str):
         self.stats[drone_id]['tasks'] += 1
 
-        # Compute the delivery latency in milliseconds.
         now_ns = self.get_clock().now().nanoseconds
         sent_ns = msg.timestamp.sec * 1_000_000_000 + msg.timestamp.nanosec
         latency_ms = (now_ns - sent_ns) / 1e6
 
-        # Best-effort payload parsing (payload is a JSON string)
         try:
             payload = json.loads(msg.payload) if msg.payload else {}
         except json.JSONDecodeError:
-            payload = {'_parse_error': True, '_raw': msg.payload}
+            payload = {'_parse_error': True}
 
-        self.get_logger().info(
-            f'[FOG TASK] {drone_id} {msg.task_id} '
-            f'type={msg.task_type} priority={msg.priority} '
-            f'latency={latency_ms:.1f}ms payload_keys={list(payload.keys())}'
-        )
+        # Highlight dying-drone signals
+        if msg.priority == 3:
+            self.get_logger().warn(
+                f'[FOG TASK CRITICAL] {drone_id} {msg.task_id} '
+                f'type={msg.task_type} PRIORITY=3 latency={latency_ms:.1f}ms '
+                f'failing={payload.get("drone_failing", False)}'
+            )
+        else:
+            self.get_logger().info(
+                f'[FOG TASK] {drone_id} {msg.task_id} '
+                f'type={msg.task_type} priority={msg.priority} '
+                f'latency={latency_ms:.1f}ms payload_keys={list(payload.keys())}'
+            )
 
-    # ------------------------------------------------------------------
-    # Camera data plane
     # ------------------------------------------------------------------
     def camera_callback(self, msg: Image, drone_id: str):
         self.stats[drone_id]['frames'] += 1
-        # No processing for now — just acknowledge receipt.
-        # In Task 4 this is where the detection model will run.
+        # Task 4 will run the detection model here.
 
     # ------------------------------------------------------------------
-    # Periodic stats
-    # ------------------------------------------------------------------
     def log_stats(self):
-        parts = []
-        for drone_id, c in self.stats.items():
-            parts.append(
-                f'{drone_id}[s={c["status"]} t={c["tasks"]} f={c["frames"]}]'
-            )
+        parts = [
+            f'{d}[s={c["status"]} t={c["tasks"]} f={c["frames"]}]'
+            for d, c in self.stats.items()
+        ]
         self.get_logger().info('[FOG STATS] ' + ' '.join(parts))
 
 
