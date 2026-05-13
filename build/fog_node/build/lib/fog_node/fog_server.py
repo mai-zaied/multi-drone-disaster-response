@@ -47,17 +47,17 @@ class FogServer(Node):
         self.drones = {
             'drone0': {
                 'status_topic': '/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone0/task',
+                'task_topic':   '/drone0/task/fog',          
                 'camera_topic': '/drone0/camera/image',
             },
             'drone1': {
                 'status_topic': '/px4_1/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone1/task',
+                'task_topic':   '/drone1/task/fog',          
                 'camera_topic': '/drone1/camera/image',
             },
             'drone2': {
                 'status_topic': '/px4_2/fmu/out/vehicle_status_v1',
-                'task_topic':   '/drone2/task',
+                'task_topic':   '/drone2/task/fog',         
                 'camera_topic': '/drone2/camera/image',
             },
         }
