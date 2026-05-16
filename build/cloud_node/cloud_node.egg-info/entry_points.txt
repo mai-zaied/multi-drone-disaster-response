@@ -1,0 +1,3 @@
+[console_scripts]
+cloud_server = cloud_node.cloud_server:main
+

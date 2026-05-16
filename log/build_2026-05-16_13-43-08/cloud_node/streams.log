@@ -1,0 +1,37 @@
+[0.626s] Invoking command in '/home/maizaied03/ros2_ws/src/cloud_node': PYTHONPATH=/home/maizaied03/ros2_ws/build/cloud_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cloud_node build --build-base /home/maizaied03/ros2_ws/build/cloud_node/build install --record /home/maizaied03/ros2_ws/build/cloud_node/install.log --single-version-externally-managed install_data
+[0.778s] running egg_info
+[0.779s] creating ../../build/cloud_node/cloud_node.egg-info
+[0.779s] writing ../../build/cloud_node/cloud_node.egg-info/PKG-INFO
+[0.779s] writing dependency_links to ../../build/cloud_node/cloud_node.egg-info/dependency_links.txt
+[0.779s] writing entry points to ../../build/cloud_node/cloud_node.egg-info/entry_points.txt
+[0.779s] writing requirements to ../../build/cloud_node/cloud_node.egg-info/requires.txt
+[0.779s] writing top-level names to ../../build/cloud_node/cloud_node.egg-info/top_level.txt
+[0.779s] writing manifest file '../../build/cloud_node/cloud_node.egg-info/SOURCES.txt'
+[0.780s] reading manifest file '../../build/cloud_node/cloud_node.egg-info/SOURCES.txt'
+[0.781s] writing manifest file '../../build/cloud_node/cloud_node.egg-info/SOURCES.txt'
+[0.781s] running build
+[0.781s] running build_py
+[0.781s] creating /home/maizaied03/ros2_ws/build/cloud_node/build
+[0.781s] creating /home/maizaied03/ros2_ws/build/cloud_node/build/lib
+[0.781s] creating /home/maizaied03/ros2_ws/build/cloud_node/build/lib/cloud_node
+[0.781s] copying cloud_node/__init__.py -> /home/maizaied03/ros2_ws/build/cloud_node/build/lib/cloud_node
+[0.781s] copying cloud_node/cloud_server.py -> /home/maizaied03/ros2_ws/build/cloud_node/build/lib/cloud_node
+[0.781s] running install
+[0.782s] running install_lib
+[0.782s] creating /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node
+[0.782s] copying /home/maizaied03/ros2_ws/build/cloud_node/build/lib/cloud_node/__init__.py -> /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node
+[0.782s] copying /home/maizaied03/ros2_ws/build/cloud_node/build/lib/cloud_node/cloud_server.py -> /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node
+[0.783s] byte-compiling /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node/__init__.py to __init__.cpython-310.pyc
+[0.783s] byte-compiling /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node/cloud_server.py to cloud_server.cpython-310.pyc
+[0.784s] running install_data
+[0.784s] creating /home/maizaied03/ros2_ws/install/cloud_node/share/ament_index
+[0.784s] creating /home/maizaied03/ros2_ws/install/cloud_node/share/ament_index/resource_index
+[0.784s] creating /home/maizaied03/ros2_ws/install/cloud_node/share/ament_index/resource_index/packages
+[0.784s] copying resource/cloud_node -> /home/maizaied03/ros2_ws/install/cloud_node/share/ament_index/resource_index/packages
+[0.784s] copying package.xml -> /home/maizaied03/ros2_ws/install/cloud_node/share/cloud_node
+[0.784s] running install_egg_info
+[0.785s] Copying ../../build/cloud_node/cloud_node.egg-info to /home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages/cloud_node-0.0.1-py3.10.egg-info
+[0.785s] running install_scripts
+[0.800s] Installing cloud_server script to /home/maizaied03/ros2_ws/install/cloud_node/lib/cloud_node
+[0.800s] writing list of installed files to '/home/maizaied03/ros2_ws/build/cloud_node/install.log'
+[0.833s] Invoked command in '/home/maizaied03/ros2_ws/src/cloud_node' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/cloud_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/cloud_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cloud_node build --build-base /home/maizaied03/ros2_ws/build/cloud_node/build install --record /home/maizaied03/ros2_ws/build/cloud_node/install.log --single-version-externally-managed install_data
