@@ -20,10 +20,14 @@ Task 3.8 additions:
   fog compute focused on real-time work.
 """
 
+import os
 import time
 import json
 from collections import deque
 
+os.environ['CUDA_VISIBLE_DEVICES'] = ''  # force CPU
+
+import numpy as np
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
@@ -53,9 +57,20 @@ class FogServer(Node):
 
         # ---- Parameters ----
         self.declare_parameter('num_drones', 3)
+        self.declare_parameter('enable_detection', False)
         self.num_drones = int(self.get_parameter('num_drones').value)
+        self.enable_detection = bool(self.get_parameter('enable_detection').value)
         if self.num_drones < 1:
             raise ValueError(f'num_drones must be >= 1, got {self.num_drones}')
+
+        # ---- Detection model (loaded only if enabled) ----
+        self.model = None
+        if self.enable_detection:
+            from ultralytics import YOLO
+            self.model = YOLO('yolov8n.pt')
+            self.get_logger().info('[FOG] YOLOv8n detection ENABLED (CPU)')
+        else:
+            self.get_logger().info('[FOG] Detection disabled (use enable_detection:=true to enable)')
 
         # ---- PX4 QoS ----
         px4_qos = QoSProfile(
@@ -109,6 +124,11 @@ class FogServer(Node):
 
         self.cloud_pub = self.create_publisher(
             String, '/fog/cloud/mission_log', 10
+        )
+
+        # ---- Victim alert publisher ----
+        self.victim_alert_pub = self.create_publisher(
+            String, '/fog/victim_alerts', 10
         )
 
         # end-of-mission service
@@ -218,7 +238,75 @@ class FogServer(Node):
     # ------------------------------------------------------------------
     def camera_callback(self, msg: Image, drone_id: str):
         self.stats[drone_id]['frames'] += 1
-        # Task 4 places the detection model here.
+
+        if not self.enable_detection or self.model is None:
+            return
+
+        # Convert ROS Image to numpy
+        try:
+            frame = np.frombuffer(msg.data, dtype=np.uint8).reshape(
+                msg.height, msg.width, 3)
+        except ValueError:
+            return
+
+        # Run YOLOv8 inference
+        start = time.time()
+        results = self.model(frame, verbose=False, device='cpu')
+        inference_ms = (time.time() - start) * 1000
+
+        # Extract person detections
+        detections = []
+        boxes = results[0].boxes
+        for i in range(len(boxes)):
+            cls_id = int(boxes.cls[i])
+            conf = float(boxes.conf[i])
+            if cls_id == 0 and conf >= 0.25:  # person class, conf > 25%
+                x1, y1, x2, y2 = boxes.xyxy[i].tolist()
+                detections.append({
+                    'bbox': [round(x1, 1), round(y1, 1),
+                             round(x2, 1), round(y2, 1)],
+                    'confidence': round(conf, 3),
+                    'label': 'person',
+                })
+
+        if detections:
+            # Publish detection as Task message
+            task = Task()
+            task.task_id = f'fog-{drone_id}-detect-{self.stats[drone_id]["frames"]:04d}'
+            task.task_type = 'VICTIM_DETECTION'
+            task.drone_id = drone_id
+            task.timestamp = self.get_clock().now().to_msg()
+            task.priority = 2
+            task.payload = json.dumps({
+                'detections': detections,
+                'num_persons': len(detections),
+                'inference_time_ms': round(inference_ms, 1),
+                'processed_at': 'fog',
+            })
+
+            # Record event
+            self._record_event('VICTIM_DETECTED', drone_id, {
+                'num_persons': len(detections),
+                'inference_ms': round(inference_ms, 1),
+                'detections': detections,
+            })
+
+            self.get_logger().warn(
+                f'[FOG DETECTION] {drone_id}: {len(detections)} person(s) '
+                f'detected (inference={inference_ms:.0f}ms)'
+            )
+
+            # Publish victim alert
+            alert = String()
+            alert.data = json.dumps({
+                'drone_id': drone_id,
+                'num_persons': len(detections),
+                'detections': detections,
+                'inference_time_ms': round(inference_ms, 1),
+                'processed_at': 'fog',
+                'timestamp': time.time(),
+            })
+            self.victim_alert_pub.publish(alert)
 
     # ------------------------------------------------------------------
     # End-of-mission service: flush buffer to cloud as chunked batches
