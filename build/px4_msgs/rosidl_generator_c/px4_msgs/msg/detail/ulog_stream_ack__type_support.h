@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/UlogStreamAck.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/ulog_stream_ack.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ULOG_STREAM_ACK__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__ULOG_STREAM_ACK__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   UlogStreamAck
-)();
+)(void);
 
 #ifdef __cplusplus
 }

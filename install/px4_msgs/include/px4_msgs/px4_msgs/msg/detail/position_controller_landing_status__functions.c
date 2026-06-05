@@ -81,7 +81,7 @@ px4_msgs__msg__PositionControllerLandingStatus__copy(
 }
 
 px4_msgs__msg__PositionControllerLandingStatus *
-px4_msgs__msg__PositionControllerLandingStatus__create()
+px4_msgs__msg__PositionControllerLandingStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PositionControllerLandingStatus * msg = (px4_msgs__msg__PositionControllerLandingStatus *)allocator.allocate(sizeof(px4_msgs__msg__PositionControllerLandingStatus), allocator.state);

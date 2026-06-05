@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LateralControlConfiguration.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/lateral_control_configuration.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LATERAL_CONTROL_CONFIGURATION__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__LATERAL_CONTROL_CONFIGURATION__TRAITS_HPP_
 

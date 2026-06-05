@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GotoSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/goto_setpoint.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GOTO_SETPOINT__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__GOTO_SETPOINT__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'MESSAGE_VERSION'.
@@ -26,18 +28,19 @@ enum
 /// Struct defined in msg/GotoSetpoint in the package px4_msgs.
 /**
   * Position and (optional) heading setpoints with corresponding speed constraints
-  * Setpoints are intended as inputs to position and heading smoothers, respectively
-  * Setpoints do not need to be kinematically consistent
-  * Optional heading setpoints may be specified as controlled by the respective flag
-  * Unset optional setpoints are not controlled
-  * Unset optional constraints default to vehicle specifications
+  *
+  * Setpoints are intended as inputs to position and heading smoothers, respectively.
+  * Setpoints do not need to be kinematically consistent.
+  * Optional heading setpoints may be specified as controlled by the respective flag.
+  * Unset optional setpoints are not controlled.
+  * Unset optional constraints default to vehicle specifications.
  */
 typedef struct px4_msgs__msg__GotoSetpoint
 {
-  /// time since system start (microseconds)
+  /// Time since system start
   uint64_t timestamp;
   /// setpoints
-  /// [m] NED local world frame
+  /// [m] [@frame NED] NED local world frame
   float position[3];
   /// true if heading is to be controlled
   bool flag_control_heading;
@@ -46,15 +49,15 @@ typedef struct px4_msgs__msg__GotoSetpoint
   /// constraints
   /// true if setting a non-default horizontal speed limit
   bool flag_set_max_horizontal_speed;
-  /// (optional) maximum speed (absolute) in the NE-plane
+  /// (optional) Maximum speed (absolute) in the NE-plane
   float max_horizontal_speed;
   /// true if setting a non-default vertical speed limit
   bool flag_set_max_vertical_speed;
-  /// (optional) maximum speed (absolute) in the D-axis
+  /// (optional) Maximum speed (absolute) in the D-axis
   float max_vertical_speed;
   /// true if setting a non-default heading rate limit
   bool flag_set_max_heading_rate;
-  /// (optional) maximum heading rate (absolute)
+  /// (optional) Maximum heading rate (absolute)
   float max_heading_rate;
 } px4_msgs__msg__GotoSetpoint;
 

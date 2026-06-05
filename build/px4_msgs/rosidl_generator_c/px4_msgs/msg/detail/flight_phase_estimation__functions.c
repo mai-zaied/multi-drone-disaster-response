@@ -65,7 +65,7 @@ px4_msgs__msg__FlightPhaseEstimation__copy(
 }
 
 px4_msgs__msg__FlightPhaseEstimation *
-px4_msgs__msg__FlightPhaseEstimation__create()
+px4_msgs__msg__FlightPhaseEstimation__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FlightPhaseEstimation * msg = (px4_msgs__msg__FlightPhaseEstimation *)allocator.allocate(sizeof(px4_msgs__msg__FlightPhaseEstimation), allocator.state);

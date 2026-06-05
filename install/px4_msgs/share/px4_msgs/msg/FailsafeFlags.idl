@@ -119,6 +119,27 @@ module px4_msgs {
       boolean battery_unhealthy;
 
       @verbatim (language="comment", text=
+        "Failure detector" "\n"
+        "Critical failure (attitude limit exceeded, or external ATS)")
+      boolean fd_critical_failure;
+
+      @verbatim (language="comment", text=
+        "ESC failed to arm")
+      boolean fd_esc_arming_failure;
+
+      @verbatim (language="comment", text=
+        "Imbalanced propeller detected")
+      boolean fd_imbalanced_prop;
+
+      @verbatim (language="comment", text=
+        "Motor failure")
+      boolean fd_motor_failure;
+
+      @verbatim (language="comment", text=
+        "Uncommanded altitude loss (rotary-wing, altitude-controlled flight)")
+      boolean fd_alt_loss;
+
+      @verbatim (language="comment", text=
         "Other" "\n"
         "Geofence breached (one or multiple)")
       boolean geofence_breached;
@@ -148,21 +169,16 @@ module px4_msgs {
       boolean navigator_failure;
 
       @verbatim (language="comment", text=
-        "Failure detector" "\n"
-        "Critical failure (attitude/altitude limit exceeded, or external ATS)")
-      boolean fd_critical_failure;
+        "Parachute system missing or unhealthy")
+      boolean parachute_unhealthy;
 
       @verbatim (language="comment", text=
-        "ESC failed to arm")
-      boolean fd_esc_arming_failure;
+        "Remote ID (Open Drone ID) system missing or unhealthy")
+      boolean remote_id_unhealthy;
 
       @verbatim (language="comment", text=
-        "Imbalanced propeller detected")
-      boolean fd_imbalanced_prop;
-
-      @verbatim (language="comment", text=
-        "Motor failure")
-      boolean fd_motor_failure;
+        "Active GNSS count dropped below SYS_HAS_NUM_GNSS, or two receivers report inconsistent positions")
+      boolean gnss_lost;
     };
   };
 };

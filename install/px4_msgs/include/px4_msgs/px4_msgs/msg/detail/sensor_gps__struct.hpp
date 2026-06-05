@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/SensorGps.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_gps.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_GPS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_GPS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -75,6 +79,9 @@ struct SensorGps_
       this->selected_rtcm_instance = 0;
       this->rtcm_crc_failed = false;
       this->rtcm_msg_used = 0;
+      this->antenna_offset_x = 0.0f;
+      this->antenna_offset_y = 0.0f;
+      this->antenna_offset_z = 0.0f;
     }
   }
 
@@ -121,6 +128,9 @@ struct SensorGps_
       this->selected_rtcm_instance = 0;
       this->rtcm_crc_failed = false;
       this->rtcm_msg_used = 0;
+      this->antenna_offset_x = 0.0f;
+      this->antenna_offset_y = 0.0f;
+      this->antenna_offset_z = 0.0f;
     }
   }
 
@@ -236,6 +246,15 @@ struct SensorGps_
   using _rtcm_msg_used_type =
     uint8_t;
   _rtcm_msg_used_type rtcm_msg_used;
+  using _antenna_offset_x_type =
+    float;
+  _antenna_offset_x_type antenna_offset_x;
+  using _antenna_offset_y_type =
+    float;
+  _antenna_offset_y_type antenna_offset_y;
+  using _antenna_offset_z_type =
+    float;
+  _antenna_offset_z_type antenna_offset_z;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -460,6 +479,24 @@ struct SensorGps_
     this->rtcm_msg_used = _arg;
     return *this;
   }
+  Type & set__antenna_offset_x(
+    const float & _arg)
+  {
+    this->antenna_offset_x = _arg;
+    return *this;
+  }
+  Type & set__antenna_offset_y(
+    const float & _arg)
+  {
+    this->antenna_offset_y = _arg;
+    return *this;
+  }
+  Type & set__antenna_offset_z(
+    const float & _arg)
+  {
+    this->antenna_offset_z = _arg;
+    return *this;
+  }
 
   // constant declarations
   static constexpr uint8_t FIX_TYPE_NONE =
@@ -674,6 +711,15 @@ struct SensorGps_
       return false;
     }
     if (this->rtcm_msg_used != other.rtcm_msg_used) {
+      return false;
+    }
+    if (this->antenna_offset_x != other.antenna_offset_x) {
+      return false;
+    }
+    if (this->antenna_offset_y != other.antenna_offset_y) {
+      return false;
+    }
+    if (this->antenna_offset_z != other.antenna_offset_z) {
       return false;
     }
     return true;

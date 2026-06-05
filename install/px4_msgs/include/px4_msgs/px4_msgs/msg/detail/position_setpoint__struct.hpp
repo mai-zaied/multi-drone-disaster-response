@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/PositionSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/position_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -55,6 +59,7 @@ struct PositionSetpoint_
       this->loiter_pattern = 0;
       this->acceptance_radius = 0.0f;
       this->alt_acceptance_radius = 0.0f;
+      this->course = 0.0f;
       this->cruising_speed = 0.0f;
       this->gliding_enabled = false;
       this->cruising_throttle = 0.0f;
@@ -84,6 +89,7 @@ struct PositionSetpoint_
       this->loiter_pattern = 0;
       this->acceptance_radius = 0.0f;
       this->alt_acceptance_radius = 0.0f;
+      this->course = 0.0f;
       this->cruising_speed = 0.0f;
       this->gliding_enabled = false;
       this->cruising_throttle = 0.0f;
@@ -142,6 +148,9 @@ struct PositionSetpoint_
   using _alt_acceptance_radius_type =
     float;
   _alt_acceptance_radius_type alt_acceptance_radius;
+  using _course_type =
+    float;
+  _course_type course;
   using _cruising_speed_type =
     float;
   _cruising_speed_type cruising_speed;
@@ -253,6 +262,12 @@ struct PositionSetpoint_
     const float & _arg)
   {
     this->alt_acceptance_radius = _arg;
+    return *this;
+  }
+  Type & set__course(
+    const float & _arg)
+  {
+    this->course = _arg;
     return *this;
   }
   Type & set__cruising_speed(
@@ -381,6 +396,9 @@ struct PositionSetpoint_
       return false;
     }
     if (this->alt_acceptance_radius != other.alt_acceptance_radius) {
+      return false;
+    }
+    if (this->course != other.course) {
       return false;
     }
     if (this->cruising_speed != other.cruising_speed) {

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LandingGearWheel.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_gear_wheel.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_GEAR_WHEEL__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__LANDING_GEAR_WHEEL__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   LandingGearWheel
-)();
+)(void);
 
 #ifdef __cplusplus
 }

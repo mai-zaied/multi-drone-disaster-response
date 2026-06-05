@@ -153,7 +153,7 @@ px4_msgs__msg__VehicleImu__copy(
 }
 
 px4_msgs__msg__VehicleImu *
-px4_msgs__msg__VehicleImu__create()
+px4_msgs__msg__VehicleImu__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleImu * msg = (px4_msgs__msg__VehicleImu *)allocator.allocate(sizeof(px4_msgs__msg__VehicleImu), allocator.state);

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VelocityLimits.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/velocity_limits.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VELOCITY_LIMITS__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__VELOCITY_LIMITS__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   VelocityLimits
-)();
+)(void);
 
 #ifdef __cplusplus
 }

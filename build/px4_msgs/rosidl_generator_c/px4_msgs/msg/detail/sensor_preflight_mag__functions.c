@@ -65,7 +65,7 @@ px4_msgs__msg__SensorPreflightMag__copy(
 }
 
 px4_msgs__msg__SensorPreflightMag *
-px4_msgs__msg__SensorPreflightMag__create()
+px4_msgs__msg__SensorPreflightMag__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorPreflightMag * msg = (px4_msgs__msg__SensorPreflightMag *)allocator.allocate(sizeof(px4_msgs__msg__SensorPreflightMag), allocator.state);

@@ -73,7 +73,7 @@ px4_msgs__msg__SensorSelection__copy(
 }
 
 px4_msgs__msg__SensorSelection *
-px4_msgs__msg__SensorSelection__create()
+px4_msgs__msg__SensorSelection__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorSelection * msg = (px4_msgs__msg__SensorSelection *)allocator.allocate(sizeof(px4_msgs__msg__SensorSelection), allocator.state);

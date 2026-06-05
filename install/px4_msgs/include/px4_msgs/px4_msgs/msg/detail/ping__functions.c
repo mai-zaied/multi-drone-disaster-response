@@ -105,7 +105,7 @@ px4_msgs__msg__Ping__copy(
 }
 
 px4_msgs__msg__Ping *
-px4_msgs__msg__Ping__create()
+px4_msgs__msg__Ping__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Ping * msg = (px4_msgs__msg__Ping *)allocator.allocate(sizeof(px4_msgs__msg__Ping), allocator.state);

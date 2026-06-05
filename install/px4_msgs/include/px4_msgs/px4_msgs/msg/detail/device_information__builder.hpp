@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/DeviceInformation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/device_information.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__BUILDER_HPP_
 
@@ -85,32 +88,16 @@ private:
   ::px4_msgs::msg::DeviceInformation msg_;
 };
 
-class Init_DeviceInformation_model_name
+class Init_DeviceInformation_name
 {
 public:
-  explicit Init_DeviceInformation_model_name(::px4_msgs::msg::DeviceInformation & msg)
+  explicit Init_DeviceInformation_name(::px4_msgs::msg::DeviceInformation & msg)
   : msg_(msg)
   {}
-  Init_DeviceInformation_device_id model_name(::px4_msgs::msg::DeviceInformation::_model_name_type arg)
+  Init_DeviceInformation_device_id name(::px4_msgs::msg::DeviceInformation::_name_type arg)
   {
-    msg_.model_name = std::move(arg);
+    msg_.name = std::move(arg);
     return Init_DeviceInformation_device_id(msg_);
-  }
-
-private:
-  ::px4_msgs::msg::DeviceInformation msg_;
-};
-
-class Init_DeviceInformation_vendor_name
-{
-public:
-  explicit Init_DeviceInformation_vendor_name(::px4_msgs::msg::DeviceInformation & msg)
-  : msg_(msg)
-  {}
-  Init_DeviceInformation_model_name vendor_name(::px4_msgs::msg::DeviceInformation::_vendor_name_type arg)
-  {
-    msg_.vendor_name = std::move(arg);
-    return Init_DeviceInformation_model_name(msg_);
   }
 
 private:
@@ -123,10 +110,10 @@ public:
   explicit Init_DeviceInformation_device_type(::px4_msgs::msg::DeviceInformation & msg)
   : msg_(msg)
   {}
-  Init_DeviceInformation_vendor_name device_type(::px4_msgs::msg::DeviceInformation::_device_type_type arg)
+  Init_DeviceInformation_name device_type(::px4_msgs::msg::DeviceInformation::_device_type_type arg)
   {
     msg_.device_type = std::move(arg);
-    return Init_DeviceInformation_vendor_name(msg_);
+    return Init_DeviceInformation_name(msg_);
   }
 
 private:

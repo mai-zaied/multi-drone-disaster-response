@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LaunchDetectionStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/launch_detection_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -53,6 +55,8 @@ typedef struct px4_msgs__msg__LaunchDetectionStatus
   /// time since system start (microseconds)
   uint64_t timestamp;
   uint8_t launch_detection_state;
+  /// flag indicating whether selected actuators should kept disarmed (have to be configured in control allocation)
+  bool selected_control_surface_disarmed;
 } px4_msgs__msg__LaunchDetectionStatus;
 
 // Struct for a sequence of px4_msgs__msg__LaunchDetectionStatus.

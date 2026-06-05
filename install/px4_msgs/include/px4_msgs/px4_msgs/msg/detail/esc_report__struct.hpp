@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/EscReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/esc_report.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESC_REPORT__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESC_REPORT__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -44,8 +48,7 @@ struct EscReport_
       this->esc_voltage = 0.0f;
       this->esc_current = 0.0f;
       this->esc_temperature = 0.0f;
-      this->esc_address = 0;
-      this->esc_cmdcount = 0;
+      this->motor_temperature = 0;
       this->esc_state = 0;
       this->actuator_function = 0;
       this->failures = 0;
@@ -65,8 +68,7 @@ struct EscReport_
       this->esc_voltage = 0.0f;
       this->esc_current = 0.0f;
       this->esc_temperature = 0.0f;
-      this->esc_address = 0;
-      this->esc_cmdcount = 0;
+      this->motor_temperature = 0;
       this->esc_state = 0;
       this->actuator_function = 0;
       this->failures = 0;
@@ -93,12 +95,9 @@ struct EscReport_
   using _esc_temperature_type =
     float;
   _esc_temperature_type esc_temperature;
-  using _esc_address_type =
-    uint8_t;
-  _esc_address_type esc_address;
-  using _esc_cmdcount_type =
-    uint8_t;
-  _esc_cmdcount_type esc_cmdcount;
+  using _motor_temperature_type =
+    int16_t;
+  _motor_temperature_type motor_temperature;
   using _esc_state_type =
     uint8_t;
   _esc_state_type esc_state;
@@ -149,16 +148,10 @@ struct EscReport_
     this->esc_temperature = _arg;
     return *this;
   }
-  Type & set__esc_address(
-    const uint8_t & _arg)
+  Type & set__motor_temperature(
+    const int16_t & _arg)
   {
-    this->esc_address = _arg;
-    return *this;
-  }
-  Type & set__esc_cmdcount(
-    const uint8_t & _arg)
-  {
-    this->esc_cmdcount = _arg;
+    this->motor_temperature = _arg;
     return *this;
   }
   Type & set__esc_state(
@@ -189,27 +182,7 @@ struct EscReport_
   // constant declarations
   static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR1 =
     101u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR2 =
-    102u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR3 =
-    103u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR4 =
-    104u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR5 =
-    105u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR6 =
-    106u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR7 =
-    107u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR8 =
-    108u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR9 =
-    109u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR10 =
-    110u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR11 =
-    111u;
-  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR12 =
+  static constexpr uint8_t ACTUATOR_FUNCTION_MOTOR_MAX =
     112u;
   static constexpr uint8_t FAILURE_OVER_CURRENT =
     0u;
@@ -292,10 +265,7 @@ struct EscReport_
     if (this->esc_temperature != other.esc_temperature) {
       return false;
     }
-    if (this->esc_address != other.esc_address) {
-      return false;
-    }
-    if (this->esc_cmdcount != other.esc_cmdcount) {
+    if (this->motor_temperature != other.motor_temperature) {
       return false;
     }
     if (this->esc_state != other.esc_state) {
@@ -331,57 +301,7 @@ constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR1;
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR2;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR3;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR4;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR5;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR6;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR7;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR8;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR9;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR10;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR11;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR12;
+constexpr uint8_t EscReport_<ContainerAllocator>::ACTUATOR_FUNCTION_MOTOR_MAX;
 #endif  // __cplusplus < 201703L
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17

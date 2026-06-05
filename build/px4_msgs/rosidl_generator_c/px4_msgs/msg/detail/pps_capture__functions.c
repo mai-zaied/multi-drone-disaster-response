@@ -73,7 +73,7 @@ px4_msgs__msg__PpsCapture__copy(
 }
 
 px4_msgs__msg__PpsCapture *
-px4_msgs__msg__PpsCapture__create()
+px4_msgs__msg__PpsCapture__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PpsCapture * msg = (px4_msgs__msg__PpsCapture *)allocator.allocate(sizeof(px4_msgs__msg__PpsCapture), allocator.state);

@@ -1,4 +1,4 @@
 import sys
 if sys.prefix == '/usr':
     sys.real_prefix = sys.prefix
-    sys.prefix = sys.exec_prefix = '/home/maizaied03/ros2_ws/install/cloud_node'
+    sys.prefix = sys.exec_prefix = '/home/dudz/multi-drone-disaster-response/install/cloud_node'

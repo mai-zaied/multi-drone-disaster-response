@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/ActuatorServosTrim.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/actuator_servos_trim.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS_TRIM__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS_TRIM__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -39,7 +43,7 @@ struct ActuatorServosTrim_
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
       this->timestamp = 0ull;
-      std::fill<typename std::array<float, 8>::iterator, float>(this->trim.begin(), this->trim.end(), 0.0f);
+      std::fill<typename std::array<float, 15>::iterator, float>(this->trim.begin(), this->trim.end(), 0.0f);
     }
   }
 
@@ -50,7 +54,7 @@ struct ActuatorServosTrim_
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
       this->timestamp = 0ull;
-      std::fill<typename std::array<float, 8>::iterator, float>(this->trim.begin(), this->trim.end(), 0.0f);
+      std::fill<typename std::array<float, 15>::iterator, float>(this->trim.begin(), this->trim.end(), 0.0f);
     }
   }
 
@@ -59,7 +63,7 @@ struct ActuatorServosTrim_
     uint64_t;
   _timestamp_type timestamp;
   using _trim_type =
-    std::array<float, 8>;
+    std::array<float, 15>;
   _trim_type trim;
 
   // setters for named parameter idiom
@@ -70,7 +74,7 @@ struct ActuatorServosTrim_
     return *this;
   }
   Type & set__trim(
-    const std::array<float, 8> & _arg)
+    const std::array<float, 15> & _arg)
   {
     this->trim = _arg;
     return *this;
@@ -78,7 +82,7 @@ struct ActuatorServosTrim_
 
   // constant declarations
   static constexpr uint8_t NUM_CONTROLS =
-    8u;
+    15u;
 
   // pointer types
   using RawPtr =

@@ -13,7 +13,9 @@ module px4_msgs {
       @verbatim (language="comment", text=
         "Index of health component for which this response applies")
       const uint8 HEALTH_COMPONENT_INDEX_NONE = 0;
-      const uint8 ORB_QUEUE_LENGTH = 4;
+      @verbatim (language="comment", text=
+        "Must be >= ExternalChecks::MAX_NUM_REGISTRATIONS so replies from all registered" "\n"        "modes fit in the queue within a single request cycle (otherwise replies from the" "\n"        "5th+ mode overwrite earlier ones, causing spurious \"unresponsive mode\" failures).")
+      const uint8 ORB_QUEUE_LENGTH = 8;
     };
     @verbatim (language="comment", text=
       "Arming check reply" "\n"

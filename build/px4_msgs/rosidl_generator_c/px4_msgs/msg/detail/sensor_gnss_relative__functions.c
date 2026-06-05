@@ -225,7 +225,7 @@ px4_msgs__msg__SensorGnssRelative__copy(
 }
 
 px4_msgs__msg__SensorGnssRelative *
-px4_msgs__msg__SensorGnssRelative__create()
+px4_msgs__msg__SensorGnssRelative__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorGnssRelative * msg = (px4_msgs__msg__SensorGnssRelative *)allocator.allocate(sizeof(px4_msgs__msg__SensorGnssRelative), allocator.state);

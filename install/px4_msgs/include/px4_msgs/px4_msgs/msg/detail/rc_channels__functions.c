@@ -121,7 +121,7 @@ px4_msgs__msg__RcChannels__copy(
 }
 
 px4_msgs__msg__RcChannels *
-px4_msgs__msg__RcChannels__create()
+px4_msgs__msg__RcChannels__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RcChannels * msg = (px4_msgs__msg__RcChannels *)allocator.allocate(sizeof(px4_msgs__msg__RcChannels), allocator.state);

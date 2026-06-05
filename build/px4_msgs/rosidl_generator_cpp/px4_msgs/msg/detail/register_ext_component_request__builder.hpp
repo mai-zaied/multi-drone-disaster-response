@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/RegisterExtComponentRequest.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/register_ext_component_request.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__BUILDER_HPP_
 
@@ -21,16 +24,32 @@ namespace msg
 namespace builder
 {
 
+class Init_RegisterExtComponentRequest_request_offboard_setpoints
+{
+public:
+  explicit Init_RegisterExtComponentRequest_request_offboard_setpoints(::px4_msgs::msg::RegisterExtComponentRequest & msg)
+  : msg_(msg)
+  {}
+  ::px4_msgs::msg::RegisterExtComponentRequest request_offboard_setpoints(::px4_msgs::msg::RegisterExtComponentRequest::_request_offboard_setpoints_type arg)
+  {
+    msg_.request_offboard_setpoints = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::RegisterExtComponentRequest msg_;
+};
+
 class Init_RegisterExtComponentRequest_not_user_selectable
 {
 public:
   explicit Init_RegisterExtComponentRequest_not_user_selectable(::px4_msgs::msg::RegisterExtComponentRequest & msg)
   : msg_(msg)
   {}
-  ::px4_msgs::msg::RegisterExtComponentRequest not_user_selectable(::px4_msgs::msg::RegisterExtComponentRequest::_not_user_selectable_type arg)
+  Init_RegisterExtComponentRequest_request_offboard_setpoints not_user_selectable(::px4_msgs::msg::RegisterExtComponentRequest::_not_user_selectable_type arg)
   {
     msg_.not_user_selectable = std::move(arg);
-    return std::move(msg_);
+    return Init_RegisterExtComponentRequest_request_offboard_setpoints(msg_);
   }
 
 private:

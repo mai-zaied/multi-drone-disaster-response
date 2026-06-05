@@ -177,7 +177,7 @@ px4_msgs__msg__VehicleControlMode__copy(
 }
 
 px4_msgs__msg__VehicleControlMode *
-px4_msgs__msg__VehicleControlMode__create()
+px4_msgs__msg__VehicleControlMode__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleControlMode * msg = (px4_msgs__msg__VehicleControlMode *)allocator.allocate(sizeof(px4_msgs__msg__VehicleControlMode), allocator.state);

@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/MissionResult.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/mission_result__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/mission_result__functions.h"
 #include "px4_msgs/msg/detail/mission_result__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,34 +38,49 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: mission_id
   cdr << ros_message.mission_id;
+
   // Member: geofence_id
   cdr << ros_message.geofence_id;
+
   // Member: home_position_counter
   cdr << ros_message.home_position_counter;
+
   // Member: seq_reached
   cdr << ros_message.seq_reached;
+
   // Member: seq_current
   cdr << ros_message.seq_current;
+
   // Member: seq_total
   cdr << ros_message.seq_total;
+
   // Member: valid
   cdr << (ros_message.valid ? true : false);
+
   // Member: warning
   cdr << (ros_message.warning ? true : false);
+
   // Member: finished
   cdr << (ros_message.finished ? true : false);
+
   // Member: failure
   cdr << (ros_message.failure ? true : false);
+
   // Member: item_do_jump_changed
   cdr << (ros_message.item_do_jump_changed ? true : false);
+
   // Member: item_changed_index
   cdr << ros_message.item_changed_index;
+
   // Member: item_do_jump_remaining
   cdr << ros_message.item_do_jump_remaining;
+
   // Member: execution_mode
   cdr << ros_message.execution_mode;
+
   return true;
 }
 
@@ -139,6 +158,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -158,84 +178,98 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mission_id
   {
     size_t item_size = sizeof(ros_message.mission_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: geofence_id
   {
     size_t item_size = sizeof(ros_message.geofence_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: home_position_counter
   {
     size_t item_size = sizeof(ros_message.home_position_counter);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: seq_reached
   {
     size_t item_size = sizeof(ros_message.seq_reached);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: seq_current
   {
     size_t item_size = sizeof(ros_message.seq_current);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: seq_total
   {
     size_t item_size = sizeof(ros_message.seq_total);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: valid
   {
     size_t item_size = sizeof(ros_message.valid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: warning
   {
     size_t item_size = sizeof(ros_message.warning);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: finished
   {
     size_t item_size = sizeof(ros_message.finished);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: failure
   {
     size_t item_size = sizeof(ros_message.failure);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: item_do_jump_changed
   {
     size_t item_size = sizeof(ros_message.item_do_jump_changed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: item_changed_index
   {
     size_t item_size = sizeof(ros_message.item_changed_index);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: item_do_jump_remaining
   {
     size_t item_size = sizeof(ros_message.item_do_jump_remaining);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: execution_mode
   {
     size_t item_size = sizeof(ros_message.execution_mode);
@@ -245,6 +279,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -265,132 +300,102 @@ max_serialized_size_MissionResult(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: mission_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: geofence_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: home_position_counter
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: seq_reached
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: seq_current
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: seq_total
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: valid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: warning
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: finished
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: item_do_jump_changed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: item_changed_index
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: item_do_jump_remaining
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: execution_mode
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -410,6 +415,331 @@ max_serialized_size_MissionResult(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::MissionResult & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: mission_id
+  cdr << ros_message.mission_id;
+
+  // Member: geofence_id
+  cdr << ros_message.geofence_id;
+
+  // Member: home_position_counter
+  cdr << ros_message.home_position_counter;
+
+  // Member: seq_reached
+  cdr << ros_message.seq_reached;
+
+  // Member: seq_current
+  cdr << ros_message.seq_current;
+
+  // Member: seq_total
+  cdr << ros_message.seq_total;
+
+  // Member: valid
+  cdr << (ros_message.valid ? true : false);
+
+  // Member: warning
+  cdr << (ros_message.warning ? true : false);
+
+  // Member: finished
+  cdr << (ros_message.finished ? true : false);
+
+  // Member: failure
+  cdr << (ros_message.failure ? true : false);
+
+  // Member: item_do_jump_changed
+  cdr << (ros_message.item_do_jump_changed ? true : false);
+
+  // Member: item_changed_index
+  cdr << ros_message.item_changed_index;
+
+  // Member: item_do_jump_remaining
+  cdr << ros_message.item_do_jump_remaining;
+
+  // Member: execution_mode
+  cdr << ros_message.execution_mode;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::MissionResult & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mission_id
+  {
+    size_t item_size = sizeof(ros_message.mission_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: geofence_id
+  {
+    size_t item_size = sizeof(ros_message.geofence_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: home_position_counter
+  {
+    size_t item_size = sizeof(ros_message.home_position_counter);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: seq_reached
+  {
+    size_t item_size = sizeof(ros_message.seq_reached);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: seq_current
+  {
+    size_t item_size = sizeof(ros_message.seq_current);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: seq_total
+  {
+    size_t item_size = sizeof(ros_message.seq_total);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: valid
+  {
+    size_t item_size = sizeof(ros_message.valid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: warning
+  {
+    size_t item_size = sizeof(ros_message.warning);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: finished
+  {
+    size_t item_size = sizeof(ros_message.finished);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: failure
+  {
+    size_t item_size = sizeof(ros_message.failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: item_do_jump_changed
+  {
+    size_t item_size = sizeof(ros_message.item_do_jump_changed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: item_changed_index
+  {
+    size_t item_size = sizeof(ros_message.item_changed_index);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: item_do_jump_remaining
+  {
+    size_t item_size = sizeof(ros_message.item_do_jump_remaining);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: execution_mode
+  {
+    size_t item_size = sizeof(ros_message.execution_mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_MissionResult(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: mission_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: geofence_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: home_position_counter
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: seq_reached
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: seq_current
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: seq_total
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: valid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: warning
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: finished
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: item_do_jump_changed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: item_changed_index
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: item_do_jump_remaining
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: execution_mode
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::MissionResult;
+    is_plain =
+      (
+      offsetof(DataType, execution_mode) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _MissionResult__cdr_serialize(
   const void * untyped_ros_message,
@@ -460,13 +790,17 @@ static message_type_support_callbacks_t _MissionResult__callbacks = {
   _MissionResult__cdr_serialize,
   _MissionResult__cdr_deserialize,
   _MissionResult__get_serialized_size,
-  _MissionResult__max_serialized_size
+  _MissionResult__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _MissionResult__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_MissionResult__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__MissionResult__get_type_hash,
+  &px4_msgs__msg__MissionResult__get_type_description,
+  &px4_msgs__msg__MissionResult__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

@@ -77,7 +77,7 @@ px4_msgs__msg__DebugKeyValue__copy(
 }
 
 px4_msgs__msg__DebugKeyValue *
-px4_msgs__msg__DebugKeyValue__create()
+px4_msgs__msg__DebugKeyValue__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DebugKeyValue * msg = (px4_msgs__msg__DebugKeyValue *)allocator.allocate(sizeof(px4_msgs__msg__DebugKeyValue), allocator.state);

@@ -145,7 +145,7 @@ px4_msgs__msg__PowerMonitor__copy(
 }
 
 px4_msgs__msg__PowerMonitor *
-px4_msgs__msg__PowerMonitor__create()
+px4_msgs__msg__PowerMonitor__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PowerMonitor * msg = (px4_msgs__msg__PowerMonitor *)allocator.allocate(sizeof(px4_msgs__msg__PowerMonitor), allocator.state);

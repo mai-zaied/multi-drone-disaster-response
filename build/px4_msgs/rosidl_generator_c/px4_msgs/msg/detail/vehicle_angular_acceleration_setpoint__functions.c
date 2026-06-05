@@ -77,7 +77,7 @@ px4_msgs__msg__VehicleAngularAccelerationSetpoint__copy(
 }
 
 px4_msgs__msg__VehicleAngularAccelerationSetpoint *
-px4_msgs__msg__VehicleAngularAccelerationSetpoint__create()
+px4_msgs__msg__VehicleAngularAccelerationSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleAngularAccelerationSetpoint * msg = (px4_msgs__msg__VehicleAngularAccelerationSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__VehicleAngularAccelerationSetpoint), allocator.state);

@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _HomePosition__ros_msg_type = px4_msgs__msg__HomePosition;
 
-static bool _HomePosition__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__HomePosition(
+  const px4_msgs__msg__HomePosition * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _HomePosition__ros_msg_type * ros_message = static_cast<const _HomePosition__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -127,15 +126,11 @@ static bool _HomePosition__cdr_serialize(
   return true;
 }
 
-static bool _HomePosition__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__HomePosition(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__HomePosition * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _HomePosition__ros_msg_type * ros_message = static_cast<_HomePosition__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -222,6 +217,7 @@ static bool _HomePosition__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__HomePosition(
   const void * untyped_ros_message,
@@ -236,91 +232,105 @@ size_t get_serialized_size_px4_msgs__msg__HomePosition(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name lat
+
+  // Field name: lat
   {
     size_t item_size = sizeof(ros_message->lat);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name lon
+
+  // Field name: lon
   {
     size_t item_size = sizeof(ros_message->lon);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name alt
+
+  // Field name: alt
   {
     size_t item_size = sizeof(ros_message->alt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name x
+
+  // Field name: x
   {
     size_t item_size = sizeof(ros_message->x);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name y
+
+  // Field name: y
   {
     size_t item_size = sizeof(ros_message->y);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name z
+
+  // Field name: z
   {
     size_t item_size = sizeof(ros_message->z);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name roll
+
+  // Field name: roll
   {
     size_t item_size = sizeof(ros_message->roll);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name pitch
+
+  // Field name: pitch
   {
     size_t item_size = sizeof(ros_message->pitch);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name yaw
+
+  // Field name: yaw
   {
     size_t item_size = sizeof(ros_message->yaw);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name valid_alt
+
+  // Field name: valid_alt
   {
     size_t item_size = sizeof(ros_message->valid_alt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name valid_hpos
+
+  // Field name: valid_hpos
   {
     size_t item_size = sizeof(ros_message->valid_hpos);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name valid_lpos
+
+  // Field name: valid_lpos
   {
     size_t item_size = sizeof(ros_message->valid_lpos);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name manual_home
+
+  // Field name: manual_home
   {
     size_t item_size = sizeof(ros_message->manual_home);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name update_count
+
+  // Field name: update_count
   {
     size_t item_size = sizeof(ros_message->update_count);
     current_alignment += item_size +
@@ -330,12 +340,6 @@ size_t get_serialized_size_px4_msgs__msg__HomePosition(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _HomePosition__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__HomePosition(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__HomePosition(
@@ -355,118 +359,472 @@ size_t max_serialized_size_px4_msgs__msg__HomePosition(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: lat
+
+  // Field name: lat
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: lon
+
+  // Field name: lon
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: alt
+
+  // Field name: alt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: x
+
+  // Field name: x
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: y
+
+  // Field name: y
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: z
+
+  // Field name: z
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: roll
+
+  // Field name: roll
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: pitch
+
+  // Field name: pitch
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: yaw
+
+  // Field name: yaw
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: valid_alt
+
+  // Field name: valid_alt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: valid_hpos
+
+  // Field name: valid_hpos
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: valid_lpos
+
+  // Field name: valid_lpos
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: manual_home
+
+  // Field name: manual_home
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: update_count
+
+  // Field name: update_count
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__HomePosition;
+    is_plain =
+      (
+      offsetof(DataType, update_count) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__HomePosition(
+  const px4_msgs__msg__HomePosition * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: lat
+  {
+    cdr << ros_message->lat;
+  }
+
+  // Field name: lon
+  {
+    cdr << ros_message->lon;
+  }
+
+  // Field name: alt
+  {
+    cdr << ros_message->alt;
+  }
+
+  // Field name: x
+  {
+    cdr << ros_message->x;
+  }
+
+  // Field name: y
+  {
+    cdr << ros_message->y;
+  }
+
+  // Field name: z
+  {
+    cdr << ros_message->z;
+  }
+
+  // Field name: roll
+  {
+    cdr << ros_message->roll;
+  }
+
+  // Field name: pitch
+  {
+    cdr << ros_message->pitch;
+  }
+
+  // Field name: yaw
+  {
+    cdr << ros_message->yaw;
+  }
+
+  // Field name: valid_alt
+  {
+    cdr << (ros_message->valid_alt ? true : false);
+  }
+
+  // Field name: valid_hpos
+  {
+    cdr << (ros_message->valid_hpos ? true : false);
+  }
+
+  // Field name: valid_lpos
+  {
+    cdr << (ros_message->valid_lpos ? true : false);
+  }
+
+  // Field name: manual_home
+  {
+    cdr << (ros_message->manual_home ? true : false);
+  }
+
+  // Field name: update_count
+  {
+    cdr << ros_message->update_count;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__HomePosition(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _HomePosition__ros_msg_type * ros_message = static_cast<const _HomePosition__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: lat
+  {
+    size_t item_size = sizeof(ros_message->lat);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: lon
+  {
+    size_t item_size = sizeof(ros_message->lon);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: alt
+  {
+    size_t item_size = sizeof(ros_message->alt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: x
+  {
+    size_t item_size = sizeof(ros_message->x);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: y
+  {
+    size_t item_size = sizeof(ros_message->y);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: z
+  {
+    size_t item_size = sizeof(ros_message->z);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: roll
+  {
+    size_t item_size = sizeof(ros_message->roll);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: pitch
+  {
+    size_t item_size = sizeof(ros_message->pitch);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: yaw
+  {
+    size_t item_size = sizeof(ros_message->yaw);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: valid_alt
+  {
+    size_t item_size = sizeof(ros_message->valid_alt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: valid_hpos
+  {
+    size_t item_size = sizeof(ros_message->valid_hpos);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: valid_lpos
+  {
+    size_t item_size = sizeof(ros_message->valid_lpos);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: manual_home
+  {
+    size_t item_size = sizeof(ros_message->manual_home);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: update_count
+  {
+    size_t item_size = sizeof(ros_message->update_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__HomePosition(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: lat
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: lon
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: alt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: x
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: y
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: z
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: roll
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: pitch
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: yaw
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: valid_alt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: valid_hpos
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: valid_lpos
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: manual_home
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: update_count
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -484,8 +842,41 @@ size_t max_serialized_size_px4_msgs__msg__HomePosition(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _HomePosition__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__HomePosition * ros_message = static_cast<const px4_msgs__msg__HomePosition *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__HomePosition(ros_message, cdr);
+}
+
+static bool _HomePosition__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__HomePosition * ros_message = static_cast<px4_msgs__msg__HomePosition *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__HomePosition(cdr, ros_message);
+}
+
+static uint32_t _HomePosition__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__HomePosition(
+      untyped_ros_message, 0));
 }
 
 static size_t _HomePosition__max_serialized_size(char & bounds_info)
@@ -510,13 +901,17 @@ static message_type_support_callbacks_t __callbacks_HomePosition = {
   _HomePosition__cdr_serialize,
   _HomePosition__cdr_deserialize,
   _HomePosition__get_serialized_size,
-  _HomePosition__max_serialized_size
+  _HomePosition__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _HomePosition__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_HomePosition,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__HomePosition__get_type_hash,
+  &px4_msgs__msg__HomePosition__get_type_description,
+  &px4_msgs__msg__HomePosition__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

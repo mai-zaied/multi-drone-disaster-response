@@ -145,7 +145,7 @@ px4_msgs__msg__VehicleOpticalFlow__copy(
 }
 
 px4_msgs__msg__VehicleOpticalFlow *
-px4_msgs__msg__VehicleOpticalFlow__create()
+px4_msgs__msg__VehicleOpticalFlow__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleOpticalFlow * msg = (px4_msgs__msg__VehicleOpticalFlow *)allocator.allocate(sizeof(px4_msgs__msg__VehicleOpticalFlow), allocator.state);

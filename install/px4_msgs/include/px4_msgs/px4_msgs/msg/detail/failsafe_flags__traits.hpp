@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FailsafeFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/failsafe_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__TRAITS_HPP_
 
@@ -242,6 +245,41 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: fd_critical_failure
+  {
+    out << "fd_critical_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_critical_failure, out);
+    out << ", ";
+  }
+
+  // member: fd_esc_arming_failure
+  {
+    out << "fd_esc_arming_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_esc_arming_failure, out);
+    out << ", ";
+  }
+
+  // member: fd_imbalanced_prop
+  {
+    out << "fd_imbalanced_prop: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_imbalanced_prop, out);
+    out << ", ";
+  }
+
+  // member: fd_motor_failure
+  {
+    out << "fd_motor_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_motor_failure, out);
+    out << ", ";
+  }
+
+  // member: fd_alt_loss
+  {
+    out << "fd_alt_loss: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_alt_loss, out);
+    out << ", ";
+  }
+
   // member: geofence_breached
   {
     out << "geofence_breached: ";
@@ -291,31 +329,24 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
-  // member: fd_critical_failure
+  // member: parachute_unhealthy
   {
-    out << "fd_critical_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_critical_failure, out);
+    out << "parachute_unhealthy: ";
+    rosidl_generator_traits::value_to_yaml(msg.parachute_unhealthy, out);
     out << ", ";
   }
 
-  // member: fd_esc_arming_failure
+  // member: remote_id_unhealthy
   {
-    out << "fd_esc_arming_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_esc_arming_failure, out);
+    out << "remote_id_unhealthy: ";
+    rosidl_generator_traits::value_to_yaml(msg.remote_id_unhealthy, out);
     out << ", ";
   }
 
-  // member: fd_imbalanced_prop
+  // member: gnss_lost
   {
-    out << "fd_imbalanced_prop: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_imbalanced_prop, out);
-    out << ", ";
-  }
-
-  // member: fd_motor_failure
-  {
-    out << "fd_motor_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_motor_failure, out);
+    out << "gnss_lost: ";
+    rosidl_generator_traits::value_to_yaml(msg.gnss_lost, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -634,6 +665,56 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
+  // member: fd_critical_failure
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "fd_critical_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_critical_failure, out);
+    out << "\n";
+  }
+
+  // member: fd_esc_arming_failure
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "fd_esc_arming_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_esc_arming_failure, out);
+    out << "\n";
+  }
+
+  // member: fd_imbalanced_prop
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "fd_imbalanced_prop: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_imbalanced_prop, out);
+    out << "\n";
+  }
+
+  // member: fd_motor_failure
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "fd_motor_failure: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_motor_failure, out);
+    out << "\n";
+  }
+
+  // member: fd_alt_loss
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "fd_alt_loss: ";
+    rosidl_generator_traits::value_to_yaml(msg.fd_alt_loss, out);
+    out << "\n";
+  }
+
   // member: geofence_breached
   {
     if (indentation > 0) {
@@ -704,43 +785,33 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
-  // member: fd_critical_failure
+  // member: parachute_unhealthy
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "fd_critical_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_critical_failure, out);
+    out << "parachute_unhealthy: ";
+    rosidl_generator_traits::value_to_yaml(msg.parachute_unhealthy, out);
     out << "\n";
   }
 
-  // member: fd_esc_arming_failure
+  // member: remote_id_unhealthy
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "fd_esc_arming_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_esc_arming_failure, out);
+    out << "remote_id_unhealthy: ";
+    rosidl_generator_traits::value_to_yaml(msg.remote_id_unhealthy, out);
     out << "\n";
   }
 
-  // member: fd_imbalanced_prop
+  // member: gnss_lost
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "fd_imbalanced_prop: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_imbalanced_prop, out);
-    out << "\n";
-  }
-
-  // member: fd_motor_failure
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "fd_motor_failure: ";
-    rosidl_generator_traits::value_to_yaml(msg.fd_motor_failure, out);
+    out << "gnss_lost: ";
+    rosidl_generator_traits::value_to_yaml(msg.gnss_lost, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

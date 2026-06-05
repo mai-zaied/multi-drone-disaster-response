@@ -30,6 +30,8 @@ setup(
         'camera_bridge_simple = drone_node.camera_bridge_simple:main',
         'victim_detector = drone_node.victim_detector:main',
         'cloud_detector = drone_node.cloud_detector:main',
+        'drone_commander = drone_node.drone_commander:mai',
+        'cloud_client = drone_node.cloud_client:main',
     ],
 },
 )

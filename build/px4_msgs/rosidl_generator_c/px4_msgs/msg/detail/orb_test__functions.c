@@ -65,7 +65,7 @@ px4_msgs__msg__OrbTest__copy(
 }
 
 px4_msgs__msg__OrbTest *
-px4_msgs__msg__OrbTest__create()
+px4_msgs__msg__OrbTest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__OrbTest * msg = (px4_msgs__msg__OrbTest *)allocator.allocate(sizeof(px4_msgs__msg__OrbTest), allocator.state);

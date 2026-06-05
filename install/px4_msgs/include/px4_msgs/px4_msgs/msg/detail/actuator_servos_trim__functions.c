@@ -43,7 +43,7 @@ px4_msgs__msg__ActuatorServosTrim__are_equal(const px4_msgs__msg__ActuatorServos
     return false;
   }
   // trim
-  for (size_t i = 0; i < 8; ++i) {
+  for (size_t i = 0; i < 15; ++i) {
     if (lhs->trim[i] != rhs->trim[i]) {
       return false;
     }
@@ -62,14 +62,14 @@ px4_msgs__msg__ActuatorServosTrim__copy(
   // timestamp
   output->timestamp = input->timestamp;
   // trim
-  for (size_t i = 0; i < 8; ++i) {
+  for (size_t i = 0; i < 15; ++i) {
     output->trim[i] = input->trim[i];
   }
   return true;
 }
 
 px4_msgs__msg__ActuatorServosTrim *
-px4_msgs__msg__ActuatorServosTrim__create()
+px4_msgs__msg__ActuatorServosTrim__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ActuatorServosTrim * msg = (px4_msgs__msg__ActuatorServosTrim *)allocator.allocate(sizeof(px4_msgs__msg__ActuatorServosTrim), allocator.state);

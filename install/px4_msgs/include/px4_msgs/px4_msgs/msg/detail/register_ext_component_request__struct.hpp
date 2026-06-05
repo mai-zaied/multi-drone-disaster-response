@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/RegisterExtComponentRequest.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/register_ext_component_request.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -49,6 +53,7 @@ struct RegisterExtComponentRequest_
       this->replace_internal_mode = 0;
       this->activate_mode_immediately = false;
       this->not_user_selectable = false;
+      this->request_offboard_setpoints = false;
     }
   }
 
@@ -69,6 +74,7 @@ struct RegisterExtComponentRequest_
       this->replace_internal_mode = 0;
       this->activate_mode_immediately = false;
       this->not_user_selectable = false;
+      this->request_offboard_setpoints = false;
     }
   }
 
@@ -106,6 +112,9 @@ struct RegisterExtComponentRequest_
   using _not_user_selectable_type =
     bool;
   _not_user_selectable_type not_user_selectable;
+  using _request_offboard_setpoints_type =
+    bool;
+  _request_offboard_setpoints_type request_offboard_setpoints;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -174,10 +183,16 @@ struct RegisterExtComponentRequest_
     this->not_user_selectable = _arg;
     return *this;
   }
+  Type & set__request_offboard_setpoints(
+    const bool & _arg)
+  {
+    this->request_offboard_setpoints = _arg;
+    return *this;
+  }
 
   // constant declarations
   static constexpr uint32_t MESSAGE_VERSION =
-    1u;
+    2u;
   static constexpr uint16_t LATEST_PX4_ROS2_API_VERSION =
     1u;
   static constexpr uint8_t ORB_QUEUE_LENGTH =
@@ -254,6 +269,9 @@ struct RegisterExtComponentRequest_
       return false;
     }
     if (this->not_user_selectable != other.not_user_selectable) {
+      return false;
+    }
+    if (this->request_offboard_setpoints != other.request_offboard_setpoints) {
       return false;
     }
     return true;

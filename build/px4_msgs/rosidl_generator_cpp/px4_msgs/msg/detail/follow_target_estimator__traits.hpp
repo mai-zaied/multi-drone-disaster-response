@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FollowTargetEstimator.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/follow_target_estimator.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FOLLOW_TARGET_ESTIMATOR__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__FOLLOW_TARGET_ESTIMATOR__TRAITS_HPP_
 

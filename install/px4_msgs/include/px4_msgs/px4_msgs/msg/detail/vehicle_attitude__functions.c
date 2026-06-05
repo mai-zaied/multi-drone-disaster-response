@@ -97,7 +97,7 @@ px4_msgs__msg__VehicleAttitude__copy(
 }
 
 px4_msgs__msg__VehicleAttitude *
-px4_msgs__msg__VehicleAttitude__create()
+px4_msgs__msg__VehicleAttitude__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleAttitude * msg = (px4_msgs__msg__VehicleAttitude *)allocator.allocate(sizeof(px4_msgs__msg__VehicleAttitude), allocator.state);

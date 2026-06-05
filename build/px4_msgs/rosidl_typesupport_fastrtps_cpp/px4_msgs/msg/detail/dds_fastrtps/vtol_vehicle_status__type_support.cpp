@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/VtolVehicleStatus.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/vtol_vehicle_status__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/vtol_vehicle_status__functions.h"
 #include "px4_msgs/msg/detail/vtol_vehicle_status__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,10 +38,13 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: vehicle_vtol_state
   cdr << ros_message.vehicle_vtol_state;
+
   // Member: fixed_wing_system_failure
   cdr << (ros_message.fixed_wing_system_failure ? true : false);
+
   return true;
 }
 
@@ -63,6 +70,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -82,12 +90,14 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: vehicle_vtol_state
   {
     size_t item_size = sizeof(ros_message.vehicle_vtol_state);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: fixed_wing_system_failure
   {
     size_t item_size = sizeof(ros_message.fixed_wing_system_failure);
@@ -97,6 +107,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -117,28 +128,22 @@ max_serialized_size_VtolVehicleStatus(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: vehicle_vtol_state
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: fixed_wing_system_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -158,6 +163,119 @@ max_serialized_size_VtolVehicleStatus(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::VtolVehicleStatus & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: vehicle_vtol_state
+  cdr << ros_message.vehicle_vtol_state;
+
+  // Member: fixed_wing_system_failure
+  cdr << (ros_message.fixed_wing_system_failure ? true : false);
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::VtolVehicleStatus & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vehicle_vtol_state
+  {
+    size_t item_size = sizeof(ros_message.vehicle_vtol_state);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fixed_wing_system_failure
+  {
+    size_t item_size = sizeof(ros_message.fixed_wing_system_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_VtolVehicleStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: vehicle_vtol_state
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fixed_wing_system_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::VtolVehicleStatus;
+    is_plain =
+      (
+      offsetof(DataType, fixed_wing_system_failure) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _VtolVehicleStatus__cdr_serialize(
   const void * untyped_ros_message,
@@ -208,13 +326,17 @@ static message_type_support_callbacks_t _VtolVehicleStatus__callbacks = {
   _VtolVehicleStatus__cdr_serialize,
   _VtolVehicleStatus__cdr_deserialize,
   _VtolVehicleStatus__get_serialized_size,
-  _VtolVehicleStatus__max_serialized_size
+  _VtolVehicleStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _VtolVehicleStatus__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_VtolVehicleStatus__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VtolVehicleStatus__get_type_hash,
+  &px4_msgs__msg__VtolVehicleStatus__get_type_description,
+  &px4_msgs__msg__VtolVehicleStatus__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

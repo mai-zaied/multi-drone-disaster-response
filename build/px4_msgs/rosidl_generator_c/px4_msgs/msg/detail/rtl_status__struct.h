@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/RtlStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/rtl_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__RTL_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__RTL_STATUS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -75,7 +77,7 @@ typedef struct px4_msgs__msg__RtlStatus
   bool has_vtol_approach;
   /// Type of RTL chosen
   uint8_t rtl_type;
-  /// index of the chosen safe point, if in RTL_STATUS_TYPE_DIRECT_SAFE_POINT mode
+  /// index of the chosen safe point, UINT8_MAX if no rally point was chosen
   uint8_t safe_point_index;
 } px4_msgs__msg__RtlStatus;
 

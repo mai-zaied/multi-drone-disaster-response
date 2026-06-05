@@ -73,7 +73,7 @@ px4_msgs__msg__NavigatorStatus__copy(
 }
 
 px4_msgs__msg__NavigatorStatus *
-px4_msgs__msg__NavigatorStatus__create()
+px4_msgs__msg__NavigatorStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__NavigatorStatus * msg = (px4_msgs__msg__NavigatorStatus *)allocator.allocate(sizeof(px4_msgs__msg__NavigatorStatus), allocator.state);

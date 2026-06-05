@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _VehicleImuStatus__ros_msg_type = px4_msgs__msg__VehicleImuStatus;
 
-static bool _VehicleImuStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__VehicleImuStatus(
+  const px4_msgs__msg__VehicleImuStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _VehicleImuStatus__ros_msg_type * ros_message = static_cast<const _VehicleImuStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -68,14 +67,14 @@ static bool _VehicleImuStatus__cdr_serialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->accel_clipping;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: gyro_clipping
   {
     size_t size = 3;
     auto array_ptr = ros_message->gyro_clipping;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: accel_error_count
@@ -127,28 +126,28 @@ static bool _VehicleImuStatus__cdr_serialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->mean_accel;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: mean_gyro
   {
     size_t size = 3;
     auto array_ptr = ros_message->mean_gyro;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: var_accel
   {
     size_t size = 3;
     auto array_ptr = ros_message->var_accel;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: var_gyro
   {
     size_t size = 3;
     auto array_ptr = ros_message->var_gyro;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: temperature_accel
@@ -164,15 +163,11 @@ static bool _VehicleImuStatus__cdr_serialize(
   return true;
 }
 
-static bool _VehicleImuStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__VehicleImuStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__VehicleImuStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _VehicleImuStatus__ros_msg_type * ros_message = static_cast<_VehicleImuStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -192,14 +187,14 @@ static bool _VehicleImuStatus__cdr_deserialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->accel_clipping;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: gyro_clipping
   {
     size_t size = 3;
     auto array_ptr = ros_message->gyro_clipping;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: accel_error_count
@@ -251,28 +246,28 @@ static bool _VehicleImuStatus__cdr_deserialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->mean_accel;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: mean_gyro
   {
     size_t size = 3;
     auto array_ptr = ros_message->mean_gyro;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: var_accel
   {
     size_t size = 3;
     auto array_ptr = ros_message->var_accel;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: var_gyro
   {
     size_t size = 3;
     auto array_ptr = ros_message->var_gyro;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: temperature_accel
@@ -288,6 +283,7 @@ static bool _VehicleImuStatus__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
   const void * untyped_ros_message,
@@ -302,25 +298,28 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_device_id
+
+  // Field name: accel_device_id
   {
     size_t item_size = sizeof(ros_message->accel_device_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_device_id
+
+  // Field name: gyro_device_id
   {
     size_t item_size = sizeof(ros_message->gyro_device_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_clipping
+
+  // Field name: accel_clipping
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->accel_clipping;
@@ -329,7 +328,8 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_clipping
+
+  // Field name: gyro_clipping
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->gyro_clipping;
@@ -338,61 +338,71 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_error_count
+
+  // Field name: accel_error_count
   {
     size_t item_size = sizeof(ros_message->accel_error_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_error_count
+
+  // Field name: gyro_error_count
   {
     size_t item_size = sizeof(ros_message->gyro_error_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_rate_hz
+
+  // Field name: accel_rate_hz
   {
     size_t item_size = sizeof(ros_message->accel_rate_hz);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_rate_hz
+
+  // Field name: gyro_rate_hz
   {
     size_t item_size = sizeof(ros_message->gyro_rate_hz);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_raw_rate_hz
+
+  // Field name: accel_raw_rate_hz
   {
     size_t item_size = sizeof(ros_message->accel_raw_rate_hz);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_raw_rate_hz
+
+  // Field name: gyro_raw_rate_hz
   {
     size_t item_size = sizeof(ros_message->gyro_raw_rate_hz);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name accel_vibration_metric
+
+  // Field name: accel_vibration_metric
   {
     size_t item_size = sizeof(ros_message->accel_vibration_metric);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gyro_vibration_metric
+
+  // Field name: gyro_vibration_metric
   {
     size_t item_size = sizeof(ros_message->gyro_vibration_metric);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name delta_angle_coning_metric
+
+  // Field name: delta_angle_coning_metric
   {
     size_t item_size = sizeof(ros_message->delta_angle_coning_metric);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mean_accel
+
+  // Field name: mean_accel
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->mean_accel;
@@ -401,7 +411,8 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mean_gyro
+
+  // Field name: mean_gyro
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->mean_gyro;
@@ -410,7 +421,8 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name var_accel
+
+  // Field name: var_accel
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->var_accel;
@@ -419,7 +431,8 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name var_gyro
+
+  // Field name: var_gyro
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->var_gyro;
@@ -428,13 +441,15 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name temperature_accel
+
+  // Field name: temperature_accel
   {
     size_t item_size = sizeof(ros_message->temperature_accel);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name temperature_gyro
+
+  // Field name: temperature_gyro
   {
     size_t item_size = sizeof(ros_message->temperature_gyro);
     current_alignment += item_size +
@@ -444,12 +459,6 @@ size_t get_serialized_size_px4_msgs__msg__VehicleImuStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _VehicleImuStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__VehicleImuStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__VehicleImuStatus(
@@ -469,162 +478,650 @@ size_t max_serialized_size_px4_msgs__msg__VehicleImuStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: accel_device_id
+
+  // Field name: accel_device_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_device_id
+
+  // Field name: gyro_device_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: accel_clipping
+
+  // Field name: accel_clipping
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_clipping
+
+  // Field name: gyro_clipping
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: accel_error_count
+
+  // Field name: accel_error_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_error_count
+
+  // Field name: gyro_error_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: accel_rate_hz
+
+  // Field name: accel_rate_hz
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_rate_hz
+
+  // Field name: gyro_rate_hz
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: accel_raw_rate_hz
+
+  // Field name: accel_raw_rate_hz
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_raw_rate_hz
+
+  // Field name: gyro_raw_rate_hz
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: accel_vibration_metric
+
+  // Field name: accel_vibration_metric
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: gyro_vibration_metric
+
+  // Field name: gyro_vibration_metric
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: delta_angle_coning_metric
+
+  // Field name: delta_angle_coning_metric
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mean_accel
+
+  // Field name: mean_accel
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mean_gyro
+
+  // Field name: mean_gyro
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: var_accel
+
+  // Field name: var_accel
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: var_gyro
+
+  // Field name: var_gyro
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: temperature_accel
+
+  // Field name: temperature_accel
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: temperature_gyro
+
+  // Field name: temperature_gyro
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__VehicleImuStatus;
+    is_plain =
+      (
+      offsetof(DataType, temperature_gyro) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__VehicleImuStatus(
+  const px4_msgs__msg__VehicleImuStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: accel_device_id
+  {
+    cdr << ros_message->accel_device_id;
+  }
+
+  // Field name: gyro_device_id
+  {
+    cdr << ros_message->gyro_device_id;
+  }
+
+  // Field name: accel_clipping
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->accel_clipping;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: gyro_clipping
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->gyro_clipping;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: accel_error_count
+  {
+    cdr << ros_message->accel_error_count;
+  }
+
+  // Field name: gyro_error_count
+  {
+    cdr << ros_message->gyro_error_count;
+  }
+
+  // Field name: accel_rate_hz
+  {
+    cdr << ros_message->accel_rate_hz;
+  }
+
+  // Field name: gyro_rate_hz
+  {
+    cdr << ros_message->gyro_rate_hz;
+  }
+
+  // Field name: accel_raw_rate_hz
+  {
+    cdr << ros_message->accel_raw_rate_hz;
+  }
+
+  // Field name: gyro_raw_rate_hz
+  {
+    cdr << ros_message->gyro_raw_rate_hz;
+  }
+
+  // Field name: accel_vibration_metric
+  {
+    cdr << ros_message->accel_vibration_metric;
+  }
+
+  // Field name: gyro_vibration_metric
+  {
+    cdr << ros_message->gyro_vibration_metric;
+  }
+
+  // Field name: delta_angle_coning_metric
+  {
+    cdr << ros_message->delta_angle_coning_metric;
+  }
+
+  // Field name: mean_accel
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->mean_accel;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: mean_gyro
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->mean_gyro;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: var_accel
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->var_accel;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: var_gyro
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->var_gyro;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: temperature_accel
+  {
+    cdr << ros_message->temperature_accel;
+  }
+
+  // Field name: temperature_gyro
+  {
+    cdr << ros_message->temperature_gyro;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__VehicleImuStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _VehicleImuStatus__ros_msg_type * ros_message = static_cast<const _VehicleImuStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_device_id
+  {
+    size_t item_size = sizeof(ros_message->accel_device_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_device_id
+  {
+    size_t item_size = sizeof(ros_message->gyro_device_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_clipping
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->accel_clipping;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_clipping
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->gyro_clipping;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_error_count
+  {
+    size_t item_size = sizeof(ros_message->accel_error_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_error_count
+  {
+    size_t item_size = sizeof(ros_message->gyro_error_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_rate_hz
+  {
+    size_t item_size = sizeof(ros_message->accel_rate_hz);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_rate_hz
+  {
+    size_t item_size = sizeof(ros_message->gyro_rate_hz);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_raw_rate_hz
+  {
+    size_t item_size = sizeof(ros_message->accel_raw_rate_hz);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_raw_rate_hz
+  {
+    size_t item_size = sizeof(ros_message->gyro_raw_rate_hz);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: accel_vibration_metric
+  {
+    size_t item_size = sizeof(ros_message->accel_vibration_metric);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gyro_vibration_metric
+  {
+    size_t item_size = sizeof(ros_message->gyro_vibration_metric);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: delta_angle_coning_metric
+  {
+    size_t item_size = sizeof(ros_message->delta_angle_coning_metric);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mean_accel
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->mean_accel;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mean_gyro
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->mean_gyro;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: var_accel
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->var_accel;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: var_gyro
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->var_gyro;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: temperature_accel
+  {
+    size_t item_size = sizeof(ros_message->temperature_accel);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: temperature_gyro
+  {
+    size_t item_size = sizeof(ros_message->temperature_gyro);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__VehicleImuStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: accel_device_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_device_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: accel_clipping
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_clipping
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: accel_error_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_error_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: accel_rate_hz
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_rate_hz
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: accel_raw_rate_hz
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_raw_rate_hz
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: accel_vibration_metric
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: gyro_vibration_metric
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: delta_angle_coning_metric
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mean_accel
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mean_gyro
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: var_accel
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: var_gyro
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: temperature_accel
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: temperature_gyro
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -642,8 +1139,41 @@ size_t max_serialized_size_px4_msgs__msg__VehicleImuStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _VehicleImuStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__VehicleImuStatus * ros_message = static_cast<const px4_msgs__msg__VehicleImuStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__VehicleImuStatus(ros_message, cdr);
+}
+
+static bool _VehicleImuStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__VehicleImuStatus * ros_message = static_cast<px4_msgs__msg__VehicleImuStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__VehicleImuStatus(cdr, ros_message);
+}
+
+static uint32_t _VehicleImuStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__VehicleImuStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _VehicleImuStatus__max_serialized_size(char & bounds_info)
@@ -668,13 +1198,17 @@ static message_type_support_callbacks_t __callbacks_VehicleImuStatus = {
   _VehicleImuStatus__cdr_serialize,
   _VehicleImuStatus__cdr_deserialize,
   _VehicleImuStatus__get_serialized_size,
-  _VehicleImuStatus__max_serialized_size
+  _VehicleImuStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _VehicleImuStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_VehicleImuStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleImuStatus__get_type_hash,
+  &px4_msgs__msg__VehicleImuStatus__get_type_description,
+  &px4_msgs__msg__VehicleImuStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

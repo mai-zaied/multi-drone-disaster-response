@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/ControlAllocatorStatus.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/control_allocator_status__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/control_allocator_status__functions.h"
 #include "px4_msgs/msg/detail/control_allocator_status__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,26 +38,37 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: torque_setpoint_achieved
   cdr << (ros_message.torque_setpoint_achieved ? true : false);
+
   // Member: unallocated_torque
   {
     cdr << ros_message.unallocated_torque;
   }
+
   // Member: thrust_setpoint_achieved
   cdr << (ros_message.thrust_setpoint_achieved ? true : false);
+
   // Member: unallocated_thrust
   {
     cdr << ros_message.unallocated_thrust;
   }
+
   // Member: actuator_saturation
   {
     cdr << ros_message.actuator_saturation;
   }
+
   // Member: handled_motor_failure_mask
   cdr << ros_message.handled_motor_failure_mask;
+
   // Member: motor_stop_mask
   cdr << ros_message.motor_stop_mask;
+
+  // Member: actuator_group_preflight_check_active
+  cdr << (ros_message.actuator_group_preflight_check_active ? true : false);
+
   return true;
 }
 
@@ -101,8 +116,16 @@ cdr_deserialize(
   // Member: motor_stop_mask
   cdr >> ros_message.motor_stop_mask;
 
+  // Member: actuator_group_preflight_check_active
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.actuator_group_preflight_check_active = tmp ? true : false;
+  }
+
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -123,12 +146,14 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: torque_setpoint_achieved
   {
     size_t item_size = sizeof(ros_message.torque_setpoint_achieved);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: unallocated_torque
   {
     size_t array_size = 3;
@@ -136,12 +161,14 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: thrust_setpoint_achieved
   {
     size_t item_size = sizeof(ros_message.thrust_setpoint_achieved);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: unallocated_thrust
   {
     size_t array_size = 3;
@@ -149,6 +176,7 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: actuator_saturation
   {
     size_t array_size = 16;
@@ -156,12 +184,14 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: handled_motor_failure_mask
   {
     size_t item_size = sizeof(ros_message.handled_motor_failure_mask);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: motor_stop_mask
   {
     size_t item_size = sizeof(ros_message.motor_stop_mask);
@@ -169,8 +199,16 @@ get_serialized_size(
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
+  // Member: actuator_group_preflight_check_active
+  {
+    size_t item_size = sizeof(ros_message.actuator_group_preflight_check_active);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -191,74 +229,64 @@ max_serialized_size_ControlAllocatorStatus(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: torque_setpoint_achieved
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: unallocated_torque
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: thrust_setpoint_achieved
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: unallocated_thrust
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: actuator_saturation
   {
     size_t array_size = 16;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: handled_motor_failure_mask
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: motor_stop_mask
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+  // Member: actuator_group_preflight_check_active
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
   }
 
   size_t ret_val = current_alignment - initial_alignment;
@@ -269,13 +297,241 @@ max_serialized_size_ControlAllocatorStatus(
     using DataType = px4_msgs::msg::ControlAllocatorStatus;
     is_plain =
       (
-      offsetof(DataType, motor_stop_mask) +
+      offsetof(DataType, actuator_group_preflight_check_active) +
       last_member_size
       ) == ret_val;
   }
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::ControlAllocatorStatus & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: torque_setpoint_achieved
+  cdr << (ros_message.torque_setpoint_achieved ? true : false);
+
+  // Member: unallocated_torque
+  {
+    cdr << ros_message.unallocated_torque;
+  }
+
+  // Member: thrust_setpoint_achieved
+  cdr << (ros_message.thrust_setpoint_achieved ? true : false);
+
+  // Member: unallocated_thrust
+  {
+    cdr << ros_message.unallocated_thrust;
+  }
+
+  // Member: actuator_saturation
+  {
+    cdr << ros_message.actuator_saturation;
+  }
+
+  // Member: handled_motor_failure_mask
+  cdr << ros_message.handled_motor_failure_mask;
+
+  // Member: motor_stop_mask
+  cdr << ros_message.motor_stop_mask;
+
+  // Member: actuator_group_preflight_check_active
+  cdr << (ros_message.actuator_group_preflight_check_active ? true : false);
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::ControlAllocatorStatus & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: torque_setpoint_achieved
+  {
+    size_t item_size = sizeof(ros_message.torque_setpoint_achieved);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: unallocated_torque
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.unallocated_torque[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: thrust_setpoint_achieved
+  {
+    size_t item_size = sizeof(ros_message.thrust_setpoint_achieved);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: unallocated_thrust
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.unallocated_thrust[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: actuator_saturation
+  {
+    size_t array_size = 16;
+    size_t item_size = sizeof(ros_message.actuator_saturation[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: handled_motor_failure_mask
+  {
+    size_t item_size = sizeof(ros_message.handled_motor_failure_mask);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: motor_stop_mask
+  {
+    size_t item_size = sizeof(ros_message.motor_stop_mask);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: actuator_group_preflight_check_active
+  {
+    size_t item_size = sizeof(ros_message.actuator_group_preflight_check_active);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_ControlAllocatorStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: torque_setpoint_achieved
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: unallocated_torque
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: thrust_setpoint_achieved
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: unallocated_thrust
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: actuator_saturation
+  {
+    size_t array_size = 16;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: handled_motor_failure_mask
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: motor_stop_mask
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: actuator_group_preflight_check_active
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::ControlAllocatorStatus;
+    is_plain =
+      (
+      offsetof(DataType, actuator_group_preflight_check_active) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _ControlAllocatorStatus__cdr_serialize(
   const void * untyped_ros_message,
@@ -326,13 +582,17 @@ static message_type_support_callbacks_t _ControlAllocatorStatus__callbacks = {
   _ControlAllocatorStatus__cdr_serialize,
   _ControlAllocatorStatus__cdr_deserialize,
   _ControlAllocatorStatus__get_serialized_size,
-  _ControlAllocatorStatus__max_serialized_size
+  _ControlAllocatorStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _ControlAllocatorStatus__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_ControlAllocatorStatus__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__ControlAllocatorStatus__get_type_hash,
+  &px4_msgs__msg__ControlAllocatorStatus__get_type_description,
+  &px4_msgs__msg__ControlAllocatorStatus__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

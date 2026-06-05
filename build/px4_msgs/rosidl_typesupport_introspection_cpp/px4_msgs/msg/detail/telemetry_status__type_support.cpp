@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/telemetry_status__functions.h"
 #include "px4_msgs/msg/detail/telemetry_status__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -37,12 +38,13 @@ void TelemetryStatus_fini_function(void * message_memory)
   typed_message->~TelemetryStatus();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStatus_message_member_array[38] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStatus_message_member_array[39] = {
   {
     "timestamp",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -77,6 +80,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -94,6 +98,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -111,6 +116,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -128,6 +134,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -145,6 +152,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -162,6 +170,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -179,6 +188,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -196,6 +206,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -213,6 +224,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -230,6 +242,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -247,6 +260,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -264,6 +278,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -281,6 +296,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -298,6 +314,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -315,6 +332,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -332,6 +350,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -349,6 +368,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -366,6 +386,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -383,6 +404,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -400,6 +422,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -417,6 +440,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -434,6 +458,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -451,6 +476,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -468,6 +494,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -481,10 +508,29 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     nullptr  // resize(index) function pointer
   },
   {
+    "heartbeat_type_flarm",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs::msg::TelemetryStatus, heartbeat_type_flarm),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "heartbeat_type_camera",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -502,6 +548,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -519,6 +566,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -536,6 +584,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -553,6 +602,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -570,6 +620,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -587,6 +638,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -604,6 +656,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -621,6 +674,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -638,6 +692,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -655,6 +710,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -672,6 +728,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -689,8 +746,9 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember TelemetryStat
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers TelemetryStatus_message_members = {
   "px4_msgs::msg",  // message namespace
   "TelemetryStatus",  // message name
-  38,  // number of fields
+  39,  // number of fields
   sizeof(px4_msgs::msg::TelemetryStatus),
+  false,  // has_any_key_member_
   TelemetryStatus_message_member_array,  // message members
   TelemetryStatus_init_function,  // function to initialize message memory (memory has to be allocated)
   TelemetryStatus_fini_function  // function to terminate message instance (will not free memory)
@@ -700,6 +758,9 @@ static const rosidl_message_type_support_t TelemetryStatus_message_type_support_
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &TelemetryStatus_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__TelemetryStatus__get_type_hash,
+  &px4_msgs__msg__TelemetryStatus__get_type_description,
+  &px4_msgs__msg__TelemetryStatus__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

@@ -81,7 +81,7 @@ px4_msgs__msg__WheelEncoders__copy(
 }
 
 px4_msgs__msg__WheelEncoders *
-px4_msgs__msg__WheelEncoders__create()
+px4_msgs__msg__WheelEncoders__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__WheelEncoders * msg = (px4_msgs__msg__WheelEncoders *)allocator.allocate(sizeof(px4_msgs__msg__WheelEncoders), allocator.state);

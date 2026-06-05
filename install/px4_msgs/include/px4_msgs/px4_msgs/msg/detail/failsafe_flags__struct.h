@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FailsafeFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/failsafe_flags.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -81,6 +83,17 @@ typedef struct px4_msgs__msg__FailsafeFlags
   bool battery_low_remaining_time;
   /// Battery unhealthy
   bool battery_unhealthy;
+  /// Failure detector
+  /// Critical failure (attitude limit exceeded, or external ATS)
+  bool fd_critical_failure;
+  /// ESC failed to arm
+  bool fd_esc_arming_failure;
+  /// Imbalanced propeller detected
+  bool fd_imbalanced_prop;
+  /// Motor failure
+  bool fd_motor_failure;
+  /// Uncommanded altitude loss (rotary-wing, altitude-controlled flight)
+  bool fd_alt_loss;
   /// Other
   /// Geofence breached (one or multiple)
   bool geofence_breached;
@@ -96,15 +109,12 @@ typedef struct px4_msgs__msg__FailsafeFlags
   bool position_accuracy_low;
   /// Navigator failed to execute a mode
   bool navigator_failure;
-  /// Failure detector
-  /// Critical failure (attitude/altitude limit exceeded, or external ATS)
-  bool fd_critical_failure;
-  /// ESC failed to arm
-  bool fd_esc_arming_failure;
-  /// Imbalanced propeller detected
-  bool fd_imbalanced_prop;
-  /// Motor failure
-  bool fd_motor_failure;
+  /// Parachute system missing or unhealthy
+  bool parachute_unhealthy;
+  /// Remote ID (Open Drone ID) system missing or unhealthy
+  bool remote_id_unhealthy;
+  /// Active GNSS count dropped below SYS_HAS_NUM_GNSS, or two receivers report inconsistent positions
+  bool gnss_lost;
 } px4_msgs__msg__FailsafeFlags;
 
 // Struct for a sequence of px4_msgs__msg__FailsafeFlags.

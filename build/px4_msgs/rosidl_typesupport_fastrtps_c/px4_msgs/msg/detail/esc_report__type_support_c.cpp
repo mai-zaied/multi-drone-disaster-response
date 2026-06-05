@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _EscReport__ros_msg_type = px4_msgs__msg__EscReport;
 
-static bool _EscReport__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__EscReport(
+  const px4_msgs__msg__EscReport * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _EscReport__ros_msg_type * ros_message = static_cast<const _EscReport__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -79,14 +78,9 @@ static bool _EscReport__cdr_serialize(
     cdr << ros_message->esc_temperature;
   }
 
-  // Field name: esc_address
+  // Field name: motor_temperature
   {
-    cdr << ros_message->esc_address;
-  }
-
-  // Field name: esc_cmdcount
-  {
-    cdr << ros_message->esc_cmdcount;
+    cdr << ros_message->motor_temperature;
   }
 
   // Field name: esc_state
@@ -112,15 +106,11 @@ static bool _EscReport__cdr_serialize(
   return true;
 }
 
-static bool _EscReport__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__EscReport(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__EscReport * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _EscReport__ros_msg_type * ros_message = static_cast<_EscReport__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -151,14 +141,9 @@ static bool _EscReport__cdr_deserialize(
     cdr >> ros_message->esc_temperature;
   }
 
-  // Field name: esc_address
+  // Field name: motor_temperature
   {
-    cdr >> ros_message->esc_address;
-  }
-
-  // Field name: esc_cmdcount
-  {
-    cdr >> ros_message->esc_cmdcount;
+    cdr >> ros_message->motor_temperature;
   }
 
   // Field name: esc_state
@@ -184,6 +169,7 @@ static bool _EscReport__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__EscReport(
   const void * untyped_ros_message,
@@ -198,73 +184,77 @@ size_t get_serialized_size_px4_msgs__msg__EscReport(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_errorcount
+
+  // Field name: esc_errorcount
   {
     size_t item_size = sizeof(ros_message->esc_errorcount);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_rpm
+
+  // Field name: esc_rpm
   {
     size_t item_size = sizeof(ros_message->esc_rpm);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_voltage
+
+  // Field name: esc_voltage
   {
     size_t item_size = sizeof(ros_message->esc_voltage);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_current
+
+  // Field name: esc_current
   {
     size_t item_size = sizeof(ros_message->esc_current);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_temperature
+
+  // Field name: esc_temperature
   {
     size_t item_size = sizeof(ros_message->esc_temperature);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_address
+
+  // Field name: motor_temperature
   {
-    size_t item_size = sizeof(ros_message->esc_address);
+    size_t item_size = sizeof(ros_message->motor_temperature);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_cmdcount
-  {
-    size_t item_size = sizeof(ros_message->esc_cmdcount);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name esc_state
+
+  // Field name: esc_state
   {
     size_t item_size = sizeof(ros_message->esc_state);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name actuator_function
+
+  // Field name: actuator_function
   {
     size_t item_size = sizeof(ros_message->actuator_function);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name failures
+
+  // Field name: failures
   {
     size_t item_size = sizeof(ros_message->failures);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name esc_power
+
+  // Field name: esc_power
   {
     size_t item_size = sizeof(ros_message->esc_power);
     current_alignment += item_size +
@@ -274,12 +264,6 @@ size_t get_serialized_size_px4_msgs__msg__EscReport(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _EscReport__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__EscReport(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__EscReport(
@@ -299,94 +283,363 @@ size_t max_serialized_size_px4_msgs__msg__EscReport(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: esc_errorcount
+
+  // Field name: esc_errorcount
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: esc_rpm
+
+  // Field name: esc_rpm
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: esc_voltage
+
+  // Field name: esc_voltage
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: esc_current
+
+  // Field name: esc_current
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: esc_temperature
+
+  // Field name: esc_temperature
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: esc_address
+
+  // Field name: motor_temperature
   {
     size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-  // member: esc_cmdcount
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-  // member: esc_state
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-  // member: actuator_function
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-  // member: failures
-  {
-    size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: esc_power
+
+  // Field name: esc_state
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+  // Field name: actuator_function
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: failures
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: esc_power
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__EscReport;
+    is_plain =
+      (
+      offsetof(DataType, esc_power) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__EscReport(
+  const px4_msgs__msg__EscReport * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: esc_errorcount
+  {
+    cdr << ros_message->esc_errorcount;
+  }
+
+  // Field name: esc_rpm
+  {
+    cdr << ros_message->esc_rpm;
+  }
+
+  // Field name: esc_voltage
+  {
+    cdr << ros_message->esc_voltage;
+  }
+
+  // Field name: esc_current
+  {
+    cdr << ros_message->esc_current;
+  }
+
+  // Field name: esc_temperature
+  {
+    cdr << ros_message->esc_temperature;
+  }
+
+  // Field name: motor_temperature
+  {
+    cdr << ros_message->motor_temperature;
+  }
+
+  // Field name: esc_state
+  {
+    cdr << ros_message->esc_state;
+  }
+
+  // Field name: actuator_function
+  {
+    cdr << ros_message->actuator_function;
+  }
+
+  // Field name: failures
+  {
+    cdr << ros_message->failures;
+  }
+
+  // Field name: esc_power
+  {
+    cdr << ros_message->esc_power;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__EscReport(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _EscReport__ros_msg_type * ros_message = static_cast<const _EscReport__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_errorcount
+  {
+    size_t item_size = sizeof(ros_message->esc_errorcount);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_rpm
+  {
+    size_t item_size = sizeof(ros_message->esc_rpm);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_voltage
+  {
+    size_t item_size = sizeof(ros_message->esc_voltage);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_current
+  {
+    size_t item_size = sizeof(ros_message->esc_current);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_temperature
+  {
+    size_t item_size = sizeof(ros_message->esc_temperature);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: motor_temperature
+  {
+    size_t item_size = sizeof(ros_message->motor_temperature);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_state
+  {
+    size_t item_size = sizeof(ros_message->esc_state);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: actuator_function
+  {
+    size_t item_size = sizeof(ros_message->actuator_function);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: failures
+  {
+    size_t item_size = sizeof(ros_message->failures);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: esc_power
+  {
+    size_t item_size = sizeof(ros_message->esc_power);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__EscReport(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: esc_errorcount
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: esc_rpm
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: esc_voltage
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: esc_current
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: esc_temperature
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: motor_temperature
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: esc_state
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: actuator_function
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: failures
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: esc_power
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -403,8 +656,41 @@ size_t max_serialized_size_px4_msgs__msg__EscReport(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _EscReport__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__EscReport * ros_message = static_cast<const px4_msgs__msg__EscReport *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__EscReport(ros_message, cdr);
+}
+
+static bool _EscReport__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__EscReport * ros_message = static_cast<px4_msgs__msg__EscReport *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__EscReport(cdr, ros_message);
+}
+
+static uint32_t _EscReport__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__EscReport(
+      untyped_ros_message, 0));
 }
 
 static size_t _EscReport__max_serialized_size(char & bounds_info)
@@ -429,13 +715,17 @@ static message_type_support_callbacks_t __callbacks_EscReport = {
   _EscReport__cdr_serialize,
   _EscReport__cdr_deserialize,
   _EscReport__get_serialized_size,
-  _EscReport__max_serialized_size
+  _EscReport__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _EscReport__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_EscReport,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__EscReport__get_type_hash,
+  &px4_msgs__msg__EscReport__get_type_description,
+  &px4_msgs__msg__EscReport__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

@@ -129,7 +129,7 @@ px4_msgs__msg__TrajectorySetpoint6dof__copy(
 }
 
 px4_msgs__msg__TrajectorySetpoint6dof *
-px4_msgs__msg__TrajectorySetpoint6dof__create()
+px4_msgs__msg__TrajectorySetpoint6dof__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TrajectorySetpoint6dof * msg = (px4_msgs__msg__TrajectorySetpoint6dof *)allocator.allocate(sizeof(px4_msgs__msg__TrajectorySetpoint6dof), allocator.state);

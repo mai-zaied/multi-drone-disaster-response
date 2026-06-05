@@ -161,7 +161,7 @@ px4_msgs__msg__AirspeedWind__copy(
 }
 
 px4_msgs__msg__AirspeedWind *
-px4_msgs__msg__AirspeedWind__create()
+px4_msgs__msg__AirspeedWind__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__AirspeedWind * msg = (px4_msgs__msg__AirspeedWind *)allocator.allocate(sizeof(px4_msgs__msg__AirspeedWind), allocator.state);

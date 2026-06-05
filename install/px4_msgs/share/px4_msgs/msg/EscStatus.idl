@@ -7,11 +7,11 @@
 module px4_msgs {
   module msg {
     typedef px4_msgs::msg::EscReport px4_msgs__msg__EscReport;
-    typedef px4_msgs__msg__EscReport px4_msgs__msg__EscReport__8[8];
+    typedef px4_msgs__msg__EscReport px4_msgs__msg__EscReport__12[12];
     module EscStatus_Constants {
       @verbatim (language="comment", text=
-        "The number of ESCs supported. Current (Q2/2013) we support 8 ESCs")
-      const uint8 CONNECTED_ESC_MAX = 8;
+        "The number of ESCs supported (Motor1-Motor12)")
+      const uint8 CONNECTED_ESC_MAX = 12;
       @verbatim (language="comment", text=
         "Traditional PPM ESC")
       const uint8 ESC_CONNECTION_TYPE_PPM = 0;
@@ -33,38 +33,47 @@ module px4_msgs {
     };
     struct EscStatus {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
-        "incremented by the writing thread everytime new data is stored")
+        "Incremented by the writing thread everytime new data is stored")
+      @unit (value="-")
       uint16 counter;
 
       @verbatim (language="comment", text=
-        "number of connected ESCs")
+        "Number of connected ESCs")
+      @unit (value="-")
       uint8 esc_count;
 
       @verbatim (language="comment", text=
-        "how ESCs connected to the system")
+        "How ESCs connected to the system")
+      @unit (value="@enum ESC_CONNECTION_TYPE")
       uint8 esc_connectiontype;
 
       @verbatim (language="comment", text=
-        "Bitmask indicating which ESC is online/offline")
-      uint8 esc_online_flags;
+        "Bitmask indicating which ESC is online/offline (in motor order)")
+      uint16 esc_online_flags;
 
       @verbatim (language="comment", text=
-        "esc_online_flags bit 0 : Set to 1 if ESC0 is online" "\n"
-        "esc_online_flags bit 1 : Set to 1 if ESC1 is online" "\n"
-        "esc_online_flags bit 2 : Set to 1 if ESC2 is online" "\n"
-        "esc_online_flags bit 3 : Set to 1 if ESC3 is online" "\n"
-        "esc_online_flags bit 4 : Set to 1 if ESC4 is online" "\n"
-        "esc_online_flags bit 5 : Set to 1 if ESC5 is online" "\n"
-        "esc_online_flags bit 6 : Set to 1 if ESC6 is online" "\n"
-        "esc_online_flags bit 7 : Set to 1 if ESC7 is online" "\n"
-        "Bitmask indicating which ESC is armed. For ESC's where the arming state is not known (returned by the ESC), the arming bits should always be set.")
-      uint8 esc_armed_flags;
+        "esc_online_flags bit 0 : Set to 1 if Motor1 is online" "\n"
+        "esc_online_flags bit 1 : Set to 1 if Motor2 is online" "\n"
+        "esc_online_flags bit 2 : Set to 1 if Motor3 is online" "\n"
+        "esc_online_flags bit 3 : Set to 1 if Motor4 is online" "\n"
+        "esc_online_flags bit 4 : Set to 1 if Motor5 is online" "\n"
+        "esc_online_flags bit 5 : Set to 1 if Motor6 is online" "\n"
+        "esc_online_flags bit 6 : Set to 1 if Motor7 is online" "\n"
+        "esc_online_flags bit 7 : Set to 1 if Motor8 is online" "\n"
+        "esc_online_flags bit 8 : Set to 1 if Motor9 is online" "\n"
+        "esc_online_flags bit 9 : Set to 1 if Motor10 is online" "\n"
+        "esc_online_flags bit 10: Set to 1 if Motor11 is online" "\n"
+        "esc_online_flags bit 11: Set to 1 if Motor12 is online" "\n"
+        "[-] Bitmask indicating which ESC is armed (in motor order)")
+      @unit (value="-")
+      uint16 esc_armed_flags;
 
-      px4_msgs__msg__EscReport__8 esc;
+      px4_msgs__msg__EscReport__12 esc;
     };
   };
 };

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LandingTargetInnovations.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_target_innovations.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_TARGET_INNOVATIONS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__LANDING_TARGET_INNOVATIONS__TRAITS_HPP_
 

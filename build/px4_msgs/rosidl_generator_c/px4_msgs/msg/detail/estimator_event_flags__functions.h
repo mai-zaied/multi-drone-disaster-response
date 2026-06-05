@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EstimatorEventFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_event_flags.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_EVENT_FLAGS__FUNCTIONS_H_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_EVENT_FLAGS__FUNCTIONS_H_
 
@@ -13,6 +16,12 @@ extern "C"
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "rosidl_runtime_c/action_type_support_struct.h"
+#include "rosidl_runtime_c/message_type_support_struct.h"
+#include "rosidl_runtime_c/service_type_support_struct.h"
+#include "rosidl_runtime_c/type_description/type_description__struct.h"
+#include "rosidl_runtime_c/type_description/type_source__struct.h"
+#include "rosidl_runtime_c/type_hash.h"
 #include "rosidl_runtime_c/visibility_control.h"
 #include "px4_msgs/msg/rosidl_generator_c__visibility_control.h"
 
@@ -53,7 +62,7 @@ px4_msgs__msg__EstimatorEventFlags__fini(px4_msgs__msg__EstimatorEventFlags * ms
  */
 ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
 px4_msgs__msg__EstimatorEventFlags *
-px4_msgs__msg__EstimatorEventFlags__create();
+px4_msgs__msg__EstimatorEventFlags__create(void);
 
 /// Destroy msg/EstimatorEventFlags message.
 /**
@@ -92,6 +101,30 @@ bool
 px4_msgs__msg__EstimatorEventFlags__copy(
   const px4_msgs__msg__EstimatorEventFlags * input,
   px4_msgs__msg__EstimatorEventFlags * output);
+
+/// Retrieve pointer to the hash of the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_type_hash_t *
+px4_msgs__msg__EstimatorEventFlags__get_type_hash(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeDescription *
+px4_msgs__msg__EstimatorEventFlags__get_type_description(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the single raw source text that defined this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeSource *
+px4_msgs__msg__EstimatorEventFlags__get_individual_type_description_source(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the recursive raw sources that defined the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeSource__Sequence *
+px4_msgs__msg__EstimatorEventFlags__get_type_description_sources(
+  const rosidl_message_type_support_t * type_support);
 
 /// Initialize array of msg/EstimatorEventFlags messages.
 /**

@@ -173,7 +173,7 @@ px4_msgs__msg__InputRc__copy(
 }
 
 px4_msgs__msg__InputRc *
-px4_msgs__msg__InputRc__create()
+px4_msgs__msg__InputRc__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__InputRc * msg = (px4_msgs__msg__InputRc *)allocator.allocate(sizeof(px4_msgs__msg__InputRc), allocator.state);

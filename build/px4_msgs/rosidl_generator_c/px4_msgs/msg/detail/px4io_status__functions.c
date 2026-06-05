@@ -325,7 +325,7 @@ px4_msgs__msg__Px4ioStatus__copy(
 }
 
 px4_msgs__msg__Px4ioStatus *
-px4_msgs__msg__Px4ioStatus__create()
+px4_msgs__msg__Px4ioStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Px4ioStatus * msg = (px4_msgs__msg__Px4ioStatus *)allocator.allocate(sizeof(px4_msgs__msg__Px4ioStatus), allocator.state);

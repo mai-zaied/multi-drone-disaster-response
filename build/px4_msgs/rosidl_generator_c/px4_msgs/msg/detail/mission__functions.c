@@ -137,7 +137,7 @@ px4_msgs__msg__Mission__copy(
 }
 
 px4_msgs__msg__Mission *
-px4_msgs__msg__Mission__create()
+px4_msgs__msg__Mission__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Mission * msg = (px4_msgs__msg__Mission *)allocator.allocate(sizeof(px4_msgs__msg__Mission), allocator.state);

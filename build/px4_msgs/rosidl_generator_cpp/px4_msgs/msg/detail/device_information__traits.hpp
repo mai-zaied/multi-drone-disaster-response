@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/DeviceInformation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/device_information.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__TRAITS_HPP_
 
@@ -39,32 +42,14 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
-  // member: vendor_name
+  // member: name
   {
-    if (msg.vendor_name.size() == 0) {
-      out << "vendor_name: []";
+    if (msg.name.size() == 0) {
+      out << "name: []";
     } else {
-      out << "vendor_name: [";
-      size_t pending_items = msg.vendor_name.size();
-      for (auto item : msg.vendor_name) {
-        rosidl_generator_traits::value_to_yaml(item, out);
-        if (--pending_items > 0) {
-          out << ", ";
-        }
-      }
-      out << "]";
-    }
-    out << ", ";
-  }
-
-  // member: model_name
-  {
-    if (msg.model_name.size() == 0) {
-      out << "model_name: []";
-    } else {
-      out << "model_name: [";
-      size_t pending_items = msg.model_name.size();
-      for (auto item : msg.model_name) {
+      out << "name: [";
+      size_t pending_items = msg.name.size();
+      for (auto item : msg.name) {
         rosidl_generator_traits::value_to_yaml(item, out);
         if (--pending_items > 0) {
           out << ", ";
@@ -161,36 +146,16 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
-  // member: vendor_name
+  // member: name
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    if (msg.vendor_name.size() == 0) {
-      out << "vendor_name: []\n";
+    if (msg.name.size() == 0) {
+      out << "name: []\n";
     } else {
-      out << "vendor_name:\n";
-      for (auto item : msg.vendor_name) {
-        if (indentation > 0) {
-          out << std::string(indentation, ' ');
-        }
-        out << "- ";
-        rosidl_generator_traits::value_to_yaml(item, out);
-        out << "\n";
-      }
-    }
-  }
-
-  // member: model_name
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    if (msg.model_name.size() == 0) {
-      out << "model_name: []\n";
-    } else {
-      out << "model_name:\n";
-      for (auto item : msg.model_name) {
+      out << "name:\n";
+      for (auto item : msg.name) {
         if (indentation > 0) {
           out << std::string(indentation, ' ');
         }

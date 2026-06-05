@@ -89,7 +89,7 @@ px4_msgs__msg__CanInterfaceStatus__copy(
 }
 
 px4_msgs__msg__CanInterfaceStatus *
-px4_msgs__msg__CanInterfaceStatus__create()
+px4_msgs__msg__CanInterfaceStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__CanInterfaceStatus * msg = (px4_msgs__msg__CanInterfaceStatus *)allocator.allocate(sizeof(px4_msgs__msg__CanInterfaceStatus), allocator.state);

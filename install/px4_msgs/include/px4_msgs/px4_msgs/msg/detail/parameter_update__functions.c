@@ -121,7 +121,7 @@ px4_msgs__msg__ParameterUpdate__copy(
 }
 
 px4_msgs__msg__ParameterUpdate *
-px4_msgs__msg__ParameterUpdate__create()
+px4_msgs__msg__ParameterUpdate__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ParameterUpdate * msg = (px4_msgs__msg__ParameterUpdate *)allocator.allocate(sizeof(px4_msgs__msg__ParameterUpdate), allocator.state);

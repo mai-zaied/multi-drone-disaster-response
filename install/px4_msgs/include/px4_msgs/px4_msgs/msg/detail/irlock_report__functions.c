@@ -97,7 +97,7 @@ px4_msgs__msg__IrlockReport__copy(
 }
 
 px4_msgs__msg__IrlockReport *
-px4_msgs__msg__IrlockReport__create()
+px4_msgs__msg__IrlockReport__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__IrlockReport * msg = (px4_msgs__msg__IrlockReport *)allocator.allocate(sizeof(px4_msgs__msg__IrlockReport), allocator.state);

@@ -25,6 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'fog_server = fog_node.fog_server:main',
+            'decision_node = fog_node.decision_node:main',
+            'detection_sim = fog_node.detection_sim:main',
         ],
     },
 )

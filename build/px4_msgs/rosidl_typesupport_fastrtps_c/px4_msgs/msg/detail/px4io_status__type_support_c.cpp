@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _Px4ioStatus__ros_msg_type = px4_msgs__msg__Px4ioStatus;
 
-static bool _Px4ioStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__Px4ioStatus(
+  const px4_msgs__msg__Px4ioStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _Px4ioStatus__ros_msg_type * ros_message = static_cast<const _Px4ioStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -188,49 +187,45 @@ static bool _Px4ioStatus__cdr_serialize(
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: pwm_disarmed
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_disarmed;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: pwm_failsafe
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_failsafe;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: pwm_rate_hz
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_rate_hz;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: raw_inputs
   {
     size_t size = 18;
     auto array_ptr = ros_message->raw_inputs;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   return true;
 }
 
-static bool _Px4ioStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__Px4ioStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__Px4ioStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _Px4ioStatus__ros_msg_type * ros_message = static_cast<_Px4ioStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -416,39 +411,40 @@ static bool _Px4ioStatus__cdr_deserialize(
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: pwm_disarmed
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_disarmed;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: pwm_failsafe
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_failsafe;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: pwm_rate_hz
   {
     size_t size = 8;
     auto array_ptr = ros_message->pwm_rate_hz;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: raw_inputs
   {
     size_t size = 18;
     auto array_ptr = ros_message->raw_inputs;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
@@ -464,169 +460,196 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name free_memory_bytes
+
+  // Field name: free_memory_bytes
   {
     size_t item_size = sizeof(ros_message->free_memory_bytes);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name voltage_v
+
+  // Field name: voltage_v
   {
     size_t item_size = sizeof(ros_message->voltage_v);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rssi_v
+
+  // Field name: rssi_v
   {
     size_t item_size = sizeof(ros_message->rssi_v);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_arm_sync
+
+  // Field name: status_arm_sync
   {
     size_t item_size = sizeof(ros_message->status_arm_sync);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_failsafe
+
+  // Field name: status_failsafe
   {
     size_t item_size = sizeof(ros_message->status_failsafe);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_fmu_initialized
+
+  // Field name: status_fmu_initialized
   {
     size_t item_size = sizeof(ros_message->status_fmu_initialized);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_fmu_ok
+
+  // Field name: status_fmu_ok
   {
     size_t item_size = sizeof(ros_message->status_fmu_ok);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_init_ok
+
+  // Field name: status_init_ok
   {
     size_t item_size = sizeof(ros_message->status_init_ok);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_outputs_armed
+
+  // Field name: status_outputs_armed
   {
     size_t item_size = sizeof(ros_message->status_outputs_armed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_raw_pwm
+
+  // Field name: status_raw_pwm
   {
     size_t item_size = sizeof(ros_message->status_raw_pwm);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_ok
+
+  // Field name: status_rc_ok
   {
     size_t item_size = sizeof(ros_message->status_rc_ok);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_dsm
+
+  // Field name: status_rc_dsm
   {
     size_t item_size = sizeof(ros_message->status_rc_dsm);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_ppm
+
+  // Field name: status_rc_ppm
   {
     size_t item_size = sizeof(ros_message->status_rc_ppm);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_sbus
+
+  // Field name: status_rc_sbus
   {
     size_t item_size = sizeof(ros_message->status_rc_sbus);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_st24
+
+  // Field name: status_rc_st24
   {
     size_t item_size = sizeof(ros_message->status_rc_st24);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_rc_sumd
+
+  // Field name: status_rc_sumd
   {
     size_t item_size = sizeof(ros_message->status_rc_sumd);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name status_safety_button_event
+
+  // Field name: status_safety_button_event
   {
     size_t item_size = sizeof(ros_message->status_safety_button_event);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name alarm_pwm_error
+
+  // Field name: alarm_pwm_error
   {
     size_t item_size = sizeof(ros_message->alarm_pwm_error);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name alarm_rc_lost
+
+  // Field name: alarm_rc_lost
   {
     size_t item_size = sizeof(ros_message->alarm_rc_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_failsafe_custom
+
+  // Field name: arming_failsafe_custom
   {
     size_t item_size = sizeof(ros_message->arming_failsafe_custom);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_fmu_armed
+
+  // Field name: arming_fmu_armed
   {
     size_t item_size = sizeof(ros_message->arming_fmu_armed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_fmu_prearmed
+
+  // Field name: arming_fmu_prearmed
   {
     size_t item_size = sizeof(ros_message->arming_fmu_prearmed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_termination
+
+  // Field name: arming_termination
   {
     size_t item_size = sizeof(ros_message->arming_termination);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_io_arm_ok
+
+  // Field name: arming_io_arm_ok
   {
     size_t item_size = sizeof(ros_message->arming_io_arm_ok);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_lockdown
+
+  // Field name: arming_lockdown
   {
     size_t item_size = sizeof(ros_message->arming_lockdown);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name arming_termination_failsafe
+
+  // Field name: arming_termination_failsafe
   {
     size_t item_size = sizeof(ros_message->arming_termination_failsafe);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name pwm
+
+  // Field name: pwm
   {
     size_t array_size = 8;
     auto array_ptr = ros_message->pwm;
@@ -635,7 +658,8 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name pwm_disarmed
+
+  // Field name: pwm_disarmed
   {
     size_t array_size = 8;
     auto array_ptr = ros_message->pwm_disarmed;
@@ -644,7 +668,8 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name pwm_failsafe
+
+  // Field name: pwm_failsafe
   {
     size_t array_size = 8;
     auto array_ptr = ros_message->pwm_failsafe;
@@ -653,7 +678,8 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name pwm_rate_hz
+
+  // Field name: pwm_rate_hz
   {
     size_t array_size = 8;
     auto array_ptr = ros_message->pwm_rate_hz;
@@ -662,7 +688,8 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name raw_inputs
+
+  // Field name: raw_inputs
   {
     size_t array_size = 18;
     auto array_ptr = ros_message->raw_inputs;
@@ -675,12 +702,6 @@ size_t get_serialized_size_px4_msgs__msg__Px4ioStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _Px4ioStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__Px4ioStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__Px4ioStatus(
@@ -700,235 +721,935 @@ size_t max_serialized_size_px4_msgs__msg__Px4ioStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: free_memory_bytes
+
+  // Field name: free_memory_bytes
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: voltage_v
+
+  // Field name: voltage_v
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: rssi_v
+
+  // Field name: rssi_v
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: status_arm_sync
+
+  // Field name: status_arm_sync
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_failsafe
+
+  // Field name: status_failsafe
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_fmu_initialized
+
+  // Field name: status_fmu_initialized
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_fmu_ok
+
+  // Field name: status_fmu_ok
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_init_ok
+
+  // Field name: status_init_ok
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_outputs_armed
+
+  // Field name: status_outputs_armed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_raw_pwm
+
+  // Field name: status_raw_pwm
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_ok
+
+  // Field name: status_rc_ok
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_dsm
+
+  // Field name: status_rc_dsm
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_ppm
+
+  // Field name: status_rc_ppm
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_sbus
+
+  // Field name: status_rc_sbus
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_st24
+
+  // Field name: status_rc_st24
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_rc_sumd
+
+  // Field name: status_rc_sumd
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: status_safety_button_event
+
+  // Field name: status_safety_button_event
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: alarm_pwm_error
+
+  // Field name: alarm_pwm_error
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: alarm_rc_lost
+
+  // Field name: alarm_rc_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_failsafe_custom
+
+  // Field name: arming_failsafe_custom
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_fmu_armed
+
+  // Field name: arming_fmu_armed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_fmu_prearmed
+
+  // Field name: arming_fmu_prearmed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_termination
+
+  // Field name: arming_termination
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_io_arm_ok
+
+  // Field name: arming_io_arm_ok
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_lockdown
+
+  // Field name: arming_lockdown
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: arming_termination_failsafe
+
+  // Field name: arming_termination_failsafe
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: pwm
+
+  // Field name: pwm
   {
     size_t array_size = 8;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: pwm_disarmed
+
+  // Field name: pwm_disarmed
   {
     size_t array_size = 8;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: pwm_failsafe
+
+  // Field name: pwm_failsafe
   {
     size_t array_size = 8;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: pwm_rate_hz
+
+  // Field name: pwm_rate_hz
   {
     size_t array_size = 8;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: raw_inputs
+
+  // Field name: raw_inputs
   {
     size_t array_size = 18;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__Px4ioStatus;
+    is_plain =
+      (
+      offsetof(DataType, raw_inputs) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__Px4ioStatus(
+  const px4_msgs__msg__Px4ioStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: free_memory_bytes
+  {
+    cdr << ros_message->free_memory_bytes;
+  }
+
+  // Field name: voltage_v
+  {
+    cdr << ros_message->voltage_v;
+  }
+
+  // Field name: rssi_v
+  {
+    cdr << ros_message->rssi_v;
+  }
+
+  // Field name: status_arm_sync
+  {
+    cdr << (ros_message->status_arm_sync ? true : false);
+  }
+
+  // Field name: status_failsafe
+  {
+    cdr << (ros_message->status_failsafe ? true : false);
+  }
+
+  // Field name: status_fmu_initialized
+  {
+    cdr << (ros_message->status_fmu_initialized ? true : false);
+  }
+
+  // Field name: status_fmu_ok
+  {
+    cdr << (ros_message->status_fmu_ok ? true : false);
+  }
+
+  // Field name: status_init_ok
+  {
+    cdr << (ros_message->status_init_ok ? true : false);
+  }
+
+  // Field name: status_outputs_armed
+  {
+    cdr << (ros_message->status_outputs_armed ? true : false);
+  }
+
+  // Field name: status_raw_pwm
+  {
+    cdr << (ros_message->status_raw_pwm ? true : false);
+  }
+
+  // Field name: status_rc_ok
+  {
+    cdr << (ros_message->status_rc_ok ? true : false);
+  }
+
+  // Field name: status_rc_dsm
+  {
+    cdr << (ros_message->status_rc_dsm ? true : false);
+  }
+
+  // Field name: status_rc_ppm
+  {
+    cdr << (ros_message->status_rc_ppm ? true : false);
+  }
+
+  // Field name: status_rc_sbus
+  {
+    cdr << (ros_message->status_rc_sbus ? true : false);
+  }
+
+  // Field name: status_rc_st24
+  {
+    cdr << (ros_message->status_rc_st24 ? true : false);
+  }
+
+  // Field name: status_rc_sumd
+  {
+    cdr << (ros_message->status_rc_sumd ? true : false);
+  }
+
+  // Field name: status_safety_button_event
+  {
+    cdr << (ros_message->status_safety_button_event ? true : false);
+  }
+
+  // Field name: alarm_pwm_error
+  {
+    cdr << (ros_message->alarm_pwm_error ? true : false);
+  }
+
+  // Field name: alarm_rc_lost
+  {
+    cdr << (ros_message->alarm_rc_lost ? true : false);
+  }
+
+  // Field name: arming_failsafe_custom
+  {
+    cdr << (ros_message->arming_failsafe_custom ? true : false);
+  }
+
+  // Field name: arming_fmu_armed
+  {
+    cdr << (ros_message->arming_fmu_armed ? true : false);
+  }
+
+  // Field name: arming_fmu_prearmed
+  {
+    cdr << (ros_message->arming_fmu_prearmed ? true : false);
+  }
+
+  // Field name: arming_termination
+  {
+    cdr << (ros_message->arming_termination ? true : false);
+  }
+
+  // Field name: arming_io_arm_ok
+  {
+    cdr << (ros_message->arming_io_arm_ok ? true : false);
+  }
+
+  // Field name: arming_lockdown
+  {
+    cdr << (ros_message->arming_lockdown ? true : false);
+  }
+
+  // Field name: arming_termination_failsafe
+  {
+    cdr << (ros_message->arming_termination_failsafe ? true : false);
+  }
+
+  // Field name: pwm
+  {
+    size_t size = 8;
+    auto array_ptr = ros_message->pwm;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: pwm_disarmed
+  {
+    size_t size = 8;
+    auto array_ptr = ros_message->pwm_disarmed;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: pwm_failsafe
+  {
+    size_t size = 8;
+    auto array_ptr = ros_message->pwm_failsafe;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: pwm_rate_hz
+  {
+    size_t size = 8;
+    auto array_ptr = ros_message->pwm_rate_hz;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: raw_inputs
+  {
+    size_t size = 18;
+    auto array_ptr = ros_message->raw_inputs;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__Px4ioStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _Px4ioStatus__ros_msg_type * ros_message = static_cast<const _Px4ioStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: free_memory_bytes
+  {
+    size_t item_size = sizeof(ros_message->free_memory_bytes);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: voltage_v
+  {
+    size_t item_size = sizeof(ros_message->voltage_v);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rssi_v
+  {
+    size_t item_size = sizeof(ros_message->rssi_v);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_arm_sync
+  {
+    size_t item_size = sizeof(ros_message->status_arm_sync);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_failsafe
+  {
+    size_t item_size = sizeof(ros_message->status_failsafe);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_fmu_initialized
+  {
+    size_t item_size = sizeof(ros_message->status_fmu_initialized);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_fmu_ok
+  {
+    size_t item_size = sizeof(ros_message->status_fmu_ok);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_init_ok
+  {
+    size_t item_size = sizeof(ros_message->status_init_ok);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_outputs_armed
+  {
+    size_t item_size = sizeof(ros_message->status_outputs_armed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_raw_pwm
+  {
+    size_t item_size = sizeof(ros_message->status_raw_pwm);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_ok
+  {
+    size_t item_size = sizeof(ros_message->status_rc_ok);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_dsm
+  {
+    size_t item_size = sizeof(ros_message->status_rc_dsm);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_ppm
+  {
+    size_t item_size = sizeof(ros_message->status_rc_ppm);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_sbus
+  {
+    size_t item_size = sizeof(ros_message->status_rc_sbus);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_st24
+  {
+    size_t item_size = sizeof(ros_message->status_rc_st24);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_rc_sumd
+  {
+    size_t item_size = sizeof(ros_message->status_rc_sumd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: status_safety_button_event
+  {
+    size_t item_size = sizeof(ros_message->status_safety_button_event);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: alarm_pwm_error
+  {
+    size_t item_size = sizeof(ros_message->alarm_pwm_error);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: alarm_rc_lost
+  {
+    size_t item_size = sizeof(ros_message->alarm_rc_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_failsafe_custom
+  {
+    size_t item_size = sizeof(ros_message->arming_failsafe_custom);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_fmu_armed
+  {
+    size_t item_size = sizeof(ros_message->arming_fmu_armed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_fmu_prearmed
+  {
+    size_t item_size = sizeof(ros_message->arming_fmu_prearmed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_termination
+  {
+    size_t item_size = sizeof(ros_message->arming_termination);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_io_arm_ok
+  {
+    size_t item_size = sizeof(ros_message->arming_io_arm_ok);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_lockdown
+  {
+    size_t item_size = sizeof(ros_message->arming_lockdown);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: arming_termination_failsafe
+  {
+    size_t item_size = sizeof(ros_message->arming_termination_failsafe);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: pwm
+  {
+    size_t array_size = 8;
+    auto array_ptr = ros_message->pwm;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: pwm_disarmed
+  {
+    size_t array_size = 8;
+    auto array_ptr = ros_message->pwm_disarmed;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: pwm_failsafe
+  {
+    size_t array_size = 8;
+    auto array_ptr = ros_message->pwm_failsafe;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: pwm_rate_hz
+  {
+    size_t array_size = 8;
+    auto array_ptr = ros_message->pwm_rate_hz;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: raw_inputs
+  {
+    size_t array_size = 18;
+    auto array_ptr = ros_message->raw_inputs;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__Px4ioStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: free_memory_bytes
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: voltage_v
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: rssi_v
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: status_arm_sync
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_failsafe
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_fmu_initialized
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_fmu_ok
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_init_ok
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_outputs_armed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_raw_pwm
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_ok
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_dsm
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_ppm
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_sbus
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_st24
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_rc_sumd
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: status_safety_button_event
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: alarm_pwm_error
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: alarm_rc_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_failsafe_custom
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_fmu_armed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_fmu_prearmed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_termination
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_io_arm_ok
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_lockdown
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: arming_termination_failsafe
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: pwm
+  {
+    size_t array_size = 8;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: pwm_disarmed
+  {
+    size_t array_size = 8;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: pwm_failsafe
+  {
+    size_t array_size = 8;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: pwm_rate_hz
+  {
+    size_t array_size = 8;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: raw_inputs
+  {
+    size_t array_size = 18;
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
@@ -946,8 +1667,41 @@ size_t max_serialized_size_px4_msgs__msg__Px4ioStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _Px4ioStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__Px4ioStatus * ros_message = static_cast<const px4_msgs__msg__Px4ioStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__Px4ioStatus(ros_message, cdr);
+}
+
+static bool _Px4ioStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__Px4ioStatus * ros_message = static_cast<px4_msgs__msg__Px4ioStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__Px4ioStatus(cdr, ros_message);
+}
+
+static uint32_t _Px4ioStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__Px4ioStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _Px4ioStatus__max_serialized_size(char & bounds_info)
@@ -972,13 +1726,17 @@ static message_type_support_callbacks_t __callbacks_Px4ioStatus = {
   _Px4ioStatus__cdr_serialize,
   _Px4ioStatus__cdr_deserialize,
   _Px4ioStatus__get_serialized_size,
-  _Px4ioStatus__max_serialized_size
+  _Px4ioStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _Px4ioStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_Px4ioStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__Px4ioStatus__get_type_hash,
+  &px4_msgs__msg__Px4ioStatus__get_type_description,
+  &px4_msgs__msg__Px4ioStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

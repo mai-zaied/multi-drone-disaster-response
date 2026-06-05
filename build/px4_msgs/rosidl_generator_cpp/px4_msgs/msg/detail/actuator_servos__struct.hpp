@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/ActuatorServos.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/actuator_servos.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -40,7 +44,7 @@ struct ActuatorServos_
     {
       this->timestamp = 0ull;
       this->timestamp_sample = 0ull;
-      std::fill<typename std::array<float, 8>::iterator, float>(this->control.begin(), this->control.end(), 0.0f);
+      std::fill<typename std::array<float, 15>::iterator, float>(this->control.begin(), this->control.end(), 0.0f);
     }
   }
 
@@ -52,7 +56,7 @@ struct ActuatorServos_
     {
       this->timestamp = 0ull;
       this->timestamp_sample = 0ull;
-      std::fill<typename std::array<float, 8>::iterator, float>(this->control.begin(), this->control.end(), 0.0f);
+      std::fill<typename std::array<float, 15>::iterator, float>(this->control.begin(), this->control.end(), 0.0f);
     }
   }
 
@@ -64,7 +68,7 @@ struct ActuatorServos_
     uint64_t;
   _timestamp_sample_type timestamp_sample;
   using _control_type =
-    std::array<float, 8>;
+    std::array<float, 15>;
   _control_type control;
 
   // setters for named parameter idiom
@@ -81,7 +85,7 @@ struct ActuatorServos_
     return *this;
   }
   Type & set__control(
-    const std::array<float, 8> & _arg)
+    const std::array<float, 15> & _arg)
   {
     this->control = _arg;
     return *this;
@@ -89,9 +93,9 @@ struct ActuatorServos_
 
   // constant declarations
   static constexpr uint32_t MESSAGE_VERSION =
-    0u;
+    1u;
   static constexpr uint8_t NUM_CONTROLS =
-    8u;
+    15u;
 
   // pointer types
   using RawPtr =

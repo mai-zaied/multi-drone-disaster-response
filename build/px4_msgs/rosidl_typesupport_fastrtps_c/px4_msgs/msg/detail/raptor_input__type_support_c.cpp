@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _RaptorInput__ros_msg_type = px4_msgs__msg__RaptorInput;
 
-static bool _RaptorInput__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__RaptorInput(
+  const px4_msgs__msg__RaptorInput * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _RaptorInput__ros_msg_type * ros_message = static_cast<const _RaptorInput__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -68,49 +67,45 @@ static bool _RaptorInput__cdr_serialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->position;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: orientation
   {
     size_t size = 4;
     auto array_ptr = ros_message->orientation;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: linear_velocity
   {
     size_t size = 3;
     auto array_ptr = ros_message->linear_velocity;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: angular_velocity
   {
     size_t size = 3;
     auto array_ptr = ros_message->angular_velocity;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: previous_action
   {
     size_t size = 4;
     auto array_ptr = ros_message->previous_action;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   return true;
 }
 
-static bool _RaptorInput__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__RaptorInput(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__RaptorInput * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _RaptorInput__ros_msg_type * ros_message = static_cast<_RaptorInput__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -132,39 +127,40 @@ static bool _RaptorInput__cdr_deserialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->position;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: orientation
   {
     size_t size = 4;
     auto array_ptr = ros_message->orientation;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: linear_velocity
   {
     size_t size = 3;
     auto array_ptr = ros_message->linear_velocity;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: angular_velocity
   {
     size_t size = 3;
     auto array_ptr = ros_message->angular_velocity;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: previous_action
   {
     size_t size = 4;
     auto array_ptr = ros_message->previous_action;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__RaptorInput(
@@ -180,25 +176,28 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name timestamp_sample
+
+  // Field name: timestamp_sample
   {
     size_t item_size = sizeof(ros_message->timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name active
+
+  // Field name: active
   {
     size_t item_size = sizeof(ros_message->active);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name position
+
+  // Field name: position
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->position;
@@ -207,7 +206,8 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name orientation
+
+  // Field name: orientation
   {
     size_t array_size = 4;
     auto array_ptr = ros_message->orientation;
@@ -216,7 +216,8 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name linear_velocity
+
+  // Field name: linear_velocity
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->linear_velocity;
@@ -225,7 +226,8 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name angular_velocity
+
+  // Field name: angular_velocity
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->angular_velocity;
@@ -234,7 +236,8 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name previous_action
+
+  // Field name: previous_action
   {
     size_t array_size = 4;
     auto array_ptr = ros_message->previous_action;
@@ -247,12 +250,6 @@ size_t get_serialized_size_px4_msgs__msg__RaptorInput(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _RaptorInput__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__RaptorInput(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__RaptorInput(
@@ -272,65 +269,307 @@ size_t max_serialized_size_px4_msgs__msg__RaptorInput(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: timestamp_sample
+
+  // Field name: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: active
+
+  // Field name: active
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: position
+
+  // Field name: position
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: orientation
+
+  // Field name: orientation
   {
     size_t array_size = 4;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: linear_velocity
+
+  // Field name: linear_velocity
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: angular_velocity
+
+  // Field name: angular_velocity
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: previous_action
+
+  // Field name: previous_action
   {
     size_t array_size = 4;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__RaptorInput;
+    is_plain =
+      (
+      offsetof(DataType, previous_action) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__RaptorInput(
+  const px4_msgs__msg__RaptorInput * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: timestamp_sample
+  {
+    cdr << ros_message->timestamp_sample;
+  }
+
+  // Field name: active
+  {
+    cdr << (ros_message->active ? true : false);
+  }
+
+  // Field name: position
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->position;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: orientation
+  {
+    size_t size = 4;
+    auto array_ptr = ros_message->orientation;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: linear_velocity
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->linear_velocity;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: angular_velocity
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->angular_velocity;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: previous_action
+  {
+    size_t size = 4;
+    auto array_ptr = ros_message->previous_action;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__RaptorInput(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _RaptorInput__ros_msg_type * ros_message = static_cast<const _RaptorInput__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message->timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: active
+  {
+    size_t item_size = sizeof(ros_message->active);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: position
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->position;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: orientation
+  {
+    size_t array_size = 4;
+    auto array_ptr = ros_message->orientation;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: linear_velocity
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->linear_velocity;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: angular_velocity
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->angular_velocity;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: previous_action
+  {
+    size_t array_size = 4;
+    auto array_ptr = ros_message->previous_action;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__RaptorInput(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: active
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: position
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: orientation
+  {
+    size_t array_size = 4;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: linear_velocity
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: angular_velocity
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: previous_action
+  {
+    size_t array_size = 4;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -348,8 +587,41 @@ size_t max_serialized_size_px4_msgs__msg__RaptorInput(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _RaptorInput__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__RaptorInput * ros_message = static_cast<const px4_msgs__msg__RaptorInput *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__RaptorInput(ros_message, cdr);
+}
+
+static bool _RaptorInput__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__RaptorInput * ros_message = static_cast<px4_msgs__msg__RaptorInput *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__RaptorInput(cdr, ros_message);
+}
+
+static uint32_t _RaptorInput__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__RaptorInput(
+      untyped_ros_message, 0));
 }
 
 static size_t _RaptorInput__max_serialized_size(char & bounds_info)
@@ -374,13 +646,17 @@ static message_type_support_callbacks_t __callbacks_RaptorInput = {
   _RaptorInput__cdr_serialize,
   _RaptorInput__cdr_deserialize,
   _RaptorInput__get_serialized_size,
-  _RaptorInput__max_serialized_size
+  _RaptorInput__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _RaptorInput__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_RaptorInput,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RaptorInput__get_type_hash,
+  &px4_msgs__msg__RaptorInput__get_type_description,
+  &px4_msgs__msg__RaptorInput__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EstimatorEventFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_event_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_EVENT_FLAGS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_EVENT_FLAGS__BUILDER_HPP_
 

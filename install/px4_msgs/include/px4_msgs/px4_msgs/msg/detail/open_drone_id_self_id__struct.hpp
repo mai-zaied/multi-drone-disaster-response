@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/OpenDroneIdSelfId.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/open_drone_id_self_id.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__OPEN_DRONE_ID_SELF_ID__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__OPEN_DRONE_ID_SELF_ID__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

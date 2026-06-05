@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VelocityLimits.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/velocity_limits.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VELOCITY_LIMITS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__VELOCITY_LIMITS__BUILDER_HPP_
 

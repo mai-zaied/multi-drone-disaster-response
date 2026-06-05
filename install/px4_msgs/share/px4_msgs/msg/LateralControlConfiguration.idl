@@ -10,14 +10,16 @@ module px4_msgs {
     };
     @verbatim (language="comment", text=
       "Fixed Wing Lateral Control Configuration message" "\n"
+      "" "\n"
       "Used by the fw_lateral_longitudinal_control module to constrain FixedWingLateralSetpoint messages.")
     struct LateralControlConfiguration {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
-        "currently maps to a maximum roll angle, accel_max = tan(roll_max) * GRAVITY")
+        "Currently maps to a maximum roll angle, accel_max = tan(roll_max) * GRAVITY")
       @unit (value="m/s^2")
       float lateral_accel_max;
     };

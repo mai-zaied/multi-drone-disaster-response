@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _RcChannels__ros_msg_type = px4_msgs__msg__RcChannels;
 
-static bool _RcChannels__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__RcChannels(
+  const px4_msgs__msg__RcChannels * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _RcChannels__ros_msg_type * ros_message = static_cast<const _RcChannels__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -63,7 +62,7 @@ static bool _RcChannels__cdr_serialize(
   {
     size_t size = 18;
     auto array_ptr = ros_message->channels;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: channel_count
@@ -75,7 +74,7 @@ static bool _RcChannels__cdr_serialize(
   {
     size_t size = 30;
     auto array_ptr = ros_message->function;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: rssi
@@ -96,15 +95,11 @@ static bool _RcChannels__cdr_serialize(
   return true;
 }
 
-static bool _RcChannels__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__RcChannels(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__RcChannels * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _RcChannels__ros_msg_type * ros_message = static_cast<_RcChannels__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -119,7 +114,7 @@ static bool _RcChannels__cdr_deserialize(
   {
     size_t size = 18;
     auto array_ptr = ros_message->channels;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: channel_count
@@ -131,7 +126,7 @@ static bool _RcChannels__cdr_deserialize(
   {
     size_t size = 30;
     auto array_ptr = ros_message->function;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: rssi
@@ -154,6 +149,7 @@ static bool _RcChannels__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__RcChannels(
   const void * untyped_ros_message,
@@ -168,19 +164,21 @@ size_t get_serialized_size_px4_msgs__msg__RcChannels(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name timestamp_last_valid
+
+  // Field name: timestamp_last_valid
   {
     size_t item_size = sizeof(ros_message->timestamp_last_valid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name channels
+
+  // Field name: channels
   {
     size_t array_size = 18;
     auto array_ptr = ros_message->channels;
@@ -189,13 +187,15 @@ size_t get_serialized_size_px4_msgs__msg__RcChannels(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name channel_count
+
+  // Field name: channel_count
   {
     size_t item_size = sizeof(ros_message->channel_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name function
+
+  // Field name: function
   {
     size_t array_size = 30;
     auto array_ptr = ros_message->function;
@@ -204,19 +204,22 @@ size_t get_serialized_size_px4_msgs__msg__RcChannels(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rssi
+
+  // Field name: rssi
   {
     size_t item_size = sizeof(ros_message->rssi);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name signal_lost
+
+  // Field name: signal_lost
   {
     size_t item_size = sizeof(ros_message->signal_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name frame_drop_count
+
+  // Field name: frame_drop_count
   {
     size_t item_size = sizeof(ros_message->frame_drop_count);
     current_alignment += item_size +
@@ -226,12 +229,6 @@ size_t get_serialized_size_px4_msgs__msg__RcChannels(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _RcChannels__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__RcChannels(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__RcChannels(
@@ -251,62 +248,286 @@ size_t max_serialized_size_px4_msgs__msg__RcChannels(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: timestamp_last_valid
+
+  // Field name: timestamp_last_valid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: channels
+
+  // Field name: channels
   {
     size_t array_size = 18;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: channel_count
+
+  // Field name: channel_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: function
+
+  // Field name: function
   {
     size_t array_size = 30;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: rssi
+
+  // Field name: rssi
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: signal_lost
+
+  // Field name: signal_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: frame_drop_count
+
+  // Field name: frame_drop_count
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__RcChannels;
+    is_plain =
+      (
+      offsetof(DataType, frame_drop_count) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__RcChannels(
+  const px4_msgs__msg__RcChannels * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: timestamp_last_valid
+  {
+    cdr << ros_message->timestamp_last_valid;
+  }
+
+  // Field name: channels
+  {
+    size_t size = 18;
+    auto array_ptr = ros_message->channels;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: channel_count
+  {
+    cdr << ros_message->channel_count;
+  }
+
+  // Field name: function
+  {
+    size_t size = 30;
+    auto array_ptr = ros_message->function;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: rssi
+  {
+    cdr << ros_message->rssi;
+  }
+
+  // Field name: signal_lost
+  {
+    cdr << (ros_message->signal_lost ? true : false);
+  }
+
+  // Field name: frame_drop_count
+  {
+    cdr << ros_message->frame_drop_count;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__RcChannels(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _RcChannels__ros_msg_type * ros_message = static_cast<const _RcChannels__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: timestamp_last_valid
+  {
+    size_t item_size = sizeof(ros_message->timestamp_last_valid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: channels
+  {
+    size_t array_size = 18;
+    auto array_ptr = ros_message->channels;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: channel_count
+  {
+    size_t item_size = sizeof(ros_message->channel_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: function
+  {
+    size_t array_size = 30;
+    auto array_ptr = ros_message->function;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rssi
+  {
+    size_t item_size = sizeof(ros_message->rssi);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: signal_lost
+  {
+    size_t item_size = sizeof(ros_message->signal_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: frame_drop_count
+  {
+    size_t item_size = sizeof(ros_message->frame_drop_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__RcChannels(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: timestamp_last_valid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: channels
+  {
+    size_t array_size = 18;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: channel_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: function
+  {
+    size_t array_size = 30;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: rssi
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: signal_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: frame_drop_count
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -324,8 +545,41 @@ size_t max_serialized_size_px4_msgs__msg__RcChannels(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _RcChannels__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__RcChannels * ros_message = static_cast<const px4_msgs__msg__RcChannels *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__RcChannels(ros_message, cdr);
+}
+
+static bool _RcChannels__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__RcChannels * ros_message = static_cast<px4_msgs__msg__RcChannels *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__RcChannels(cdr, ros_message);
+}
+
+static uint32_t _RcChannels__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__RcChannels(
+      untyped_ros_message, 0));
 }
 
 static size_t _RcChannels__max_serialized_size(char & bounds_info)
@@ -350,13 +604,17 @@ static message_type_support_callbacks_t __callbacks_RcChannels = {
   _RcChannels__cdr_serialize,
   _RcChannels__cdr_deserialize,
   _RcChannels__get_serialized_size,
-  _RcChannels__max_serialized_size
+  _RcChannels__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _RcChannels__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_RcChannels,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RcChannels__get_type_hash,
+  &px4_msgs__msg__RcChannels__get_type_description,
+  &px4_msgs__msg__RcChannels__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

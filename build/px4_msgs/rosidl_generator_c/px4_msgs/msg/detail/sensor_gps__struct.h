@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/SensorGps.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_gps.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_GPS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_GPS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -299,6 +301,12 @@ typedef struct px4_msgs__msg__SensorGps
   bool rtcm_crc_failed;
   /// Indicates if the RTCM message was used successfully by the receiver
   uint8_t rtcm_msg_used;
+  /// [m] [@frame body frame FRD] X Position of GNSS antenna
+  float antenna_offset_x;
+  /// [m] [@frame body frame FRD] Y Position of GNSS antenna
+  float antenna_offset_y;
+  /// [m] [@frame body frame FRD] Z Position of GNSS antenna
+  float antenna_offset_z;
 } px4_msgs__msg__SensorGps;
 
 // Struct for a sequence of px4_msgs__msg__SensorGps.

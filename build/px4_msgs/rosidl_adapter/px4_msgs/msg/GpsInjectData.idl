@@ -24,11 +24,11 @@ module px4_msgs {
       uint16 len;
 
       @verbatim (language="comment", text=
-        "LSB: 1=fragmented")
+        "LSB: 1=fragmented across multiple uORB publications")
       uint8 flags;
 
       @verbatim (language="comment", text=
-        "data to write to GPS device (RTCM message)")
+        "data chunk to write to GPS device (RTCM message)")
       uint8__300 data;
     };
   };

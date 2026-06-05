@@ -97,7 +97,7 @@ px4_msgs__msg__LedControl__copy(
 }
 
 px4_msgs__msg__LedControl *
-px4_msgs__msg__LedControl__create()
+px4_msgs__msg__LedControl__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__LedControl * msg = (px4_msgs__msg__LedControl *)allocator.allocate(sizeof(px4_msgs__msg__LedControl), allocator.state);

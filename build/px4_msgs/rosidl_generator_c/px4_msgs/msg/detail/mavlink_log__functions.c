@@ -77,7 +77,7 @@ px4_msgs__msg__MavlinkLog__copy(
 }
 
 px4_msgs__msg__MavlinkLog *
-px4_msgs__msg__MavlinkLog__create()
+px4_msgs__msg__MavlinkLog__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MavlinkLog * msg = (px4_msgs__msg__MavlinkLog *)allocator.allocate(sizeof(px4_msgs__msg__MavlinkLog), allocator.state);

@@ -137,7 +137,7 @@ px4_msgs__msg__SensorCombined__copy(
 }
 
 px4_msgs__msg__SensorCombined *
-px4_msgs__msg__SensorCombined__create()
+px4_msgs__msg__SensorCombined__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorCombined * msg = (px4_msgs__msg__SensorCombined *)allocator.allocate(sizeof(px4_msgs__msg__SensorCombined), allocator.state);

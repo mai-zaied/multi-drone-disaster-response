@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/VehicleAirData.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/vehicle_air_data__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/vehicle_air_data__functions.h"
 #include "px4_msgs/msg/detail/vehicle_air_data__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,22 +38,31 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: timestamp_sample
   cdr << ros_message.timestamp_sample;
+
   // Member: baro_device_id
   cdr << ros_message.baro_device_id;
+
   // Member: baro_alt_meter
   cdr << ros_message.baro_alt_meter;
+
   // Member: baro_pressure_pa
   cdr << ros_message.baro_pressure_pa;
+
   // Member: ambient_temperature
   cdr << ros_message.ambient_temperature;
+
   // Member: temperature_source
   cdr << ros_message.temperature_source;
+
   // Member: rho
   cdr << ros_message.rho;
+
   // Member: calibration_count
   cdr << ros_message.calibration_count;
+
   return true;
 }
 
@@ -89,6 +102,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -108,48 +122,56 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_sample
   {
     size_t item_size = sizeof(ros_message.timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: baro_device_id
   {
     size_t item_size = sizeof(ros_message.baro_device_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: baro_alt_meter
   {
     size_t item_size = sizeof(ros_message.baro_alt_meter);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: baro_pressure_pa
   {
     size_t item_size = sizeof(ros_message.baro_pressure_pa);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: ambient_temperature
   {
     size_t item_size = sizeof(ros_message.ambient_temperature);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: temperature_source
   {
     size_t item_size = sizeof(ros_message.temperature_source);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: rho
   {
     size_t item_size = sizeof(ros_message.rho);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: calibration_count
   {
     size_t item_size = sizeof(ros_message.calibration_count);
@@ -159,6 +181,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -179,82 +202,64 @@ max_serialized_size_VehicleAirData(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: baro_device_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: baro_alt_meter
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: baro_pressure_pa
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: ambient_temperature
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: temperature_source
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: rho
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: calibration_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -274,6 +279,227 @@ max_serialized_size_VehicleAirData(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::VehicleAirData & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: timestamp_sample
+  cdr << ros_message.timestamp_sample;
+
+  // Member: baro_device_id
+  cdr << ros_message.baro_device_id;
+
+  // Member: baro_alt_meter
+  cdr << ros_message.baro_alt_meter;
+
+  // Member: baro_pressure_pa
+  cdr << ros_message.baro_pressure_pa;
+
+  // Member: ambient_temperature
+  cdr << ros_message.ambient_temperature;
+
+  // Member: temperature_source
+  cdr << ros_message.temperature_source;
+
+  // Member: rho
+  cdr << ros_message.rho;
+
+  // Member: calibration_count
+  cdr << ros_message.calibration_count;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::VehicleAirData & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message.timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: baro_device_id
+  {
+    size_t item_size = sizeof(ros_message.baro_device_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: baro_alt_meter
+  {
+    size_t item_size = sizeof(ros_message.baro_alt_meter);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: baro_pressure_pa
+  {
+    size_t item_size = sizeof(ros_message.baro_pressure_pa);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: ambient_temperature
+  {
+    size_t item_size = sizeof(ros_message.ambient_temperature);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: temperature_source
+  {
+    size_t item_size = sizeof(ros_message.temperature_source);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: rho
+  {
+    size_t item_size = sizeof(ros_message.rho);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: calibration_count
+  {
+    size_t item_size = sizeof(ros_message.calibration_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_VehicleAirData(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: baro_device_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: baro_alt_meter
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: baro_pressure_pa
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: ambient_temperature
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: temperature_source
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: rho
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: calibration_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::VehicleAirData;
+    is_plain =
+      (
+      offsetof(DataType, calibration_count) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _VehicleAirData__cdr_serialize(
   const void * untyped_ros_message,
@@ -324,13 +550,17 @@ static message_type_support_callbacks_t _VehicleAirData__callbacks = {
   _VehicleAirData__cdr_serialize,
   _VehicleAirData__cdr_deserialize,
   _VehicleAirData__get_serialized_size,
-  _VehicleAirData__max_serialized_size
+  _VehicleAirData__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _VehicleAirData__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_VehicleAirData__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleAirData__get_type_hash,
+  &px4_msgs__msg__VehicleAirData__get_type_description,
+  &px4_msgs__msg__VehicleAirData__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/RtlTimeEstimate.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/rtl_time_estimate.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__RTL_TIME_ESTIMATE__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__RTL_TIME_ESTIMATE__BUILDER_HPP_
 

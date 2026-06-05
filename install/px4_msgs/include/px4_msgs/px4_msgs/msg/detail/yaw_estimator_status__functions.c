@@ -137,7 +137,7 @@ px4_msgs__msg__YawEstimatorStatus__copy(
 }
 
 px4_msgs__msg__YawEstimatorStatus *
-px4_msgs__msg__YawEstimatorStatus__create()
+px4_msgs__msg__YawEstimatorStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__YawEstimatorStatus * msg = (px4_msgs__msg__YawEstimatorStatus *)allocator.allocate(sizeof(px4_msgs__msg__YawEstimatorStatus), allocator.state);

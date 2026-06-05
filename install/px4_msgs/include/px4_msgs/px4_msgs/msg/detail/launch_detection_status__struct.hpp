@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/LaunchDetectionStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/launch_detection_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -40,6 +44,7 @@ struct LaunchDetectionStatus_
     {
       this->timestamp = 0ull;
       this->launch_detection_state = 0;
+      this->selected_control_surface_disarmed = false;
     }
   }
 
@@ -51,6 +56,7 @@ struct LaunchDetectionStatus_
     {
       this->timestamp = 0ull;
       this->launch_detection_state = 0;
+      this->selected_control_surface_disarmed = false;
     }
   }
 
@@ -61,6 +67,9 @@ struct LaunchDetectionStatus_
   using _launch_detection_state_type =
     uint8_t;
   _launch_detection_state_type launch_detection_state;
+  using _selected_control_surface_disarmed_type =
+    bool;
+  _selected_control_surface_disarmed_type selected_control_surface_disarmed;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -73,6 +82,12 @@ struct LaunchDetectionStatus_
     const uint8_t & _arg)
   {
     this->launch_detection_state = _arg;
+    return *this;
+  }
+  Type & set__selected_control_surface_disarmed(
+    const bool & _arg)
+  {
+    this->selected_control_surface_disarmed = _arg;
     return *this;
   }
 
@@ -128,6 +143,9 @@ struct LaunchDetectionStatus_
       return false;
     }
     if (this->launch_detection_state != other.launch_detection_state) {
+      return false;
+    }
+    if (this->selected_control_surface_disarmed != other.selected_control_surface_disarmed) {
       return false;
     }
     return true;

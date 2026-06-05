@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/sensors_status_imu__functions.h"
 #include "px4_msgs/msg/detail/sensors_status_imu__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -347,6 +348,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -364,6 +366,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -381,6 +384,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -398,6 +402,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -415,6 +420,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -432,6 +438,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -449,6 +456,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -466,6 +474,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -483,6 +492,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -500,6 +510,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -517,6 +528,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember SensorsStatus
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     4,  // array size
     false,  // is upper bound
@@ -536,6 +548,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers SensorsStatu
   "SensorsStatusImu",  // message name
   11,  // number of fields
   sizeof(px4_msgs::msg::SensorsStatusImu),
+  false,  // has_any_key_member_
   SensorsStatusImu_message_member_array,  // message members
   SensorsStatusImu_init_function,  // function to initialize message memory (memory has to be allocated)
   SensorsStatusImu_fini_function  // function to terminate message instance (will not free memory)
@@ -545,6 +558,9 @@ static const rosidl_message_type_support_t SensorsStatusImu_message_type_support
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &SensorsStatusImu_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__SensorsStatusImu__get_type_hash,
+  &px4_msgs__msg__SensorsStatusImu__get_type_description,
+  &px4_msgs__msg__SensorsStatusImu__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/RegisterExtComponentRequest.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/register_ext_component_request__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/register_ext_component_request__functions.h"
 #include "px4_msgs/msg/detail/register_ext_component_request__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,28 +38,42 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: request_id
   cdr << ros_message.request_id;
+
   // Member: name
   {
     cdr << ros_message.name;
   }
+
   // Member: px4_ros2_api_version
   cdr << ros_message.px4_ros2_api_version;
+
   // Member: register_arming_check
   cdr << (ros_message.register_arming_check ? true : false);
+
   // Member: register_mode
   cdr << (ros_message.register_mode ? true : false);
+
   // Member: register_mode_executor
   cdr << (ros_message.register_mode_executor ? true : false);
+
   // Member: enable_replace_internal_mode
   cdr << (ros_message.enable_replace_internal_mode ? true : false);
+
   // Member: replace_internal_mode
   cdr << ros_message.replace_internal_mode;
+
   // Member: activate_mode_immediately
   cdr << (ros_message.activate_mode_immediately ? true : false);
+
   // Member: not_user_selectable
   cdr << (ros_message.not_user_selectable ? true : false);
+
+  // Member: request_offboard_setpoints
+  cdr << (ros_message.request_offboard_setpoints ? true : false);
+
   return true;
 }
 
@@ -124,8 +142,16 @@ cdr_deserialize(
     ros_message.not_user_selectable = tmp ? true : false;
   }
 
+  // Member: request_offboard_setpoints
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.request_offboard_setpoints = tmp ? true : false;
+  }
+
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -146,12 +172,14 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: request_id
   {
     size_t item_size = sizeof(ros_message.request_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: name
   {
     size_t array_size = 25;
@@ -159,48 +187,56 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: px4_ros2_api_version
   {
     size_t item_size = sizeof(ros_message.px4_ros2_api_version);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: register_arming_check
   {
     size_t item_size = sizeof(ros_message.register_arming_check);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: register_mode
   {
     size_t item_size = sizeof(ros_message.register_mode);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: register_mode_executor
   {
     size_t item_size = sizeof(ros_message.register_mode_executor);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: enable_replace_internal_mode
   {
     size_t item_size = sizeof(ros_message.enable_replace_internal_mode);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: replace_internal_mode
   {
     size_t item_size = sizeof(ros_message.replace_internal_mode);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: activate_mode_immediately
   {
     size_t item_size = sizeof(ros_message.activate_mode_immediately);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: not_user_selectable
   {
     size_t item_size = sizeof(ros_message.not_user_selectable);
@@ -208,8 +244,16 @@ get_serialized_size(
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
+  // Member: request_offboard_setpoints
+  {
+    size_t item_size = sizeof(ros_message.request_offboard_setpoints);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -230,94 +274,78 @@ max_serialized_size_RegisterExtComponentRequest(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: request_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: name
   {
     size_t array_size = 25;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: px4_ros2_api_version
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-
   // Member: register_arming_check
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: register_mode
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: register_mode_executor
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: enable_replace_internal_mode
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: replace_internal_mode
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: activate_mode_immediately
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: not_user_selectable
   {
     size_t array_size = 1;
-
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: request_offboard_setpoints
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -330,13 +358,284 @@ max_serialized_size_RegisterExtComponentRequest(
     using DataType = px4_msgs::msg::RegisterExtComponentRequest;
     is_plain =
       (
-      offsetof(DataType, not_user_selectable) +
+      offsetof(DataType, request_offboard_setpoints) +
       last_member_size
       ) == ret_val;
   }
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::RegisterExtComponentRequest & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: request_id
+  cdr << ros_message.request_id;
+
+  // Member: name
+  {
+    cdr << ros_message.name;
+  }
+
+  // Member: px4_ros2_api_version
+  cdr << ros_message.px4_ros2_api_version;
+
+  // Member: register_arming_check
+  cdr << (ros_message.register_arming_check ? true : false);
+
+  // Member: register_mode
+  cdr << (ros_message.register_mode ? true : false);
+
+  // Member: register_mode_executor
+  cdr << (ros_message.register_mode_executor ? true : false);
+
+  // Member: enable_replace_internal_mode
+  cdr << (ros_message.enable_replace_internal_mode ? true : false);
+
+  // Member: replace_internal_mode
+  cdr << ros_message.replace_internal_mode;
+
+  // Member: activate_mode_immediately
+  cdr << (ros_message.activate_mode_immediately ? true : false);
+
+  // Member: not_user_selectable
+  cdr << (ros_message.not_user_selectable ? true : false);
+
+  // Member: request_offboard_setpoints
+  cdr << (ros_message.request_offboard_setpoints ? true : false);
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::RegisterExtComponentRequest & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: request_id
+  {
+    size_t item_size = sizeof(ros_message.request_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: name
+  {
+    size_t array_size = 25;
+    size_t item_size = sizeof(ros_message.name[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: px4_ros2_api_version
+  {
+    size_t item_size = sizeof(ros_message.px4_ros2_api_version);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: register_arming_check
+  {
+    size_t item_size = sizeof(ros_message.register_arming_check);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: register_mode
+  {
+    size_t item_size = sizeof(ros_message.register_mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: register_mode_executor
+  {
+    size_t item_size = sizeof(ros_message.register_mode_executor);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: enable_replace_internal_mode
+  {
+    size_t item_size = sizeof(ros_message.enable_replace_internal_mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: replace_internal_mode
+  {
+    size_t item_size = sizeof(ros_message.replace_internal_mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: activate_mode_immediately
+  {
+    size_t item_size = sizeof(ros_message.activate_mode_immediately);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: not_user_selectable
+  {
+    size_t item_size = sizeof(ros_message.not_user_selectable);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: request_offboard_setpoints
+  {
+    size_t item_size = sizeof(ros_message.request_offboard_setpoints);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_RegisterExtComponentRequest(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: request_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: name
+  {
+    size_t array_size = 25;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: px4_ros2_api_version
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Member: register_arming_check
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: register_mode
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: register_mode_executor
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: enable_replace_internal_mode
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: replace_internal_mode
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: activate_mode_immediately
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: not_user_selectable
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: request_offboard_setpoints
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::RegisterExtComponentRequest;
+    is_plain =
+      (
+      offsetof(DataType, request_offboard_setpoints) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _RegisterExtComponentRequest__cdr_serialize(
   const void * untyped_ros_message,
@@ -387,13 +686,17 @@ static message_type_support_callbacks_t _RegisterExtComponentRequest__callbacks 
   _RegisterExtComponentRequest__cdr_serialize,
   _RegisterExtComponentRequest__cdr_deserialize,
   _RegisterExtComponentRequest__get_serialized_size,
-  _RegisterExtComponentRequest__max_serialized_size
+  _RegisterExtComponentRequest__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _RegisterExtComponentRequest__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_RegisterExtComponentRequest__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_hash,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_description,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

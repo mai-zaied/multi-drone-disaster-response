@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FailsafeFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/failsafe_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__BUILDER_HPP_
 
@@ -21,15 +24,15 @@ namespace msg
 namespace builder
 {
 
-class Init_FailsafeFlags_fd_motor_failure
+class Init_FailsafeFlags_gnss_lost
 {
 public:
-  explicit Init_FailsafeFlags_fd_motor_failure(::px4_msgs::msg::FailsafeFlags & msg)
+  explicit Init_FailsafeFlags_gnss_lost(::px4_msgs::msg::FailsafeFlags & msg)
   : msg_(msg)
   {}
-  ::px4_msgs::msg::FailsafeFlags fd_motor_failure(::px4_msgs::msg::FailsafeFlags::_fd_motor_failure_type arg)
+  ::px4_msgs::msg::FailsafeFlags gnss_lost(::px4_msgs::msg::FailsafeFlags::_gnss_lost_type arg)
   {
-    msg_.fd_motor_failure = std::move(arg);
+    msg_.gnss_lost = std::move(arg);
     return std::move(msg_);
   }
 
@@ -37,48 +40,32 @@ private:
   ::px4_msgs::msg::FailsafeFlags msg_;
 };
 
-class Init_FailsafeFlags_fd_imbalanced_prop
+class Init_FailsafeFlags_remote_id_unhealthy
 {
 public:
-  explicit Init_FailsafeFlags_fd_imbalanced_prop(::px4_msgs::msg::FailsafeFlags & msg)
+  explicit Init_FailsafeFlags_remote_id_unhealthy(::px4_msgs::msg::FailsafeFlags & msg)
   : msg_(msg)
   {}
-  Init_FailsafeFlags_fd_motor_failure fd_imbalanced_prop(::px4_msgs::msg::FailsafeFlags::_fd_imbalanced_prop_type arg)
+  Init_FailsafeFlags_gnss_lost remote_id_unhealthy(::px4_msgs::msg::FailsafeFlags::_remote_id_unhealthy_type arg)
   {
-    msg_.fd_imbalanced_prop = std::move(arg);
-    return Init_FailsafeFlags_fd_motor_failure(msg_);
+    msg_.remote_id_unhealthy = std::move(arg);
+    return Init_FailsafeFlags_gnss_lost(msg_);
   }
 
 private:
   ::px4_msgs::msg::FailsafeFlags msg_;
 };
 
-class Init_FailsafeFlags_fd_esc_arming_failure
+class Init_FailsafeFlags_parachute_unhealthy
 {
 public:
-  explicit Init_FailsafeFlags_fd_esc_arming_failure(::px4_msgs::msg::FailsafeFlags & msg)
+  explicit Init_FailsafeFlags_parachute_unhealthy(::px4_msgs::msg::FailsafeFlags & msg)
   : msg_(msg)
   {}
-  Init_FailsafeFlags_fd_imbalanced_prop fd_esc_arming_failure(::px4_msgs::msg::FailsafeFlags::_fd_esc_arming_failure_type arg)
+  Init_FailsafeFlags_remote_id_unhealthy parachute_unhealthy(::px4_msgs::msg::FailsafeFlags::_parachute_unhealthy_type arg)
   {
-    msg_.fd_esc_arming_failure = std::move(arg);
-    return Init_FailsafeFlags_fd_imbalanced_prop(msg_);
-  }
-
-private:
-  ::px4_msgs::msg::FailsafeFlags msg_;
-};
-
-class Init_FailsafeFlags_fd_critical_failure
-{
-public:
-  explicit Init_FailsafeFlags_fd_critical_failure(::px4_msgs::msg::FailsafeFlags & msg)
-  : msg_(msg)
-  {}
-  Init_FailsafeFlags_fd_esc_arming_failure fd_critical_failure(::px4_msgs::msg::FailsafeFlags::_fd_critical_failure_type arg)
-  {
-    msg_.fd_critical_failure = std::move(arg);
-    return Init_FailsafeFlags_fd_esc_arming_failure(msg_);
+    msg_.parachute_unhealthy = std::move(arg);
+    return Init_FailsafeFlags_remote_id_unhealthy(msg_);
   }
 
 private:
@@ -91,10 +78,10 @@ public:
   explicit Init_FailsafeFlags_navigator_failure(::px4_msgs::msg::FailsafeFlags & msg)
   : msg_(msg)
   {}
-  Init_FailsafeFlags_fd_critical_failure navigator_failure(::px4_msgs::msg::FailsafeFlags::_navigator_failure_type arg)
+  Init_FailsafeFlags_parachute_unhealthy navigator_failure(::px4_msgs::msg::FailsafeFlags::_navigator_failure_type arg)
   {
     msg_.navigator_failure = std::move(arg);
-    return Init_FailsafeFlags_fd_critical_failure(msg_);
+    return Init_FailsafeFlags_parachute_unhealthy(msg_);
   }
 
 private:
@@ -197,16 +184,96 @@ private:
   ::px4_msgs::msg::FailsafeFlags msg_;
 };
 
+class Init_FailsafeFlags_fd_alt_loss
+{
+public:
+  explicit Init_FailsafeFlags_fd_alt_loss(::px4_msgs::msg::FailsafeFlags & msg)
+  : msg_(msg)
+  {}
+  Init_FailsafeFlags_geofence_breached fd_alt_loss(::px4_msgs::msg::FailsafeFlags::_fd_alt_loss_type arg)
+  {
+    msg_.fd_alt_loss = std::move(arg);
+    return Init_FailsafeFlags_geofence_breached(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FailsafeFlags msg_;
+};
+
+class Init_FailsafeFlags_fd_motor_failure
+{
+public:
+  explicit Init_FailsafeFlags_fd_motor_failure(::px4_msgs::msg::FailsafeFlags & msg)
+  : msg_(msg)
+  {}
+  Init_FailsafeFlags_fd_alt_loss fd_motor_failure(::px4_msgs::msg::FailsafeFlags::_fd_motor_failure_type arg)
+  {
+    msg_.fd_motor_failure = std::move(arg);
+    return Init_FailsafeFlags_fd_alt_loss(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FailsafeFlags msg_;
+};
+
+class Init_FailsafeFlags_fd_imbalanced_prop
+{
+public:
+  explicit Init_FailsafeFlags_fd_imbalanced_prop(::px4_msgs::msg::FailsafeFlags & msg)
+  : msg_(msg)
+  {}
+  Init_FailsafeFlags_fd_motor_failure fd_imbalanced_prop(::px4_msgs::msg::FailsafeFlags::_fd_imbalanced_prop_type arg)
+  {
+    msg_.fd_imbalanced_prop = std::move(arg);
+    return Init_FailsafeFlags_fd_motor_failure(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FailsafeFlags msg_;
+};
+
+class Init_FailsafeFlags_fd_esc_arming_failure
+{
+public:
+  explicit Init_FailsafeFlags_fd_esc_arming_failure(::px4_msgs::msg::FailsafeFlags & msg)
+  : msg_(msg)
+  {}
+  Init_FailsafeFlags_fd_imbalanced_prop fd_esc_arming_failure(::px4_msgs::msg::FailsafeFlags::_fd_esc_arming_failure_type arg)
+  {
+    msg_.fd_esc_arming_failure = std::move(arg);
+    return Init_FailsafeFlags_fd_imbalanced_prop(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FailsafeFlags msg_;
+};
+
+class Init_FailsafeFlags_fd_critical_failure
+{
+public:
+  explicit Init_FailsafeFlags_fd_critical_failure(::px4_msgs::msg::FailsafeFlags & msg)
+  : msg_(msg)
+  {}
+  Init_FailsafeFlags_fd_esc_arming_failure fd_critical_failure(::px4_msgs::msg::FailsafeFlags::_fd_critical_failure_type arg)
+  {
+    msg_.fd_critical_failure = std::move(arg);
+    return Init_FailsafeFlags_fd_esc_arming_failure(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FailsafeFlags msg_;
+};
+
 class Init_FailsafeFlags_battery_unhealthy
 {
 public:
   explicit Init_FailsafeFlags_battery_unhealthy(::px4_msgs::msg::FailsafeFlags & msg)
   : msg_(msg)
   {}
-  Init_FailsafeFlags_geofence_breached battery_unhealthy(::px4_msgs::msg::FailsafeFlags::_battery_unhealthy_type arg)
+  Init_FailsafeFlags_fd_critical_failure battery_unhealthy(::px4_msgs::msg::FailsafeFlags::_battery_unhealthy_type arg)
   {
     msg_.battery_unhealthy = std::move(arg);
-    return Init_FailsafeFlags_geofence_breached(msg_);
+    return Init_FailsafeFlags_fd_critical_failure(msg_);
   }
 
 private:

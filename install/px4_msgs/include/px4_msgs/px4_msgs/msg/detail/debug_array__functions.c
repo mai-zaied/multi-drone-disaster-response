@@ -89,7 +89,7 @@ px4_msgs__msg__DebugArray__copy(
 }
 
 px4_msgs__msg__DebugArray *
-px4_msgs__msg__DebugArray__create()
+px4_msgs__msg__DebugArray__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DebugArray * msg = (px4_msgs__msg__DebugArray *)allocator.allocate(sizeof(px4_msgs__msg__DebugArray), allocator.state);

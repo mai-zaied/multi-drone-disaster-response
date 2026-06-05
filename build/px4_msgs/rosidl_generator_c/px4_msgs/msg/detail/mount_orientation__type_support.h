@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/MountOrientation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/mount_orientation.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__MOUNT_ORIENTATION__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__MOUNT_ORIENTATION__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   MountOrientation
-)();
+)(void);
 
 #ifdef __cplusplus
 }

@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/RcParameterMap.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/rc_parameter_map.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__RC_PARAMETER_MAP__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__RC_PARAMETER_MAP__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

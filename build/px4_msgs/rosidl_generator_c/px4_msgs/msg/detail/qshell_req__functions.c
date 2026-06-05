@@ -85,7 +85,7 @@ px4_msgs__msg__QshellReq__copy(
 }
 
 px4_msgs__msg__QshellReq *
-px4_msgs__msg__QshellReq__create()
+px4_msgs__msg__QshellReq__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__QshellReq * msg = (px4_msgs__msg__QshellReq *)allocator.allocate(sizeof(px4_msgs__msg__QshellReq), allocator.state);

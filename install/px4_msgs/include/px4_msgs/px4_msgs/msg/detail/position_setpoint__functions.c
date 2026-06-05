@@ -34,6 +34,7 @@ px4_msgs__msg__PositionSetpoint__init(px4_msgs__msg__PositionSetpoint * msg)
   // loiter_pattern
   // acceptance_radius
   // alt_acceptance_radius
+  // course
   // cruising_speed
   // gliding_enabled
   // cruising_throttle
@@ -63,6 +64,7 @@ px4_msgs__msg__PositionSetpoint__fini(px4_msgs__msg__PositionSetpoint * msg)
   // loiter_pattern
   // acceptance_radius
   // alt_acceptance_radius
+  // course
   // cruising_speed
   // gliding_enabled
   // cruising_throttle
@@ -142,6 +144,10 @@ px4_msgs__msg__PositionSetpoint__are_equal(const px4_msgs__msg__PositionSetpoint
   if (lhs->alt_acceptance_radius != rhs->alt_acceptance_radius) {
     return false;
   }
+  // course
+  if (lhs->course != rhs->course) {
+    return false;
+  }
   // cruising_speed
   if (lhs->cruising_speed != rhs->cruising_speed) {
     return false;
@@ -199,6 +205,8 @@ px4_msgs__msg__PositionSetpoint__copy(
   output->acceptance_radius = input->acceptance_radius;
   // alt_acceptance_radius
   output->alt_acceptance_radius = input->alt_acceptance_radius;
+  // course
+  output->course = input->course;
   // cruising_speed
   output->cruising_speed = input->cruising_speed;
   // gliding_enabled
@@ -209,7 +217,7 @@ px4_msgs__msg__PositionSetpoint__copy(
 }
 
 px4_msgs__msg__PositionSetpoint *
-px4_msgs__msg__PositionSetpoint__create()
+px4_msgs__msg__PositionSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PositionSetpoint * msg = (px4_msgs__msg__PositionSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__PositionSetpoint), allocator.state);

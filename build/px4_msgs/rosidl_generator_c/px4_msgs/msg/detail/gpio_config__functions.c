@@ -89,7 +89,7 @@ px4_msgs__msg__GpioConfig__copy(
 }
 
 px4_msgs__msg__GpioConfig *
-px4_msgs__msg__GpioConfig__create()
+px4_msgs__msg__GpioConfig__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GpioConfig * msg = (px4_msgs__msg__GpioConfig *)allocator.allocate(sizeof(px4_msgs__msg__GpioConfig), allocator.state);

@@ -104,6 +104,10 @@ module px4_msgs {
       boolean heartbeat_type_adsb;
 
       @verbatim (language="comment", text=
+        "MAV_TYPE_FLARM")
+      boolean heartbeat_type_flarm;
+
+      @verbatim (language="comment", text=
         "MAV_TYPE_CAMERA")
       boolean heartbeat_type_camera;
 

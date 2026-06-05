@@ -81,7 +81,7 @@ px4_msgs__msg__CameraTrigger__copy(
 }
 
 px4_msgs__msg__CameraTrigger *
-px4_msgs__msg__CameraTrigger__create()
+px4_msgs__msg__CameraTrigger__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__CameraTrigger * msg = (px4_msgs__msg__CameraTrigger *)allocator.allocate(sizeof(px4_msgs__msg__CameraTrigger), allocator.state);

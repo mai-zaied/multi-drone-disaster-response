@@ -73,7 +73,7 @@ px4_msgs__msg__RoverThrottleSetpoint__copy(
 }
 
 px4_msgs__msg__RoverThrottleSetpoint *
-px4_msgs__msg__RoverThrottleSetpoint__create()
+px4_msgs__msg__RoverThrottleSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RoverThrottleSetpoint * msg = (px4_msgs__msg__RoverThrottleSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__RoverThrottleSetpoint), allocator.state);

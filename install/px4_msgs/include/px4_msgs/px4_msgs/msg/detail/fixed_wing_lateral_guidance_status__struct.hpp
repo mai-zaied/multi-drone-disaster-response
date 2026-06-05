@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/FixedWingLateralGuidanceStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/fixed_wing_lateral_guidance_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -45,6 +49,7 @@ struct FixedWingLateralGuidanceStatus_
       this->bearing_feas_on_track = 0.0f;
       this->signed_track_error = 0.0f;
       this->track_error_bound = 0.0f;
+      this->switch_distance = 0.0f;
       this->adapted_period = 0.0f;
       this->wind_est_valid = 0;
     }
@@ -63,6 +68,7 @@ struct FixedWingLateralGuidanceStatus_
       this->bearing_feas_on_track = 0.0f;
       this->signed_track_error = 0.0f;
       this->track_error_bound = 0.0f;
+      this->switch_distance = 0.0f;
       this->adapted_period = 0.0f;
       this->wind_est_valid = 0;
     }
@@ -90,6 +96,9 @@ struct FixedWingLateralGuidanceStatus_
   using _track_error_bound_type =
     float;
   _track_error_bound_type track_error_bound;
+  using _switch_distance_type =
+    float;
+  _switch_distance_type switch_distance;
   using _adapted_period_type =
     float;
   _adapted_period_type adapted_period;
@@ -138,6 +147,12 @@ struct FixedWingLateralGuidanceStatus_
     const float & _arg)
   {
     this->track_error_bound = _arg;
+    return *this;
+  }
+  Type & set__switch_distance(
+    const float & _arg)
+  {
+    this->switch_distance = _arg;
     return *this;
   }
   Type & set__adapted_period(
@@ -214,6 +229,9 @@ struct FixedWingLateralGuidanceStatus_
       return false;
     }
     if (this->track_error_bound != other.track_error_bound) {
+      return false;
+    }
+    if (this->switch_distance != other.switch_distance) {
       return false;
     }
     if (this->adapted_period != other.adapted_period) {

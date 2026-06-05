@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ActuatorServosTrim.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/actuator_servos_trim.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS_TRIM__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__ACTUATOR_SERVOS_TRIM__STRUCT_H_
 
@@ -14,13 +17,12 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'NUM_CONTROLS'.
 enum
 {
-  px4_msgs__msg__ActuatorServosTrim__NUM_CONTROLS = 8
+  px4_msgs__msg__ActuatorServosTrim__NUM_CONTROLS = 15
 };
 
 /// Struct defined in msg/ActuatorServosTrim in the package px4_msgs.
@@ -32,7 +34,7 @@ typedef struct px4_msgs__msg__ActuatorServosTrim
   /// time since system start (microseconds)
   uint64_t timestamp;
   /// range: [-1, 1]
-  float trim[8];
+  float trim[15];
 } px4_msgs__msg__ActuatorServosTrim;
 
 // Struct for a sequence of px4_msgs__msg__ActuatorServosTrim.

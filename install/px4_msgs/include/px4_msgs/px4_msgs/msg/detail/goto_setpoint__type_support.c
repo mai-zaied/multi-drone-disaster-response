@@ -82,6 +82,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -99,6 +100,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     true,  // is array
     3,  // array size
     false,  // is upper bound
@@ -116,6 +118,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -133,6 +136,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -150,6 +154,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -167,6 +172,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -184,6 +190,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -201,6 +208,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -218,6 +226,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -235,6 +244,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__GotoSetp
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -254,6 +264,7 @@ static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__G
   "GotoSetpoint",  // message name
   10,  // number of fields
   sizeof(px4_msgs__msg__GotoSetpoint),
+  false,  // has_any_key_member_
   px4_msgs__msg__GotoSetpoint__rosidl_typesupport_introspection_c__GotoSetpoint_message_member_array,  // message members
   px4_msgs__msg__GotoSetpoint__rosidl_typesupport_introspection_c__GotoSetpoint_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__GotoSetpoint__rosidl_typesupport_introspection_c__GotoSetpoint_fini_function  // function to terminate message instance (will not free memory)
@@ -265,6 +276,9 @@ static rosidl_message_type_support_t px4_msgs__msg__GotoSetpoint__rosidl_typesup
   0,
   &px4_msgs__msg__GotoSetpoint__rosidl_typesupport_introspection_c__GotoSetpoint_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__GotoSetpoint__get_type_hash,
+  &px4_msgs__msg__GotoSetpoint__get_type_description,
+  &px4_msgs__msg__GotoSetpoint__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs

@@ -54,6 +54,9 @@ px4_msgs__msg__SensorGps__init(px4_msgs__msg__SensorGps * msg)
   // selected_rtcm_instance
   // rtcm_crc_failed
   // rtcm_msg_used
+  // antenna_offset_x
+  // antenna_offset_y
+  // antenna_offset_z
   return true;
 }
 
@@ -100,6 +103,9 @@ px4_msgs__msg__SensorGps__fini(px4_msgs__msg__SensorGps * msg)
   // selected_rtcm_instance
   // rtcm_crc_failed
   // rtcm_msg_used
+  // antenna_offset_x
+  // antenna_offset_y
+  // antenna_offset_z
 }
 
 bool
@@ -256,6 +262,18 @@ px4_msgs__msg__SensorGps__are_equal(const px4_msgs__msg__SensorGps * lhs, const 
   if (lhs->rtcm_msg_used != rhs->rtcm_msg_used) {
     return false;
   }
+  // antenna_offset_x
+  if (lhs->antenna_offset_x != rhs->antenna_offset_x) {
+    return false;
+  }
+  // antenna_offset_y
+  if (lhs->antenna_offset_y != rhs->antenna_offset_y) {
+    return false;
+  }
+  // antenna_offset_z
+  if (lhs->antenna_offset_z != rhs->antenna_offset_z) {
+    return false;
+  }
   return true;
 }
 
@@ -341,11 +359,17 @@ px4_msgs__msg__SensorGps__copy(
   output->rtcm_crc_failed = input->rtcm_crc_failed;
   // rtcm_msg_used
   output->rtcm_msg_used = input->rtcm_msg_used;
+  // antenna_offset_x
+  output->antenna_offset_x = input->antenna_offset_x;
+  // antenna_offset_y
+  output->antenna_offset_y = input->antenna_offset_y;
+  // antenna_offset_z
+  output->antenna_offset_z = input->antenna_offset_z;
   return true;
 }
 
 px4_msgs__msg__SensorGps *
-px4_msgs__msg__SensorGps__create()
+px4_msgs__msg__SensorGps__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorGps * msg = (px4_msgs__msg__SensorGps *)allocator.allocate(sizeof(px4_msgs__msg__SensorGps), allocator.state);

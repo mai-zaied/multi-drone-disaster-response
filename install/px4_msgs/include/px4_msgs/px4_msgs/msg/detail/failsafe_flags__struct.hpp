@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/FailsafeFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/failsafe_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__FAILSAFE_FLAGS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -69,6 +73,11 @@ struct FailsafeFlags_
       this->battery_warning = 0;
       this->battery_low_remaining_time = false;
       this->battery_unhealthy = false;
+      this->fd_critical_failure = false;
+      this->fd_esc_arming_failure = false;
+      this->fd_imbalanced_prop = false;
+      this->fd_motor_failure = false;
+      this->fd_alt_loss = false;
       this->geofence_breached = false;
       this->mission_failure = false;
       this->vtol_fixed_wing_system_failure = false;
@@ -76,10 +85,9 @@ struct FailsafeFlags_
       this->flight_time_limit_exceeded = false;
       this->position_accuracy_low = false;
       this->navigator_failure = false;
-      this->fd_critical_failure = false;
-      this->fd_esc_arming_failure = false;
-      this->fd_imbalanced_prop = false;
-      this->fd_motor_failure = false;
+      this->parachute_unhealthy = false;
+      this->remote_id_unhealthy = false;
+      this->gnss_lost = false;
     }
   }
 
@@ -120,6 +128,11 @@ struct FailsafeFlags_
       this->battery_warning = 0;
       this->battery_low_remaining_time = false;
       this->battery_unhealthy = false;
+      this->fd_critical_failure = false;
+      this->fd_esc_arming_failure = false;
+      this->fd_imbalanced_prop = false;
+      this->fd_motor_failure = false;
+      this->fd_alt_loss = false;
       this->geofence_breached = false;
       this->mission_failure = false;
       this->vtol_fixed_wing_system_failure = false;
@@ -127,10 +140,9 @@ struct FailsafeFlags_
       this->flight_time_limit_exceeded = false;
       this->position_accuracy_low = false;
       this->navigator_failure = false;
-      this->fd_critical_failure = false;
-      this->fd_esc_arming_failure = false;
-      this->fd_imbalanced_prop = false;
-      this->fd_motor_failure = false;
+      this->parachute_unhealthy = false;
+      this->remote_id_unhealthy = false;
+      this->gnss_lost = false;
     }
   }
 
@@ -228,6 +240,21 @@ struct FailsafeFlags_
   using _battery_unhealthy_type =
     bool;
   _battery_unhealthy_type battery_unhealthy;
+  using _fd_critical_failure_type =
+    bool;
+  _fd_critical_failure_type fd_critical_failure;
+  using _fd_esc_arming_failure_type =
+    bool;
+  _fd_esc_arming_failure_type fd_esc_arming_failure;
+  using _fd_imbalanced_prop_type =
+    bool;
+  _fd_imbalanced_prop_type fd_imbalanced_prop;
+  using _fd_motor_failure_type =
+    bool;
+  _fd_motor_failure_type fd_motor_failure;
+  using _fd_alt_loss_type =
+    bool;
+  _fd_alt_loss_type fd_alt_loss;
   using _geofence_breached_type =
     bool;
   _geofence_breached_type geofence_breached;
@@ -249,18 +276,15 @@ struct FailsafeFlags_
   using _navigator_failure_type =
     bool;
   _navigator_failure_type navigator_failure;
-  using _fd_critical_failure_type =
+  using _parachute_unhealthy_type =
     bool;
-  _fd_critical_failure_type fd_critical_failure;
-  using _fd_esc_arming_failure_type =
+  _parachute_unhealthy_type parachute_unhealthy;
+  using _remote_id_unhealthy_type =
     bool;
-  _fd_esc_arming_failure_type fd_esc_arming_failure;
-  using _fd_imbalanced_prop_type =
+  _remote_id_unhealthy_type remote_id_unhealthy;
+  using _gnss_lost_type =
     bool;
-  _fd_imbalanced_prop_type fd_imbalanced_prop;
-  using _fd_motor_failure_type =
-    bool;
-  _fd_motor_failure_type fd_motor_failure;
+  _gnss_lost_type gnss_lost;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -449,6 +473,36 @@ struct FailsafeFlags_
     this->battery_unhealthy = _arg;
     return *this;
   }
+  Type & set__fd_critical_failure(
+    const bool & _arg)
+  {
+    this->fd_critical_failure = _arg;
+    return *this;
+  }
+  Type & set__fd_esc_arming_failure(
+    const bool & _arg)
+  {
+    this->fd_esc_arming_failure = _arg;
+    return *this;
+  }
+  Type & set__fd_imbalanced_prop(
+    const bool & _arg)
+  {
+    this->fd_imbalanced_prop = _arg;
+    return *this;
+  }
+  Type & set__fd_motor_failure(
+    const bool & _arg)
+  {
+    this->fd_motor_failure = _arg;
+    return *this;
+  }
+  Type & set__fd_alt_loss(
+    const bool & _arg)
+  {
+    this->fd_alt_loss = _arg;
+    return *this;
+  }
   Type & set__geofence_breached(
     const bool & _arg)
   {
@@ -491,28 +545,22 @@ struct FailsafeFlags_
     this->navigator_failure = _arg;
     return *this;
   }
-  Type & set__fd_critical_failure(
+  Type & set__parachute_unhealthy(
     const bool & _arg)
   {
-    this->fd_critical_failure = _arg;
+    this->parachute_unhealthy = _arg;
     return *this;
   }
-  Type & set__fd_esc_arming_failure(
+  Type & set__remote_id_unhealthy(
     const bool & _arg)
   {
-    this->fd_esc_arming_failure = _arg;
+    this->remote_id_unhealthy = _arg;
     return *this;
   }
-  Type & set__fd_imbalanced_prop(
+  Type & set__gnss_lost(
     const bool & _arg)
   {
-    this->fd_imbalanced_prop = _arg;
-    return *this;
-  }
-  Type & set__fd_motor_failure(
-    const bool & _arg)
-  {
-    this->fd_motor_failure = _arg;
+    this->gnss_lost = _arg;
     return *this;
   }
 
@@ -651,6 +699,21 @@ struct FailsafeFlags_
     if (this->battery_unhealthy != other.battery_unhealthy) {
       return false;
     }
+    if (this->fd_critical_failure != other.fd_critical_failure) {
+      return false;
+    }
+    if (this->fd_esc_arming_failure != other.fd_esc_arming_failure) {
+      return false;
+    }
+    if (this->fd_imbalanced_prop != other.fd_imbalanced_prop) {
+      return false;
+    }
+    if (this->fd_motor_failure != other.fd_motor_failure) {
+      return false;
+    }
+    if (this->fd_alt_loss != other.fd_alt_loss) {
+      return false;
+    }
     if (this->geofence_breached != other.geofence_breached) {
       return false;
     }
@@ -672,16 +735,13 @@ struct FailsafeFlags_
     if (this->navigator_failure != other.navigator_failure) {
       return false;
     }
-    if (this->fd_critical_failure != other.fd_critical_failure) {
+    if (this->parachute_unhealthy != other.parachute_unhealthy) {
       return false;
     }
-    if (this->fd_esc_arming_failure != other.fd_esc_arming_failure) {
+    if (this->remote_id_unhealthy != other.remote_id_unhealthy) {
       return false;
     }
-    if (this->fd_imbalanced_prop != other.fd_imbalanced_prop) {
-      return false;
-    }
-    if (this->fd_motor_failure != other.fd_motor_failure) {
+    if (this->gnss_lost != other.gnss_lost) {
       return false;
     }
     return true;

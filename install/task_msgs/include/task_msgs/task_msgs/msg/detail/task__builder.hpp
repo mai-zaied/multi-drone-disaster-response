@@ -2,6 +2,9 @@
 // with input from task_msgs:msg/Task.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "task_msgs/msg/task.hpp"
+
+
 #ifndef TASK_MSGS__MSG__DETAIL__TASK__BUILDER_HPP_
 #define TASK_MSGS__MSG__DETAIL__TASK__BUILDER_HPP_
 

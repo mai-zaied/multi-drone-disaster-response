@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GpsInjectData.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gps_inject_data.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GPS_INJECT_DATA__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__GPS_INJECT_DATA__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -38,9 +40,9 @@ typedef struct px4_msgs__msg__GpsInjectData
   uint32_t device_id;
   /// length of data
   uint16_t len;
-  /// LSB: 1=fragmented
+  /// LSB: 1=fragmented across multiple uORB publications
   uint8_t flags;
-  /// data to write to GPS device (RTCM message)
+  /// data chunk to write to GPS device (RTCM message)
   uint8_t data[300];
 } px4_msgs__msg__GpsInjectData;
 

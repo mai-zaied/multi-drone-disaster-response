@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _ActuatorArmed__ros_msg_type = px4_msgs__msg__ActuatorArmed;
 
-static bool _ActuatorArmed__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__ActuatorArmed(
+  const px4_msgs__msg__ActuatorArmed * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _ActuatorArmed__ros_msg_type * ros_message = static_cast<const _ActuatorArmed__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -92,15 +91,11 @@ static bool _ActuatorArmed__cdr_serialize(
   return true;
 }
 
-static bool _ActuatorArmed__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__ActuatorArmed(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__ActuatorArmed * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _ActuatorArmed__ros_msg_type * ros_message = static_cast<_ActuatorArmed__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -158,6 +153,7 @@ static bool _ActuatorArmed__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__ActuatorArmed(
   const void * untyped_ros_message,
@@ -172,49 +168,56 @@ size_t get_serialized_size_px4_msgs__msg__ActuatorArmed(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name armed
+
+  // Field name: armed
   {
     size_t item_size = sizeof(ros_message->armed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name prearmed
+
+  // Field name: prearmed
   {
     size_t item_size = sizeof(ros_message->prearmed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name ready_to_arm
+
+  // Field name: ready_to_arm
   {
     size_t item_size = sizeof(ros_message->ready_to_arm);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name lockdown
+
+  // Field name: lockdown
   {
     size_t item_size = sizeof(ros_message->lockdown);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name kill
+
+  // Field name: kill
   {
     size_t item_size = sizeof(ros_message->kill);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name termination
+
+  // Field name: termination
   {
     size_t item_size = sizeof(ros_message->termination);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name in_esc_calibration_mode
+
+  // Field name: in_esc_calibration_mode
   {
     size_t item_size = sizeof(ros_message->in_esc_calibration_mode);
     current_alignment += item_size +
@@ -224,12 +227,6 @@ size_t get_serialized_size_px4_msgs__msg__ActuatorArmed(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _ActuatorArmed__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__ActuatorArmed(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__ActuatorArmed(
@@ -249,60 +246,271 @@ size_t max_serialized_size_px4_msgs__msg__ActuatorArmed(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: armed
+
+  // Field name: armed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: prearmed
+
+  // Field name: prearmed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: ready_to_arm
+
+  // Field name: ready_to_arm
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: lockdown
+
+  // Field name: lockdown
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: kill
+
+  // Field name: kill
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: termination
+
+  // Field name: termination
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: in_esc_calibration_mode
+
+  // Field name: in_esc_calibration_mode
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__ActuatorArmed;
+    is_plain =
+      (
+      offsetof(DataType, in_esc_calibration_mode) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__ActuatorArmed(
+  const px4_msgs__msg__ActuatorArmed * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: armed
+  {
+    cdr << (ros_message->armed ? true : false);
+  }
+
+  // Field name: prearmed
+  {
+    cdr << (ros_message->prearmed ? true : false);
+  }
+
+  // Field name: ready_to_arm
+  {
+    cdr << (ros_message->ready_to_arm ? true : false);
+  }
+
+  // Field name: lockdown
+  {
+    cdr << (ros_message->lockdown ? true : false);
+  }
+
+  // Field name: kill
+  {
+    cdr << (ros_message->kill ? true : false);
+  }
+
+  // Field name: termination
+  {
+    cdr << (ros_message->termination ? true : false);
+  }
+
+  // Field name: in_esc_calibration_mode
+  {
+    cdr << (ros_message->in_esc_calibration_mode ? true : false);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__ActuatorArmed(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _ActuatorArmed__ros_msg_type * ros_message = static_cast<const _ActuatorArmed__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: armed
+  {
+    size_t item_size = sizeof(ros_message->armed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: prearmed
+  {
+    size_t item_size = sizeof(ros_message->prearmed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: ready_to_arm
+  {
+    size_t item_size = sizeof(ros_message->ready_to_arm);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: lockdown
+  {
+    size_t item_size = sizeof(ros_message->lockdown);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: kill
+  {
+    size_t item_size = sizeof(ros_message->kill);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: termination
+  {
+    size_t item_size = sizeof(ros_message->termination);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: in_esc_calibration_mode
+  {
+    size_t item_size = sizeof(ros_message->in_esc_calibration_mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__ActuatorArmed(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: armed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: prearmed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: ready_to_arm
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: lockdown
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: kill
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: termination
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: in_esc_calibration_mode
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -319,8 +527,41 @@ size_t max_serialized_size_px4_msgs__msg__ActuatorArmed(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _ActuatorArmed__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__ActuatorArmed * ros_message = static_cast<const px4_msgs__msg__ActuatorArmed *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__ActuatorArmed(ros_message, cdr);
+}
+
+static bool _ActuatorArmed__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__ActuatorArmed * ros_message = static_cast<px4_msgs__msg__ActuatorArmed *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__ActuatorArmed(cdr, ros_message);
+}
+
+static uint32_t _ActuatorArmed__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__ActuatorArmed(
+      untyped_ros_message, 0));
 }
 
 static size_t _ActuatorArmed__max_serialized_size(char & bounds_info)
@@ -345,13 +586,17 @@ static message_type_support_callbacks_t __callbacks_ActuatorArmed = {
   _ActuatorArmed__cdr_serialize,
   _ActuatorArmed__cdr_deserialize,
   _ActuatorArmed__get_serialized_size,
-  _ActuatorArmed__max_serialized_size
+  _ActuatorArmed__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _ActuatorArmed__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_ActuatorArmed,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__ActuatorArmed__get_type_hash,
+  &px4_msgs__msg__ActuatorArmed__get_type_description,
+  &px4_msgs__msg__ActuatorArmed__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

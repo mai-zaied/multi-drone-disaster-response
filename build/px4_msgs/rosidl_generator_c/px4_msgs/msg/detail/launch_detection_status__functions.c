@@ -19,6 +19,7 @@ px4_msgs__msg__LaunchDetectionStatus__init(px4_msgs__msg__LaunchDetectionStatus 
   }
   // timestamp
   // launch_detection_state
+  // selected_control_surface_disarmed
   return true;
 }
 
@@ -30,6 +31,7 @@ px4_msgs__msg__LaunchDetectionStatus__fini(px4_msgs__msg__LaunchDetectionStatus 
   }
   // timestamp
   // launch_detection_state
+  // selected_control_surface_disarmed
 }
 
 bool
@@ -44,6 +46,10 @@ px4_msgs__msg__LaunchDetectionStatus__are_equal(const px4_msgs__msg__LaunchDetec
   }
   // launch_detection_state
   if (lhs->launch_detection_state != rhs->launch_detection_state) {
+    return false;
+  }
+  // selected_control_surface_disarmed
+  if (lhs->selected_control_surface_disarmed != rhs->selected_control_surface_disarmed) {
     return false;
   }
   return true;
@@ -61,11 +67,13 @@ px4_msgs__msg__LaunchDetectionStatus__copy(
   output->timestamp = input->timestamp;
   // launch_detection_state
   output->launch_detection_state = input->launch_detection_state;
+  // selected_control_surface_disarmed
+  output->selected_control_surface_disarmed = input->selected_control_surface_disarmed;
   return true;
 }
 
 px4_msgs__msg__LaunchDetectionStatus *
-px4_msgs__msg__LaunchDetectionStatus__create()
+px4_msgs__msg__LaunchDetectionStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__LaunchDetectionStatus * msg = (px4_msgs__msg__LaunchDetectionStatus *)allocator.allocate(sizeof(px4_msgs__msg__LaunchDetectionStatus), allocator.state);

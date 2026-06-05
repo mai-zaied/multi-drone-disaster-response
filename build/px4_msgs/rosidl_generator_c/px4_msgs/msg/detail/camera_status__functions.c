@@ -73,7 +73,7 @@ px4_msgs__msg__CameraStatus__copy(
 }
 
 px4_msgs__msg__CameraStatus *
-px4_msgs__msg__CameraStatus__create()
+px4_msgs__msg__CameraStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__CameraStatus * msg = (px4_msgs__msg__CameraStatus *)allocator.allocate(sizeof(px4_msgs__msg__CameraStatus), allocator.state);

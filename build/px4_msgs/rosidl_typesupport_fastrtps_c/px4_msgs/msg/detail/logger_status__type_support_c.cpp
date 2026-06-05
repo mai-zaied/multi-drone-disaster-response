@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _LoggerStatus__ros_msg_type = px4_msgs__msg__LoggerStatus;
 
-static bool _LoggerStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__LoggerStatus(
+  const px4_msgs__msg__LoggerStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _LoggerStatus__ros_msg_type * ros_message = static_cast<const _LoggerStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -107,15 +106,11 @@ static bool _LoggerStatus__cdr_serialize(
   return true;
 }
 
-static bool _LoggerStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__LoggerStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__LoggerStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _LoggerStatus__ros_msg_type * ros_message = static_cast<_LoggerStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -176,6 +171,7 @@ static bool _LoggerStatus__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__LoggerStatus(
   const void * untyped_ros_message,
@@ -190,67 +186,77 @@ size_t get_serialized_size_px4_msgs__msg__LoggerStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name type
+
+  // Field name: type
   {
     size_t item_size = sizeof(ros_message->type);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name backend
+
+  // Field name: backend
   {
     size_t item_size = sizeof(ros_message->backend);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name is_logging
+
+  // Field name: is_logging
   {
     size_t item_size = sizeof(ros_message->is_logging);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name total_written_kb
+
+  // Field name: total_written_kb
   {
     size_t item_size = sizeof(ros_message->total_written_kb);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name write_rate_kb_s
+
+  // Field name: write_rate_kb_s
   {
     size_t item_size = sizeof(ros_message->write_rate_kb_s);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name dropouts
+
+  // Field name: dropouts
   {
     size_t item_size = sizeof(ros_message->dropouts);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name message_gaps
+
+  // Field name: message_gaps
   {
     size_t item_size = sizeof(ros_message->message_gaps);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name buffer_used_bytes
+
+  // Field name: buffer_used_bytes
   {
     size_t item_size = sizeof(ros_message->buffer_used_bytes);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name buffer_size_bytes
+
+  // Field name: buffer_size_bytes
   {
     size_t item_size = sizeof(ros_message->buffer_size_bytes);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name num_messages
+
+  // Field name: num_messages
   {
     size_t item_size = sizeof(ros_message->num_messages);
     current_alignment += item_size +
@@ -260,12 +266,6 @@ size_t get_serialized_size_px4_msgs__msg__LoggerStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _LoggerStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__LoggerStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__LoggerStatus(
@@ -285,87 +285,361 @@ size_t max_serialized_size_px4_msgs__msg__LoggerStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: type
+
+  // Field name: type
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: backend
+
+  // Field name: backend
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: is_logging
+
+  // Field name: is_logging
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: total_written_kb
+
+  // Field name: total_written_kb
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: write_rate_kb_s
+
+  // Field name: write_rate_kb_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: dropouts
+
+  // Field name: dropouts
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: message_gaps
+
+  // Field name: message_gaps
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: buffer_used_bytes
+
+  // Field name: buffer_used_bytes
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: buffer_size_bytes
+
+  // Field name: buffer_size_bytes
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: num_messages
+
+  // Field name: num_messages
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__LoggerStatus;
+    is_plain =
+      (
+      offsetof(DataType, num_messages) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__LoggerStatus(
+  const px4_msgs__msg__LoggerStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: type
+  {
+    cdr << ros_message->type;
+  }
+
+  // Field name: backend
+  {
+    cdr << ros_message->backend;
+  }
+
+  // Field name: is_logging
+  {
+    cdr << (ros_message->is_logging ? true : false);
+  }
+
+  // Field name: total_written_kb
+  {
+    cdr << ros_message->total_written_kb;
+  }
+
+  // Field name: write_rate_kb_s
+  {
+    cdr << ros_message->write_rate_kb_s;
+  }
+
+  // Field name: dropouts
+  {
+    cdr << ros_message->dropouts;
+  }
+
+  // Field name: message_gaps
+  {
+    cdr << ros_message->message_gaps;
+  }
+
+  // Field name: buffer_used_bytes
+  {
+    cdr << ros_message->buffer_used_bytes;
+  }
+
+  // Field name: buffer_size_bytes
+  {
+    cdr << ros_message->buffer_size_bytes;
+  }
+
+  // Field name: num_messages
+  {
+    cdr << ros_message->num_messages;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__LoggerStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _LoggerStatus__ros_msg_type * ros_message = static_cast<const _LoggerStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: type
+  {
+    size_t item_size = sizeof(ros_message->type);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: backend
+  {
+    size_t item_size = sizeof(ros_message->backend);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: is_logging
+  {
+    size_t item_size = sizeof(ros_message->is_logging);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: total_written_kb
+  {
+    size_t item_size = sizeof(ros_message->total_written_kb);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: write_rate_kb_s
+  {
+    size_t item_size = sizeof(ros_message->write_rate_kb_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: dropouts
+  {
+    size_t item_size = sizeof(ros_message->dropouts);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: message_gaps
+  {
+    size_t item_size = sizeof(ros_message->message_gaps);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: buffer_used_bytes
+  {
+    size_t item_size = sizeof(ros_message->buffer_used_bytes);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: buffer_size_bytes
+  {
+    size_t item_size = sizeof(ros_message->buffer_size_bytes);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: num_messages
+  {
+    size_t item_size = sizeof(ros_message->num_messages);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__LoggerStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: type
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: backend
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: is_logging
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: total_written_kb
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: write_rate_kb_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: dropouts
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: message_gaps
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: buffer_used_bytes
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: buffer_size_bytes
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: num_messages
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -382,8 +656,41 @@ size_t max_serialized_size_px4_msgs__msg__LoggerStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _LoggerStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__LoggerStatus * ros_message = static_cast<const px4_msgs__msg__LoggerStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__LoggerStatus(ros_message, cdr);
+}
+
+static bool _LoggerStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__LoggerStatus * ros_message = static_cast<px4_msgs__msg__LoggerStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__LoggerStatus(cdr, ros_message);
+}
+
+static uint32_t _LoggerStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__LoggerStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _LoggerStatus__max_serialized_size(char & bounds_info)
@@ -408,13 +715,17 @@ static message_type_support_callbacks_t __callbacks_LoggerStatus = {
   _LoggerStatus__cdr_serialize,
   _LoggerStatus__cdr_deserialize,
   _LoggerStatus__get_serialized_size,
-  _LoggerStatus__max_serialized_size
+  _LoggerStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _LoggerStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_LoggerStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__LoggerStatus__get_type_hash,
+  &px4_msgs__msg__LoggerStatus__get_type_description,
+  &px4_msgs__msg__LoggerStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

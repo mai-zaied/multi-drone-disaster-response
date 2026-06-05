@@ -76,12 +76,13 @@ void px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspectio
   *item = *value;
 }
 
-static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_message_member_array[11] = {
+static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_message_member_array[12] = {
   {
     "timestamp",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -99,6 +100,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -116,6 +118,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     true,  // is array
     25,  // array size
     false,  // is upper bound
@@ -133,6 +136,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT16,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -150,6 +154,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -167,6 +172,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -184,6 +190,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -201,6 +208,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -218,6 +226,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -235,6 +244,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -252,10 +262,29 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
     offsetof(px4_msgs__msg__RegisterExtComponentRequest, not_user_selectable),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "request_offboard_setpoints",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs__msg__RegisterExtComponentRequest, request_offboard_setpoints),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -269,8 +298,9 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__Register
 static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_message_members = {
   "px4_msgs__msg",  // message namespace
   "RegisterExtComponentRequest",  // message name
-  11,  // number of fields
+  12,  // number of fields
   sizeof(px4_msgs__msg__RegisterExtComponentRequest),
+  false,  // has_any_key_member_
   px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_message_member_array,  // message members
   px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_fini_function  // function to terminate message instance (will not free memory)
@@ -282,6 +312,9 @@ static rosidl_message_type_support_t px4_msgs__msg__RegisterExtComponentRequest_
   0,
   &px4_msgs__msg__RegisterExtComponentRequest__rosidl_typesupport_introspection_c__RegisterExtComponentRequest_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_hash,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_description,
+  &px4_msgs__msg__RegisterExtComponentRequest__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs

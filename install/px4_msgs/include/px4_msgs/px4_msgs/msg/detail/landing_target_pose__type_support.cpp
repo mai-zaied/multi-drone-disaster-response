@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/landing_target_pose__functions.h"
 #include "px4_msgs/msg/detail/landing_target_pose__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -37,12 +38,13 @@ void LandingTargetPose_fini_function(void * message_memory)
   typed_message->~LandingTargetPose();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTargetPose_message_member_array[17] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTargetPose_message_member_array[21] = {
   {
     "timestamp",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -77,6 +80,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -94,6 +98,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -107,10 +112,29 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     nullptr  // resize(index) function pointer
   },
   {
+    "rel_vel_ekf2_valid",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs::msg::LandingTargetPose, rel_vel_ekf2_valid),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "x_rel",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -128,6 +152,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -145,6 +170,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -162,6 +188,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -179,6 +206,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -192,10 +220,29 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     nullptr  // resize(index) function pointer
   },
   {
+    "vz_rel",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs::msg::LandingTargetPose, vz_rel),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "cov_x_rel",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -213,6 +260,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -226,10 +274,29 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     nullptr  // resize(index) function pointer
   },
   {
+    "cov_z_rel",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs::msg::LandingTargetPose, cov_z_rel),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "cov_vx_rel",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -247,6 +314,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -260,10 +328,29 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     nullptr  // resize(index) function pointer
   },
   {
+    "cov_vz_rel",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs::msg::LandingTargetPose, cov_vz_rel),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
     "abs_pos_valid",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -281,6 +368,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -298,6 +386,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -315,6 +404,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -332,8 +422,9 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LandingTarget
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers LandingTargetPose_message_members = {
   "px4_msgs::msg",  // message namespace
   "LandingTargetPose",  // message name
-  17,  // number of fields
+  21,  // number of fields
   sizeof(px4_msgs::msg::LandingTargetPose),
+  false,  // has_any_key_member_
   LandingTargetPose_message_member_array,  // message members
   LandingTargetPose_init_function,  // function to initialize message memory (memory has to be allocated)
   LandingTargetPose_fini_function  // function to terminate message instance (will not free memory)
@@ -343,6 +434,9 @@ static const rosidl_message_type_support_t LandingTargetPose_message_type_suppor
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &LandingTargetPose_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__LandingTargetPose__get_type_hash,
+  &px4_msgs__msg__LandingTargetPose__get_type_description,
+  &px4_msgs__msg__LandingTargetPose__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

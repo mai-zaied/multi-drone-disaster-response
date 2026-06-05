@@ -25,6 +25,7 @@ px4_msgs__msg__ControlAllocatorStatus__init(px4_msgs__msg__ControlAllocatorStatu
   // actuator_saturation
   // handled_motor_failure_mask
   // motor_stop_mask
+  // actuator_group_preflight_check_active
   return true;
 }
 
@@ -42,6 +43,7 @@ px4_msgs__msg__ControlAllocatorStatus__fini(px4_msgs__msg__ControlAllocatorStatu
   // actuator_saturation
   // handled_motor_failure_mask
   // motor_stop_mask
+  // actuator_group_preflight_check_active
 }
 
 bool
@@ -88,6 +90,10 @@ px4_msgs__msg__ControlAllocatorStatus__are_equal(const px4_msgs__msg__ControlAll
   if (lhs->motor_stop_mask != rhs->motor_stop_mask) {
     return false;
   }
+  // actuator_group_preflight_check_active
+  if (lhs->actuator_group_preflight_check_active != rhs->actuator_group_preflight_check_active) {
+    return false;
+  }
   return true;
 }
 
@@ -121,11 +127,13 @@ px4_msgs__msg__ControlAllocatorStatus__copy(
   output->handled_motor_failure_mask = input->handled_motor_failure_mask;
   // motor_stop_mask
   output->motor_stop_mask = input->motor_stop_mask;
+  // actuator_group_preflight_check_active
+  output->actuator_group_preflight_check_active = input->actuator_group_preflight_check_active;
   return true;
 }
 
 px4_msgs__msg__ControlAllocatorStatus *
-px4_msgs__msg__ControlAllocatorStatus__create()
+px4_msgs__msg__ControlAllocatorStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ControlAllocatorStatus * msg = (px4_msgs__msg__ControlAllocatorStatus *)allocator.allocate(sizeof(px4_msgs__msg__ControlAllocatorStatus), allocator.state);

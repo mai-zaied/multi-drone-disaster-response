@@ -8,6 +8,8 @@ module px4_msgs {
     module HeaterStatus_Constants {
       const uint8 MODE_GPIO = 1;
       const uint8 MODE_PX4IO = 2;
+      const uint8 TEMPERATURE_SOURCE_IMU = 0;
+      const uint8 TEMPERATURE_SOURCE_HYGRO = 1;
     };
     struct HeaterStatus {
       @verbatim (language="comment", text=
@@ -34,7 +36,19 @@ module px4_msgs {
 
       float feed_forward_value;
 
+      @verbatim (language="comment", text=
+        "Supply voltage (V)")
+      float supply_voltage;
+
+      @verbatim (language="comment", text=
+        "Heater current (A)")
+      float heater_current;
+
+      float nominal_multiplier;
+
       uint8 mode;
+
+      uint8 temperature_source;
     };
   };
 };

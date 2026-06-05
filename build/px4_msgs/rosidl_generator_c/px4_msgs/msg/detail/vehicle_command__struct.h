@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleCommand.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_command.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_COMMAND__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_COMMAND__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -665,6 +667,15 @@ enum
   px4_msgs__msg__VehicleCommand__VEHICLE_CMD_MISSION_START = 300
 };
 
+/// Constant 'VEHICLE_CMD_ACTUATOR_GROUP_TEST'.
+/**
+  * Test groups of related actuators (e.g. all actuators contributing to roll torque). | Group|[@range -1,1] Value|Unused|Unused|Unused|Unused|Unused|
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__VEHICLE_CMD_ACTUATOR_GROUP_TEST = 309
+};
+
 /// Constant 'VEHICLE_CMD_ACTUATOR_TEST'.
 /**
   * Actuator testing command. |[@range -1,1] value| timeout|Unused|Unused|output function|
@@ -681,6 +692,15 @@ enum
 enum
 {
   px4_msgs__msg__VehicleCommand__VEHICLE_CMD_CONFIGURE_ACTUATOR = 311
+};
+
+/// Constant 'VEHICLE_CMD_ESC_REQUEST_EEPROM'.
+/**
+  * Request EEPROM data from an ESC. |ESC Index|Firmware Type|Unused|Unused|Unused|
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__VEHICLE_CMD_ESC_REQUEST_EEPROM = 312
 };
 
 /// Constant 'VEHICLE_CMD_COMPONENT_ARM_DISARM'.
@@ -929,6 +949,97 @@ enum
   px4_msgs__msg__VehicleCommand__VEHICLE_CMD_EXTERNAL_WIND_ESTIMATE = 43004
 };
 
+/// Constant 'VEHICLE_CMD_ESTIMATOR_SENSOR_ENABLE'.
+/**
+  * Enable/disable estimator sensor fusion. |Source (FUSION_SOURCE_*)|Sensor instance (0-based)|Enable (1) or Disable (0)|Estimator Instance (NaN: not used)|Empty|Empty|Empty|
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__VEHICLE_CMD_ESTIMATOR_SENSOR_ENABLE = 43006
+};
+
+/// Constant 'FUSION_SOURCE_GPS'.
+/**
+  * Sensor fusion source types for VEHICLE_CMD_ESTIMATOR_SENSOR_ENABLE
+  * GNSS (EKF2_GPS{i}_CTRL, use instance param)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_GPS = 0
+};
+
+/// Constant 'FUSION_SOURCE_OF'.
+/**
+  * Optical Flow (EKF2_OF_CTRL)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_OF = 1
+};
+
+/// Constant 'FUSION_SOURCE_EV'.
+/**
+  * External Vision (EKF2_EV_CTRL)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_EV = 2
+};
+
+/// Constant 'FUSION_SOURCE_AGP'.
+/**
+  * Auxiliary Global Position (EKF2_AGP{i}_CTRL, use instance param)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_AGP = 3
+};
+
+/// Constant 'FUSION_SOURCE_BARO'.
+/**
+  * Barometer (EKF2_BARO_CTRL)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_BARO = 4
+};
+
+/// Constant 'FUSION_SOURCE_RNG'.
+/**
+  * Range Finder (EKF2_RNG_CTRL)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_RNG = 5
+};
+
+/// Constant 'FUSION_SOURCE_MAG'.
+/**
+  * Magnetometer (EKF2_MAG_TYPE)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_MAG = 6
+};
+
+/// Constant 'FUSION_SOURCE_ASPD'.
+/**
+  * Airspeed (EKF2_ARSP_THR)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_ASPD = 7
+};
+
+/// Constant 'FUSION_SOURCE_RNGBCN'.
+/**
+  * Ranging Beacon
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__FUSION_SOURCE_RNGBCN = 8
+};
+
 /// Constant 'VEHICLE_CMD_PX4_INTERNAL_START'.
 /**
   * PX4 vehicle commands (beyond 16 bit MAVLink commands).
@@ -955,6 +1066,15 @@ enum
 enum
 {
   px4_msgs__msg__VehicleCommand__VEHICLE_CMD_SET_NAV_STATE = 100001ul
+};
+
+/// Constant 'VEHICLE_CMD_GUIDED_CHANGE_HEADING'.
+/**
+  * Change heading/course. param1: heading type (0=course-over-ground, 1=heading). param2: target [deg]. param3: max rate [deg/s]. |Heading type (HEADING_TYPE enum)|[deg] Target bearing [0..360]|[deg/s] Max rate of change|Unused|Unused|Unused|Unused|
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__VEHICLE_CMD_GUIDED_CHANGE_HEADING = 43002
 };
 
 /// Constant 'VEHICLE_MOUNT_MODE_RETRACT'.
@@ -1057,6 +1177,60 @@ enum
 enum
 {
   px4_msgs__msg__VehicleCommand__VEHICLE_ROI_ENUM_END = 5
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_NONE'.
+/**
+  * Do nothing.
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_NONE = 0
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_BEEP'.
+/**
+  * Command the actuator to beep now.
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_BEEP = 1
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_3D_MODE_ON'.
+/**
+  * Permanently set the actuator (ESC) to 3D mode (reversible thrust).
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_3D_MODE_ON = 2
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_3D_MODE_OFF'.
+/**
+  * Permanently set the actuator (ESC) to non 3D mode (non-reversible thrust).
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_3D_MODE_OFF = 3
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_SPIN_DIRECTION1'.
+/**
+  * Permanently set the actuator (ESC) to spin direction 1 (which can be clockwise or counter-clockwise).
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_SPIN_DIRECTION1 = 4
+};
+
+/// Constant 'ACTUATOR_CONFIGURATION_SPIN_DIRECTION2'.
+/**
+  * Permanently set the actuator (ESC) to spin direction 2 (opposite of direction 1).
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_CONFIGURATION_SPIN_DIRECTION2 = 5
 };
 
 /// Constant 'PARACHUTE_ACTION_DISABLE'.
@@ -1281,6 +1455,39 @@ enum
   px4_msgs__msg__VehicleCommand__ORBIT_YAW_BEHAVIOUR_UNCHANGED = 5
 };
 
+/// Constant 'RC_TYPE_SPEKTRUM'.
+/**
+  * Used as param1&2 in CMD_START_RX_PAIR.
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__RC_TYPE_SPEKTRUM = 0
+};
+
+/// Constant 'RC_TYPE_CRSF'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__RC_TYPE_CRSF = 1
+};
+
+/// Constant 'RC_SUB_TYPE_SPEKTRUM_DSM2'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__RC_SUB_TYPE_SPEKTRUM_DSM2 = 0
+};
+
+/// Constant 'RC_SUB_TYPE_SPEKTRUM_DSMX'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__RC_SUB_TYPE_SPEKTRUM_DSMX = 1
+};
+
+/// Constant 'RC_SUB_TYPE_SPEKTRUM_DSMX8'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__RC_SUB_TYPE_SPEKTRUM_DSMX8 = 2
+};
+
 /// Constant 'ARMING_ACTION_DISARM'.
 /**
   * Used as param1 in ARM_DISARM command.
@@ -1324,6 +1531,51 @@ enum
 enum
 {
   px4_msgs__msg__VehicleCommand__SAFETY_ON = 1
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_ROLL_TORQUE'.
+/**
+  * param1 in VEHICLE_CMD_ACTUATOR_GROUP_TEST (matches MAVLink ACTUATOR_TEST_GROUP enum)
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_ROLL_TORQUE = 0
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_PITCH_TORQUE'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_PITCH_TORQUE = 1
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_YAW_TORQUE'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_YAW_TORQUE = 2
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_COLLECTIVE_TILT'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_COLLECTIVE_TILT = 3
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_X_THRUST'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_X_THRUST = 4
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_Y_THRUST'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_Y_THRUST = 5
+};
+
+/// Constant 'ACTUATOR_TEST_GROUP_Z_THRUST'.
+enum
+{
+  px4_msgs__msg__VehicleCommand__ACTUATOR_TEST_GROUP_Z_THRUST = 6
 };
 
 /// Constant 'ORB_QUEUE_LENGTH'.

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/NormalizedUnsignedSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/normalized_unsigned_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__NORMALIZED_UNSIGNED_SETPOINT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__NORMALIZED_UNSIGNED_SETPOINT__BUILDER_HPP_
 

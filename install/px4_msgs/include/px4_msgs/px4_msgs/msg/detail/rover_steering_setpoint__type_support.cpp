@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/rover_steering_setpoint__functions.h"
 #include "px4_msgs/msg/detail/rover_steering_setpoint__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -43,6 +44,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RoverSteering
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RoverSteering
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -79,6 +82,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers RoverSteerin
   "RoverSteeringSetpoint",  // message name
   2,  // number of fields
   sizeof(px4_msgs::msg::RoverSteeringSetpoint),
+  false,  // has_any_key_member_
   RoverSteeringSetpoint_message_member_array,  // message members
   RoverSteeringSetpoint_init_function,  // function to initialize message memory (memory has to be allocated)
   RoverSteeringSetpoint_fini_function  // function to terminate message instance (will not free memory)
@@ -88,6 +92,9 @@ static const rosidl_message_type_support_t RoverSteeringSetpoint_message_type_su
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &RoverSteeringSetpoint_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RoverSteeringSetpoint__get_type_hash,
+  &px4_msgs__msg__RoverSteeringSetpoint__get_type_description,
+  &px4_msgs__msg__RoverSteeringSetpoint__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

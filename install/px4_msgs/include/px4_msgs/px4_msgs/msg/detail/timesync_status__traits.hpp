@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/TimesyncStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/timesync_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__TIMESYNC_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__TIMESYNC_STATUS__TRAITS_HPP_
 

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/TelemetryStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/telemetry_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__TELEMETRY_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__TELEMETRY_STATUS__TRAITS_HPP_
 
@@ -204,6 +207,13 @@ inline void to_flow_style_yaml(
   {
     out << "heartbeat_type_adsb: ";
     rosidl_generator_traits::value_to_yaml(msg.heartbeat_type_adsb, out);
+    out << ", ";
+  }
+
+  // member: heartbeat_type_flarm
+  {
+    out << "heartbeat_type_flarm: ";
+    rosidl_generator_traits::value_to_yaml(msg.heartbeat_type_flarm, out);
     out << ", ";
   }
 
@@ -553,6 +563,16 @@ inline void to_block_style_yaml(
     }
     out << "heartbeat_type_adsb: ";
     rosidl_generator_traits::value_to_yaml(msg.heartbeat_type_adsb, out);
+    out << "\n";
+  }
+
+  // member: heartbeat_type_flarm
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "heartbeat_type_flarm: ";
+    rosidl_generator_traits::value_to_yaml(msg.heartbeat_type_flarm, out);
     out << "\n";
   }
 

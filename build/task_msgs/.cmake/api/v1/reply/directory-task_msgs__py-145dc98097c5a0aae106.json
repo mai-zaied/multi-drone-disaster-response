@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "task_msgs__py",
+		"source" : "/home/dudz/multi-drone-disaster-response/build/task_msgs/task_msgs__py"
+	}
+}

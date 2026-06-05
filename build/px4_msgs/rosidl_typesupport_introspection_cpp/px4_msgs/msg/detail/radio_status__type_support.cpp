@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/radio_status__functions.h"
 #include "px4_msgs/msg/detail/radio_status__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -43,6 +44,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -77,6 +80,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -94,6 +98,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -111,6 +116,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -128,6 +134,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -145,6 +152,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -162,6 +170,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember RadioStatus_m
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -181,6 +190,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers RadioStatus_
   "RadioStatus",  // message name
   8,  // number of fields
   sizeof(px4_msgs::msg::RadioStatus),
+  false,  // has_any_key_member_
   RadioStatus_message_member_array,  // message members
   RadioStatus_init_function,  // function to initialize message memory (memory has to be allocated)
   RadioStatus_fini_function  // function to terminate message instance (will not free memory)
@@ -190,6 +200,9 @@ static const rosidl_message_type_support_t RadioStatus_message_type_support_hand
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &RadioStatus_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RadioStatus__get_type_hash,
+  &px4_msgs__msg__RadioStatus__get_type_description,
+  &px4_msgs__msg__RadioStatus__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

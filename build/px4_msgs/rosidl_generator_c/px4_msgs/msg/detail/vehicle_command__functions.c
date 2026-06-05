@@ -169,7 +169,7 @@ px4_msgs__msg__VehicleCommand__copy(
 }
 
 px4_msgs__msg__VehicleCommand *
-px4_msgs__msg__VehicleCommand__create()
+px4_msgs__msg__VehicleCommand__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleCommand * msg = (px4_msgs__msg__VehicleCommand *)allocator.allocate(sizeof(px4_msgs__msg__VehicleCommand), allocator.state);

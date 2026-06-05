@@ -109,7 +109,7 @@ px4_msgs__msg__DatamanRequest__copy(
 }
 
 px4_msgs__msg__DatamanRequest *
-px4_msgs__msg__DatamanRequest__create()
+px4_msgs__msg__DatamanRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DatamanRequest * msg = (px4_msgs__msg__DatamanRequest *)allocator.allocate(sizeof(px4_msgs__msg__DatamanRequest), allocator.state);

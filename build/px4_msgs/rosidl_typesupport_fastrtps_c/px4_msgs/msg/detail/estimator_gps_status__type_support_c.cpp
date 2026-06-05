@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _EstimatorGpsStatus__ros_msg_type = px4_msgs__msg__EstimatorGpsStatus;
 
-static bool _EstimatorGpsStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__EstimatorGpsStatus(
+  const px4_msgs__msg__EstimatorGpsStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _EstimatorGpsStatus__ros_msg_type * ros_message = static_cast<const _EstimatorGpsStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -137,15 +136,11 @@ static bool _EstimatorGpsStatus__cdr_serialize(
   return true;
 }
 
-static bool _EstimatorGpsStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__EstimatorGpsStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__EstimatorGpsStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _EstimatorGpsStatus__ros_msg_type * ros_message = static_cast<_EstimatorGpsStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -258,6 +253,7 @@ static bool _EstimatorGpsStatus__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
   const void * untyped_ros_message,
@@ -272,103 +268,119 @@ size_t get_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name timestamp_sample
+
+  // Field name: timestamp_sample
   {
     size_t item_size = sizeof(ros_message->timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name checks_passed
+
+  // Field name: checks_passed
   {
     size_t item_size = sizeof(ros_message->checks_passed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_gps_fix
+
+  // Field name: check_fail_gps_fix
   {
     size_t item_size = sizeof(ros_message->check_fail_gps_fix);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_min_sat_count
+
+  // Field name: check_fail_min_sat_count
   {
     size_t item_size = sizeof(ros_message->check_fail_min_sat_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_pdop
+
+  // Field name: check_fail_max_pdop
   {
     size_t item_size = sizeof(ros_message->check_fail_max_pdop);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_horz_err
+
+  // Field name: check_fail_max_horz_err
   {
     size_t item_size = sizeof(ros_message->check_fail_max_horz_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_vert_err
+
+  // Field name: check_fail_max_vert_err
   {
     size_t item_size = sizeof(ros_message->check_fail_max_vert_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_spd_err
+
+  // Field name: check_fail_max_spd_err
   {
     size_t item_size = sizeof(ros_message->check_fail_max_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_horz_drift
+
+  // Field name: check_fail_max_horz_drift
   {
     size_t item_size = sizeof(ros_message->check_fail_max_horz_drift);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_vert_drift
+
+  // Field name: check_fail_max_vert_drift
   {
     size_t item_size = sizeof(ros_message->check_fail_max_vert_drift);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_horz_spd_err
+
+  // Field name: check_fail_max_horz_spd_err
   {
     size_t item_size = sizeof(ros_message->check_fail_max_horz_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_max_vert_spd_err
+
+  // Field name: check_fail_max_vert_spd_err
   {
     size_t item_size = sizeof(ros_message->check_fail_max_vert_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name check_fail_spoofed_gps
+
+  // Field name: check_fail_spoofed_gps
   {
     size_t item_size = sizeof(ros_message->check_fail_spoofed_gps);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name position_drift_rate_horizontal_m_s
+
+  // Field name: position_drift_rate_horizontal_m_s
   {
     size_t item_size = sizeof(ros_message->position_drift_rate_horizontal_m_s);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name position_drift_rate_vertical_m_s
+
+  // Field name: position_drift_rate_vertical_m_s
   {
     size_t item_size = sizeof(ros_message->position_drift_rate_vertical_m_s);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name filtered_horizontal_speed_m_s
+
+  // Field name: filtered_horizontal_speed_m_s
   {
     size_t item_size = sizeof(ros_message->filtered_horizontal_speed_m_s);
     current_alignment += item_size +
@@ -378,12 +390,6 @@ size_t get_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _EstimatorGpsStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
@@ -403,126 +409,512 @@ size_t max_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: timestamp_sample
+
+  // Field name: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: checks_passed
+
+  // Field name: checks_passed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_gps_fix
+
+  // Field name: check_fail_gps_fix
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_min_sat_count
+
+  // Field name: check_fail_min_sat_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_pdop
+
+  // Field name: check_fail_max_pdop
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_horz_err
+
+  // Field name: check_fail_max_horz_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_vert_err
+
+  // Field name: check_fail_max_vert_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_spd_err
+
+  // Field name: check_fail_max_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_horz_drift
+
+  // Field name: check_fail_max_horz_drift
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_vert_drift
+
+  // Field name: check_fail_max_vert_drift
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_horz_spd_err
+
+  // Field name: check_fail_max_horz_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_max_vert_spd_err
+
+  // Field name: check_fail_max_vert_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: check_fail_spoofed_gps
+
+  // Field name: check_fail_spoofed_gps
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: position_drift_rate_horizontal_m_s
+
+  // Field name: position_drift_rate_horizontal_m_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: position_drift_rate_vertical_m_s
+
+  // Field name: position_drift_rate_vertical_m_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: filtered_horizontal_speed_m_s
+
+  // Field name: filtered_horizontal_speed_m_s
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__EstimatorGpsStatus;
+    is_plain =
+      (
+      offsetof(DataType, filtered_horizontal_speed_m_s) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__EstimatorGpsStatus(
+  const px4_msgs__msg__EstimatorGpsStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: timestamp_sample
+  {
+    cdr << ros_message->timestamp_sample;
+  }
+
+  // Field name: checks_passed
+  {
+    cdr << (ros_message->checks_passed ? true : false);
+  }
+
+  // Field name: check_fail_gps_fix
+  {
+    cdr << (ros_message->check_fail_gps_fix ? true : false);
+  }
+
+  // Field name: check_fail_min_sat_count
+  {
+    cdr << (ros_message->check_fail_min_sat_count ? true : false);
+  }
+
+  // Field name: check_fail_max_pdop
+  {
+    cdr << (ros_message->check_fail_max_pdop ? true : false);
+  }
+
+  // Field name: check_fail_max_horz_err
+  {
+    cdr << (ros_message->check_fail_max_horz_err ? true : false);
+  }
+
+  // Field name: check_fail_max_vert_err
+  {
+    cdr << (ros_message->check_fail_max_vert_err ? true : false);
+  }
+
+  // Field name: check_fail_max_spd_err
+  {
+    cdr << (ros_message->check_fail_max_spd_err ? true : false);
+  }
+
+  // Field name: check_fail_max_horz_drift
+  {
+    cdr << (ros_message->check_fail_max_horz_drift ? true : false);
+  }
+
+  // Field name: check_fail_max_vert_drift
+  {
+    cdr << (ros_message->check_fail_max_vert_drift ? true : false);
+  }
+
+  // Field name: check_fail_max_horz_spd_err
+  {
+    cdr << (ros_message->check_fail_max_horz_spd_err ? true : false);
+  }
+
+  // Field name: check_fail_max_vert_spd_err
+  {
+    cdr << (ros_message->check_fail_max_vert_spd_err ? true : false);
+  }
+
+  // Field name: check_fail_spoofed_gps
+  {
+    cdr << (ros_message->check_fail_spoofed_gps ? true : false);
+  }
+
+  // Field name: position_drift_rate_horizontal_m_s
+  {
+    cdr << ros_message->position_drift_rate_horizontal_m_s;
+  }
+
+  // Field name: position_drift_rate_vertical_m_s
+  {
+    cdr << ros_message->position_drift_rate_vertical_m_s;
+  }
+
+  // Field name: filtered_horizontal_speed_m_s
+  {
+    cdr << ros_message->filtered_horizontal_speed_m_s;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__EstimatorGpsStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _EstimatorGpsStatus__ros_msg_type * ros_message = static_cast<const _EstimatorGpsStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message->timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: checks_passed
+  {
+    size_t item_size = sizeof(ros_message->checks_passed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_gps_fix
+  {
+    size_t item_size = sizeof(ros_message->check_fail_gps_fix);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_min_sat_count
+  {
+    size_t item_size = sizeof(ros_message->check_fail_min_sat_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_pdop
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_pdop);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_horz_err
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_horz_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_vert_err
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_vert_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_spd_err
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_horz_drift
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_horz_drift);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_vert_drift
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_vert_drift);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_horz_spd_err
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_horz_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_max_vert_spd_err
+  {
+    size_t item_size = sizeof(ros_message->check_fail_max_vert_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: check_fail_spoofed_gps
+  {
+    size_t item_size = sizeof(ros_message->check_fail_spoofed_gps);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: position_drift_rate_horizontal_m_s
+  {
+    size_t item_size = sizeof(ros_message->position_drift_rate_horizontal_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: position_drift_rate_vertical_m_s
+  {
+    size_t item_size = sizeof(ros_message->position_drift_rate_vertical_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: filtered_horizontal_speed_m_s
+  {
+    size_t item_size = sizeof(ros_message->filtered_horizontal_speed_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__EstimatorGpsStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: checks_passed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_gps_fix
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_min_sat_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_pdop
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_horz_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_vert_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_horz_drift
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_vert_drift
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_horz_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_max_vert_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: check_fail_spoofed_gps
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: position_drift_rate_horizontal_m_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: position_drift_rate_vertical_m_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: filtered_horizontal_speed_m_s
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -540,8 +932,41 @@ size_t max_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _EstimatorGpsStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__EstimatorGpsStatus * ros_message = static_cast<const px4_msgs__msg__EstimatorGpsStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__EstimatorGpsStatus(ros_message, cdr);
+}
+
+static bool _EstimatorGpsStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__EstimatorGpsStatus * ros_message = static_cast<px4_msgs__msg__EstimatorGpsStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__EstimatorGpsStatus(cdr, ros_message);
+}
+
+static uint32_t _EstimatorGpsStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__EstimatorGpsStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _EstimatorGpsStatus__max_serialized_size(char & bounds_info)
@@ -566,13 +991,17 @@ static message_type_support_callbacks_t __callbacks_EstimatorGpsStatus = {
   _EstimatorGpsStatus__cdr_serialize,
   _EstimatorGpsStatus__cdr_deserialize,
   _EstimatorGpsStatus__get_serialized_size,
-  _EstimatorGpsStatus__max_serialized_size
+  _EstimatorGpsStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _EstimatorGpsStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_EstimatorGpsStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_hash,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_description,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

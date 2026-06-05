@@ -1,8 +1,8 @@
-# Install script for directory: /home/maizaied03/ros2_ws/build/task_msgs/task_msgs__py
+# Install script for directory: /home/dudz/multi-drone-disaster-response/build/task_msgs/task_msgs__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/maizaied03/ros2_ws/install/task_msgs")
+  set(CMAKE_INSTALL_PREFIX "/home/dudz/multi-drone-disaster-response/install/task_msgs")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

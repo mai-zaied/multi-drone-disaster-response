@@ -3,6 +3,9 @@
 // with input from task_msgs:msg/Task.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "task_msgs/msg/task.h"
+
+
 #ifndef TASK_MSGS__MSG__DETAIL__TASK__STRUCT_H_
 #define TASK_MSGS__MSG__DETAIL__TASK__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 

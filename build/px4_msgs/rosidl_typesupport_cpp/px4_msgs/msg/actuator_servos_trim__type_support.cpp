@@ -4,6 +4,7 @@
 
 #include "cstddef"
 #include "rosidl_runtime_c/message_type_support_struct.h"
+#include "px4_msgs/msg/detail/actuator_servos_trim__functions.h"
 #include "px4_msgs/msg/detail/actuator_servos_trim__struct.hpp"
 #include "rosidl_typesupport_cpp/identifier.hpp"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
@@ -72,6 +73,9 @@ static const rosidl_message_type_support_t ActuatorServosTrim_message_type_suppo
   ::rosidl_typesupport_cpp::typesupport_identifier,
   reinterpret_cast<const type_support_map_t *>(&_ActuatorServosTrim_message_typesupport_map),
   ::rosidl_typesupport_cpp::get_message_typesupport_handle_function,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_hash,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_description,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_cpp

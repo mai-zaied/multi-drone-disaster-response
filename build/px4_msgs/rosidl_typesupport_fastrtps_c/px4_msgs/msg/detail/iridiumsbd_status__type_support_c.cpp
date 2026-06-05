@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _IridiumsbdStatus__ros_msg_type = px4_msgs__msg__IridiumsbdStatus;
 
-static bool _IridiumsbdStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__IridiumsbdStatus(
+  const px4_msgs__msg__IridiumsbdStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _IridiumsbdStatus__ros_msg_type * ros_message = static_cast<const _IridiumsbdStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -127,15 +126,11 @@ static bool _IridiumsbdStatus__cdr_serialize(
   return true;
 }
 
-static bool _IridiumsbdStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__IridiumsbdStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__IridiumsbdStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _IridiumsbdStatus__ros_msg_type * ros_message = static_cast<_IridiumsbdStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -224,6 +219,7 @@ static bool _IridiumsbdStatus__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__IridiumsbdStatus(
   const void * untyped_ros_message,
@@ -238,91 +234,105 @@ size_t get_serialized_size_px4_msgs__msg__IridiumsbdStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name last_at_ok_timestamp
+
+  // Field name: last_at_ok_timestamp
   {
     size_t item_size = sizeof(ros_message->last_at_ok_timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name tx_buf_write_index
+
+  // Field name: tx_buf_write_index
   {
     size_t item_size = sizeof(ros_message->tx_buf_write_index);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rx_buf_read_index
+
+  // Field name: rx_buf_read_index
   {
     size_t item_size = sizeof(ros_message->rx_buf_read_index);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rx_buf_end_index
+
+  // Field name: rx_buf_end_index
   {
     size_t item_size = sizeof(ros_message->rx_buf_end_index);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name failed_sbd_sessions
+
+  // Field name: failed_sbd_sessions
   {
     size_t item_size = sizeof(ros_message->failed_sbd_sessions);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name successful_sbd_sessions
+
+  // Field name: successful_sbd_sessions
   {
     size_t item_size = sizeof(ros_message->successful_sbd_sessions);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name num_tx_buf_reset
+
+  // Field name: num_tx_buf_reset
   {
     size_t item_size = sizeof(ros_message->num_tx_buf_reset);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name signal_quality
+
+  // Field name: signal_quality
   {
     size_t item_size = sizeof(ros_message->signal_quality);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name state
+
+  // Field name: state
   {
     size_t item_size = sizeof(ros_message->state);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name ring_pending
+
+  // Field name: ring_pending
   {
     size_t item_size = sizeof(ros_message->ring_pending);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name tx_buf_write_pending
+
+  // Field name: tx_buf_write_pending
   {
     size_t item_size = sizeof(ros_message->tx_buf_write_pending);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name tx_session_pending
+
+  // Field name: tx_session_pending
   {
     size_t item_size = sizeof(ros_message->tx_session_pending);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rx_read_pending
+
+  // Field name: rx_read_pending
   {
     size_t item_size = sizeof(ros_message->rx_read_pending);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rx_session_pending
+
+  // Field name: rx_session_pending
   {
     size_t item_size = sizeof(ros_message->rx_session_pending);
     current_alignment += item_size +
@@ -332,12 +342,6 @@ size_t get_serialized_size_px4_msgs__msg__IridiumsbdStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _IridiumsbdStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__IridiumsbdStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__IridiumsbdStatus(
@@ -357,116 +361,467 @@ size_t max_serialized_size_px4_msgs__msg__IridiumsbdStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: last_at_ok_timestamp
+
+  // Field name: last_at_ok_timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: tx_buf_write_index
+
+  // Field name: tx_buf_write_index
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: rx_buf_read_index
+
+  // Field name: rx_buf_read_index
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: rx_buf_end_index
+
+  // Field name: rx_buf_end_index
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: failed_sbd_sessions
+
+  // Field name: failed_sbd_sessions
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: successful_sbd_sessions
+
+  // Field name: successful_sbd_sessions
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: num_tx_buf_reset
+
+  // Field name: num_tx_buf_reset
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint16_t);
     current_alignment += array_size * sizeof(uint16_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
   }
-  // member: signal_quality
+
+  // Field name: signal_quality
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: state
+
+  // Field name: state
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: ring_pending
+
+  // Field name: ring_pending
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: tx_buf_write_pending
+
+  // Field name: tx_buf_write_pending
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: tx_session_pending
+
+  // Field name: tx_session_pending
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: rx_read_pending
+
+  // Field name: rx_read_pending
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: rx_session_pending
+
+  // Field name: rx_session_pending
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__IridiumsbdStatus;
+    is_plain =
+      (
+      offsetof(DataType, rx_session_pending) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__IridiumsbdStatus(
+  const px4_msgs__msg__IridiumsbdStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: last_at_ok_timestamp
+  {
+    cdr << ros_message->last_at_ok_timestamp;
+  }
+
+  // Field name: tx_buf_write_index
+  {
+    cdr << ros_message->tx_buf_write_index;
+  }
+
+  // Field name: rx_buf_read_index
+  {
+    cdr << ros_message->rx_buf_read_index;
+  }
+
+  // Field name: rx_buf_end_index
+  {
+    cdr << ros_message->rx_buf_end_index;
+  }
+
+  // Field name: failed_sbd_sessions
+  {
+    cdr << ros_message->failed_sbd_sessions;
+  }
+
+  // Field name: successful_sbd_sessions
+  {
+    cdr << ros_message->successful_sbd_sessions;
+  }
+
+  // Field name: num_tx_buf_reset
+  {
+    cdr << ros_message->num_tx_buf_reset;
+  }
+
+  // Field name: signal_quality
+  {
+    cdr << ros_message->signal_quality;
+  }
+
+  // Field name: state
+  {
+    cdr << ros_message->state;
+  }
+
+  // Field name: ring_pending
+  {
+    cdr << (ros_message->ring_pending ? true : false);
+  }
+
+  // Field name: tx_buf_write_pending
+  {
+    cdr << (ros_message->tx_buf_write_pending ? true : false);
+  }
+
+  // Field name: tx_session_pending
+  {
+    cdr << (ros_message->tx_session_pending ? true : false);
+  }
+
+  // Field name: rx_read_pending
+  {
+    cdr << (ros_message->rx_read_pending ? true : false);
+  }
+
+  // Field name: rx_session_pending
+  {
+    cdr << (ros_message->rx_session_pending ? true : false);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__IridiumsbdStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _IridiumsbdStatus__ros_msg_type * ros_message = static_cast<const _IridiumsbdStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: last_at_ok_timestamp
+  {
+    size_t item_size = sizeof(ros_message->last_at_ok_timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: tx_buf_write_index
+  {
+    size_t item_size = sizeof(ros_message->tx_buf_write_index);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rx_buf_read_index
+  {
+    size_t item_size = sizeof(ros_message->rx_buf_read_index);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rx_buf_end_index
+  {
+    size_t item_size = sizeof(ros_message->rx_buf_end_index);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: failed_sbd_sessions
+  {
+    size_t item_size = sizeof(ros_message->failed_sbd_sessions);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: successful_sbd_sessions
+  {
+    size_t item_size = sizeof(ros_message->successful_sbd_sessions);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: num_tx_buf_reset
+  {
+    size_t item_size = sizeof(ros_message->num_tx_buf_reset);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: signal_quality
+  {
+    size_t item_size = sizeof(ros_message->signal_quality);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: state
+  {
+    size_t item_size = sizeof(ros_message->state);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: ring_pending
+  {
+    size_t item_size = sizeof(ros_message->ring_pending);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: tx_buf_write_pending
+  {
+    size_t item_size = sizeof(ros_message->tx_buf_write_pending);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: tx_session_pending
+  {
+    size_t item_size = sizeof(ros_message->tx_session_pending);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rx_read_pending
+  {
+    size_t item_size = sizeof(ros_message->rx_read_pending);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rx_session_pending
+  {
+    size_t item_size = sizeof(ros_message->rx_session_pending);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__IridiumsbdStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: last_at_ok_timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: tx_buf_write_index
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: rx_buf_read_index
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: rx_buf_end_index
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: failed_sbd_sessions
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: successful_sbd_sessions
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: num_tx_buf_reset
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint16_t);
+    current_alignment += array_size * sizeof(uint16_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint16_t));
+  }
+
+  // Field name: signal_quality
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: state
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: ring_pending
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: tx_buf_write_pending
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: tx_session_pending
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: rx_read_pending
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: rx_session_pending
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -483,8 +838,41 @@ size_t max_serialized_size_px4_msgs__msg__IridiumsbdStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _IridiumsbdStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__IridiumsbdStatus * ros_message = static_cast<const px4_msgs__msg__IridiumsbdStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__IridiumsbdStatus(ros_message, cdr);
+}
+
+static bool _IridiumsbdStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__IridiumsbdStatus * ros_message = static_cast<px4_msgs__msg__IridiumsbdStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__IridiumsbdStatus(cdr, ros_message);
+}
+
+static uint32_t _IridiumsbdStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__IridiumsbdStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _IridiumsbdStatus__max_serialized_size(char & bounds_info)
@@ -509,13 +897,17 @@ static message_type_support_callbacks_t __callbacks_IridiumsbdStatus = {
   _IridiumsbdStatus__cdr_serialize,
   _IridiumsbdStatus__cdr_deserialize,
   _IridiumsbdStatus__get_serialized_size,
-  _IridiumsbdStatus__max_serialized_size
+  _IridiumsbdStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _IridiumsbdStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_IridiumsbdStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__IridiumsbdStatus__get_type_hash,
+  &px4_msgs__msg__IridiumsbdStatus__get_type_description,
+  &px4_msgs__msg__IridiumsbdStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

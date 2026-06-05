@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/RegisterExtComponentReply.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/register_ext_component_reply.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REPLY__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REPLY__TRAITS_HPP_
 

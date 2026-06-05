@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ParameterSetValueResponse.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/parameter_set_value_response.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__PARAMETER_SET_VALUE_RESPONSE__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__PARAMETER_SET_VALUE_RESPONSE__BUILDER_HPP_
 

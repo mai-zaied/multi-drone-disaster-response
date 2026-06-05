@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/PositionControllerStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/position_controller_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__POSITION_CONTROLLER_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__POSITION_CONTROLLER_STATUS__TRAITS_HPP_
 

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/OrbTestLarge.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/orb_test_large.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ORB_TEST_LARGE__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__ORB_TEST_LARGE__TRAITS_HPP_
 

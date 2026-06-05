@@ -19,8 +19,7 @@ px4_msgs__msg__DeviceInformation__init(px4_msgs__msg__DeviceInformation * msg)
   }
   // timestamp
   // device_type
-  // vendor_name
-  // model_name
+  // name
   // device_id
   // firmware_version
   // hardware_version
@@ -36,8 +35,7 @@ px4_msgs__msg__DeviceInformation__fini(px4_msgs__msg__DeviceInformation * msg)
   }
   // timestamp
   // device_type
-  // vendor_name
-  // model_name
+  // name
   // device_id
   // firmware_version
   // hardware_version
@@ -58,15 +56,9 @@ px4_msgs__msg__DeviceInformation__are_equal(const px4_msgs__msg__DeviceInformati
   if (lhs->device_type != rhs->device_type) {
     return false;
   }
-  // vendor_name
-  for (size_t i = 0; i < 32; ++i) {
-    if (lhs->vendor_name[i] != rhs->vendor_name[i]) {
-      return false;
-    }
-  }
-  // model_name
-  for (size_t i = 0; i < 32; ++i) {
-    if (lhs->model_name[i] != rhs->model_name[i]) {
+  // name
+  for (size_t i = 0; i < 80; ++i) {
+    if (lhs->name[i] != rhs->name[i]) {
       return false;
     }
   }
@@ -107,13 +99,9 @@ px4_msgs__msg__DeviceInformation__copy(
   output->timestamp = input->timestamp;
   // device_type
   output->device_type = input->device_type;
-  // vendor_name
-  for (size_t i = 0; i < 32; ++i) {
-    output->vendor_name[i] = input->vendor_name[i];
-  }
-  // model_name
-  for (size_t i = 0; i < 32; ++i) {
-    output->model_name[i] = input->model_name[i];
+  // name
+  for (size_t i = 0; i < 80; ++i) {
+    output->name[i] = input->name[i];
   }
   // device_id
   output->device_id = input->device_id;
@@ -133,7 +121,7 @@ px4_msgs__msg__DeviceInformation__copy(
 }
 
 px4_msgs__msg__DeviceInformation *
-px4_msgs__msg__DeviceInformation__create()
+px4_msgs__msg__DeviceInformation__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DeviceInformation * msg = (px4_msgs__msg__DeviceInformation *)allocator.allocate(sizeof(px4_msgs__msg__DeviceInformation), allocator.state);

@@ -77,7 +77,7 @@ px4_msgs__msg__BatteryInfo__copy(
 }
 
 px4_msgs__msg__BatteryInfo *
-px4_msgs__msg__BatteryInfo__create()
+px4_msgs__msg__BatteryInfo__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__BatteryInfo * msg = (px4_msgs__msg__BatteryInfo *)allocator.allocate(sizeof(px4_msgs__msg__BatteryInfo), allocator.state);

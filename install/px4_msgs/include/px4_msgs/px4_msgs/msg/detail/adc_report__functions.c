@@ -105,7 +105,7 @@ px4_msgs__msg__AdcReport__copy(
 }
 
 px4_msgs__msg__AdcReport *
-px4_msgs__msg__AdcReport__create()
+px4_msgs__msg__AdcReport__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__AdcReport * msg = (px4_msgs__msg__AdcReport *)allocator.allocate(sizeof(px4_msgs__msg__AdcReport), allocator.state);

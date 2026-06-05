@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/DeviceInformation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/device_information.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -40,8 +44,7 @@ struct DeviceInformation_
     {
       this->timestamp = 0ull;
       this->device_type = 0;
-      std::fill<typename std::array<uint8_t, 32>::iterator, uint8_t>(this->vendor_name.begin(), this->vendor_name.end(), 0);
-      std::fill<typename std::array<uint8_t, 32>::iterator, uint8_t>(this->model_name.begin(), this->model_name.end(), 0);
+      std::fill<typename std::array<uint8_t, 80>::iterator, uint8_t>(this->name.begin(), this->name.end(), 0);
       this->device_id = 0ul;
       std::fill<typename std::array<uint8_t, 24>::iterator, uint8_t>(this->firmware_version.begin(), this->firmware_version.end(), 0);
       std::fill<typename std::array<uint8_t, 24>::iterator, uint8_t>(this->hardware_version.begin(), this->hardware_version.end(), 0);
@@ -50,8 +53,7 @@ struct DeviceInformation_
   }
 
   explicit DeviceInformation_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : vendor_name(_alloc),
-    model_name(_alloc),
+  : name(_alloc),
     firmware_version(_alloc),
     hardware_version(_alloc),
     serial_number(_alloc)
@@ -61,8 +63,7 @@ struct DeviceInformation_
     {
       this->timestamp = 0ull;
       this->device_type = 0;
-      std::fill<typename std::array<uint8_t, 32>::iterator, uint8_t>(this->vendor_name.begin(), this->vendor_name.end(), 0);
-      std::fill<typename std::array<uint8_t, 32>::iterator, uint8_t>(this->model_name.begin(), this->model_name.end(), 0);
+      std::fill<typename std::array<uint8_t, 80>::iterator, uint8_t>(this->name.begin(), this->name.end(), 0);
       this->device_id = 0ul;
       std::fill<typename std::array<uint8_t, 24>::iterator, uint8_t>(this->firmware_version.begin(), this->firmware_version.end(), 0);
       std::fill<typename std::array<uint8_t, 24>::iterator, uint8_t>(this->hardware_version.begin(), this->hardware_version.end(), 0);
@@ -77,12 +78,9 @@ struct DeviceInformation_
   using _device_type_type =
     uint8_t;
   _device_type_type device_type;
-  using _vendor_name_type =
-    std::array<uint8_t, 32>;
-  _vendor_name_type vendor_name;
-  using _model_name_type =
-    std::array<uint8_t, 32>;
-  _model_name_type model_name;
+  using _name_type =
+    std::array<uint8_t, 80>;
+  _name_type name;
   using _device_id_type =
     uint32_t;
   _device_id_type device_id;
@@ -109,16 +107,10 @@ struct DeviceInformation_
     this->device_type = _arg;
     return *this;
   }
-  Type & set__vendor_name(
-    const std::array<uint8_t, 32> & _arg)
+  Type & set__name(
+    const std::array<uint8_t, 80> & _arg)
   {
-    this->vendor_name = _arg;
-    return *this;
-  }
-  Type & set__model_name(
-    const std::array<uint8_t, 32> & _arg)
-  {
-    this->model_name = _arg;
+    this->name = _arg;
     return *this;
   }
   Type & set__device_id(
@@ -226,10 +218,7 @@ struct DeviceInformation_
     if (this->device_type != other.device_type) {
       return false;
     }
-    if (this->vendor_name != other.vendor_name) {
-      return false;
-    }
-    if (this->model_name != other.model_name) {
+    if (this->name != other.name) {
       return false;
     }
     if (this->device_id != other.device_id) {

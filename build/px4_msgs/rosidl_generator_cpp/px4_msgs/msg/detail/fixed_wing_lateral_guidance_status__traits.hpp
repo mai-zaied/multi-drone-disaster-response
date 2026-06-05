@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FixedWingLateralGuidanceStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/fixed_wing_lateral_guidance_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__TRAITS_HPP_
 
@@ -71,6 +74,13 @@ inline void to_flow_style_yaml(
   {
     out << "track_error_bound: ";
     rosidl_generator_traits::value_to_yaml(msg.track_error_bound, out);
+    out << ", ";
+  }
+
+  // member: switch_distance
+  {
+    out << "switch_distance: ";
+    rosidl_generator_traits::value_to_yaml(msg.switch_distance, out);
     out << ", ";
   }
 
@@ -160,6 +170,16 @@ inline void to_block_style_yaml(
     }
     out << "track_error_bound: ";
     rosidl_generator_traits::value_to_yaml(msg.track_error_bound, out);
+    out << "\n";
+  }
+
+  // member: switch_distance
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "switch_distance: ";
+    rosidl_generator_traits::value_to_yaml(msg.switch_distance, out);
     out << "\n";
   }
 

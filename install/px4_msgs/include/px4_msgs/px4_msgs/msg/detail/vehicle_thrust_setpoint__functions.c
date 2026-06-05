@@ -77,7 +77,7 @@ px4_msgs__msg__VehicleThrustSetpoint__copy(
 }
 
 px4_msgs__msg__VehicleThrustSetpoint *
-px4_msgs__msg__VehicleThrustSetpoint__create()
+px4_msgs__msg__VehicleThrustSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleThrustSetpoint * msg = (px4_msgs__msg__VehicleThrustSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__VehicleThrustSetpoint), allocator.state);

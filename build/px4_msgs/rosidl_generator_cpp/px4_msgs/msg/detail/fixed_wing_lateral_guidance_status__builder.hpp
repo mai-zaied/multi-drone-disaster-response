@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FixedWingLateralGuidanceStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/fixed_wing_lateral_guidance_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__BUILDER_HPP_
 
@@ -53,16 +56,32 @@ private:
   ::px4_msgs::msg::FixedWingLateralGuidanceStatus msg_;
 };
 
+class Init_FixedWingLateralGuidanceStatus_switch_distance
+{
+public:
+  explicit Init_FixedWingLateralGuidanceStatus_switch_distance(::px4_msgs::msg::FixedWingLateralGuidanceStatus & msg)
+  : msg_(msg)
+  {}
+  Init_FixedWingLateralGuidanceStatus_adapted_period switch_distance(::px4_msgs::msg::FixedWingLateralGuidanceStatus::_switch_distance_type arg)
+  {
+    msg_.switch_distance = std::move(arg);
+    return Init_FixedWingLateralGuidanceStatus_adapted_period(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::FixedWingLateralGuidanceStatus msg_;
+};
+
 class Init_FixedWingLateralGuidanceStatus_track_error_bound
 {
 public:
   explicit Init_FixedWingLateralGuidanceStatus_track_error_bound(::px4_msgs::msg::FixedWingLateralGuidanceStatus & msg)
   : msg_(msg)
   {}
-  Init_FixedWingLateralGuidanceStatus_adapted_period track_error_bound(::px4_msgs::msg::FixedWingLateralGuidanceStatus::_track_error_bound_type arg)
+  Init_FixedWingLateralGuidanceStatus_switch_distance track_error_bound(::px4_msgs::msg::FixedWingLateralGuidanceStatus::_track_error_bound_type arg)
   {
     msg_.track_error_bound = std::move(arg);
-    return Init_FixedWingLateralGuidanceStatus_adapted_period(msg_);
+    return Init_FixedWingLateralGuidanceStatus_switch_distance(msg_);
   }
 
 private:

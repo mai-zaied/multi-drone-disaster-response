@@ -23,8 +23,7 @@ px4_msgs__msg__EscReport__init(px4_msgs__msg__EscReport * msg)
   // esc_voltage
   // esc_current
   // esc_temperature
-  // esc_address
-  // esc_cmdcount
+  // motor_temperature
   // esc_state
   // actuator_function
   // failures
@@ -44,8 +43,7 @@ px4_msgs__msg__EscReport__fini(px4_msgs__msg__EscReport * msg)
   // esc_voltage
   // esc_current
   // esc_temperature
-  // esc_address
-  // esc_cmdcount
+  // motor_temperature
   // esc_state
   // actuator_function
   // failures
@@ -82,12 +80,8 @@ px4_msgs__msg__EscReport__are_equal(const px4_msgs__msg__EscReport * lhs, const 
   if (lhs->esc_temperature != rhs->esc_temperature) {
     return false;
   }
-  // esc_address
-  if (lhs->esc_address != rhs->esc_address) {
-    return false;
-  }
-  // esc_cmdcount
-  if (lhs->esc_cmdcount != rhs->esc_cmdcount) {
+  // motor_temperature
+  if (lhs->motor_temperature != rhs->motor_temperature) {
     return false;
   }
   // esc_state
@@ -129,10 +123,8 @@ px4_msgs__msg__EscReport__copy(
   output->esc_current = input->esc_current;
   // esc_temperature
   output->esc_temperature = input->esc_temperature;
-  // esc_address
-  output->esc_address = input->esc_address;
-  // esc_cmdcount
-  output->esc_cmdcount = input->esc_cmdcount;
+  // motor_temperature
+  output->motor_temperature = input->motor_temperature;
   // esc_state
   output->esc_state = input->esc_state;
   // actuator_function
@@ -145,7 +137,7 @@ px4_msgs__msg__EscReport__copy(
 }
 
 px4_msgs__msg__EscReport *
-px4_msgs__msg__EscReport__create()
+px4_msgs__msg__EscReport__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__EscReport * msg = (px4_msgs__msg__EscReport *)allocator.allocate(sizeof(px4_msgs__msg__EscReport), allocator.state);

@@ -121,7 +121,7 @@ px4_msgs__msg__HoverThrustEstimate__copy(
 }
 
 px4_msgs__msg__HoverThrustEstimate *
-px4_msgs__msg__HoverThrustEstimate__create()
+px4_msgs__msg__HoverThrustEstimate__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__HoverThrustEstimate * msg = (px4_msgs__msg__HoverThrustEstimate *)allocator.allocate(sizeof(px4_msgs__msg__HoverThrustEstimate), allocator.state);

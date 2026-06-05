@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/EstimatorGpsStatus.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/estimator_gps_status__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/estimator_gps_status__functions.h"
 #include "px4_msgs/msg/detail/estimator_gps_status__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,38 +38,55 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: timestamp_sample
   cdr << ros_message.timestamp_sample;
+
   // Member: checks_passed
   cdr << (ros_message.checks_passed ? true : false);
+
   // Member: check_fail_gps_fix
   cdr << (ros_message.check_fail_gps_fix ? true : false);
+
   // Member: check_fail_min_sat_count
   cdr << (ros_message.check_fail_min_sat_count ? true : false);
+
   // Member: check_fail_max_pdop
   cdr << (ros_message.check_fail_max_pdop ? true : false);
+
   // Member: check_fail_max_horz_err
   cdr << (ros_message.check_fail_max_horz_err ? true : false);
+
   // Member: check_fail_max_vert_err
   cdr << (ros_message.check_fail_max_vert_err ? true : false);
+
   // Member: check_fail_max_spd_err
   cdr << (ros_message.check_fail_max_spd_err ? true : false);
+
   // Member: check_fail_max_horz_drift
   cdr << (ros_message.check_fail_max_horz_drift ? true : false);
+
   // Member: check_fail_max_vert_drift
   cdr << (ros_message.check_fail_max_vert_drift ? true : false);
+
   // Member: check_fail_max_horz_spd_err
   cdr << (ros_message.check_fail_max_horz_spd_err ? true : false);
+
   // Member: check_fail_max_vert_spd_err
   cdr << (ros_message.check_fail_max_vert_spd_err ? true : false);
+
   // Member: check_fail_spoofed_gps
   cdr << (ros_message.check_fail_spoofed_gps ? true : false);
+
   // Member: position_drift_rate_horizontal_m_s
   cdr << ros_message.position_drift_rate_horizontal_m_s;
+
   // Member: position_drift_rate_vertical_m_s
   cdr << ros_message.position_drift_rate_vertical_m_s;
+
   // Member: filtered_horizontal_speed_m_s
   cdr << ros_message.filtered_horizontal_speed_m_s;
+
   return true;
 }
 
@@ -177,6 +198,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -196,96 +218,112 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_sample
   {
     size_t item_size = sizeof(ros_message.timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: checks_passed
   {
     size_t item_size = sizeof(ros_message.checks_passed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_gps_fix
   {
     size_t item_size = sizeof(ros_message.check_fail_gps_fix);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_min_sat_count
   {
     size_t item_size = sizeof(ros_message.check_fail_min_sat_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_pdop
   {
     size_t item_size = sizeof(ros_message.check_fail_max_pdop);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_horz_err
   {
     size_t item_size = sizeof(ros_message.check_fail_max_horz_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_vert_err
   {
     size_t item_size = sizeof(ros_message.check_fail_max_vert_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_spd_err
   {
     size_t item_size = sizeof(ros_message.check_fail_max_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_horz_drift
   {
     size_t item_size = sizeof(ros_message.check_fail_max_horz_drift);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_vert_drift
   {
     size_t item_size = sizeof(ros_message.check_fail_max_vert_drift);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_horz_spd_err
   {
     size_t item_size = sizeof(ros_message.check_fail_max_horz_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_max_vert_spd_err
   {
     size_t item_size = sizeof(ros_message.check_fail_max_vert_spd_err);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: check_fail_spoofed_gps
   {
     size_t item_size = sizeof(ros_message.check_fail_spoofed_gps);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: position_drift_rate_horizontal_m_s
   {
     size_t item_size = sizeof(ros_message.position_drift_rate_horizontal_m_s);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: position_drift_rate_vertical_m_s
   {
     size_t item_size = sizeof(ros_message.position_drift_rate_vertical_m_s);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: filtered_horizontal_speed_m_s
   {
     size_t item_size = sizeof(ros_message.filtered_horizontal_speed_m_s);
@@ -295,6 +333,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -315,143 +354,109 @@ max_serialized_size_EstimatorGpsStatus(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: checks_passed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_gps_fix
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_min_sat_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_pdop
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_horz_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_vert_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_horz_drift
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_vert_drift
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_horz_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_max_vert_spd_err
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: check_fail_spoofed_gps
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: position_drift_rate_horizontal_m_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: position_drift_rate_vertical_m_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: filtered_horizontal_speed_m_s
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -472,6 +477,361 @@ max_serialized_size_EstimatorGpsStatus(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::EstimatorGpsStatus & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: timestamp_sample
+  cdr << ros_message.timestamp_sample;
+
+  // Member: checks_passed
+  cdr << (ros_message.checks_passed ? true : false);
+
+  // Member: check_fail_gps_fix
+  cdr << (ros_message.check_fail_gps_fix ? true : false);
+
+  // Member: check_fail_min_sat_count
+  cdr << (ros_message.check_fail_min_sat_count ? true : false);
+
+  // Member: check_fail_max_pdop
+  cdr << (ros_message.check_fail_max_pdop ? true : false);
+
+  // Member: check_fail_max_horz_err
+  cdr << (ros_message.check_fail_max_horz_err ? true : false);
+
+  // Member: check_fail_max_vert_err
+  cdr << (ros_message.check_fail_max_vert_err ? true : false);
+
+  // Member: check_fail_max_spd_err
+  cdr << (ros_message.check_fail_max_spd_err ? true : false);
+
+  // Member: check_fail_max_horz_drift
+  cdr << (ros_message.check_fail_max_horz_drift ? true : false);
+
+  // Member: check_fail_max_vert_drift
+  cdr << (ros_message.check_fail_max_vert_drift ? true : false);
+
+  // Member: check_fail_max_horz_spd_err
+  cdr << (ros_message.check_fail_max_horz_spd_err ? true : false);
+
+  // Member: check_fail_max_vert_spd_err
+  cdr << (ros_message.check_fail_max_vert_spd_err ? true : false);
+
+  // Member: check_fail_spoofed_gps
+  cdr << (ros_message.check_fail_spoofed_gps ? true : false);
+
+  // Member: position_drift_rate_horizontal_m_s
+  cdr << ros_message.position_drift_rate_horizontal_m_s;
+
+  // Member: position_drift_rate_vertical_m_s
+  cdr << ros_message.position_drift_rate_vertical_m_s;
+
+  // Member: filtered_horizontal_speed_m_s
+  cdr << ros_message.filtered_horizontal_speed_m_s;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::EstimatorGpsStatus & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message.timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: checks_passed
+  {
+    size_t item_size = sizeof(ros_message.checks_passed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_gps_fix
+  {
+    size_t item_size = sizeof(ros_message.check_fail_gps_fix);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_min_sat_count
+  {
+    size_t item_size = sizeof(ros_message.check_fail_min_sat_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_pdop
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_pdop);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_horz_err
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_horz_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_vert_err
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_vert_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_spd_err
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_horz_drift
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_horz_drift);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_vert_drift
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_vert_drift);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_horz_spd_err
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_horz_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_max_vert_spd_err
+  {
+    size_t item_size = sizeof(ros_message.check_fail_max_vert_spd_err);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: check_fail_spoofed_gps
+  {
+    size_t item_size = sizeof(ros_message.check_fail_spoofed_gps);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: position_drift_rate_horizontal_m_s
+  {
+    size_t item_size = sizeof(ros_message.position_drift_rate_horizontal_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: position_drift_rate_vertical_m_s
+  {
+    size_t item_size = sizeof(ros_message.position_drift_rate_vertical_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: filtered_horizontal_speed_m_s
+  {
+    size_t item_size = sizeof(ros_message.filtered_horizontal_speed_m_s);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_EstimatorGpsStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: checks_passed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_gps_fix
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_min_sat_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_pdop
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_horz_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_vert_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_horz_drift
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_vert_drift
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_horz_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_max_vert_spd_err
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: check_fail_spoofed_gps
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: position_drift_rate_horizontal_m_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: position_drift_rate_vertical_m_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: filtered_horizontal_speed_m_s
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::EstimatorGpsStatus;
+    is_plain =
+      (
+      offsetof(DataType, filtered_horizontal_speed_m_s) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _EstimatorGpsStatus__cdr_serialize(
   const void * untyped_ros_message,
@@ -522,13 +882,17 @@ static message_type_support_callbacks_t _EstimatorGpsStatus__callbacks = {
   _EstimatorGpsStatus__cdr_serialize,
   _EstimatorGpsStatus__cdr_deserialize,
   _EstimatorGpsStatus__get_serialized_size,
-  _EstimatorGpsStatus__max_serialized_size
+  _EstimatorGpsStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _EstimatorGpsStatus__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_EstimatorGpsStatus__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_hash,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_description,
+  &px4_msgs__msg__EstimatorGpsStatus__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

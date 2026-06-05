@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/RegisterExtComponentRequest.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/register_ext_component_request.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__REGISTER_EXT_COMPONENT_REQUEST__TRAITS_HPP_
 
@@ -110,6 +113,13 @@ inline void to_flow_style_yaml(
   {
     out << "not_user_selectable: ";
     rosidl_generator_traits::value_to_yaml(msg.not_user_selectable, out);
+    out << ", ";
+  }
+
+  // member: request_offboard_setpoints
+  {
+    out << "request_offboard_setpoints: ";
+    rosidl_generator_traits::value_to_yaml(msg.request_offboard_setpoints, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -235,6 +245,16 @@ inline void to_block_style_yaml(
     }
     out << "not_user_selectable: ";
     rosidl_generator_traits::value_to_yaml(msg.not_user_selectable, out);
+    out << "\n";
+  }
+
+  // member: request_offboard_setpoints
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "request_offboard_setpoints: ";
+    rosidl_generator_traits::value_to_yaml(msg.request_offboard_setpoints, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

@@ -233,7 +233,7 @@ px4_msgs__msg__InternalCombustionEngineStatus__copy(
 }
 
 px4_msgs__msg__InternalCombustionEngineStatus *
-px4_msgs__msg__InternalCombustionEngineStatus__create()
+px4_msgs__msg__InternalCombustionEngineStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__InternalCombustionEngineStatus * msg = (px4_msgs__msg__InternalCombustionEngineStatus *)allocator.allocate(sizeof(px4_msgs__msg__InternalCombustionEngineStatus), allocator.state);

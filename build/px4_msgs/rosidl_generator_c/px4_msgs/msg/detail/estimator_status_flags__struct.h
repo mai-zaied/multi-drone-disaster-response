@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EstimatorStatusFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_status_flags.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -123,6 +125,10 @@ typedef struct px4_msgs__msg__EstimatorStatusFlags
   bool cs_yaw_manual;
   /// 47 - true if GNSS true if GNSS measurements (alt) have been declared faulty
   bool cs_gnss_hgt_fault;
+  /// 48 - true if the vehicle is in vtol transition
+  bool cs_in_transition;
+  /// 49 - true when heading is observable
+  bool cs_heading_observable;
   /// fault status
   /// number of filter fault status (fs) changes
   uint32_t fault_status_changes;

@@ -28,6 +28,7 @@ px4_msgs__msg__RegisterExtComponentRequest__init(px4_msgs__msg__RegisterExtCompo
   // replace_internal_mode
   // activate_mode_immediately
   // not_user_selectable
+  // request_offboard_setpoints
   return true;
 }
 
@@ -48,6 +49,7 @@ px4_msgs__msg__RegisterExtComponentRequest__fini(px4_msgs__msg__RegisterExtCompo
   // replace_internal_mode
   // activate_mode_immediately
   // not_user_selectable
+  // request_offboard_setpoints
 }
 
 bool
@@ -102,6 +104,10 @@ px4_msgs__msg__RegisterExtComponentRequest__are_equal(const px4_msgs__msg__Regis
   if (lhs->not_user_selectable != rhs->not_user_selectable) {
     return false;
   }
+  // request_offboard_setpoints
+  if (lhs->request_offboard_setpoints != rhs->request_offboard_setpoints) {
+    return false;
+  }
   return true;
 }
 
@@ -137,11 +143,13 @@ px4_msgs__msg__RegisterExtComponentRequest__copy(
   output->activate_mode_immediately = input->activate_mode_immediately;
   // not_user_selectable
   output->not_user_selectable = input->not_user_selectable;
+  // request_offboard_setpoints
+  output->request_offboard_setpoints = input->request_offboard_setpoints;
   return true;
 }
 
 px4_msgs__msg__RegisterExtComponentRequest *
-px4_msgs__msg__RegisterExtComponentRequest__create()
+px4_msgs__msg__RegisterExtComponentRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RegisterExtComponentRequest * msg = (px4_msgs__msg__RegisterExtComponentRequest *)allocator.allocate(sizeof(px4_msgs__msg__RegisterExtComponentRequest), allocator.state);

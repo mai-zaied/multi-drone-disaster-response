@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/DeviceInformation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/device_information.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__DEVICE_INFORMATION__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -174,10 +176,8 @@ typedef struct px4_msgs__msg__DeviceInformation
   uint64_t timestamp;
   /// Type of the device. Matches MAVLink DEVICE_TYPE enum
   uint8_t device_type;
-  /// Name of the device vendor
-  uint8_t vendor_name[32];
-  /// Name of the device model
-  uint8_t model_name[32];
+  /// Name of device e.g. DroneCAN node name
+  uint8_t name[80];
   /// [-] [@invalid 0 if not available] Unique device ID for the sensor. Does not change between power cycles.
   uint32_t device_id;
   /// [-] [@invalid empty if not available] Firmware version.

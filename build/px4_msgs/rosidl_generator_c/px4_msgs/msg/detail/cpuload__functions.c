@@ -73,7 +73,7 @@ px4_msgs__msg__Cpuload__copy(
 }
 
 px4_msgs__msg__Cpuload *
-px4_msgs__msg__Cpuload__create()
+px4_msgs__msg__Cpuload__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Cpuload * msg = (px4_msgs__msg__Cpuload *)allocator.allocate(sizeof(px4_msgs__msg__Cpuload), allocator.state);

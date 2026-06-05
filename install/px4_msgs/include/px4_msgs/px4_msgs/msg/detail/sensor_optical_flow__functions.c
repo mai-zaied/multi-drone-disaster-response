@@ -177,7 +177,7 @@ px4_msgs__msg__SensorOpticalFlow__copy(
 }
 
 px4_msgs__msg__SensorOpticalFlow *
-px4_msgs__msg__SensorOpticalFlow__create()
+px4_msgs__msg__SensorOpticalFlow__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorOpticalFlow * msg = (px4_msgs__msg__SensorOpticalFlow *)allocator.allocate(sizeof(px4_msgs__msg__SensorOpticalFlow), allocator.state);

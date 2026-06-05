@@ -7,17 +7,9 @@ module px4_msgs {
   module msg {
     module EscReport_Constants {
       const uint8 ACTUATOR_FUNCTION_MOTOR1 = 101;
-      const uint8 ACTUATOR_FUNCTION_MOTOR2 = 102;
-      const uint8 ACTUATOR_FUNCTION_MOTOR3 = 103;
-      const uint8 ACTUATOR_FUNCTION_MOTOR4 = 104;
-      const uint8 ACTUATOR_FUNCTION_MOTOR5 = 105;
-      const uint8 ACTUATOR_FUNCTION_MOTOR6 = 106;
-      const uint8 ACTUATOR_FUNCTION_MOTOR7 = 107;
-      const uint8 ACTUATOR_FUNCTION_MOTOR8 = 108;
-      const uint8 ACTUATOR_FUNCTION_MOTOR9 = 109;
-      const uint8 ACTUATOR_FUNCTION_MOTOR10 = 110;
-      const uint8 ACTUATOR_FUNCTION_MOTOR11 = 111;
-      const uint8 ACTUATOR_FUNCTION_MOTOR12 = 112;
+      @verbatim (language="comment", text=
+        "output_functions.yaml Motor.start + Motor.count - 1")
+      const uint8 ACTUATOR_FUNCTION_MOTOR_MAX = 112;
       @verbatim (language="comment", text=
         "(1 << 0)")
       const uint8 FAILURE_OVER_CURRENT = 0;
@@ -31,7 +23,7 @@ module px4_msgs {
         "(1 << 3)")
       const uint8 FAILURE_OVER_RPM = 3;
       @verbatim (language="comment", text=
-        "(1 << 4)  Set if ESC received an inconsistent command (i.e out of boundaries)")
+        "(1 << 4) Set if ESC received an inconsistent command (i.e out of boundaries)")
       const uint8 FAILURE_INCONSISTENT_CMD = 4;
       @verbatim (language="comment", text=
         "(1 << 5)")
@@ -54,16 +46,18 @@ module px4_msgs {
     };
     struct EscReport {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
         "Number of reported errors by ESC - if supported")
+      @unit (value="-")
       uint32 esc_errorcount;
 
       @verbatim (language="comment", text=
         "Motor RPM, negative for reverse rotation - if supported")
-      @unit (value="RPM")
+      @unit (value="rpm")
       int32 esc_rpm;
 
       @verbatim (language="comment", text=
@@ -82,27 +76,28 @@ module px4_msgs {
       float esc_temperature;
 
       @verbatim (language="comment", text=
-        "Address of current ESC (in most cases 1-8 / must be set by driver)")
-      uint8 esc_address;
-
-      @verbatim (language="comment", text=
-        "Counter of number of commands")
-      uint8 esc_cmdcount;
+        "Temperature measured from current motor - if supported")
+      @unit (value="degC")
+      int16 motor_temperature;
 
       @verbatim (language="comment", text=
         "State of ESC - depend on Vendor")
+      @unit (value="-")
       uint8 esc_state;
 
       @verbatim (language="comment", text=
-        "actuator output function (one of Motor1...MotorN)")
+        "Actuator output function (one of Motor1...MotorN)")
+      @unit (value="-")
       uint8 actuator_function;
 
       @verbatim (language="comment", text=
         "Bitmask to indicate the internal ESC faults")
+      @unit (value="@enum FAILURE")
       uint16 failures;
 
       @verbatim (language="comment", text=
-        "Applied power 0-100 in % (negative values reserved)")
+        "[@range 0,100] Applied power (negative values reserved)")
+      @unit (value="%")
       int8 esc_power;
     };
   };

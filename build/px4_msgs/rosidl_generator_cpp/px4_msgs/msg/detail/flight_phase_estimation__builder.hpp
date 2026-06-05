@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FlightPhaseEstimation.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/flight_phase_estimation.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FLIGHT_PHASE_ESTIMATION__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__FLIGHT_PHASE_ESTIMATION__BUILDER_HPP_
 

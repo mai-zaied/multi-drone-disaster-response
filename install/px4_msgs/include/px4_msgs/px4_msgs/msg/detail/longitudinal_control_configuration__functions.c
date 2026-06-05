@@ -129,7 +129,7 @@ px4_msgs__msg__LongitudinalControlConfiguration__copy(
 }
 
 px4_msgs__msg__LongitudinalControlConfiguration *
-px4_msgs__msg__LongitudinalControlConfiguration__create()
+px4_msgs__msg__LongitudinalControlConfiguration__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__LongitudinalControlConfiguration * msg = (px4_msgs__msg__LongitudinalControlConfiguration *)allocator.allocate(sizeof(px4_msgs__msg__LongitudinalControlConfiguration), allocator.state);

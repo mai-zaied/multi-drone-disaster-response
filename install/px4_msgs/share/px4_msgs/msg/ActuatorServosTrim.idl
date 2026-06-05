@@ -5,9 +5,9 @@
 
 module px4_msgs {
   module msg {
-    typedef float float__8[8];
+    typedef float float__15[15];
     module ActuatorServosTrim_Constants {
-      const uint8 NUM_CONTROLS = 8;
+      const uint8 NUM_CONTROLS = 15;
     };
     @verbatim (language="comment", text=
       "Servo trims, added as offset to servo outputs")
@@ -18,7 +18,7 @@ module px4_msgs {
 
       @verbatim (language="comment", text=
         "range: [-1, 1]")
-      float__8 trim;
+      float__15 trim;
     };
   };
 };

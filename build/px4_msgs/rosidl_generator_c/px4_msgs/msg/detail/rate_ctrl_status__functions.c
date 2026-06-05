@@ -81,7 +81,7 @@ px4_msgs__msg__RateCtrlStatus__copy(
 }
 
 px4_msgs__msg__RateCtrlStatus *
-px4_msgs__msg__RateCtrlStatus__create()
+px4_msgs__msg__RateCtrlStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RateCtrlStatus * msg = (px4_msgs__msg__RateCtrlStatus *)allocator.allocate(sizeof(px4_msgs__msg__RateCtrlStatus), allocator.state);

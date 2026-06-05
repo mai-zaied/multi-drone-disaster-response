@@ -122,7 +122,7 @@ module px4_msgs {
       float time_remaining_s;
 
       @verbatim (language="comment", text=
-        "[°C] [@invalid NaN] Temperature of the battery")
+        "[degC] [@invalid NaN] Temperature of the battery")
       float temperature;
 
       @verbatim (language="comment", text=
@@ -212,8 +212,7 @@ module px4_msgs {
       float full_charge_capacity_wh;
 
       @verbatim (language="comment", text=
-        "Compensated battery capacity remaining")
-      @unit (value="Wh")
+        "[Wh] [@invalid NaN] Compensated battery capacity remaining")
       float remaining_capacity_wh;
 
       @verbatim (language="comment", text=
@@ -222,8 +221,7 @@ module px4_msgs {
       uint16 over_discharge_count;
 
       @verbatim (language="comment", text=
-        "Nominal voltage of the battery pack")
-      @unit (value="V")
+        "[V] [@invalid NaN] Nominal voltage of the battery pack")
       float nominal_voltage;
 
       @verbatim (language="comment", text=

@@ -185,7 +185,7 @@ px4_msgs__msg__NavigatorMissionItem__copy(
 }
 
 px4_msgs__msg__NavigatorMissionItem *
-px4_msgs__msg__NavigatorMissionItem__create()
+px4_msgs__msg__NavigatorMissionItem__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__NavigatorMissionItem * msg = (px4_msgs__msg__NavigatorMissionItem *)allocator.allocate(sizeof(px4_msgs__msg__NavigatorMissionItem), allocator.state);

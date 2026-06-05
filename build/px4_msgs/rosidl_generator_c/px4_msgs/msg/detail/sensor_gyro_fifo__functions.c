@@ -133,7 +133,7 @@ px4_msgs__msg__SensorGyroFifo__copy(
 }
 
 px4_msgs__msg__SensorGyroFifo *
-px4_msgs__msg__SensorGyroFifo__create()
+px4_msgs__msg__SensorGyroFifo__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorGyroFifo * msg = (px4_msgs__msg__SensorGyroFifo *)allocator.allocate(sizeof(px4_msgs__msg__SensorGyroFifo), allocator.state);

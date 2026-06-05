@@ -89,7 +89,7 @@ px4_msgs__msg__VehicleAngularVelocity__copy(
 }
 
 px4_msgs__msg__VehicleAngularVelocity *
-px4_msgs__msg__VehicleAngularVelocity__create()
+px4_msgs__msg__VehicleAngularVelocity__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleAngularVelocity * msg = (px4_msgs__msg__VehicleAngularVelocity *)allocator.allocate(sizeof(px4_msgs__msg__VehicleAngularVelocity), allocator.state);

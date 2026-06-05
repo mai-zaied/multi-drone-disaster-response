@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _AutotuneAttitudeControlStatus__ros_msg_type = px4_msgs__msg__AutotuneAttitudeControlStatus;
 
-static bool _AutotuneAttitudeControlStatus__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__AutotuneAttitudeControlStatus(
+  const px4_msgs__msg__AutotuneAttitudeControlStatus * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _AutotuneAttitudeControlStatus__ros_msg_type * ros_message = static_cast<const _AutotuneAttitudeControlStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -58,14 +57,14 @@ static bool _AutotuneAttitudeControlStatus__cdr_serialize(
   {
     size_t size = 5;
     auto array_ptr = ros_message->coeff;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: coeff_var
   {
     size_t size = 5;
     auto array_ptr = ros_message->coeff_var;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: fitness
@@ -112,7 +111,7 @@ static bool _AutotuneAttitudeControlStatus__cdr_serialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->rate_sp;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: u_filt
@@ -133,15 +132,11 @@ static bool _AutotuneAttitudeControlStatus__cdr_serialize(
   return true;
 }
 
-static bool _AutotuneAttitudeControlStatus__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__AutotuneAttitudeControlStatus(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__AutotuneAttitudeControlStatus * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _AutotuneAttitudeControlStatus__ros_msg_type * ros_message = static_cast<_AutotuneAttitudeControlStatus__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -151,14 +146,14 @@ static bool _AutotuneAttitudeControlStatus__cdr_deserialize(
   {
     size_t size = 5;
     auto array_ptr = ros_message->coeff;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: coeff_var
   {
     size_t size = 5;
     auto array_ptr = ros_message->coeff_var;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: fitness
@@ -205,7 +200,7 @@ static bool _AutotuneAttitudeControlStatus__cdr_deserialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->rate_sp;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: u_filt
@@ -226,6 +221,7 @@ static bool _AutotuneAttitudeControlStatus__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
   const void * untyped_ros_message,
@@ -240,13 +236,14 @@ size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name coeff
+
+  // Field name: coeff
   {
     size_t array_size = 5;
     auto array_ptr = ros_message->coeff;
@@ -255,7 +252,8 @@ size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name coeff_var
+
+  // Field name: coeff_var
   {
     size_t array_size = 5;
     auto array_ptr = ros_message->coeff_var;
@@ -264,55 +262,64 @@ size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name fitness
+
+  // Field name: fitness
   {
     size_t item_size = sizeof(ros_message->fitness);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name innov
+
+  // Field name: innov
   {
     size_t item_size = sizeof(ros_message->innov);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name dt_model
+
+  // Field name: dt_model
   {
     size_t item_size = sizeof(ros_message->dt_model);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name kc
+
+  // Field name: kc
   {
     size_t item_size = sizeof(ros_message->kc);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name ki
+
+  // Field name: ki
   {
     size_t item_size = sizeof(ros_message->ki);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name kd
+
+  // Field name: kd
   {
     size_t item_size = sizeof(ros_message->kd);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name kff
+
+  // Field name: kff
   {
     size_t item_size = sizeof(ros_message->kff);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name att_p
+
+  // Field name: att_p
   {
     size_t item_size = sizeof(ros_message->att_p);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name rate_sp
+
+  // Field name: rate_sp
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->rate_sp;
@@ -321,19 +328,22 @@ size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name u_filt
+
+  // Field name: u_filt
   {
     size_t item_size = sizeof(ros_message->u_filt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name y_filt
+
+  // Field name: y_filt
   {
     size_t item_size = sizeof(ros_message->y_filt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name state
+
+  // Field name: state
   {
     size_t item_size = sizeof(ros_message->state);
     current_alignment += item_size +
@@ -343,12 +353,6 @@ size_t get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _AutotuneAttitudeControlStatus__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
@@ -368,122 +372,494 @@ size_t max_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: coeff
+
+  // Field name: coeff
   {
     size_t array_size = 5;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: coeff_var
+
+  // Field name: coeff_var
   {
     size_t array_size = 5;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: fitness
+
+  // Field name: fitness
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: innov
+
+  // Field name: innov
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: dt_model
+
+  // Field name: dt_model
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: kc
+
+  // Field name: kc
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: ki
+
+  // Field name: ki
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: kd
+
+  // Field name: kd
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: kff
+
+  // Field name: kff
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: att_p
+
+  // Field name: att_p
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: rate_sp
+
+  // Field name: rate_sp
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: u_filt
+
+  // Field name: u_filt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: y_filt
+
+  // Field name: y_filt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: state
+
+  // Field name: state
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__AutotuneAttitudeControlStatus;
+    is_plain =
+      (
+      offsetof(DataType, state) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__AutotuneAttitudeControlStatus(
+  const px4_msgs__msg__AutotuneAttitudeControlStatus * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: coeff
+  {
+    size_t size = 5;
+    auto array_ptr = ros_message->coeff;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: coeff_var
+  {
+    size_t size = 5;
+    auto array_ptr = ros_message->coeff_var;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: fitness
+  {
+    cdr << ros_message->fitness;
+  }
+
+  // Field name: innov
+  {
+    cdr << ros_message->innov;
+  }
+
+  // Field name: dt_model
+  {
+    cdr << ros_message->dt_model;
+  }
+
+  // Field name: kc
+  {
+    cdr << ros_message->kc;
+  }
+
+  // Field name: ki
+  {
+    cdr << ros_message->ki;
+  }
+
+  // Field name: kd
+  {
+    cdr << ros_message->kd;
+  }
+
+  // Field name: kff
+  {
+    cdr << ros_message->kff;
+  }
+
+  // Field name: att_p
+  {
+    cdr << ros_message->att_p;
+  }
+
+  // Field name: rate_sp
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->rate_sp;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: u_filt
+  {
+    cdr << ros_message->u_filt;
+  }
+
+  // Field name: y_filt
+  {
+    cdr << ros_message->y_filt;
+  }
+
+  // Field name: state
+  {
+    cdr << ros_message->state;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__AutotuneAttitudeControlStatus(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _AutotuneAttitudeControlStatus__ros_msg_type * ros_message = static_cast<const _AutotuneAttitudeControlStatus__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: coeff
+  {
+    size_t array_size = 5;
+    auto array_ptr = ros_message->coeff;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: coeff_var
+  {
+    size_t array_size = 5;
+    auto array_ptr = ros_message->coeff_var;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fitness
+  {
+    size_t item_size = sizeof(ros_message->fitness);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: innov
+  {
+    size_t item_size = sizeof(ros_message->innov);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: dt_model
+  {
+    size_t item_size = sizeof(ros_message->dt_model);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: kc
+  {
+    size_t item_size = sizeof(ros_message->kc);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: ki
+  {
+    size_t item_size = sizeof(ros_message->ki);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: kd
+  {
+    size_t item_size = sizeof(ros_message->kd);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: kff
+  {
+    size_t item_size = sizeof(ros_message->kff);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: att_p
+  {
+    size_t item_size = sizeof(ros_message->att_p);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: rate_sp
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->rate_sp;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: u_filt
+  {
+    size_t item_size = sizeof(ros_message->u_filt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: y_filt
+  {
+    size_t item_size = sizeof(ros_message->y_filt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: state
+  {
+    size_t item_size = sizeof(ros_message->state);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__AutotuneAttitudeControlStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: coeff
+  {
+    size_t array_size = 5;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: coeff_var
+  {
+    size_t array_size = 5;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: fitness
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: innov
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: dt_model
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: kc
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: ki
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: kd
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: kff
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: att_p
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: rate_sp
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: u_filt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: y_filt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: state
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -500,8 +876,41 @@ size_t max_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _AutotuneAttitudeControlStatus__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__AutotuneAttitudeControlStatus * ros_message = static_cast<const px4_msgs__msg__AutotuneAttitudeControlStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__AutotuneAttitudeControlStatus(ros_message, cdr);
+}
+
+static bool _AutotuneAttitudeControlStatus__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__AutotuneAttitudeControlStatus * ros_message = static_cast<px4_msgs__msg__AutotuneAttitudeControlStatus *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__AutotuneAttitudeControlStatus(cdr, ros_message);
+}
+
+static uint32_t _AutotuneAttitudeControlStatus__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__AutotuneAttitudeControlStatus(
+      untyped_ros_message, 0));
 }
 
 static size_t _AutotuneAttitudeControlStatus__max_serialized_size(char & bounds_info)
@@ -526,13 +935,17 @@ static message_type_support_callbacks_t __callbacks_AutotuneAttitudeControlStatu
   _AutotuneAttitudeControlStatus__cdr_serialize,
   _AutotuneAttitudeControlStatus__cdr_deserialize,
   _AutotuneAttitudeControlStatus__get_serialized_size,
-  _AutotuneAttitudeControlStatus__max_serialized_size
+  _AutotuneAttitudeControlStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _AutotuneAttitudeControlStatus__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_AutotuneAttitudeControlStatus,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__AutotuneAttitudeControlStatus__get_type_hash,
+  &px4_msgs__msg__AutotuneAttitudeControlStatus__get_type_description,
+  &px4_msgs__msg__AutotuneAttitudeControlStatus__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

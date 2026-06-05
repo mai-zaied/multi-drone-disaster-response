@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleLocalPosition.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_local_position.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_LOCAL_POSITION__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_LOCAL_POSITION__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -136,7 +138,7 @@ typedef struct px4_msgs__msg__VehicleLocalPosition
   bool dist_bottom_valid;
   /// Distance from from bottom surface to ground, (metres)
   float dist_bottom;
-  /// terrain estimate variance (m^2)
+  /// height above ground estimate variance (m^2)
   float dist_bottom_var;
   /// Amount of vertical shift of dist bottom estimate in latest reset
   float delta_dist_bottom;

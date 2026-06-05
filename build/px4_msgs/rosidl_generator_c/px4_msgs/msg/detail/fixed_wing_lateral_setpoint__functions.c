@@ -81,7 +81,7 @@ px4_msgs__msg__FixedWingLateralSetpoint__copy(
 }
 
 px4_msgs__msg__FixedWingLateralSetpoint *
-px4_msgs__msg__FixedWingLateralSetpoint__create()
+px4_msgs__msg__FixedWingLateralSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FixedWingLateralSetpoint * msg = (px4_msgs__msg__FixedWingLateralSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__FixedWingLateralSetpoint), allocator.state);

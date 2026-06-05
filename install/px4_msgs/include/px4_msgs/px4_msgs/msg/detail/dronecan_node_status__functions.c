@@ -105,7 +105,7 @@ px4_msgs__msg__DronecanNodeStatus__copy(
 }
 
 px4_msgs__msg__DronecanNodeStatus *
-px4_msgs__msg__DronecanNodeStatus__create()
+px4_msgs__msg__DronecanNodeStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DronecanNodeStatus * msg = (px4_msgs__msg__DronecanNodeStatus *)allocator.allocate(sizeof(px4_msgs__msg__DronecanNodeStatus), allocator.state);

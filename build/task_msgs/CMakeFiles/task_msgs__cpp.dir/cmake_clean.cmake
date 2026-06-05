@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/task_msgs/msg/detail/task__struct.hpp"
   "rosidl_generator_cpp/task_msgs/msg/detail/task__traits.hpp"
   "rosidl_generator_cpp/task_msgs/msg/detail/task__type_support.hpp"
+  "rosidl_generator_cpp/task_msgs/msg/rosidl_generator_cpp__visibility_control.hpp"
   "rosidl_generator_cpp/task_msgs/msg/task.hpp"
 )
 

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/QshellReq.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/qshell_req.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__QSHELL_REQ__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__QSHELL_REQ__TRAITS_HPP_
 

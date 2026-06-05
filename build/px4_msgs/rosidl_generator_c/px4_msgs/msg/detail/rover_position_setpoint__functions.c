@@ -105,7 +105,7 @@ px4_msgs__msg__RoverPositionSetpoint__copy(
 }
 
 px4_msgs__msg__RoverPositionSetpoint *
-px4_msgs__msg__RoverPositionSetpoint__create()
+px4_msgs__msg__RoverPositionSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RoverPositionSetpoint * msg = (px4_msgs__msg__RoverPositionSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__RoverPositionSetpoint), allocator.state);

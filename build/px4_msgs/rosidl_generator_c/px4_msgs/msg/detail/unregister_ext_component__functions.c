@@ -93,7 +93,7 @@ px4_msgs__msg__UnregisterExtComponent__copy(
 }
 
 px4_msgs__msg__UnregisterExtComponent *
-px4_msgs__msg__UnregisterExtComponent__create()
+px4_msgs__msg__UnregisterExtComponent__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__UnregisterExtComponent * msg = (px4_msgs__msg__UnregisterExtComponent *)allocator.allocate(sizeof(px4_msgs__msg__UnregisterExtComponent), allocator.state);

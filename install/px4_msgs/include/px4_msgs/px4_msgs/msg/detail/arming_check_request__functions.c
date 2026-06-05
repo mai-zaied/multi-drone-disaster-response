@@ -73,7 +73,7 @@ px4_msgs__msg__ArmingCheckRequest__copy(
 }
 
 px4_msgs__msg__ArmingCheckRequest *
-px4_msgs__msg__ArmingCheckRequest__create()
+px4_msgs__msg__ArmingCheckRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ArmingCheckRequest * msg = (px4_msgs__msg__ArmingCheckRequest *)allocator.allocate(sizeof(px4_msgs__msg__ArmingCheckRequest), allocator.state);

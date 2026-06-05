@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ManualControlSwitches.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/manual_control_switches.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__MANUAL_CONTROL_SWITCHES__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__MANUAL_CONTROL_SWITCHES__BUILDER_HPP_
 

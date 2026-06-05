@@ -117,7 +117,7 @@ px4_msgs__msg__GimbalDeviceSetAttitude__copy(
 }
 
 px4_msgs__msg__GimbalDeviceSetAttitude *
-px4_msgs__msg__GimbalDeviceSetAttitude__create()
+px4_msgs__msg__GimbalDeviceSetAttitude__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GimbalDeviceSetAttitude * msg = (px4_msgs__msg__GimbalDeviceSetAttitude *)allocator.allocate(sizeof(px4_msgs__msg__GimbalDeviceSetAttitude), allocator.state);

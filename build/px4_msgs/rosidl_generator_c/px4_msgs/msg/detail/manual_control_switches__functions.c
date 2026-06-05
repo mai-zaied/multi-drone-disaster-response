@@ -177,7 +177,7 @@ px4_msgs__msg__ManualControlSwitches__copy(
 }
 
 px4_msgs__msg__ManualControlSwitches *
-px4_msgs__msg__ManualControlSwitches__create()
+px4_msgs__msg__ManualControlSwitches__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ManualControlSwitches * msg = (px4_msgs__msg__ManualControlSwitches *)allocator.allocate(sizeof(px4_msgs__msg__ManualControlSwitches), allocator.state);

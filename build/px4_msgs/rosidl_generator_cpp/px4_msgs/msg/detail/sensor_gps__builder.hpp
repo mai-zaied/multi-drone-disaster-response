@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/SensorGps.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_gps.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_GPS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_GPS__BUILDER_HPP_
 
@@ -21,16 +24,64 @@ namespace msg
 namespace builder
 {
 
+class Init_SensorGps_antenna_offset_z
+{
+public:
+  explicit Init_SensorGps_antenna_offset_z(::px4_msgs::msg::SensorGps & msg)
+  : msg_(msg)
+  {}
+  ::px4_msgs::msg::SensorGps antenna_offset_z(::px4_msgs::msg::SensorGps::_antenna_offset_z_type arg)
+  {
+    msg_.antenna_offset_z = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::SensorGps msg_;
+};
+
+class Init_SensorGps_antenna_offset_y
+{
+public:
+  explicit Init_SensorGps_antenna_offset_y(::px4_msgs::msg::SensorGps & msg)
+  : msg_(msg)
+  {}
+  Init_SensorGps_antenna_offset_z antenna_offset_y(::px4_msgs::msg::SensorGps::_antenna_offset_y_type arg)
+  {
+    msg_.antenna_offset_y = std::move(arg);
+    return Init_SensorGps_antenna_offset_z(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::SensorGps msg_;
+};
+
+class Init_SensorGps_antenna_offset_x
+{
+public:
+  explicit Init_SensorGps_antenna_offset_x(::px4_msgs::msg::SensorGps & msg)
+  : msg_(msg)
+  {}
+  Init_SensorGps_antenna_offset_y antenna_offset_x(::px4_msgs::msg::SensorGps::_antenna_offset_x_type arg)
+  {
+    msg_.antenna_offset_x = std::move(arg);
+    return Init_SensorGps_antenna_offset_y(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::SensorGps msg_;
+};
+
 class Init_SensorGps_rtcm_msg_used
 {
 public:
   explicit Init_SensorGps_rtcm_msg_used(::px4_msgs::msg::SensorGps & msg)
   : msg_(msg)
   {}
-  ::px4_msgs::msg::SensorGps rtcm_msg_used(::px4_msgs::msg::SensorGps::_rtcm_msg_used_type arg)
+  Init_SensorGps_antenna_offset_x rtcm_msg_used(::px4_msgs::msg::SensorGps::_rtcm_msg_used_type arg)
   {
     msg_.rtcm_msg_used = std::move(arg);
-    return std::move(msg_);
+    return Init_SensorGps_antenna_offset_x(msg_);
   }
 
 private:

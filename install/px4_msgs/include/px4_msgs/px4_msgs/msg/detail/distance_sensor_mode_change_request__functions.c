@@ -65,7 +65,7 @@ px4_msgs__msg__DistanceSensorModeChangeRequest__copy(
 }
 
 px4_msgs__msg__DistanceSensorModeChangeRequest *
-px4_msgs__msg__DistanceSensorModeChangeRequest__create()
+px4_msgs__msg__DistanceSensorModeChangeRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DistanceSensorModeChangeRequest * msg = (px4_msgs__msg__DistanceSensorModeChangeRequest *)allocator.allocate(sizeof(px4_msgs__msg__DistanceSensorModeChangeRequest), allocator.state);

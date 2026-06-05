@@ -73,7 +73,7 @@ px4_msgs__msg__TiltrotorExtraControls__copy(
 }
 
 px4_msgs__msg__TiltrotorExtraControls *
-px4_msgs__msg__TiltrotorExtraControls__create()
+px4_msgs__msg__TiltrotorExtraControls__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TiltrotorExtraControls * msg = (px4_msgs__msg__TiltrotorExtraControls *)allocator.allocate(sizeof(px4_msgs__msg__TiltrotorExtraControls), allocator.state);

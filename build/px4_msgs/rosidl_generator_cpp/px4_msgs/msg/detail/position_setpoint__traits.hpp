@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/PositionSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/position_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__TRAITS_HPP_
 
@@ -141,6 +144,13 @@ inline void to_flow_style_yaml(
   {
     out << "alt_acceptance_radius: ";
     rosidl_generator_traits::value_to_yaml(msg.alt_acceptance_radius, out);
+    out << ", ";
+  }
+
+  // member: course
+  {
+    out << "course: ";
+    rosidl_generator_traits::value_to_yaml(msg.course, out);
     out << ", ";
   }
 
@@ -337,6 +347,16 @@ inline void to_block_style_yaml(
     }
     out << "alt_acceptance_radius: ";
     rosidl_generator_traits::value_to_yaml(msg.alt_acceptance_radius, out);
+    out << "\n";
+  }
+
+  // member: course
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "course: ";
+    rosidl_generator_traits::value_to_yaml(msg.course, out);
     out << "\n";
   }
 

@@ -60,6 +60,10 @@ module px4_msgs {
       @verbatim (language="comment", text=
         "Bitmaks of motors stopped by failure injection")
       uint16 motor_stop_mask;
+
+      @verbatim (language="comment", text=
+        "True while an actuator group preflight check (VEHICLE_CMD_ACTUATOR_GROUP_TEST) is overriding the torque/thrust setpoint or collective-tilt")
+      boolean actuator_group_preflight_check_active;
     };
   };
 };

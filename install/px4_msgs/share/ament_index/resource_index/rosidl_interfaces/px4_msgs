@@ -28,6 +28,8 @@ msg/ArmingCheckRequest.idl
 msg/ArmingCheckRequest.msg
 msg/AutotuneAttitudeControlStatus.idl
 msg/AutotuneAttitudeControlStatus.msg
+msg/AuxGlobalPosition.idl
+msg/AuxGlobalPosition.msg
 msg/BatteryInfo.idl
 msg/BatteryInfo.msg
 msg/BatteryStatus.idl
@@ -76,6 +78,10 @@ msg/DronecanNodeStatus.idl
 msg/DronecanNodeStatus.msg
 msg/Ekf2Timestamps.idl
 msg/Ekf2Timestamps.msg
+msg/EscEepromRead.idl
+msg/EscEepromRead.msg
+msg/EscEepromWrite.idl
+msg/EscEepromWrite.msg
 msg/EscReport.idl
 msg/EscReport.msg
 msg/EscStatus.idl
@@ -92,6 +98,8 @@ msg/EstimatorBias3d.idl
 msg/EstimatorBias3d.msg
 msg/EstimatorEventFlags.idl
 msg/EstimatorEventFlags.msg
+msg/EstimatorFusionControl.idl
+msg/EstimatorFusionControl.msg
 msg/EstimatorGpsStatus.idl
 msg/EstimatorGpsStatus.msg
 msg/EstimatorInnovations.idl
@@ -112,6 +120,10 @@ msg/FailsafeFlags.idl
 msg/FailsafeFlags.msg
 msg/FailureDetectorStatus.idl
 msg/FailureDetectorStatus.msg
+msg/FiducialMarkerPosReport.idl
+msg/FiducialMarkerPosReport.msg
+msg/FiducialMarkerYawReport.idl
+msg/FiducialMarkerYawReport.msg
 msg/FigureEightStatus.idl
 msg/FigureEightStatus.msg
 msg/FixedWingLateralGuidanceStatus.idl
@@ -292,6 +304,8 @@ msg/PowerMonitor.idl
 msg/PowerMonitor.msg
 msg/PpsCapture.idl
 msg/PpsCapture.msg
+msg/PrecLandStatus.idl
+msg/PrecLandStatus.msg
 msg/PurePursuitStatus.idl
 msg/PurePursuitStatus.msg
 msg/PwmInput.idl
@@ -304,6 +318,8 @@ msg/QshellRetval.idl
 msg/QshellRetval.msg
 msg/RadioStatus.idl
 msg/RadioStatus.msg
+msg/RangingBeacon.idl
+msg/RangingBeacon.msg
 msg/RaptorInput.idl
 msg/RaptorInput.msg
 msg/RaptorStatus.idl
@@ -390,6 +406,8 @@ msg/SystemPower.idl
 msg/SystemPower.msg
 msg/TakeoffStatus.idl
 msg/TakeoffStatus.msg
+msg/TargetGnss.idl
+msg/TargetGnss.msg
 msg/TaskStackInfo.idl
 msg/TaskStackInfo.msg
 msg/TecsStatus.idl
@@ -470,6 +488,18 @@ msg/VehicleTorqueSetpoint.idl
 msg/VehicleTorqueSetpoint.msg
 msg/VelocityLimits.idl
 msg/VelocityLimits.msg
+msg/VteAidSource1d.idl
+msg/VteAidSource1d.msg
+msg/VteAidSource3d.idl
+msg/VteAidSource3d.msg
+msg/VteBiasInitStatus.idl
+msg/VteBiasInitStatus.msg
+msg/VteInput.idl
+msg/VteInput.msg
+msg/VteOrientation.idl
+msg/VteOrientation.msg
+msg/VtePosition.idl
+msg/VtePosition.msg
 msg/VtolVehicleStatus.idl
 msg/VtolVehicleStatus.msg
 msg/Vtx.idl
@@ -482,5 +512,3 @@ msg/YawEstimatorStatus.idl
 msg/YawEstimatorStatus.msg
 srv/VehicleCommand.idl
 srv/VehicleCommand.srv
-srv/VehicleCommand_Request.msg
-srv/VehicleCommand_Response.msg

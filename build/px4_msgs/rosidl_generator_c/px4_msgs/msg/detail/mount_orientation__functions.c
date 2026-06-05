@@ -69,7 +69,7 @@ px4_msgs__msg__MountOrientation__copy(
 }
 
 px4_msgs__msg__MountOrientation *
-px4_msgs__msg__MountOrientation__create()
+px4_msgs__msg__MountOrientation__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MountOrientation * msg = (px4_msgs__msg__MountOrientation *)allocator.allocate(sizeof(px4_msgs__msg__MountOrientation), allocator.state);

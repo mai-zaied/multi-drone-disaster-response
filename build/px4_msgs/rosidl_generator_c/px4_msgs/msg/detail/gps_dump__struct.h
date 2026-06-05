@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GpsDump.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gps_dump.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GPS_DUMP__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__GPS_DUMP__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 

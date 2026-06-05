@@ -82,6 +82,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__OrbTestL
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -99,6 +100,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__OrbTestL
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -116,6 +118,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__OrbTestL
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     true,  // is array
     512,  // array size
     false,  // is upper bound
@@ -135,6 +138,7 @@ static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__O
   "OrbTestLarge",  // message name
   3,  // number of fields
   sizeof(px4_msgs__msg__OrbTestLarge),
+  false,  // has_any_key_member_
   px4_msgs__msg__OrbTestLarge__rosidl_typesupport_introspection_c__OrbTestLarge_message_member_array,  // message members
   px4_msgs__msg__OrbTestLarge__rosidl_typesupport_introspection_c__OrbTestLarge_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__OrbTestLarge__rosidl_typesupport_introspection_c__OrbTestLarge_fini_function  // function to terminate message instance (will not free memory)
@@ -146,6 +150,9 @@ static rosidl_message_type_support_t px4_msgs__msg__OrbTestLarge__rosidl_typesup
   0,
   &px4_msgs__msg__OrbTestLarge__rosidl_typesupport_introspection_c__OrbTestLarge_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__OrbTestLarge__get_type_hash,
+  &px4_msgs__msg__OrbTestLarge__get_type_description,
+  &px4_msgs__msg__OrbTestLarge__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs

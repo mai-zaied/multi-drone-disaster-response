@@ -2,6 +2,9 @@
 // with input from task_msgs:msg/Task.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "task_msgs/msg/task.h"
+
+
 #ifndef TASK_MSGS__MSG__DETAIL__TASK__FUNCTIONS_H_
 #define TASK_MSGS__MSG__DETAIL__TASK__FUNCTIONS_H_
 
@@ -13,6 +16,12 @@ extern "C"
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "rosidl_runtime_c/action_type_support_struct.h"
+#include "rosidl_runtime_c/message_type_support_struct.h"
+#include "rosidl_runtime_c/service_type_support_struct.h"
+#include "rosidl_runtime_c/type_description/type_description__struct.h"
+#include "rosidl_runtime_c/type_description/type_source__struct.h"
+#include "rosidl_runtime_c/type_hash.h"
 #include "rosidl_runtime_c/visibility_control.h"
 #include "task_msgs/msg/rosidl_generator_c__visibility_control.h"
 
@@ -53,7 +62,7 @@ task_msgs__msg__Task__fini(task_msgs__msg__Task * msg);
  */
 ROSIDL_GENERATOR_C_PUBLIC_task_msgs
 task_msgs__msg__Task *
-task_msgs__msg__Task__create();
+task_msgs__msg__Task__create(void);
 
 /// Destroy msg/Task message.
 /**
@@ -92,6 +101,30 @@ bool
 task_msgs__msg__Task__copy(
   const task_msgs__msg__Task * input,
   task_msgs__msg__Task * output);
+
+/// Retrieve pointer to the hash of the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_task_msgs
+const rosidl_type_hash_t *
+task_msgs__msg__Task__get_type_hash(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_task_msgs
+const rosidl_runtime_c__type_description__TypeDescription *
+task_msgs__msg__Task__get_type_description(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the single raw source text that defined this type.
+ROSIDL_GENERATOR_C_PUBLIC_task_msgs
+const rosidl_runtime_c__type_description__TypeSource *
+task_msgs__msg__Task__get_individual_type_description_source(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the recursive raw sources that defined the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_task_msgs
+const rosidl_runtime_c__type_description__TypeSource__Sequence *
+task_msgs__msg__Task__get_type_description_sources(
+  const rosidl_message_type_support_t * type_support);
 
 /// Initialize array of msg/Task messages.
 /**

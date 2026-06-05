@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/HealthReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/health_report.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__HEALTH_REPORT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__HEALTH_REPORT__BUILDER_HPP_
 

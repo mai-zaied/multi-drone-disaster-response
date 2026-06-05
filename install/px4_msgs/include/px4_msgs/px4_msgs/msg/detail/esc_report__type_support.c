@@ -31,12 +31,13 @@ void px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_fin
   px4_msgs__msg__EscReport__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_message_member_array[12] = {
+static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_message_member_array[11] = {
   {
     "timestamp",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -54,6 +55,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -71,6 +73,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -88,6 +91,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -105,6 +109,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -122,6 +127,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -135,31 +141,15 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     NULL  // resize(index) function pointer
   },
   {
-    "esc_address",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
+    "motor_temperature",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT16,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(px4_msgs__msg__EscReport, esc_address),  // bytes offset in struct
-    NULL,  // default value
-    NULL,  // size() function pointer
-    NULL,  // get_const(index) function pointer
-    NULL,  // get(index) function pointer
-    NULL,  // fetch(index, &value) function pointer
-    NULL,  // assign(index, value) function pointer
-    NULL  // resize(index) function pointer
-  },
-  {
-    "esc_cmdcount",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
-    0,  // upper bound of string
-    NULL,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(px4_msgs__msg__EscReport, esc_cmdcount),  // bytes offset in struct
+    offsetof(px4_msgs__msg__EscReport, motor_temperature),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -173,6 +163,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -190,6 +181,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -207,6 +199,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT16,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -224,6 +217,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
     rosidl_typesupport_introspection_c__ROS_TYPE_INT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -241,8 +235,9 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__EscRepor
 static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_message_members = {
   "px4_msgs__msg",  // message namespace
   "EscReport",  // message name
-  12,  // number of fields
+  11,  // number of fields
   sizeof(px4_msgs__msg__EscReport),
+  false,  // has_any_key_member_
   px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_message_member_array,  // message members
   px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_fini_function  // function to terminate message instance (will not free memory)
@@ -254,6 +249,9 @@ static rosidl_message_type_support_t px4_msgs__msg__EscReport__rosidl_typesuppor
   0,
   &px4_msgs__msg__EscReport__rosidl_typesupport_introspection_c__EscReport_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__EscReport__get_type_hash,
+  &px4_msgs__msg__EscReport__get_type_description,
+  &px4_msgs__msg__EscReport__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs
