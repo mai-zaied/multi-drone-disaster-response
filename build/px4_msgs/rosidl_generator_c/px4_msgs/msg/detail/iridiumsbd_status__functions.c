@@ -169,7 +169,7 @@ px4_msgs__msg__IridiumsbdStatus__copy(
 }
 
 px4_msgs__msg__IridiumsbdStatus *
-px4_msgs__msg__IridiumsbdStatus__create()
+px4_msgs__msg__IridiumsbdStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__IridiumsbdStatus * msg = (px4_msgs__msg__IridiumsbdStatus *)allocator.allocate(sizeof(px4_msgs__msg__IridiumsbdStatus), allocator.state);

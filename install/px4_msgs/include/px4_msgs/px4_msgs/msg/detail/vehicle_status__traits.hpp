@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__TRAITS_HPP_
 
@@ -95,6 +98,20 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: nav_state_display
+  {
+    out << "nav_state_display: ";
+    rosidl_generator_traits::value_to_yaml(msg.nav_state_display, out);
+    out << ", ";
+  }
+
+  // member: accepts_offboard_setpoints
+  {
+    out << "accepts_offboard_setpoints: ";
+    rosidl_generator_traits::value_to_yaml(msg.accepts_offboard_setpoints, out);
+    out << ", ";
+  }
+
   // member: valid_nav_states_mask
   {
     out << "valid_nav_states_mask: ";
@@ -106,13 +123,6 @@ inline void to_flow_style_yaml(
   {
     out << "can_set_nav_states_mask: ";
     rosidl_generator_traits::value_to_yaml(msg.can_set_nav_states_mask, out);
-    out << ", ";
-  }
-
-  // member: failure_detector_status
-  {
-    out << "failure_detector_status: ";
-    rosidl_generator_traits::value_to_yaml(msg.failure_detector_status, out);
     out << ", ";
   }
 
@@ -274,6 +284,13 @@ inline void to_flow_style_yaml(
   {
     out << "parachute_system_healthy: ";
     rosidl_generator_traits::value_to_yaml(msg.parachute_system_healthy, out);
+    out << ", ";
+  }
+
+  // member: traffic_avoidance_system_present
+  {
+    out << "traffic_avoidance_system_present: ";
+    rosidl_generator_traits::value_to_yaml(msg.traffic_avoidance_system_present, out);
     out << ", ";
   }
 
@@ -403,6 +420,26 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
+  // member: nav_state_display
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "nav_state_display: ";
+    rosidl_generator_traits::value_to_yaml(msg.nav_state_display, out);
+    out << "\n";
+  }
+
+  // member: accepts_offboard_setpoints
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "accepts_offboard_setpoints: ";
+    rosidl_generator_traits::value_to_yaml(msg.accepts_offboard_setpoints, out);
+    out << "\n";
+  }
+
   // member: valid_nav_states_mask
   {
     if (indentation > 0) {
@@ -420,16 +457,6 @@ inline void to_block_style_yaml(
     }
     out << "can_set_nav_states_mask: ";
     rosidl_generator_traits::value_to_yaml(msg.can_set_nav_states_mask, out);
-    out << "\n";
-  }
-
-  // member: failure_detector_status
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "failure_detector_status: ";
-    rosidl_generator_traits::value_to_yaml(msg.failure_detector_status, out);
     out << "\n";
   }
 
@@ -660,6 +687,16 @@ inline void to_block_style_yaml(
     }
     out << "parachute_system_healthy: ";
     rosidl_generator_traits::value_to_yaml(msg.parachute_system_healthy, out);
+    out << "\n";
+  }
+
+  // member: traffic_avoidance_system_present
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "traffic_avoidance_system_present: ";
+    rosidl_generator_traits::value_to_yaml(msg.traffic_avoidance_system_present, out);
     out << "\n";
   }
 

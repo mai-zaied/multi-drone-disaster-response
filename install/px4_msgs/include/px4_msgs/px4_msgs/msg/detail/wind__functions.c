@@ -129,7 +129,7 @@ px4_msgs__msg__Wind__copy(
 }
 
 px4_msgs__msg__Wind *
-px4_msgs__msg__Wind__create()
+px4_msgs__msg__Wind__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Wind * msg = (px4_msgs__msg__Wind *)allocator.allocate(sizeof(px4_msgs__msg__Wind), allocator.state);

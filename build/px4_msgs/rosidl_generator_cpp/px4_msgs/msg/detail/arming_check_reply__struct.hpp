@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/ArmingCheckReply.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/arming_check_reply.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ARMING_CHECK_REPLY__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ARMING_CHECK_REPLY__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -295,7 +299,7 @@ struct ArmingCheckReply_
   static constexpr uint8_t HEALTH_COMPONENT_INDEX_NONE =
     0u;
   static constexpr uint8_t ORB_QUEUE_LENGTH =
-    4u;
+    8u;
 
   // pointer types
   using RawPtr =

@@ -113,7 +113,7 @@ px4_msgs__msg__RadioStatus__copy(
 }
 
 px4_msgs__msg__RadioStatus *
-px4_msgs__msg__RadioStatus__create()
+px4_msgs__msg__RadioStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RadioStatus * msg = (px4_msgs__msg__RadioStatus *)allocator.allocate(sizeof(px4_msgs__msg__RadioStatus), allocator.state);

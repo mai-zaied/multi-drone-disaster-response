@@ -117,7 +117,7 @@ px4_msgs__msg__MagnetometerBiasEstimate__copy(
 }
 
 px4_msgs__msg__MagnetometerBiasEstimate *
-px4_msgs__msg__MagnetometerBiasEstimate__create()
+px4_msgs__msg__MagnetometerBiasEstimate__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MagnetometerBiasEstimate * msg = (px4_msgs__msg__MagnetometerBiasEstimate *)allocator.allocate(sizeof(px4_msgs__msg__MagnetometerBiasEstimate), allocator.state);

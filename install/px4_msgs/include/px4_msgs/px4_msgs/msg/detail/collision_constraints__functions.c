@@ -81,7 +81,7 @@ px4_msgs__msg__CollisionConstraints__copy(
 }
 
 px4_msgs__msg__CollisionConstraints *
-px4_msgs__msg__CollisionConstraints__create()
+px4_msgs__msg__CollisionConstraints__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__CollisionConstraints * msg = (px4_msgs__msg__CollisionConstraints *)allocator.allocate(sizeof(px4_msgs__msg__CollisionConstraints), allocator.state);

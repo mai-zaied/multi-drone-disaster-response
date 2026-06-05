@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/DistanceSensorModeChangeRequest.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/distance_sensor_mode_change_request.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DISTANCE_SENSOR_MODE_CHANGE_REQUEST__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__DISTANCE_SENSOR_MODE_CHANGE_REQUEST__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   DistanceSensorModeChangeRequest
-)();
+)(void);
 
 #ifdef __cplusplus
 }

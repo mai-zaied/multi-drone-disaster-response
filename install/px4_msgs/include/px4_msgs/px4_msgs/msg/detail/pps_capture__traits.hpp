@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/PpsCapture.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/pps_capture.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__PPS_CAPTURE__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__PPS_CAPTURE__TRAITS_HPP_
 

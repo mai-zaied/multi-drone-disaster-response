@@ -141,7 +141,7 @@ px4_msgs__msg__RcParameterMap__copy(
 }
 
 px4_msgs__msg__RcParameterMap *
-px4_msgs__msg__RcParameterMap__create()
+px4_msgs__msg__RcParameterMap__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RcParameterMap * msg = (px4_msgs__msg__RcParameterMap *)allocator.allocate(sizeof(px4_msgs__msg__RcParameterMap), allocator.state);

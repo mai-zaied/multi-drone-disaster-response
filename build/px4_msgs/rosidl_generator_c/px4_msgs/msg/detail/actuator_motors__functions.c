@@ -85,7 +85,7 @@ px4_msgs__msg__ActuatorMotors__copy(
 }
 
 px4_msgs__msg__ActuatorMotors *
-px4_msgs__msg__ActuatorMotors__create()
+px4_msgs__msg__ActuatorMotors__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ActuatorMotors * msg = (px4_msgs__msg__ActuatorMotors *)allocator.allocate(sizeof(px4_msgs__msg__ActuatorMotors), allocator.state);

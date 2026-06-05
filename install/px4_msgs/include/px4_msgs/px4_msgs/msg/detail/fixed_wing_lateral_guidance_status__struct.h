@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FixedWingLateralGuidanceStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/fixed_wing_lateral_guidance_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_GUIDANCE_STATUS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -38,6 +40,8 @@ typedef struct px4_msgs__msg__FixedWingLateralGuidanceStatus
   float signed_track_error;
   /// track error bound
   float track_error_bound;
+  /// [m] [@range 0, INF] [@INVALID NaN] distance from the current waypoint at which the navigator should advance to the next one (turn anticipation). If below NAV_ACC_RAD, the parameter value is used instead.
+  float switch_distance;
   /// adapted period (if auto-tuning enabled)
   float adapted_period;
   /// true = wind estimate is valid and/or being used by controller (also indicates if wind estimate usage is disabled despite being valid)

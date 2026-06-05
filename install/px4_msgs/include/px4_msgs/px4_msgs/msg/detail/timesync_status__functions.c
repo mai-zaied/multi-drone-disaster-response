@@ -97,7 +97,7 @@ px4_msgs__msg__TimesyncStatus__copy(
 }
 
 px4_msgs__msg__TimesyncStatus *
-px4_msgs__msg__TimesyncStatus__create()
+px4_msgs__msg__TimesyncStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TimesyncStatus * msg = (px4_msgs__msg__TimesyncStatus *)allocator.allocate(sizeof(px4_msgs__msg__TimesyncStatus), allocator.state);

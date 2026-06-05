@@ -133,7 +133,7 @@ px4_msgs__msg__GotoSetpoint__copy(
 }
 
 px4_msgs__msg__GotoSetpoint *
-px4_msgs__msg__GotoSetpoint__create()
+px4_msgs__msg__GotoSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GotoSetpoint * msg = (px4_msgs__msg__GotoSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__GotoSetpoint), allocator.state);

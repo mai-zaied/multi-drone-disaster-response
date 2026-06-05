@@ -161,7 +161,7 @@ task_msgs__msg__Task__copy(
 }
 
 task_msgs__msg__Task *
-task_msgs__msg__Task__create()
+task_msgs__msg__Task__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   task_msgs__msg__Task * msg = (task_msgs__msg__Task *)allocator.allocate(sizeof(task_msgs__msg__Task), allocator.state);

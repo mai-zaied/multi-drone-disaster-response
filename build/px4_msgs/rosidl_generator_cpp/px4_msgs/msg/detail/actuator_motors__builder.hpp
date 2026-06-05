@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ActuatorMotors.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/actuator_motors.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ACTUATOR_MOTORS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__ACTUATOR_MOTORS__BUILDER_HPP_
 

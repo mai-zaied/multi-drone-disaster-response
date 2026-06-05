@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/UnregisterExtComponent.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/unregister_ext_component.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__UNREGISTER_EXT_COMPONENT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__UNREGISTER_EXT_COMPONENT__BUILDER_HPP_
 

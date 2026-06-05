@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/FixedWingLateralSetpoint.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/fixed_wing_lateral_setpoint__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/fixed_wing_lateral_setpoint__functions.h"
 #include "px4_msgs/msg/detail/fixed_wing_lateral_setpoint__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,12 +38,16 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: course
   cdr << ros_message.course;
+
   // Member: airspeed_direction
   cdr << ros_message.airspeed_direction;
+
   // Member: lateral_acceleration
   cdr << ros_message.lateral_acceleration;
+
   return true;
 }
 
@@ -64,6 +72,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -83,18 +92,21 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: course
   {
     size_t item_size = sizeof(ros_message.course);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: airspeed_direction
   {
     size_t item_size = sizeof(ros_message.airspeed_direction);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: lateral_acceleration
   {
     size_t item_size = sizeof(ros_message.lateral_acceleration);
@@ -104,6 +116,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -124,38 +137,30 @@ max_serialized_size_FixedWingLateralSetpoint(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: course
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: airspeed_direction
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: lateral_acceleration
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -176,6 +181,139 @@ max_serialized_size_FixedWingLateralSetpoint(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::FixedWingLateralSetpoint & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: course
+  cdr << ros_message.course;
+
+  // Member: airspeed_direction
+  cdr << ros_message.airspeed_direction;
+
+  // Member: lateral_acceleration
+  cdr << ros_message.lateral_acceleration;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::FixedWingLateralSetpoint & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: course
+  {
+    size_t item_size = sizeof(ros_message.course);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: airspeed_direction
+  {
+    size_t item_size = sizeof(ros_message.airspeed_direction);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: lateral_acceleration
+  {
+    size_t item_size = sizeof(ros_message.lateral_acceleration);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_FixedWingLateralSetpoint(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: course
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: airspeed_direction
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: lateral_acceleration
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::FixedWingLateralSetpoint;
+    is_plain =
+      (
+      offsetof(DataType, lateral_acceleration) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _FixedWingLateralSetpoint__cdr_serialize(
   const void * untyped_ros_message,
@@ -226,13 +364,17 @@ static message_type_support_callbacks_t _FixedWingLateralSetpoint__callbacks = {
   _FixedWingLateralSetpoint__cdr_serialize,
   _FixedWingLateralSetpoint__cdr_deserialize,
   _FixedWingLateralSetpoint__get_serialized_size,
-  _FixedWingLateralSetpoint__max_serialized_size
+  _FixedWingLateralSetpoint__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _FixedWingLateralSetpoint__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_FixedWingLateralSetpoint__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__FixedWingLateralSetpoint__get_type_hash,
+  &px4_msgs__msg__FixedWingLateralSetpoint__get_type_description,
+  &px4_msgs__msg__FixedWingLateralSetpoint__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

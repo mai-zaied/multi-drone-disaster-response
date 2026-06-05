@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleAngularAccelerationSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_angular_acceleration_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_ANGULAR_ACCELERATION_SETPOINT__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_ANGULAR_ACCELERATION_SETPOINT__TRAITS_HPP_
 

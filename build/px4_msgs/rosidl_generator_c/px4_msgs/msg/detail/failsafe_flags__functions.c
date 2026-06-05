@@ -48,6 +48,11 @@ px4_msgs__msg__FailsafeFlags__init(px4_msgs__msg__FailsafeFlags * msg)
   // battery_warning
   // battery_low_remaining_time
   // battery_unhealthy
+  // fd_critical_failure
+  // fd_esc_arming_failure
+  // fd_imbalanced_prop
+  // fd_motor_failure
+  // fd_alt_loss
   // geofence_breached
   // mission_failure
   // vtol_fixed_wing_system_failure
@@ -55,10 +60,9 @@ px4_msgs__msg__FailsafeFlags__init(px4_msgs__msg__FailsafeFlags * msg)
   // flight_time_limit_exceeded
   // position_accuracy_low
   // navigator_failure
-  // fd_critical_failure
-  // fd_esc_arming_failure
-  // fd_imbalanced_prop
-  // fd_motor_failure
+  // parachute_unhealthy
+  // remote_id_unhealthy
+  // gnss_lost
   return true;
 }
 
@@ -99,6 +103,11 @@ px4_msgs__msg__FailsafeFlags__fini(px4_msgs__msg__FailsafeFlags * msg)
   // battery_warning
   // battery_low_remaining_time
   // battery_unhealthy
+  // fd_critical_failure
+  // fd_esc_arming_failure
+  // fd_imbalanced_prop
+  // fd_motor_failure
+  // fd_alt_loss
   // geofence_breached
   // mission_failure
   // vtol_fixed_wing_system_failure
@@ -106,10 +115,9 @@ px4_msgs__msg__FailsafeFlags__fini(px4_msgs__msg__FailsafeFlags * msg)
   // flight_time_limit_exceeded
   // position_accuracy_low
   // navigator_failure
-  // fd_critical_failure
-  // fd_esc_arming_failure
-  // fd_imbalanced_prop
-  // fd_motor_failure
+  // parachute_unhealthy
+  // remote_id_unhealthy
+  // gnss_lost
 }
 
 bool
@@ -242,6 +250,26 @@ px4_msgs__msg__FailsafeFlags__are_equal(const px4_msgs__msg__FailsafeFlags * lhs
   if (lhs->battery_unhealthy != rhs->battery_unhealthy) {
     return false;
   }
+  // fd_critical_failure
+  if (lhs->fd_critical_failure != rhs->fd_critical_failure) {
+    return false;
+  }
+  // fd_esc_arming_failure
+  if (lhs->fd_esc_arming_failure != rhs->fd_esc_arming_failure) {
+    return false;
+  }
+  // fd_imbalanced_prop
+  if (lhs->fd_imbalanced_prop != rhs->fd_imbalanced_prop) {
+    return false;
+  }
+  // fd_motor_failure
+  if (lhs->fd_motor_failure != rhs->fd_motor_failure) {
+    return false;
+  }
+  // fd_alt_loss
+  if (lhs->fd_alt_loss != rhs->fd_alt_loss) {
+    return false;
+  }
   // geofence_breached
   if (lhs->geofence_breached != rhs->geofence_breached) {
     return false;
@@ -270,20 +298,16 @@ px4_msgs__msg__FailsafeFlags__are_equal(const px4_msgs__msg__FailsafeFlags * lhs
   if (lhs->navigator_failure != rhs->navigator_failure) {
     return false;
   }
-  // fd_critical_failure
-  if (lhs->fd_critical_failure != rhs->fd_critical_failure) {
+  // parachute_unhealthy
+  if (lhs->parachute_unhealthy != rhs->parachute_unhealthy) {
     return false;
   }
-  // fd_esc_arming_failure
-  if (lhs->fd_esc_arming_failure != rhs->fd_esc_arming_failure) {
+  // remote_id_unhealthy
+  if (lhs->remote_id_unhealthy != rhs->remote_id_unhealthy) {
     return false;
   }
-  // fd_imbalanced_prop
-  if (lhs->fd_imbalanced_prop != rhs->fd_imbalanced_prop) {
-    return false;
-  }
-  // fd_motor_failure
-  if (lhs->fd_motor_failure != rhs->fd_motor_failure) {
+  // gnss_lost
+  if (lhs->gnss_lost != rhs->gnss_lost) {
     return false;
   }
   return true;
@@ -359,6 +383,16 @@ px4_msgs__msg__FailsafeFlags__copy(
   output->battery_low_remaining_time = input->battery_low_remaining_time;
   // battery_unhealthy
   output->battery_unhealthy = input->battery_unhealthy;
+  // fd_critical_failure
+  output->fd_critical_failure = input->fd_critical_failure;
+  // fd_esc_arming_failure
+  output->fd_esc_arming_failure = input->fd_esc_arming_failure;
+  // fd_imbalanced_prop
+  output->fd_imbalanced_prop = input->fd_imbalanced_prop;
+  // fd_motor_failure
+  output->fd_motor_failure = input->fd_motor_failure;
+  // fd_alt_loss
+  output->fd_alt_loss = input->fd_alt_loss;
   // geofence_breached
   output->geofence_breached = input->geofence_breached;
   // mission_failure
@@ -373,19 +407,17 @@ px4_msgs__msg__FailsafeFlags__copy(
   output->position_accuracy_low = input->position_accuracy_low;
   // navigator_failure
   output->navigator_failure = input->navigator_failure;
-  // fd_critical_failure
-  output->fd_critical_failure = input->fd_critical_failure;
-  // fd_esc_arming_failure
-  output->fd_esc_arming_failure = input->fd_esc_arming_failure;
-  // fd_imbalanced_prop
-  output->fd_imbalanced_prop = input->fd_imbalanced_prop;
-  // fd_motor_failure
-  output->fd_motor_failure = input->fd_motor_failure;
+  // parachute_unhealthy
+  output->parachute_unhealthy = input->parachute_unhealthy;
+  // remote_id_unhealthy
+  output->remote_id_unhealthy = input->remote_id_unhealthy;
+  // gnss_lost
+  output->gnss_lost = input->gnss_lost;
   return true;
 }
 
 px4_msgs__msg__FailsafeFlags *
-px4_msgs__msg__FailsafeFlags__create()
+px4_msgs__msg__FailsafeFlags__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FailsafeFlags * msg = (px4_msgs__msg__FailsafeFlags *)allocator.allocate(sizeof(px4_msgs__msg__FailsafeFlags), allocator.state);

@@ -169,7 +169,7 @@ px4_msgs__msg__MissionResult__copy(
 }
 
 px4_msgs__msg__MissionResult *
-px4_msgs__msg__MissionResult__create()
+px4_msgs__msg__MissionResult__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MissionResult * msg = (px4_msgs__msg__MissionResult *)allocator.allocate(sizeof(px4_msgs__msg__MissionResult), allocator.state);

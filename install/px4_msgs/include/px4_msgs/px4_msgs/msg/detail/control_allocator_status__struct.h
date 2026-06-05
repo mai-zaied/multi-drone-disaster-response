@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ControlAllocatorStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/control_allocator_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -85,6 +87,8 @@ typedef struct px4_msgs__msg__ControlAllocatorStatus
   uint16_t handled_motor_failure_mask;
   /// Bitmaks of motors stopped by failure injection
   uint16_t motor_stop_mask;
+  /// True while an actuator group preflight check (VEHICLE_CMD_ACTUATOR_GROUP_TEST) is overriding the torque/thrust setpoint or collective-tilt
+  bool actuator_group_preflight_check_active;
 } px4_msgs__msg__ControlAllocatorStatus;
 
 // Struct for a sequence of px4_msgs__msg__ControlAllocatorStatus.

@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/FailsafeFlags.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/failsafe_flags__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/failsafe_flags__functions.h"
 #include "px4_msgs/msg/detail/failsafe_flags__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,88 +38,142 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: mode_req_angular_velocity
   cdr << ros_message.mode_req_angular_velocity;
+
   // Member: mode_req_attitude
   cdr << ros_message.mode_req_attitude;
+
   // Member: mode_req_local_alt
   cdr << ros_message.mode_req_local_alt;
+
   // Member: mode_req_local_position
   cdr << ros_message.mode_req_local_position;
+
   // Member: mode_req_local_position_relaxed
   cdr << ros_message.mode_req_local_position_relaxed;
+
   // Member: mode_req_global_position
   cdr << ros_message.mode_req_global_position;
+
   // Member: mode_req_global_position_relaxed
   cdr << ros_message.mode_req_global_position_relaxed;
+
   // Member: mode_req_mission
   cdr << ros_message.mode_req_mission;
+
   // Member: mode_req_offboard_signal
   cdr << ros_message.mode_req_offboard_signal;
+
   // Member: mode_req_home_position
   cdr << ros_message.mode_req_home_position;
+
   // Member: mode_req_wind_and_flight_time_compliance
   cdr << ros_message.mode_req_wind_and_flight_time_compliance;
+
   // Member: mode_req_prevent_arming
   cdr << ros_message.mode_req_prevent_arming;
+
   // Member: mode_req_manual_control
   cdr << ros_message.mode_req_manual_control;
+
   // Member: mode_req_other
   cdr << ros_message.mode_req_other;
+
   // Member: angular_velocity_invalid
   cdr << (ros_message.angular_velocity_invalid ? true : false);
+
   // Member: attitude_invalid
   cdr << (ros_message.attitude_invalid ? true : false);
+
   // Member: local_altitude_invalid
   cdr << (ros_message.local_altitude_invalid ? true : false);
+
   // Member: local_position_invalid
   cdr << (ros_message.local_position_invalid ? true : false);
+
   // Member: local_position_invalid_relaxed
   cdr << (ros_message.local_position_invalid_relaxed ? true : false);
+
   // Member: local_velocity_invalid
   cdr << (ros_message.local_velocity_invalid ? true : false);
+
   // Member: global_position_invalid
   cdr << (ros_message.global_position_invalid ? true : false);
+
   // Member: global_position_invalid_relaxed
   cdr << (ros_message.global_position_invalid_relaxed ? true : false);
+
   // Member: auto_mission_missing
   cdr << (ros_message.auto_mission_missing ? true : false);
+
   // Member: offboard_control_signal_lost
   cdr << (ros_message.offboard_control_signal_lost ? true : false);
+
   // Member: home_position_invalid
   cdr << (ros_message.home_position_invalid ? true : false);
+
   // Member: manual_control_signal_lost
   cdr << (ros_message.manual_control_signal_lost ? true : false);
+
   // Member: gcs_connection_lost
   cdr << (ros_message.gcs_connection_lost ? true : false);
+
   // Member: battery_warning
   cdr << ros_message.battery_warning;
+
   // Member: battery_low_remaining_time
   cdr << (ros_message.battery_low_remaining_time ? true : false);
+
   // Member: battery_unhealthy
   cdr << (ros_message.battery_unhealthy ? true : false);
-  // Member: geofence_breached
-  cdr << (ros_message.geofence_breached ? true : false);
-  // Member: mission_failure
-  cdr << (ros_message.mission_failure ? true : false);
-  // Member: vtol_fixed_wing_system_failure
-  cdr << (ros_message.vtol_fixed_wing_system_failure ? true : false);
-  // Member: wind_limit_exceeded
-  cdr << (ros_message.wind_limit_exceeded ? true : false);
-  // Member: flight_time_limit_exceeded
-  cdr << (ros_message.flight_time_limit_exceeded ? true : false);
-  // Member: position_accuracy_low
-  cdr << (ros_message.position_accuracy_low ? true : false);
-  // Member: navigator_failure
-  cdr << (ros_message.navigator_failure ? true : false);
+
   // Member: fd_critical_failure
   cdr << (ros_message.fd_critical_failure ? true : false);
+
   // Member: fd_esc_arming_failure
   cdr << (ros_message.fd_esc_arming_failure ? true : false);
+
   // Member: fd_imbalanced_prop
   cdr << (ros_message.fd_imbalanced_prop ? true : false);
+
   // Member: fd_motor_failure
   cdr << (ros_message.fd_motor_failure ? true : false);
+
+  // Member: fd_alt_loss
+  cdr << (ros_message.fd_alt_loss ? true : false);
+
+  // Member: geofence_breached
+  cdr << (ros_message.geofence_breached ? true : false);
+
+  // Member: mission_failure
+  cdr << (ros_message.mission_failure ? true : false);
+
+  // Member: vtol_fixed_wing_system_failure
+  cdr << (ros_message.vtol_fixed_wing_system_failure ? true : false);
+
+  // Member: wind_limit_exceeded
+  cdr << (ros_message.wind_limit_exceeded ? true : false);
+
+  // Member: flight_time_limit_exceeded
+  cdr << (ros_message.flight_time_limit_exceeded ? true : false);
+
+  // Member: position_accuracy_low
+  cdr << (ros_message.position_accuracy_low ? true : false);
+
+  // Member: navigator_failure
+  cdr << (ros_message.navigator_failure ? true : false);
+
+  // Member: parachute_unhealthy
+  cdr << (ros_message.parachute_unhealthy ? true : false);
+
+  // Member: remote_id_unhealthy
+  cdr << (ros_message.remote_id_unhealthy ? true : false);
+
+  // Member: gnss_lost
+  cdr << (ros_message.gnss_lost ? true : false);
+
   return true;
 }
 
@@ -278,6 +336,41 @@ cdr_deserialize(
     ros_message.battery_unhealthy = tmp ? true : false;
   }
 
+  // Member: fd_critical_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.fd_critical_failure = tmp ? true : false;
+  }
+
+  // Member: fd_esc_arming_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.fd_esc_arming_failure = tmp ? true : false;
+  }
+
+  // Member: fd_imbalanced_prop
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.fd_imbalanced_prop = tmp ? true : false;
+  }
+
+  // Member: fd_motor_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.fd_motor_failure = tmp ? true : false;
+  }
+
+  // Member: fd_alt_loss
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message.fd_alt_loss = tmp ? true : false;
+  }
+
   // Member: geofence_breached
   {
     uint8_t tmp;
@@ -327,36 +420,30 @@ cdr_deserialize(
     ros_message.navigator_failure = tmp ? true : false;
   }
 
-  // Member: fd_critical_failure
+  // Member: parachute_unhealthy
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message.fd_critical_failure = tmp ? true : false;
+    ros_message.parachute_unhealthy = tmp ? true : false;
   }
 
-  // Member: fd_esc_arming_failure
+  // Member: remote_id_unhealthy
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message.fd_esc_arming_failure = tmp ? true : false;
+    ros_message.remote_id_unhealthy = tmp ? true : false;
   }
 
-  // Member: fd_imbalanced_prop
+  // Member: gnss_lost
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message.fd_imbalanced_prop = tmp ? true : false;
-  }
-
-  // Member: fd_motor_failure
-  {
-    uint8_t tmp;
-    cdr >> tmp;
-    ros_message.fd_motor_failure = tmp ? true : false;
+    ros_message.gnss_lost = tmp ? true : false;
   }
 
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -377,246 +464,238 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_angular_velocity
   {
     size_t item_size = sizeof(ros_message.mode_req_angular_velocity);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_attitude
   {
     size_t item_size = sizeof(ros_message.mode_req_attitude);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_local_alt
   {
     size_t item_size = sizeof(ros_message.mode_req_local_alt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_local_position
   {
     size_t item_size = sizeof(ros_message.mode_req_local_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_local_position_relaxed
   {
     size_t item_size = sizeof(ros_message.mode_req_local_position_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_global_position
   {
     size_t item_size = sizeof(ros_message.mode_req_global_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_global_position_relaxed
   {
     size_t item_size = sizeof(ros_message.mode_req_global_position_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_mission
   {
     size_t item_size = sizeof(ros_message.mode_req_mission);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_offboard_signal
   {
     size_t item_size = sizeof(ros_message.mode_req_offboard_signal);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_home_position
   {
     size_t item_size = sizeof(ros_message.mode_req_home_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_wind_and_flight_time_compliance
   {
     size_t item_size = sizeof(ros_message.mode_req_wind_and_flight_time_compliance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_prevent_arming
   {
     size_t item_size = sizeof(ros_message.mode_req_prevent_arming);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_manual_control
   {
     size_t item_size = sizeof(ros_message.mode_req_manual_control);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: mode_req_other
   {
     size_t item_size = sizeof(ros_message.mode_req_other);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: angular_velocity_invalid
   {
     size_t item_size = sizeof(ros_message.angular_velocity_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: attitude_invalid
   {
     size_t item_size = sizeof(ros_message.attitude_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: local_altitude_invalid
   {
     size_t item_size = sizeof(ros_message.local_altitude_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: local_position_invalid
   {
     size_t item_size = sizeof(ros_message.local_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: local_position_invalid_relaxed
   {
     size_t item_size = sizeof(ros_message.local_position_invalid_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: local_velocity_invalid
   {
     size_t item_size = sizeof(ros_message.local_velocity_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: global_position_invalid
   {
     size_t item_size = sizeof(ros_message.global_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: global_position_invalid_relaxed
   {
     size_t item_size = sizeof(ros_message.global_position_invalid_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: auto_mission_missing
   {
     size_t item_size = sizeof(ros_message.auto_mission_missing);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: offboard_control_signal_lost
   {
     size_t item_size = sizeof(ros_message.offboard_control_signal_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: home_position_invalid
   {
     size_t item_size = sizeof(ros_message.home_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: manual_control_signal_lost
   {
     size_t item_size = sizeof(ros_message.manual_control_signal_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: gcs_connection_lost
   {
     size_t item_size = sizeof(ros_message.gcs_connection_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: battery_warning
   {
     size_t item_size = sizeof(ros_message.battery_warning);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: battery_low_remaining_time
   {
     size_t item_size = sizeof(ros_message.battery_low_remaining_time);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: battery_unhealthy
   {
     size_t item_size = sizeof(ros_message.battery_unhealthy);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // Member: geofence_breached
-  {
-    size_t item_size = sizeof(ros_message.geofence_breached);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: mission_failure
-  {
-    size_t item_size = sizeof(ros_message.mission_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: vtol_fixed_wing_system_failure
-  {
-    size_t item_size = sizeof(ros_message.vtol_fixed_wing_system_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: wind_limit_exceeded
-  {
-    size_t item_size = sizeof(ros_message.wind_limit_exceeded);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: flight_time_limit_exceeded
-  {
-    size_t item_size = sizeof(ros_message.flight_time_limit_exceeded);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: position_accuracy_low
-  {
-    size_t item_size = sizeof(ros_message.position_accuracy_low);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // Member: navigator_failure
-  {
-    size_t item_size = sizeof(ros_message.navigator_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
+
   // Member: fd_critical_failure
   {
     size_t item_size = sizeof(ros_message.fd_critical_failure);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: fd_esc_arming_failure
   {
     size_t item_size = sizeof(ros_message.fd_esc_arming_failure);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: fd_imbalanced_prop
   {
     size_t item_size = sizeof(ros_message.fd_imbalanced_prop);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: fd_motor_failure
   {
     size_t item_size = sizeof(ros_message.fd_motor_failure);
@@ -624,8 +703,86 @@ get_serialized_size(
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
 
+  // Member: fd_alt_loss
+  {
+    size_t item_size = sizeof(ros_message.fd_alt_loss);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: geofence_breached
+  {
+    size_t item_size = sizeof(ros_message.geofence_breached);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mission_failure
+  {
+    size_t item_size = sizeof(ros_message.mission_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vtol_fixed_wing_system_failure
+  {
+    size_t item_size = sizeof(ros_message.vtol_fixed_wing_system_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: wind_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message.wind_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: flight_time_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message.flight_time_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: position_accuracy_low
+  {
+    size_t item_size = sizeof(ros_message.position_accuracy_low);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: navigator_failure
+  {
+    size_t item_size = sizeof(ros_message.navigator_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: parachute_unhealthy
+  {
+    size_t item_size = sizeof(ros_message.parachute_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: remote_id_unhealthy
+  {
+    size_t item_size = sizeof(ros_message.remote_id_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gnss_lost
+  {
+    size_t item_size = sizeof(ros_message.gnss_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -646,354 +803,294 @@ max_serialized_size_FailsafeFlags(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: mode_req_angular_velocity
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_attitude
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_local_alt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_local_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_local_position_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_global_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_global_position_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_mission
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_offboard_signal
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_home_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_wind_and_flight_time_compliance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_prevent_arming
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_manual_control
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: mode_req_other
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: angular_velocity_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: attitude_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: local_altitude_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: local_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: local_position_invalid_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: local_velocity_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: global_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: global_position_invalid_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: auto_mission_missing
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: offboard_control_signal_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: home_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: manual_control_signal_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: gcs_connection_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: battery_warning
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: battery_low_remaining_time
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: battery_unhealthy
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
-  // Member: geofence_breached
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: mission_failure
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: vtol_fixed_wing_system_failure
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: wind_limit_exceeded
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: flight_time_limit_exceeded
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: position_accuracy_low
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
-  // Member: navigator_failure
-  {
-    size_t array_size = 1;
-
-    last_member_size = array_size * sizeof(uint8_t);
-    current_alignment += array_size * sizeof(uint8_t);
-  }
-
   // Member: fd_critical_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: fd_esc_arming_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: fd_imbalanced_prop
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: fd_motor_failure
   {
     size_t array_size = 1;
-
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: fd_alt_loss
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: geofence_breached
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: mission_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: vtol_fixed_wing_system_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: wind_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: flight_time_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: position_accuracy_low
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: navigator_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: parachute_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: remote_id_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+  // Member: gnss_lost
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -1006,13 +1103,871 @@ max_serialized_size_FailsafeFlags(
     using DataType = px4_msgs::msg::FailsafeFlags;
     is_plain =
       (
-      offsetof(DataType, fd_motor_failure) +
+      offsetof(DataType, gnss_lost) +
       last_member_size
       ) == ret_val;
   }
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::FailsafeFlags & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: mode_req_angular_velocity
+  cdr << ros_message.mode_req_angular_velocity;
+
+  // Member: mode_req_attitude
+  cdr << ros_message.mode_req_attitude;
+
+  // Member: mode_req_local_alt
+  cdr << ros_message.mode_req_local_alt;
+
+  // Member: mode_req_local_position
+  cdr << ros_message.mode_req_local_position;
+
+  // Member: mode_req_local_position_relaxed
+  cdr << ros_message.mode_req_local_position_relaxed;
+
+  // Member: mode_req_global_position
+  cdr << ros_message.mode_req_global_position;
+
+  // Member: mode_req_global_position_relaxed
+  cdr << ros_message.mode_req_global_position_relaxed;
+
+  // Member: mode_req_mission
+  cdr << ros_message.mode_req_mission;
+
+  // Member: mode_req_offboard_signal
+  cdr << ros_message.mode_req_offboard_signal;
+
+  // Member: mode_req_home_position
+  cdr << ros_message.mode_req_home_position;
+
+  // Member: mode_req_wind_and_flight_time_compliance
+  cdr << ros_message.mode_req_wind_and_flight_time_compliance;
+
+  // Member: mode_req_prevent_arming
+  cdr << ros_message.mode_req_prevent_arming;
+
+  // Member: mode_req_manual_control
+  cdr << ros_message.mode_req_manual_control;
+
+  // Member: mode_req_other
+  cdr << ros_message.mode_req_other;
+
+  // Member: angular_velocity_invalid
+  cdr << (ros_message.angular_velocity_invalid ? true : false);
+
+  // Member: attitude_invalid
+  cdr << (ros_message.attitude_invalid ? true : false);
+
+  // Member: local_altitude_invalid
+  cdr << (ros_message.local_altitude_invalid ? true : false);
+
+  // Member: local_position_invalid
+  cdr << (ros_message.local_position_invalid ? true : false);
+
+  // Member: local_position_invalid_relaxed
+  cdr << (ros_message.local_position_invalid_relaxed ? true : false);
+
+  // Member: local_velocity_invalid
+  cdr << (ros_message.local_velocity_invalid ? true : false);
+
+  // Member: global_position_invalid
+  cdr << (ros_message.global_position_invalid ? true : false);
+
+  // Member: global_position_invalid_relaxed
+  cdr << (ros_message.global_position_invalid_relaxed ? true : false);
+
+  // Member: auto_mission_missing
+  cdr << (ros_message.auto_mission_missing ? true : false);
+
+  // Member: offboard_control_signal_lost
+  cdr << (ros_message.offboard_control_signal_lost ? true : false);
+
+  // Member: home_position_invalid
+  cdr << (ros_message.home_position_invalid ? true : false);
+
+  // Member: manual_control_signal_lost
+  cdr << (ros_message.manual_control_signal_lost ? true : false);
+
+  // Member: gcs_connection_lost
+  cdr << (ros_message.gcs_connection_lost ? true : false);
+
+  // Member: battery_warning
+  cdr << ros_message.battery_warning;
+
+  // Member: battery_low_remaining_time
+  cdr << (ros_message.battery_low_remaining_time ? true : false);
+
+  // Member: battery_unhealthy
+  cdr << (ros_message.battery_unhealthy ? true : false);
+
+  // Member: fd_critical_failure
+  cdr << (ros_message.fd_critical_failure ? true : false);
+
+  // Member: fd_esc_arming_failure
+  cdr << (ros_message.fd_esc_arming_failure ? true : false);
+
+  // Member: fd_imbalanced_prop
+  cdr << (ros_message.fd_imbalanced_prop ? true : false);
+
+  // Member: fd_motor_failure
+  cdr << (ros_message.fd_motor_failure ? true : false);
+
+  // Member: fd_alt_loss
+  cdr << (ros_message.fd_alt_loss ? true : false);
+
+  // Member: geofence_breached
+  cdr << (ros_message.geofence_breached ? true : false);
+
+  // Member: mission_failure
+  cdr << (ros_message.mission_failure ? true : false);
+
+  // Member: vtol_fixed_wing_system_failure
+  cdr << (ros_message.vtol_fixed_wing_system_failure ? true : false);
+
+  // Member: wind_limit_exceeded
+  cdr << (ros_message.wind_limit_exceeded ? true : false);
+
+  // Member: flight_time_limit_exceeded
+  cdr << (ros_message.flight_time_limit_exceeded ? true : false);
+
+  // Member: position_accuracy_low
+  cdr << (ros_message.position_accuracy_low ? true : false);
+
+  // Member: navigator_failure
+  cdr << (ros_message.navigator_failure ? true : false);
+
+  // Member: parachute_unhealthy
+  cdr << (ros_message.parachute_unhealthy ? true : false);
+
+  // Member: remote_id_unhealthy
+  cdr << (ros_message.remote_id_unhealthy ? true : false);
+
+  // Member: gnss_lost
+  cdr << (ros_message.gnss_lost ? true : false);
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::FailsafeFlags & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_angular_velocity
+  {
+    size_t item_size = sizeof(ros_message.mode_req_angular_velocity);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_attitude
+  {
+    size_t item_size = sizeof(ros_message.mode_req_attitude);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_local_alt
+  {
+    size_t item_size = sizeof(ros_message.mode_req_local_alt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_local_position
+  {
+    size_t item_size = sizeof(ros_message.mode_req_local_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_local_position_relaxed
+  {
+    size_t item_size = sizeof(ros_message.mode_req_local_position_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_global_position
+  {
+    size_t item_size = sizeof(ros_message.mode_req_global_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_global_position_relaxed
+  {
+    size_t item_size = sizeof(ros_message.mode_req_global_position_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_mission
+  {
+    size_t item_size = sizeof(ros_message.mode_req_mission);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_offboard_signal
+  {
+    size_t item_size = sizeof(ros_message.mode_req_offboard_signal);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_home_position
+  {
+    size_t item_size = sizeof(ros_message.mode_req_home_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_wind_and_flight_time_compliance
+  {
+    size_t item_size = sizeof(ros_message.mode_req_wind_and_flight_time_compliance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_prevent_arming
+  {
+    size_t item_size = sizeof(ros_message.mode_req_prevent_arming);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_manual_control
+  {
+    size_t item_size = sizeof(ros_message.mode_req_manual_control);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mode_req_other
+  {
+    size_t item_size = sizeof(ros_message.mode_req_other);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: angular_velocity_invalid
+  {
+    size_t item_size = sizeof(ros_message.angular_velocity_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: attitude_invalid
+  {
+    size_t item_size = sizeof(ros_message.attitude_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: local_altitude_invalid
+  {
+    size_t item_size = sizeof(ros_message.local_altitude_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: local_position_invalid
+  {
+    size_t item_size = sizeof(ros_message.local_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: local_position_invalid_relaxed
+  {
+    size_t item_size = sizeof(ros_message.local_position_invalid_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: local_velocity_invalid
+  {
+    size_t item_size = sizeof(ros_message.local_velocity_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: global_position_invalid
+  {
+    size_t item_size = sizeof(ros_message.global_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: global_position_invalid_relaxed
+  {
+    size_t item_size = sizeof(ros_message.global_position_invalid_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: auto_mission_missing
+  {
+    size_t item_size = sizeof(ros_message.auto_mission_missing);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: offboard_control_signal_lost
+  {
+    size_t item_size = sizeof(ros_message.offboard_control_signal_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: home_position_invalid
+  {
+    size_t item_size = sizeof(ros_message.home_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: manual_control_signal_lost
+  {
+    size_t item_size = sizeof(ros_message.manual_control_signal_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gcs_connection_lost
+  {
+    size_t item_size = sizeof(ros_message.gcs_connection_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: battery_warning
+  {
+    size_t item_size = sizeof(ros_message.battery_warning);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: battery_low_remaining_time
+  {
+    size_t item_size = sizeof(ros_message.battery_low_remaining_time);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: battery_unhealthy
+  {
+    size_t item_size = sizeof(ros_message.battery_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fd_critical_failure
+  {
+    size_t item_size = sizeof(ros_message.fd_critical_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fd_esc_arming_failure
+  {
+    size_t item_size = sizeof(ros_message.fd_esc_arming_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fd_imbalanced_prop
+  {
+    size_t item_size = sizeof(ros_message.fd_imbalanced_prop);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fd_motor_failure
+  {
+    size_t item_size = sizeof(ros_message.fd_motor_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: fd_alt_loss
+  {
+    size_t item_size = sizeof(ros_message.fd_alt_loss);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: geofence_breached
+  {
+    size_t item_size = sizeof(ros_message.geofence_breached);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: mission_failure
+  {
+    size_t item_size = sizeof(ros_message.mission_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vtol_fixed_wing_system_failure
+  {
+    size_t item_size = sizeof(ros_message.vtol_fixed_wing_system_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: wind_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message.wind_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: flight_time_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message.flight_time_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: position_accuracy_low
+  {
+    size_t item_size = sizeof(ros_message.position_accuracy_low);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: navigator_failure
+  {
+    size_t item_size = sizeof(ros_message.navigator_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: parachute_unhealthy
+  {
+    size_t item_size = sizeof(ros_message.parachute_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: remote_id_unhealthy
+  {
+    size_t item_size = sizeof(ros_message.remote_id_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gnss_lost
+  {
+    size_t item_size = sizeof(ros_message.gnss_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_FailsafeFlags(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: mode_req_angular_velocity
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_attitude
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_local_alt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_local_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_local_position_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_global_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_global_position_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_mission
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_offboard_signal
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_home_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_wind_and_flight_time_compliance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_prevent_arming
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_manual_control
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: mode_req_other
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: angular_velocity_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: attitude_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: local_altitude_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: local_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: local_position_invalid_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: local_velocity_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: global_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: global_position_invalid_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: auto_mission_missing
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: offboard_control_signal_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: home_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: manual_control_signal_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: gcs_connection_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: battery_warning
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: battery_low_remaining_time
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: battery_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fd_critical_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fd_esc_arming_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fd_imbalanced_prop
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fd_motor_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: fd_alt_loss
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: geofence_breached
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: mission_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: vtol_fixed_wing_system_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: wind_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: flight_time_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: position_accuracy_low
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: navigator_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: parachute_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: remote_id_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: gnss_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::FailsafeFlags;
+    is_plain =
+      (
+      offsetof(DataType, gnss_lost) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _FailsafeFlags__cdr_serialize(
   const void * untyped_ros_message,
@@ -1063,13 +2018,17 @@ static message_type_support_callbacks_t _FailsafeFlags__callbacks = {
   _FailsafeFlags__cdr_serialize,
   _FailsafeFlags__cdr_deserialize,
   _FailsafeFlags__get_serialized_size,
-  _FailsafeFlags__max_serialized_size
+  _FailsafeFlags__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _FailsafeFlags__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_FailsafeFlags__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__FailsafeFlags__get_type_hash,
+  &px4_msgs__msg__FailsafeFlags__get_type_description,
+  &px4_msgs__msg__FailsafeFlags__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

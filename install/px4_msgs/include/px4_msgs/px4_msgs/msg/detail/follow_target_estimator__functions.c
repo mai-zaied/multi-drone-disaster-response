@@ -157,7 +157,7 @@ px4_msgs__msg__FollowTargetEstimator__copy(
 }
 
 px4_msgs__msg__FollowTargetEstimator *
-px4_msgs__msg__FollowTargetEstimator__create()
+px4_msgs__msg__FollowTargetEstimator__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FollowTargetEstimator * msg = (px4_msgs__msg__FollowTargetEstimator *)allocator.allocate(sizeof(px4_msgs__msg__FollowTargetEstimator), allocator.state);

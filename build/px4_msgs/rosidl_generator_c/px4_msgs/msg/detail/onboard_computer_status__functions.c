@@ -265,7 +265,7 @@ px4_msgs__msg__OnboardComputerStatus__copy(
 }
 
 px4_msgs__msg__OnboardComputerStatus *
-px4_msgs__msg__OnboardComputerStatus__create()
+px4_msgs__msg__OnboardComputerStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__OnboardComputerStatus * msg = (px4_msgs__msg__OnboardComputerStatus *)allocator.allocate(sizeof(px4_msgs__msg__OnboardComputerStatus), allocator.state);

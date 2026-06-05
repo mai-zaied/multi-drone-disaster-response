@@ -28,7 +28,11 @@ px4_msgs__msg__HeaterStatus__init(px4_msgs__msg__HeaterStatus * msg)
   // proportional_value
   // integrator_value
   // feed_forward_value
+  // supply_voltage
+  // heater_current
+  // nominal_multiplier
   // mode
+  // temperature_source
   return true;
 }
 
@@ -49,7 +53,11 @@ px4_msgs__msg__HeaterStatus__fini(px4_msgs__msg__HeaterStatus * msg)
   // proportional_value
   // integrator_value
   // feed_forward_value
+  // supply_voltage
+  // heater_current
+  // nominal_multiplier
   // mode
+  // temperature_source
 }
 
 bool
@@ -102,8 +110,24 @@ px4_msgs__msg__HeaterStatus__are_equal(const px4_msgs__msg__HeaterStatus * lhs, 
   if (lhs->feed_forward_value != rhs->feed_forward_value) {
     return false;
   }
+  // supply_voltage
+  if (lhs->supply_voltage != rhs->supply_voltage) {
+    return false;
+  }
+  // heater_current
+  if (lhs->heater_current != rhs->heater_current) {
+    return false;
+  }
+  // nominal_multiplier
+  if (lhs->nominal_multiplier != rhs->nominal_multiplier) {
+    return false;
+  }
   // mode
   if (lhs->mode != rhs->mode) {
+    return false;
+  }
+  // temperature_source
+  if (lhs->temperature_source != rhs->temperature_source) {
     return false;
   }
   return true;
@@ -139,13 +163,21 @@ px4_msgs__msg__HeaterStatus__copy(
   output->integrator_value = input->integrator_value;
   // feed_forward_value
   output->feed_forward_value = input->feed_forward_value;
+  // supply_voltage
+  output->supply_voltage = input->supply_voltage;
+  // heater_current
+  output->heater_current = input->heater_current;
+  // nominal_multiplier
+  output->nominal_multiplier = input->nominal_multiplier;
   // mode
   output->mode = input->mode;
+  // temperature_source
+  output->temperature_source = input->temperature_source;
   return true;
 }
 
 px4_msgs__msg__HeaterStatus *
-px4_msgs__msg__HeaterStatus__create()
+px4_msgs__msg__HeaterStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__HeaterStatus * msg = (px4_msgs__msg__HeaterStatus *)allocator.allocate(sizeof(px4_msgs__msg__HeaterStatus), allocator.state);

@@ -105,7 +105,7 @@ px4_msgs__msg__TuneControl__copy(
 }
 
 px4_msgs__msg__TuneControl *
-px4_msgs__msg__TuneControl__create()
+px4_msgs__msg__TuneControl__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TuneControl * msg = (px4_msgs__msg__TuneControl *)allocator.allocate(sizeof(px4_msgs__msg__TuneControl), allocator.state);

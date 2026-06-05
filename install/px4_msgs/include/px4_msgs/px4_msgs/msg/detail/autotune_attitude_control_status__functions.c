@@ -181,7 +181,7 @@ px4_msgs__msg__AutotuneAttitudeControlStatus__copy(
 }
 
 px4_msgs__msg__AutotuneAttitudeControlStatus *
-px4_msgs__msg__AutotuneAttitudeControlStatus__create()
+px4_msgs__msg__AutotuneAttitudeControlStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__AutotuneAttitudeControlStatus * msg = (px4_msgs__msg__AutotuneAttitudeControlStatus *)allocator.allocate(sizeof(px4_msgs__msg__AutotuneAttitudeControlStatus), allocator.state);

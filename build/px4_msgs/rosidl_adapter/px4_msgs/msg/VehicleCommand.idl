@@ -220,11 +220,17 @@ module px4_msgs {
         "Start running a mission. |first_item: the first mission item to run|last_item: the last mission item to run (after this item is run, the mission ends)|")
       const uint16 VEHICLE_CMD_MISSION_START = 300;
       @verbatim (language="comment", text=
+        "Test groups of related actuators (e.g. all actuators contributing to roll torque). | Group|[@range -1,1] Value|Unused|Unused|Unused|Unused|Unused|")
+      const uint16 VEHICLE_CMD_ACTUATOR_GROUP_TEST = 309;
+      @verbatim (language="comment", text=
         "Actuator testing command. |[@range -1,1] value| timeout|Unused|Unused|output function|")
       const uint16 VEHICLE_CMD_ACTUATOR_TEST = 310;
       @verbatim (language="comment", text=
         "Actuator configuration command. |configuration|Unused|Unused|Unused|output function|")
       const uint16 VEHICLE_CMD_CONFIGURE_ACTUATOR = 311;
+      @verbatim (language="comment", text=
+        "Request EEPROM data from an ESC. |ESC Index|Firmware Type|Unused|Unused|Unused|")
+      const uint16 VEHICLE_CMD_ESC_REQUEST_EEPROM = 312;
       @verbatim (language="comment", text=
         "Arms / Disarms a component. |1 to arm, 0 to disarm.")
       const uint16 VEHICLE_CMD_COMPONENT_ARM_DISARM = 400;
@@ -306,6 +312,36 @@ module px4_msgs {
       const uint16 VEHICLE_CMD_EXTERNAL_POSITION_ESTIMATE = 43003;
       const uint16 VEHICLE_CMD_EXTERNAL_WIND_ESTIMATE = 43004;
       @verbatim (language="comment", text=
+        "Enable/disable estimator sensor fusion. |Source (FUSION_SOURCE_*)|Sensor instance (0-based)|Enable (1) or Disable (0)|Estimator Instance (NaN: not used)|Empty|Empty|Empty|")
+      const uint16 VEHICLE_CMD_ESTIMATOR_SENSOR_ENABLE = 43006;
+      @verbatim (language="comment", text=
+        "Sensor fusion source types for VEHICLE_CMD_ESTIMATOR_SENSOR_ENABLE" "\n"        "GNSS (EKF2_GPS{i}_CTRL, use instance param)")
+      const uint8 FUSION_SOURCE_GPS = 0;
+      @verbatim (language="comment", text=
+        "Optical Flow (EKF2_OF_CTRL)")
+      const uint8 FUSION_SOURCE_OF = 1;
+      @verbatim (language="comment", text=
+        "External Vision (EKF2_EV_CTRL)")
+      const uint8 FUSION_SOURCE_EV = 2;
+      @verbatim (language="comment", text=
+        "Auxiliary Global Position (EKF2_AGP{i}_CTRL, use instance param)")
+      const uint8 FUSION_SOURCE_AGP = 3;
+      @verbatim (language="comment", text=
+        "Barometer (EKF2_BARO_CTRL)")
+      const uint8 FUSION_SOURCE_BARO = 4;
+      @verbatim (language="comment", text=
+        "Range Finder (EKF2_RNG_CTRL)")
+      const uint8 FUSION_SOURCE_RNG = 5;
+      @verbatim (language="comment", text=
+        "Magnetometer (EKF2_MAG_TYPE)")
+      const uint8 FUSION_SOURCE_MAG = 6;
+      @verbatim (language="comment", text=
+        "Airspeed (EKF2_ARSP_THR)")
+      const uint8 FUSION_SOURCE_ASPD = 7;
+      @verbatim (language="comment", text=
+        "Ranging Beacon")
+      const uint8 FUSION_SOURCE_RNGBCN = 8;
+      @verbatim (language="comment", text=
         "PX4 vehicle commands (beyond 16 bit MAVLink commands)." "\n"        "Start of PX4 internal only vehicle commands (> UINT16_MAX).")
       const uint32 VEHICLE_CMD_PX4_INTERNAL_START = 65537;
       @verbatim (language="comment", text=
@@ -314,6 +350,9 @@ module px4_msgs {
       @verbatim (language="comment", text=
         "Change mode by specifying nav_state directly. |nav_state|Unused|Unused|Unused|Unused|Unused|Unused|")
       const uint32 VEHICLE_CMD_SET_NAV_STATE = 100001;
+      @verbatim (language="comment", text=
+        "Change heading/course. param1: heading type (0=course-over-ground, 1=heading). param2: target [deg]. param3: max rate [deg/s]. |Heading type (HEADING_TYPE enum)|[deg] Target bearing [0..360]|[deg/s] Max rate of change|Unused|Unused|Unused|Unused|")
+      const uint16 VEHICLE_CMD_GUIDED_CHANGE_HEADING = 43002;
       @verbatim (language="comment", text=
         "Load and keep safe position (Roll,Pitch,Yaw) from permanent memory and stop stabilization.")
       const uint8 VEHICLE_MOUNT_MODE_RETRACT = 0;
@@ -346,6 +385,24 @@ module px4_msgs {
         "Point toward target.")
       const uint8 VEHICLE_ROI_TARGET = 4;
       const uint8 VEHICLE_ROI_ENUM_END = 5;
+      @verbatim (language="comment", text=
+        "Do nothing.")
+      const uint8 ACTUATOR_CONFIGURATION_NONE = 0;
+      @verbatim (language="comment", text=
+        "Command the actuator to beep now.")
+      const uint8 ACTUATOR_CONFIGURATION_BEEP = 1;
+      @verbatim (language="comment", text=
+        "Permanently set the actuator (ESC) to 3D mode (reversible thrust).")
+      const uint8 ACTUATOR_CONFIGURATION_3D_MODE_ON = 2;
+      @verbatim (language="comment", text=
+        "Permanently set the actuator (ESC) to non 3D mode (non-reversible thrust).")
+      const uint8 ACTUATOR_CONFIGURATION_3D_MODE_OFF = 3;
+      @verbatim (language="comment", text=
+        "Permanently set the actuator (ESC) to spin direction 1 (which can be clockwise or counter-clockwise).")
+      const uint8 ACTUATOR_CONFIGURATION_SPIN_DIRECTION1 = 4;
+      @verbatim (language="comment", text=
+        "Permanently set the actuator (ESC) to spin direction 2 (opposite of direction 1).")
+      const uint8 ACTUATOR_CONFIGURATION_SPIN_DIRECTION2 = 5;
       const uint8 PARACHUTE_ACTION_DISABLE = 0;
       const uint8 PARACHUTE_ACTION_ENABLE = 1;
       const uint8 PARACHUTE_ACTION_RELEASE = 2;
@@ -387,6 +444,13 @@ module px4_msgs {
       const uint8 ORBIT_YAW_BEHAVIOUR_RC_CONTROLLED = 4;
       const uint8 ORBIT_YAW_BEHAVIOUR_UNCHANGED = 5;
       @verbatim (language="comment", text=
+        "Used as param1&2 in CMD_START_RX_PAIR.")
+      const uint8 RC_TYPE_SPEKTRUM = 0;
+      const uint8 RC_TYPE_CRSF = 1;
+      const uint8 RC_SUB_TYPE_SPEKTRUM_DSM2 = 0;
+      const uint8 RC_SUB_TYPE_SPEKTRUM_DSMX = 1;
+      const uint8 RC_SUB_TYPE_SPEKTRUM_DSMX8 = 2;
+      @verbatim (language="comment", text=
         "Used as param1 in ARM_DISARM command.")
       const int8 ARMING_ACTION_DISARM = 0;
       const int8 ARMING_ACTION_ARM = 1;
@@ -398,6 +462,15 @@ module px4_msgs {
         "Used as param1 in DO_SET_SAFETY_SWITCH_STATE command.")
       const uint8 SAFETY_OFF = 0;
       const uint8 SAFETY_ON = 1;
+      @verbatim (language="comment", text=
+        "param1 in VEHICLE_CMD_ACTUATOR_GROUP_TEST (matches MAVLink ACTUATOR_TEST_GROUP enum)")
+      const uint8 ACTUATOR_TEST_GROUP_ROLL_TORQUE = 0;
+      const uint8 ACTUATOR_TEST_GROUP_PITCH_TORQUE = 1;
+      const uint8 ACTUATOR_TEST_GROUP_YAW_TORQUE = 2;
+      const uint8 ACTUATOR_TEST_GROUP_COLLECTIVE_TILT = 3;
+      const uint8 ACTUATOR_TEST_GROUP_X_THRUST = 4;
+      const uint8 ACTUATOR_TEST_GROUP_Y_THRUST = 5;
+      const uint8 ACTUATOR_TEST_GROUP_Z_THRUST = 6;
       const uint8 ORB_QUEUE_LENGTH = 8;
       const uint16 COMPONENT_MODE_EXECUTOR_START = 1000;
     };

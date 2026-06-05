@@ -10,12 +10,14 @@ module px4_msgs {
     };
     @verbatim (language="comment", text=
       "Fixed Wing Longitudinal Setpoint message" "\n"
+      "" "\n"
       "Used by the fw_lateral_longitudinal_control module" "\n"
       "If pitch_direct and throttle_direct are not both finite, then the controller relies on altitude/height_rate and equivalent_airspeed to control vertical motion." "\n"
       "If both altitude and height_rate are NAN, the controller maintains the current altitude.")
     struct FixedWingLongitudinalSetpoint {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
@@ -24,7 +26,7 @@ module px4_msgs {
       float altitude;
 
       @verbatim (language="comment", text=
-        "[m/s] [ENU] Scalar height rate setpoint. NAN if not controlled directly")
+        "[m/s] [@frame ENU] Scalar height rate setpoint. NAN if not controlled directly")
       float height_rate;
 
       @verbatim (language="comment", text=
@@ -33,7 +35,7 @@ module px4_msgs {
       float equivalent_airspeed;
 
       @verbatim (language="comment", text=
-        "[rad] [@range -pi, pi] [FRD] NAN if not controlled, overrides total energy controller")
+        "[rad] [@range -pi, pi] [@frame FRD] NAN if not controlled, overrides total energy controller")
       float pitch_direct;
 
       @verbatim (language="comment", text=

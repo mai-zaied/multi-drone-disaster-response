@@ -165,7 +165,7 @@ px4_msgs__msg__SystemPower__copy(
 }
 
 px4_msgs__msg__SystemPower *
-px4_msgs__msg__SystemPower__create()
+px4_msgs__msg__SystemPower__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SystemPower * msg = (px4_msgs__msg__SystemPower *)allocator.allocate(sizeof(px4_msgs__msg__SystemPower), allocator.state);

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LandingGearWheel.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_gear_wheel.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_GEAR_WHEEL__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__LANDING_GEAR_WHEEL__BUILDER_HPP_
 

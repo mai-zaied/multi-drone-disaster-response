@@ -41,6 +41,10 @@ module px4_msgs {
       float track_error_bound;
 
       @verbatim (language="comment", text=
+        "[m] [@range 0, INF] [@INVALID NaN] distance from the current waypoint at which the navigator should advance to the next one (turn anticipation). If below NAV_ACC_RAD, the parameter value is used instead.")
+      float switch_distance;
+
+      @verbatim (language="comment", text=
         "adapted period (if auto-tuning enabled)")
       @unit (value="s")
       float adapted_period;

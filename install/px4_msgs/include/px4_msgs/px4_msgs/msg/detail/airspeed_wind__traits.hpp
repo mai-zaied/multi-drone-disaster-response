@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/AirspeedWind.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/airspeed_wind.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__AIRSPEED_WIND__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__AIRSPEED_WIND__TRAITS_HPP_
 

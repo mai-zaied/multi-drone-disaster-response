@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EscReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/esc_report.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESC_REPORT__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESC_REPORT__TRAITS_HPP_
 
@@ -67,17 +70,10 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
-  // member: esc_address
+  // member: motor_temperature
   {
-    out << "esc_address: ";
-    rosidl_generator_traits::value_to_yaml(msg.esc_address, out);
-    out << ", ";
-  }
-
-  // member: esc_cmdcount
-  {
-    out << "esc_cmdcount: ";
-    rosidl_generator_traits::value_to_yaml(msg.esc_cmdcount, out);
+    out << "motor_temperature: ";
+    rosidl_generator_traits::value_to_yaml(msg.motor_temperature, out);
     out << ", ";
   }
 
@@ -174,23 +170,13 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
-  // member: esc_address
+  // member: motor_temperature
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "esc_address: ";
-    rosidl_generator_traits::value_to_yaml(msg.esc_address, out);
-    out << "\n";
-  }
-
-  // member: esc_cmdcount
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "esc_cmdcount: ";
-    rosidl_generator_traits::value_to_yaml(msg.esc_cmdcount, out);
+    out << "motor_temperature: ";
+    rosidl_generator_traits::value_to_yaml(msg.motor_temperature, out);
     out << "\n";
   }
 

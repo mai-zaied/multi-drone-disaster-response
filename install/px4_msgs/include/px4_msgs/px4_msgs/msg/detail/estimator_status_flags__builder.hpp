@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EstimatorStatusFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_status_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__BUILDER_HPP_
 
@@ -213,16 +216,48 @@ private:
   ::px4_msgs::msg::EstimatorStatusFlags msg_;
 };
 
+class Init_EstimatorStatusFlags_cs_heading_observable
+{
+public:
+  explicit Init_EstimatorStatusFlags_cs_heading_observable(::px4_msgs::msg::EstimatorStatusFlags & msg)
+  : msg_(msg)
+  {}
+  Init_EstimatorStatusFlags_fault_status_changes cs_heading_observable(::px4_msgs::msg::EstimatorStatusFlags::_cs_heading_observable_type arg)
+  {
+    msg_.cs_heading_observable = std::move(arg);
+    return Init_EstimatorStatusFlags_fault_status_changes(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::EstimatorStatusFlags msg_;
+};
+
+class Init_EstimatorStatusFlags_cs_in_transition
+{
+public:
+  explicit Init_EstimatorStatusFlags_cs_in_transition(::px4_msgs::msg::EstimatorStatusFlags & msg)
+  : msg_(msg)
+  {}
+  Init_EstimatorStatusFlags_cs_heading_observable cs_in_transition(::px4_msgs::msg::EstimatorStatusFlags::_cs_in_transition_type arg)
+  {
+    msg_.cs_in_transition = std::move(arg);
+    return Init_EstimatorStatusFlags_cs_heading_observable(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::EstimatorStatusFlags msg_;
+};
+
 class Init_EstimatorStatusFlags_cs_gnss_hgt_fault
 {
 public:
   explicit Init_EstimatorStatusFlags_cs_gnss_hgt_fault(::px4_msgs::msg::EstimatorStatusFlags & msg)
   : msg_(msg)
   {}
-  Init_EstimatorStatusFlags_fault_status_changes cs_gnss_hgt_fault(::px4_msgs::msg::EstimatorStatusFlags::_cs_gnss_hgt_fault_type arg)
+  Init_EstimatorStatusFlags_cs_in_transition cs_gnss_hgt_fault(::px4_msgs::msg::EstimatorStatusFlags::_cs_gnss_hgt_fault_type arg)
   {
     msg_.cs_gnss_hgt_fault = std::move(arg);
-    return Init_EstimatorStatusFlags_fault_status_changes(msg_);
+    return Init_EstimatorStatusFlags_cs_in_transition(msg_);
   }
 
 private:

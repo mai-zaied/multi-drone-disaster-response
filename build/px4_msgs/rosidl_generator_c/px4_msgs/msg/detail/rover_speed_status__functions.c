@@ -105,7 +105,7 @@ px4_msgs__msg__RoverSpeedStatus__copy(
 }
 
 px4_msgs__msg__RoverSpeedStatus *
-px4_msgs__msg__RoverSpeedStatus__create()
+px4_msgs__msg__RoverSpeedStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__RoverSpeedStatus * msg = (px4_msgs__msg__RoverSpeedStatus *)allocator.allocate(sizeof(px4_msgs__msg__RoverSpeedStatus), allocator.state);

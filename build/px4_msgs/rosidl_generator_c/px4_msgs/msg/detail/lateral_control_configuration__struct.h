@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LateralControlConfiguration.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/lateral_control_configuration.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LATERAL_CONTROL_CONFIGURATION__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__LATERAL_CONTROL_CONFIGURATION__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'MESSAGE_VERSION'.
@@ -26,13 +28,14 @@ enum
 /// Struct defined in msg/LateralControlConfiguration in the package px4_msgs.
 /**
   * Fixed Wing Lateral Control Configuration message
+  *
   * Used by the fw_lateral_longitudinal_control module to constrain FixedWingLateralSetpoint messages.
  */
 typedef struct px4_msgs__msg__LateralControlConfiguration
 {
-  /// time since system start (microseconds)
+  /// Time since system start
   uint64_t timestamp;
-  /// currently maps to a maximum roll angle, accel_max = tan(roll_max) * GRAVITY
+  /// Currently maps to a maximum roll angle, accel_max = tan(roll_max) * GRAVITY
   float lateral_accel_max;
 } px4_msgs__msg__LateralControlConfiguration;
 

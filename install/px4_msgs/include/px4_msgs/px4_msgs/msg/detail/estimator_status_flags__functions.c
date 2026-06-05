@@ -68,6 +68,8 @@ px4_msgs__msg__EstimatorStatusFlags__init(px4_msgs__msg__EstimatorStatusFlags * 
   // cs_gnss_fault
   // cs_yaw_manual
   // cs_gnss_hgt_fault
+  // cs_in_transition
+  // cs_heading_observable
   // fault_status_changes
   // fs_bad_mag_x
   // fs_bad_mag_y
@@ -140,6 +142,8 @@ px4_msgs__msg__EstimatorStatusFlags__fini(px4_msgs__msg__EstimatorStatusFlags * 
   // cs_gnss_fault
   // cs_yaw_manual
   // cs_gnss_hgt_fault
+  // cs_in_transition
+  // cs_heading_observable
   // fault_status_changes
   // fs_bad_mag_x
   // fs_bad_mag_y
@@ -364,6 +368,14 @@ px4_msgs__msg__EstimatorStatusFlags__are_equal(const px4_msgs__msg__EstimatorSta
   if (lhs->cs_gnss_hgt_fault != rhs->cs_gnss_hgt_fault) {
     return false;
   }
+  // cs_in_transition
+  if (lhs->cs_in_transition != rhs->cs_in_transition) {
+    return false;
+  }
+  // cs_heading_observable
+  if (lhs->cs_heading_observable != rhs->cs_heading_observable) {
+    return false;
+  }
   // fault_status_changes
   if (lhs->fault_status_changes != rhs->fault_status_changes) {
     return false;
@@ -525,6 +537,10 @@ px4_msgs__msg__EstimatorStatusFlags__copy(
   output->cs_yaw_manual = input->cs_yaw_manual;
   // cs_gnss_hgt_fault
   output->cs_gnss_hgt_fault = input->cs_gnss_hgt_fault;
+  // cs_in_transition
+  output->cs_in_transition = input->cs_in_transition;
+  // cs_heading_observable
+  output->cs_heading_observable = input->cs_heading_observable;
   // fault_status_changes
   output->fault_status_changes = input->fault_status_changes;
   // fs_bad_mag_x
@@ -553,7 +569,7 @@ px4_msgs__msg__EstimatorStatusFlags__copy(
 }
 
 px4_msgs__msg__EstimatorStatusFlags *
-px4_msgs__msg__EstimatorStatusFlags__create()
+px4_msgs__msg__EstimatorStatusFlags__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__EstimatorStatusFlags * msg = (px4_msgs__msg__EstimatorStatusFlags *)allocator.allocate(sizeof(px4_msgs__msg__EstimatorStatusFlags), allocator.state);

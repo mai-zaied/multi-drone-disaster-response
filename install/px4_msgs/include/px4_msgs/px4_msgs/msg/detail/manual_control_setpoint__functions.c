@@ -185,7 +185,7 @@ px4_msgs__msg__ManualControlSetpoint__copy(
 }
 
 px4_msgs__msg__ManualControlSetpoint *
-px4_msgs__msg__ManualControlSetpoint__create()
+px4_msgs__msg__ManualControlSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ManualControlSetpoint * msg = (px4_msgs__msg__ManualControlSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__ManualControlSetpoint), allocator.state);

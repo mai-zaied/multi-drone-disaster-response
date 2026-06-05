@@ -2,6 +2,9 @@
 // with input from task_msgs:msg/Task.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "task_msgs/msg/task.h"
+
+
 #ifndef TASK_MSGS__MSG__DETAIL__TASK__TYPE_SUPPORT_H_
 #define TASK_MSGS__MSG__DETAIL__TASK__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   task_msgs,
   msg,
   Task
-)();
+)(void);
 
 #ifdef __cplusplus
 }

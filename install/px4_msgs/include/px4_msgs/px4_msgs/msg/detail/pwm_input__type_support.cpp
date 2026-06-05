@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/pwm_input__functions.h"
 #include "px4_msgs/msg/detail/pwm_input__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -43,6 +44,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember PwmInput_mess
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember PwmInput_mess
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -77,6 +80,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember PwmInput_mess
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -94,6 +98,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember PwmInput_mess
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -113,6 +118,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers PwmInput_mes
   "PwmInput",  // message name
   4,  // number of fields
   sizeof(px4_msgs::msg::PwmInput),
+  false,  // has_any_key_member_
   PwmInput_message_member_array,  // message members
   PwmInput_init_function,  // function to initialize message memory (memory has to be allocated)
   PwmInput_fini_function  // function to terminate message instance (will not free memory)
@@ -122,6 +128,9 @@ static const rosidl_message_type_support_t PwmInput_message_type_support_handle 
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &PwmInput_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__PwmInput__get_type_hash,
+  &px4_msgs__msg__PwmInput__get_type_description,
+  &px4_msgs__msg__PwmInput__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

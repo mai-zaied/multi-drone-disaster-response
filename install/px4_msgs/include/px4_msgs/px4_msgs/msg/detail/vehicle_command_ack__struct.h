@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleCommandAck.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_command_ack.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_COMMAND_ACK__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_COMMAND_ACK__STRUCT_H_
 
@@ -14,19 +17,24 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'MESSAGE_VERSION'.
 enum
 {
-  px4_msgs__msg__VehicleCommandAck__MESSAGE_VERSION = 0ul
+  px4_msgs__msg__VehicleCommandAck__MESSAGE_VERSION = 1ul
+};
+
+/// Constant 'ORB_QUEUE_LENGTH'.
+enum
+{
+  px4_msgs__msg__VehicleCommandAck__ORB_QUEUE_LENGTH = 8
 };
 
 /// Constant 'VEHICLE_CMD_RESULT_ACCEPTED'.
 /**
-  * Result cases. This follows the MAVLink MAV_RESULT enum definition
-  * Command ACCEPTED and EXECUTED |
+  * VEHICLE_CMD_RESULT Result cases. Follows the MAVLink MAV_RESULT enum definition
+  * Command ACCEPTED and EXECUTED
  */
 enum
 {
@@ -35,7 +43,7 @@ enum
 
 /// Constant 'VEHICLE_CMD_RESULT_TEMPORARILY_REJECTED'.
 /**
-  * Command TEMPORARY REJECTED/DENIED |
+  * Command TEMPORARY REJECTED/DENIED
  */
 enum
 {
@@ -44,7 +52,7 @@ enum
 
 /// Constant 'VEHICLE_CMD_RESULT_DENIED'.
 /**
-  * Command PERMANENTLY DENIED |
+  * Command PERMANENTLY DENIED
  */
 enum
 {
@@ -53,7 +61,7 @@ enum
 
 /// Constant 'VEHICLE_CMD_RESULT_UNSUPPORTED'.
 /**
-  * Command UNKNOWN/UNSUPPORTED |
+  * Command UNKNOWN/UNSUPPORTED
  */
 enum
 {
@@ -62,7 +70,7 @@ enum
 
 /// Constant 'VEHICLE_CMD_RESULT_FAILED'.
 /**
-  * Command executed, but failed |
+  * Command executed, but failed
  */
 enum
 {
@@ -71,7 +79,7 @@ enum
 
 /// Constant 'VEHICLE_CMD_RESULT_IN_PROGRESS'.
 /**
-  * Command being executed |
+  * Command being executed
  */
 enum
 {
@@ -85,6 +93,33 @@ enum
 enum
 {
   px4_msgs__msg__VehicleCommandAck__VEHICLE_CMD_RESULT_CANCELLED = 6
+};
+
+/// Constant 'VEHICLE_CMD_RESULT_COMMAND_LONG_ONLY'.
+/**
+  * Command is only accepted when sent as a COMMAND_LONG
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommandAck__VEHICLE_CMD_RESULT_COMMAND_LONG_ONLY = 7
+};
+
+/// Constant 'VEHICLE_CMD_RESULT_COMMAND_INT_ONLY'.
+/**
+  * Command is only accepted when sent as a COMMAND_INT
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommandAck__VEHICLE_CMD_RESULT_COMMAND_INT_ONLY = 8
+};
+
+/// Constant 'VEHICLE_CMD_RESULT_UNSUPPORTED_MAV_FRAME'.
+/**
+  * Command does not support specified frame
+ */
+enum
+{
+  px4_msgs__msg__VehicleCommandAck__VEHICLE_CMD_RESULT_UNSUPPORTED_MAV_FRAME = 9
 };
 
 /// Constant 'ARM_AUTH_DENIED_REASON_GENERIC'.
@@ -126,30 +161,26 @@ enum
   px4_msgs__msg__VehicleCommandAck__ARM_AUTH_DENIED_REASON_BAD_WEATHER = 5
 };
 
-/// Constant 'ORB_QUEUE_LENGTH'.
-enum
-{
-  px4_msgs__msg__VehicleCommandAck__ORB_QUEUE_LENGTH = 8
-};
-
 /// Struct defined in msg/VehicleCommandAck in the package px4_msgs.
 /**
-  * Vehicle Command Ackonwledgement uORB message.
+  * Vehicle Command Acknowledgement uORB message.
+  *
   * Used for acknowledging the vehicle command being received.
   * Follows the MAVLink COMMAND_ACK message definition
  */
 typedef struct px4_msgs__msg__VehicleCommandAck
 {
-  /// time since system start (microseconds)
+  /// time since system start
   uint64_t timestamp;
   /// Command that is being acknowledged
   uint32_t command;
   /// Command result
   uint8_t result;
-  /// Also used as progress, it can be set with the reason why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS
+  /// Can be set with the reason why the command was denied, or the progress percentage when result is MAV_RESULT_IN_PROGRESS (%)
   uint8_t result_param1;
-  /// Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied.
+  /// Additional parameter of the result, example: which parameter of MAV_CMD_NAV_WAYPOINT caused it to be denied, or what ARM_AUTH_DENIED_REASON
   int32_t result_param2;
+  /// Target system
   uint8_t target_system;
   /// Target component / mode executor
   uint16_t target_component;

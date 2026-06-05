@@ -15,7 +15,7 @@ module px4_msgs {
       const uint8 FUNCTION_MOTOR1 = 101;
       const uint8 MAX_NUM_MOTORS = 12;
       const uint8 FUNCTION_SERVO1 = 201;
-      const uint8 MAX_NUM_SERVOS = 8;
+      const uint8 MAX_NUM_SERVOS = 15;
       @verbatim (language="comment", text=
         ">= MAX_NUM_MOTORS to support code in esc_calibration")
       const uint8 ORB_QUEUE_LENGTH = 16;

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/SensorGps.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_gps.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_GPS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_GPS__TRAITS_HPP_
 
@@ -281,6 +284,27 @@ inline void to_flow_style_yaml(
   {
     out << "rtcm_msg_used: ";
     rosidl_generator_traits::value_to_yaml(msg.rtcm_msg_used, out);
+    out << ", ";
+  }
+
+  // member: antenna_offset_x
+  {
+    out << "antenna_offset_x: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_x, out);
+    out << ", ";
+  }
+
+  // member: antenna_offset_y
+  {
+    out << "antenna_offset_y: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_y, out);
+    out << ", ";
+  }
+
+  // member: antenna_offset_z
+  {
+    out << "antenna_offset_z: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_z, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -656,6 +680,36 @@ inline void to_block_style_yaml(
     }
     out << "rtcm_msg_used: ";
     rosidl_generator_traits::value_to_yaml(msg.rtcm_msg_used, out);
+    out << "\n";
+  }
+
+  // member: antenna_offset_x
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "antenna_offset_x: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_x, out);
+    out << "\n";
+  }
+
+  // member: antenna_offset_y
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "antenna_offset_y: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_y, out);
+    out << "\n";
+  }
+
+  // member: antenna_offset_z
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "antenna_offset_z: ";
+    rosidl_generator_traits::value_to_yaml(msg.antenna_offset_z, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

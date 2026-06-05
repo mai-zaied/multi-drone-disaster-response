@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/TransponderReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/transponder_report.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__TRANSPONDER_REPORT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__TRANSPONDER_REPORT__BUILDER_HPP_
 

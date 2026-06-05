@@ -113,7 +113,7 @@ px4_msgs__msg__FigureEightStatus__copy(
 }
 
 px4_msgs__msg__FigureEightStatus *
-px4_msgs__msg__FigureEightStatus__create()
+px4_msgs__msg__FigureEightStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FigureEightStatus * msg = (px4_msgs__msg__FigureEightStatus *)allocator.allocate(sizeof(px4_msgs__msg__FigureEightStatus), allocator.state);

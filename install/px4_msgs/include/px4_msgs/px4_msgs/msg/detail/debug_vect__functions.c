@@ -93,7 +93,7 @@ px4_msgs__msg__DebugVect__copy(
 }
 
 px4_msgs__msg__DebugVect *
-px4_msgs__msg__DebugVect__create()
+px4_msgs__msg__DebugVect__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DebugVect * msg = (px4_msgs__msg__DebugVect *)allocator.allocate(sizeof(px4_msgs__msg__DebugVect), allocator.state);

@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _MountOrientation__ros_msg_type = px4_msgs__msg__MountOrientation;
 
-static bool _MountOrientation__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__MountOrientation(
+  const px4_msgs__msg__MountOrientation * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _MountOrientation__ros_msg_type * ros_message = static_cast<const _MountOrientation__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -58,21 +57,17 @@ static bool _MountOrientation__cdr_serialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->attitude_euler_angle;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   return true;
 }
 
-static bool _MountOrientation__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__MountOrientation(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__MountOrientation * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _MountOrientation__ros_msg_type * ros_message = static_cast<_MountOrientation__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -82,11 +77,12 @@ static bool _MountOrientation__cdr_deserialize(
   {
     size_t size = 3;
     auto array_ptr = ros_message->attitude_euler_angle;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__MountOrientation(
@@ -102,13 +98,14 @@ size_t get_serialized_size_px4_msgs__msg__MountOrientation(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name attitude_euler_angle
+
+  // Field name: attitude_euler_angle
   {
     size_t array_size = 3;
     auto array_ptr = ros_message->attitude_euler_angle;
@@ -121,12 +118,6 @@ size_t get_serialized_size_px4_msgs__msg__MountOrientation(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _MountOrientation__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__MountOrientation(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__MountOrientation(
@@ -146,18 +137,121 @@ size_t max_serialized_size_px4_msgs__msg__MountOrientation(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: attitude_euler_angle
+
+  // Field name: attitude_euler_angle
   {
     size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__MountOrientation;
+    is_plain =
+      (
+      offsetof(DataType, attitude_euler_angle) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__MountOrientation(
+  const px4_msgs__msg__MountOrientation * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: attitude_euler_angle
+  {
+    size_t size = 3;
+    auto array_ptr = ros_message->attitude_euler_angle;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__MountOrientation(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _MountOrientation__ros_msg_type * ros_message = static_cast<const _MountOrientation__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: attitude_euler_angle
+  {
+    size_t array_size = 3;
+    auto array_ptr = ros_message->attitude_euler_angle;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__MountOrientation(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: attitude_euler_angle
+  {
+    size_t array_size = 3;
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -175,8 +269,41 @@ size_t max_serialized_size_px4_msgs__msg__MountOrientation(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _MountOrientation__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__MountOrientation * ros_message = static_cast<const px4_msgs__msg__MountOrientation *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__MountOrientation(ros_message, cdr);
+}
+
+static bool _MountOrientation__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__MountOrientation * ros_message = static_cast<px4_msgs__msg__MountOrientation *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__MountOrientation(cdr, ros_message);
+}
+
+static uint32_t _MountOrientation__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__MountOrientation(
+      untyped_ros_message, 0));
 }
 
 static size_t _MountOrientation__max_serialized_size(char & bounds_info)
@@ -201,13 +328,17 @@ static message_type_support_callbacks_t __callbacks_MountOrientation = {
   _MountOrientation__cdr_serialize,
   _MountOrientation__cdr_deserialize,
   _MountOrientation__get_serialized_size,
-  _MountOrientation__max_serialized_size
+  _MountOrientation__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _MountOrientation__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_MountOrientation,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__MountOrientation__get_type_hash,
+  &px4_msgs__msg__MountOrientation__get_type_description,
+  &px4_msgs__msg__MountOrientation__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

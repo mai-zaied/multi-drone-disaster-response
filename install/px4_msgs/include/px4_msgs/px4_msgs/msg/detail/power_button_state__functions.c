@@ -65,7 +65,7 @@ px4_msgs__msg__PowerButtonState__copy(
 }
 
 px4_msgs__msg__PowerButtonState *
-px4_msgs__msg__PowerButtonState__create()
+px4_msgs__msg__PowerButtonState__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PowerButtonState * msg = (px4_msgs__msg__PowerButtonState *)allocator.allocate(sizeof(px4_msgs__msg__PowerButtonState), allocator.state);

@@ -77,7 +77,7 @@ px4_msgs__msg__TaskStackInfo__copy(
 }
 
 px4_msgs__msg__TaskStackInfo *
-px4_msgs__msg__TaskStackInfo__create()
+px4_msgs__msg__TaskStackInfo__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TaskStackInfo * msg = (px4_msgs__msg__TaskStackInfo *)allocator.allocate(sizeof(px4_msgs__msg__TaskStackInfo), allocator.state);

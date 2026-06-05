@@ -117,7 +117,7 @@ px4_msgs__msg__UavcanParameterValue__copy(
 }
 
 px4_msgs__msg__UavcanParameterValue *
-px4_msgs__msg__UavcanParameterValue__create()
+px4_msgs__msg__UavcanParameterValue__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__UavcanParameterValue * msg = (px4_msgs__msg__UavcanParameterValue *)allocator.allocate(sizeof(px4_msgs__msg__UavcanParameterValue), allocator.state);

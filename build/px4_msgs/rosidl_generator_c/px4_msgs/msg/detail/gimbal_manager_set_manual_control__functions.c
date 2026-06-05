@@ -137,7 +137,7 @@ px4_msgs__msg__GimbalManagerSetManualControl__copy(
 }
 
 px4_msgs__msg__GimbalManagerSetManualControl *
-px4_msgs__msg__GimbalManagerSetManualControl__create()
+px4_msgs__msg__GimbalManagerSetManualControl__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GimbalManagerSetManualControl * msg = (px4_msgs__msg__GimbalManagerSetManualControl *)allocator.allocate(sizeof(px4_msgs__msg__GimbalManagerSetManualControl), allocator.state);

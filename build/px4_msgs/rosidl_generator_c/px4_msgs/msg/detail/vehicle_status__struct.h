@@ -3,6 +3,9 @@
 // with input from px4_msgs:msg/VehicleStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__STRUCT_H_
 
@@ -15,13 +18,12 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'MESSAGE_VERSION'.
 enum
 {
-  px4_msgs__msg__VehicleStatus__MESSAGE_VERSION = 1ul
+  px4_msgs__msg__VehicleStatus__MESSAGE_VERSION = 4ul
 };
 
 /// Constant 'ARMING_STATE_DISARMED'.
@@ -156,10 +158,13 @@ enum
   px4_msgs__msg__VehicleStatus__NAVIGATION_STATE_POSITION_SLOW = 6
 };
 
-/// Constant 'NAVIGATION_STATE_FREE5'.
+/// Constant 'NAVIGATION_STATE_GUIDED_COURSE'.
+/**
+  * Guided Course mode (FW: maintain course/alt/speed)
+ */
 enum
 {
-  px4_msgs__msg__VehicleStatus__NAVIGATION_STATE_FREE5 = 7
+  px4_msgs__msg__VehicleStatus__NAVIGATION_STATE_GUIDED_COURSE = 7
 };
 
 /// Constant 'NAVIGATION_STATE_ALTITUDE_CRUISE'.
@@ -339,84 +344,6 @@ enum
   px4_msgs__msg__VehicleStatus__NAVIGATION_STATE_MAX = 31
 };
 
-/// Constant 'FAILURE_NONE'.
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_NONE = 0
-};
-
-/// Constant 'FAILURE_ROLL'.
-/**
-  * (1 << 0)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_ROLL = 1
-};
-
-/// Constant 'FAILURE_PITCH'.
-/**
-  * (1 << 1)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_PITCH = 2
-};
-
-/// Constant 'FAILURE_ALT'.
-/**
-  * (1 << 2)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_ALT = 4
-};
-
-/// Constant 'FAILURE_EXT'.
-/**
-  * (1 << 3)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_EXT = 8
-};
-
-/// Constant 'FAILURE_ARM_ESC'.
-/**
-  * (1 << 4)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_ARM_ESC = 16
-};
-
-/// Constant 'FAILURE_BATTERY'.
-/**
-  * (1 << 5)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_BATTERY = 32
-};
-
-/// Constant 'FAILURE_IMBALANCED_PROP'.
-/**
-  * (1 << 6)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_IMBALANCED_PROP = 64
-};
-
-/// Constant 'FAILURE_MOTOR'.
-/**
-  * (1 << 7)
- */
-enum
-{
-  px4_msgs__msg__VehicleStatus__FAILURE_MOTOR = 128
-};
-
 /// Constant 'HIL_STATE_OFF'.
 enum
 {
@@ -497,12 +424,14 @@ typedef struct px4_msgs__msg__VehicleStatus
   uint8_t nav_state;
   /// Current mode executor in charge (0=Autopilot)
   uint8_t executor_in_charge;
+  /// User-visible nav state sent via MAVLink (executor state if active, otherwise nav_state)
+  uint8_t nav_state_display;
+  /// True if the current mode accepts offboard trajectory setpoints via MAVLink
+  bool accepts_offboard_setpoints;
   /// Bitmask for all valid nav_state values
   uint32_t valid_nav_states_mask;
   /// Bitmask for all modes that a user can select
   uint32_t can_set_nav_states_mask;
-  /// Bitmask of detected failures
-  uint16_t failure_detector_status;
   uint8_t hil_state;
   /// Current vehicle locomotion method. A vehicle can have different methods (e.g. VTOL transitions from RW to FW method)
   uint8_t vehicle_type;
@@ -547,6 +476,7 @@ typedef struct px4_msgs__msg__VehicleStatus
   bool open_drone_id_system_healthy;
   bool parachute_system_present;
   bool parachute_system_healthy;
+  bool traffic_avoidance_system_present;
   bool rc_calibration_in_progress;
   bool calibration_enabled;
   /// true if all checks necessary to arm pass

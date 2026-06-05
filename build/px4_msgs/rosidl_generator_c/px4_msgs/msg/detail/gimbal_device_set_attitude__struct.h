@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GimbalDeviceSetAttitude.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gimbal_device_set_attitude.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -45,6 +47,18 @@ enum
 enum
 {
   px4_msgs__msg__GimbalDeviceSetAttitude__GIMBAL_DEVICE_FLAGS_YAW_LOCK = 16ul
+};
+
+/// Constant 'GIMBAL_DEVICE_FLAGS_YAW_IN_VEHICLE_FRAME'.
+enum
+{
+  px4_msgs__msg__GimbalDeviceSetAttitude__GIMBAL_DEVICE_FLAGS_YAW_IN_VEHICLE_FRAME = 32ul
+};
+
+/// Constant 'GIMBAL_DEVICE_FLAGS_YAW_IN_EARTH_FRAME'.
+enum
+{
+  px4_msgs__msg__GimbalDeviceSetAttitude__GIMBAL_DEVICE_FLAGS_YAW_IN_EARTH_FRAME = 64ul
 };
 
 /// Struct defined in msg/GimbalDeviceSetAttitude in the package px4_msgs.

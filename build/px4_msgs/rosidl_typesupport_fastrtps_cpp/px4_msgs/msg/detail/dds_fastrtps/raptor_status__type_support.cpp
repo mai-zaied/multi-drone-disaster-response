@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/RaptorStatus.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/raptor_status__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/raptor_status__functions.h"
 #include "px4_msgs/msg/detail/raptor_status__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,56 +38,80 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: timestamp_sample
   cdr << ros_message.timestamp_sample;
+
   // Member: subscription_update_angular_velocity
   cdr << (ros_message.subscription_update_angular_velocity ? true : false);
+
   // Member: subscription_update_local_position
   cdr << (ros_message.subscription_update_local_position ? true : false);
+
   // Member: subscription_update_attitude
   cdr << (ros_message.subscription_update_attitude ? true : false);
+
   // Member: subscription_update_trajectory_setpoint
   cdr << (ros_message.subscription_update_trajectory_setpoint ? true : false);
+
   // Member: subscription_update_vehicle_status
   cdr << (ros_message.subscription_update_vehicle_status ? true : false);
+
   // Member: exit_reason
   cdr << ros_message.exit_reason;
+
   // Member: timestamp_last_vehicle_angular_velocity
   cdr << ros_message.timestamp_last_vehicle_angular_velocity;
+
   // Member: timestamp_last_vehicle_local_position
   cdr << ros_message.timestamp_last_vehicle_local_position;
+
   // Member: timestamp_last_vehicle_attitude
   cdr << ros_message.timestamp_last_vehicle_attitude;
+
   // Member: timestamp_last_trajectory_setpoint
   cdr << ros_message.timestamp_last_trajectory_setpoint;
+
   // Member: vehicle_angular_velocity_stale
   cdr << (ros_message.vehicle_angular_velocity_stale ? true : false);
+
   // Member: vehicle_local_position_stale
   cdr << (ros_message.vehicle_local_position_stale ? true : false);
+
   // Member: vehicle_attitude_stale
   cdr << (ros_message.vehicle_attitude_stale ? true : false);
+
   // Member: trajectory_setpoint_stale
   cdr << (ros_message.trajectory_setpoint_stale ? true : false);
+
   // Member: active
   cdr << (ros_message.active ? true : false);
+
   // Member: substep
   cdr << ros_message.substep;
+
   // Member: control_interval
   cdr << ros_message.control_interval;
+
   // Member: trajectory_setpoint_dt_mean
   cdr << ros_message.trajectory_setpoint_dt_mean;
+
   // Member: trajectory_setpoint_dt_max
   cdr << ros_message.trajectory_setpoint_dt_max;
+
   // Member: trajectory_setpoint_dt_max_since_activation
   cdr << ros_message.trajectory_setpoint_dt_max_since_activation;
+
   // Member: internal_reference_position
   {
     cdr << ros_message.internal_reference_position;
   }
+
   // Member: internal_reference_linear_velocity
   {
     cdr << ros_message.internal_reference_linear_velocity;
   }
+
   return true;
 }
 
@@ -212,6 +240,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -231,132 +260,154 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_sample
   {
     size_t item_size = sizeof(ros_message.timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: subscription_update_angular_velocity
   {
     size_t item_size = sizeof(ros_message.subscription_update_angular_velocity);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: subscription_update_local_position
   {
     size_t item_size = sizeof(ros_message.subscription_update_local_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: subscription_update_attitude
   {
     size_t item_size = sizeof(ros_message.subscription_update_attitude);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: subscription_update_trajectory_setpoint
   {
     size_t item_size = sizeof(ros_message.subscription_update_trajectory_setpoint);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: subscription_update_vehicle_status
   {
     size_t item_size = sizeof(ros_message.subscription_update_vehicle_status);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: exit_reason
   {
     size_t item_size = sizeof(ros_message.exit_reason);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_last_vehicle_angular_velocity
   {
     size_t item_size = sizeof(ros_message.timestamp_last_vehicle_angular_velocity);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_last_vehicle_local_position
   {
     size_t item_size = sizeof(ros_message.timestamp_last_vehicle_local_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_last_vehicle_attitude
   {
     size_t item_size = sizeof(ros_message.timestamp_last_vehicle_attitude);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_last_trajectory_setpoint
   {
     size_t item_size = sizeof(ros_message.timestamp_last_trajectory_setpoint);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: vehicle_angular_velocity_stale
   {
     size_t item_size = sizeof(ros_message.vehicle_angular_velocity_stale);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: vehicle_local_position_stale
   {
     size_t item_size = sizeof(ros_message.vehicle_local_position_stale);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: vehicle_attitude_stale
   {
     size_t item_size = sizeof(ros_message.vehicle_attitude_stale);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: trajectory_setpoint_stale
   {
     size_t item_size = sizeof(ros_message.trajectory_setpoint_stale);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: active
   {
     size_t item_size = sizeof(ros_message.active);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: substep
   {
     size_t item_size = sizeof(ros_message.substep);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: control_interval
   {
     size_t item_size = sizeof(ros_message.control_interval);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: trajectory_setpoint_dt_mean
   {
     size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_mean);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: trajectory_setpoint_dt_max
   {
     size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_max);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: trajectory_setpoint_dt_max_since_activation
   {
     size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_max_since_activation);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: internal_reference_position
   {
     size_t array_size = 3;
@@ -364,6 +415,7 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: internal_reference_linear_velocity
   {
     size_t array_size = 3;
@@ -374,6 +426,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -394,206 +447,158 @@ max_serialized_size_RaptorStatus(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: subscription_update_angular_velocity
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: subscription_update_local_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: subscription_update_attitude
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: subscription_update_trajectory_setpoint
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: subscription_update_vehicle_status
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: exit_reason
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: timestamp_last_vehicle_angular_velocity
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: timestamp_last_vehicle_local_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: timestamp_last_vehicle_attitude
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: timestamp_last_trajectory_setpoint
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: vehicle_angular_velocity_stale
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: vehicle_local_position_stale
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: vehicle_attitude_stale
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: trajectory_setpoint_stale
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: active
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: substep
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: control_interval
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: trajectory_setpoint_dt_mean
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: trajectory_setpoint_dt_max
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: trajectory_setpoint_dt_max_since_activation
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: internal_reference_position
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: internal_reference_linear_velocity
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -614,6 +619,493 @@ max_serialized_size_RaptorStatus(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::RaptorStatus & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: timestamp_sample
+  cdr << ros_message.timestamp_sample;
+
+  // Member: subscription_update_angular_velocity
+  cdr << (ros_message.subscription_update_angular_velocity ? true : false);
+
+  // Member: subscription_update_local_position
+  cdr << (ros_message.subscription_update_local_position ? true : false);
+
+  // Member: subscription_update_attitude
+  cdr << (ros_message.subscription_update_attitude ? true : false);
+
+  // Member: subscription_update_trajectory_setpoint
+  cdr << (ros_message.subscription_update_trajectory_setpoint ? true : false);
+
+  // Member: subscription_update_vehicle_status
+  cdr << (ros_message.subscription_update_vehicle_status ? true : false);
+
+  // Member: exit_reason
+  cdr << ros_message.exit_reason;
+
+  // Member: timestamp_last_vehicle_angular_velocity
+  cdr << ros_message.timestamp_last_vehicle_angular_velocity;
+
+  // Member: timestamp_last_vehicle_local_position
+  cdr << ros_message.timestamp_last_vehicle_local_position;
+
+  // Member: timestamp_last_vehicle_attitude
+  cdr << ros_message.timestamp_last_vehicle_attitude;
+
+  // Member: timestamp_last_trajectory_setpoint
+  cdr << ros_message.timestamp_last_trajectory_setpoint;
+
+  // Member: vehicle_angular_velocity_stale
+  cdr << (ros_message.vehicle_angular_velocity_stale ? true : false);
+
+  // Member: vehicle_local_position_stale
+  cdr << (ros_message.vehicle_local_position_stale ? true : false);
+
+  // Member: vehicle_attitude_stale
+  cdr << (ros_message.vehicle_attitude_stale ? true : false);
+
+  // Member: trajectory_setpoint_stale
+  cdr << (ros_message.trajectory_setpoint_stale ? true : false);
+
+  // Member: active
+  cdr << (ros_message.active ? true : false);
+
+  // Member: substep
+  cdr << ros_message.substep;
+
+  // Member: control_interval
+  cdr << ros_message.control_interval;
+
+  // Member: trajectory_setpoint_dt_mean
+  cdr << ros_message.trajectory_setpoint_dt_mean;
+
+  // Member: trajectory_setpoint_dt_max
+  cdr << ros_message.trajectory_setpoint_dt_max;
+
+  // Member: trajectory_setpoint_dt_max_since_activation
+  cdr << ros_message.trajectory_setpoint_dt_max_since_activation;
+
+  // Member: internal_reference_position
+  {
+    cdr << ros_message.internal_reference_position;
+  }
+
+  // Member: internal_reference_linear_velocity
+  {
+    cdr << ros_message.internal_reference_linear_velocity;
+  }
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::RaptorStatus & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message.timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: subscription_update_angular_velocity
+  {
+    size_t item_size = sizeof(ros_message.subscription_update_angular_velocity);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: subscription_update_local_position
+  {
+    size_t item_size = sizeof(ros_message.subscription_update_local_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: subscription_update_attitude
+  {
+    size_t item_size = sizeof(ros_message.subscription_update_attitude);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: subscription_update_trajectory_setpoint
+  {
+    size_t item_size = sizeof(ros_message.subscription_update_trajectory_setpoint);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: subscription_update_vehicle_status
+  {
+    size_t item_size = sizeof(ros_message.subscription_update_vehicle_status);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: exit_reason
+  {
+    size_t item_size = sizeof(ros_message.exit_reason);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_last_vehicle_angular_velocity
+  {
+    size_t item_size = sizeof(ros_message.timestamp_last_vehicle_angular_velocity);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_last_vehicle_local_position
+  {
+    size_t item_size = sizeof(ros_message.timestamp_last_vehicle_local_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_last_vehicle_attitude
+  {
+    size_t item_size = sizeof(ros_message.timestamp_last_vehicle_attitude);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_last_trajectory_setpoint
+  {
+    size_t item_size = sizeof(ros_message.timestamp_last_trajectory_setpoint);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vehicle_angular_velocity_stale
+  {
+    size_t item_size = sizeof(ros_message.vehicle_angular_velocity_stale);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vehicle_local_position_stale
+  {
+    size_t item_size = sizeof(ros_message.vehicle_local_position_stale);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: vehicle_attitude_stale
+  {
+    size_t item_size = sizeof(ros_message.vehicle_attitude_stale);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: trajectory_setpoint_stale
+  {
+    size_t item_size = sizeof(ros_message.trajectory_setpoint_stale);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: active
+  {
+    size_t item_size = sizeof(ros_message.active);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: substep
+  {
+    size_t item_size = sizeof(ros_message.substep);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: control_interval
+  {
+    size_t item_size = sizeof(ros_message.control_interval);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: trajectory_setpoint_dt_mean
+  {
+    size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_mean);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: trajectory_setpoint_dt_max
+  {
+    size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_max);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: trajectory_setpoint_dt_max_since_activation
+  {
+    size_t item_size = sizeof(ros_message.trajectory_setpoint_dt_max_since_activation);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: internal_reference_position
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.internal_reference_position[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: internal_reference_linear_velocity
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.internal_reference_linear_velocity[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_RaptorStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: subscription_update_angular_velocity
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: subscription_update_local_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: subscription_update_attitude
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: subscription_update_trajectory_setpoint
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: subscription_update_vehicle_status
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: exit_reason
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: timestamp_last_vehicle_angular_velocity
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: timestamp_last_vehicle_local_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: timestamp_last_vehicle_attitude
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: timestamp_last_trajectory_setpoint
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: vehicle_angular_velocity_stale
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: vehicle_local_position_stale
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: vehicle_attitude_stale
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: trajectory_setpoint_stale
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: active
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: substep
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: control_interval
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: trajectory_setpoint_dt_mean
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: trajectory_setpoint_dt_max
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: trajectory_setpoint_dt_max_since_activation
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: internal_reference_position
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: internal_reference_linear_velocity
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::RaptorStatus;
+    is_plain =
+      (
+      offsetof(DataType, internal_reference_linear_velocity) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _RaptorStatus__cdr_serialize(
   const void * untyped_ros_message,
@@ -664,13 +1156,17 @@ static message_type_support_callbacks_t _RaptorStatus__callbacks = {
   _RaptorStatus__cdr_serialize,
   _RaptorStatus__cdr_deserialize,
   _RaptorStatus__get_serialized_size,
-  _RaptorStatus__max_serialized_size
+  _RaptorStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _RaptorStatus__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_RaptorStatus__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RaptorStatus__get_type_hash,
+  &px4_msgs__msg__RaptorStatus__get_type_description,
+  &px4_msgs__msg__RaptorStatus__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

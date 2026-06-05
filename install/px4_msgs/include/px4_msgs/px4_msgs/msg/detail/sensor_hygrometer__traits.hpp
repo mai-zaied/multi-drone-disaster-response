@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/SensorHygrometer.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_hygrometer.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_HYGROMETER__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_HYGROMETER__TRAITS_HPP_
 

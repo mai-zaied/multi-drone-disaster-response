@@ -189,7 +189,7 @@ px4_msgs__msg__GimbalDeviceInformation__copy(
 }
 
 px4_msgs__msg__GimbalDeviceInformation *
-px4_msgs__msg__GimbalDeviceInformation__create()
+px4_msgs__msg__GimbalDeviceInformation__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GimbalDeviceInformation * msg = (px4_msgs__msg__GimbalDeviceInformation *)allocator.allocate(sizeof(px4_msgs__msg__GimbalDeviceInformation), allocator.state);

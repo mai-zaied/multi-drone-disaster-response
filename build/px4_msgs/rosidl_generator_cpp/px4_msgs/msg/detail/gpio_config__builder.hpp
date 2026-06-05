@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GpioConfig.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gpio_config.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GPIO_CONFIG__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__GPIO_CONFIG__BUILDER_HPP_
 

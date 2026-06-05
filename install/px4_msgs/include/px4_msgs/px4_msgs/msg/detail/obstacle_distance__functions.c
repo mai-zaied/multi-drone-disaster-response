@@ -117,7 +117,7 @@ px4_msgs__msg__ObstacleDistance__copy(
 }
 
 px4_msgs__msg__ObstacleDistance *
-px4_msgs__msg__ObstacleDistance__create()
+px4_msgs__msg__ObstacleDistance__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ObstacleDistance * msg = (px4_msgs__msg__ObstacleDistance *)allocator.allocate(sizeof(px4_msgs__msg__ObstacleDistance), allocator.state);

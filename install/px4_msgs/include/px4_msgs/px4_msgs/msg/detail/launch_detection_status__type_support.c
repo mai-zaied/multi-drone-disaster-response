@@ -31,12 +31,13 @@ void px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__L
   px4_msgs__msg__LaunchDetectionStatus__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_message_member_array[2] = {
+static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_message_member_array[3] = {
   {
     "timestamp",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -54,10 +55,29 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__LaunchDe
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
     offsetof(px4_msgs__msg__LaunchDetectionStatus, launch_detection_state),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "selected_control_surface_disarmed",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is key
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(px4_msgs__msg__LaunchDetectionStatus, selected_control_surface_disarmed),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -71,8 +91,9 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__LaunchDe
 static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_message_members = {
   "px4_msgs__msg",  // message namespace
   "LaunchDetectionStatus",  // message name
-  2,  // number of fields
+  3,  // number of fields
   sizeof(px4_msgs__msg__LaunchDetectionStatus),
+  false,  // has_any_key_member_
   px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_message_member_array,  // message members
   px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_fini_function  // function to terminate message instance (will not free memory)
@@ -84,6 +105,9 @@ static rosidl_message_type_support_t px4_msgs__msg__LaunchDetectionStatus__rosid
   0,
   &px4_msgs__msg__LaunchDetectionStatus__rosidl_typesupport_introspection_c__LaunchDetectionStatus_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__LaunchDetectionStatus__get_type_hash,
+  &px4_msgs__msg__LaunchDetectionStatus__get_type_description,
+  &px4_msgs__msg__LaunchDetectionStatus__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs

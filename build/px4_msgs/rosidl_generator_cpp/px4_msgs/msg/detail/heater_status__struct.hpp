@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/HeaterStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/heater_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__HEATER_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__HEATER_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -49,7 +53,11 @@ struct HeaterStatus_
       this->proportional_value = 0.0f;
       this->integrator_value = 0.0f;
       this->feed_forward_value = 0.0f;
+      this->supply_voltage = 0.0f;
+      this->heater_current = 0.0f;
+      this->nominal_multiplier = 0.0f;
       this->mode = 0;
+      this->temperature_source = 0;
     }
   }
 
@@ -70,7 +78,11 @@ struct HeaterStatus_
       this->proportional_value = 0.0f;
       this->integrator_value = 0.0f;
       this->feed_forward_value = 0.0f;
+      this->supply_voltage = 0.0f;
+      this->heater_current = 0.0f;
+      this->nominal_multiplier = 0.0f;
       this->mode = 0;
+      this->temperature_source = 0;
     }
   }
 
@@ -108,9 +120,21 @@ struct HeaterStatus_
   using _feed_forward_value_type =
     float;
   _feed_forward_value_type feed_forward_value;
+  using _supply_voltage_type =
+    float;
+  _supply_voltage_type supply_voltage;
+  using _heater_current_type =
+    float;
+  _heater_current_type heater_current;
+  using _nominal_multiplier_type =
+    float;
+  _nominal_multiplier_type nominal_multiplier;
   using _mode_type =
     uint8_t;
   _mode_type mode;
+  using _temperature_source_type =
+    uint8_t;
+  _temperature_source_type temperature_source;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -179,10 +203,34 @@ struct HeaterStatus_
     this->feed_forward_value = _arg;
     return *this;
   }
+  Type & set__supply_voltage(
+    const float & _arg)
+  {
+    this->supply_voltage = _arg;
+    return *this;
+  }
+  Type & set__heater_current(
+    const float & _arg)
+  {
+    this->heater_current = _arg;
+    return *this;
+  }
+  Type & set__nominal_multiplier(
+    const float & _arg)
+  {
+    this->nominal_multiplier = _arg;
+    return *this;
+  }
   Type & set__mode(
     const uint8_t & _arg)
   {
     this->mode = _arg;
+    return *this;
+  }
+  Type & set__temperature_source(
+    const uint8_t & _arg)
+  {
+    this->temperature_source = _arg;
     return *this;
   }
 
@@ -191,6 +239,10 @@ struct HeaterStatus_
     1u;
   static constexpr uint8_t MODE_PX4IO =
     2u;
+  static constexpr uint8_t TEMPERATURE_SOURCE_IMU =
+    0u;
+  static constexpr uint8_t TEMPERATURE_SOURCE_HYGRO =
+    1u;
 
   // pointer types
   using RawPtr =
@@ -265,7 +317,19 @@ struct HeaterStatus_
     if (this->feed_forward_value != other.feed_forward_value) {
       return false;
     }
+    if (this->supply_voltage != other.supply_voltage) {
+      return false;
+    }
+    if (this->heater_current != other.heater_current) {
+      return false;
+    }
+    if (this->nominal_multiplier != other.nominal_multiplier) {
+      return false;
+    }
     if (this->mode != other.mode) {
+      return false;
+    }
+    if (this->temperature_source != other.temperature_source) {
       return false;
     }
     return true;
@@ -290,6 +354,16 @@ constexpr uint8_t HeaterStatus_<ContainerAllocator>::MODE_GPIO;
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>
 constexpr uint8_t HeaterStatus_<ContainerAllocator>::MODE_PX4IO;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t HeaterStatus_<ContainerAllocator>::TEMPERATURE_SOURCE_IMU;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t HeaterStatus_<ContainerAllocator>::TEMPERATURE_SOURCE_HYGRO;
 #endif  // __cplusplus < 201703L
 
 }  // namespace msg

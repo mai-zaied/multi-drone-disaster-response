@@ -121,7 +121,7 @@ px4_msgs__msg__FuelTankStatus__copy(
 }
 
 px4_msgs__msg__FuelTankStatus *
-px4_msgs__msg__FuelTankStatus__create()
+px4_msgs__msg__FuelTankStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FuelTankStatus * msg = (px4_msgs__msg__FuelTankStatus *)allocator.allocate(sizeof(px4_msgs__msg__FuelTankStatus), allocator.state);

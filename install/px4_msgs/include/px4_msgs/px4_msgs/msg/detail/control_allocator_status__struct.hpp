@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/ControlAllocatorStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/control_allocator_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -46,6 +50,7 @@ struct ControlAllocatorStatus_
       std::fill<typename std::array<int8_t, 16>::iterator, int8_t>(this->actuator_saturation.begin(), this->actuator_saturation.end(), 0);
       this->handled_motor_failure_mask = 0;
       this->motor_stop_mask = 0;
+      this->actuator_group_preflight_check_active = false;
     }
   }
 
@@ -65,6 +70,7 @@ struct ControlAllocatorStatus_
       std::fill<typename std::array<int8_t, 16>::iterator, int8_t>(this->actuator_saturation.begin(), this->actuator_saturation.end(), 0);
       this->handled_motor_failure_mask = 0;
       this->motor_stop_mask = 0;
+      this->actuator_group_preflight_check_active = false;
     }
   }
 
@@ -93,6 +99,9 @@ struct ControlAllocatorStatus_
   using _motor_stop_mask_type =
     uint16_t;
   _motor_stop_mask_type motor_stop_mask;
+  using _actuator_group_preflight_check_active_type =
+    bool;
+  _actuator_group_preflight_check_active_type actuator_group_preflight_check_active;
 
   // setters for named parameter idiom
   Type & set__timestamp(
@@ -141,6 +150,12 @@ struct ControlAllocatorStatus_
     const uint16_t & _arg)
   {
     this->motor_stop_mask = _arg;
+    return *this;
+  }
+  Type & set__actuator_group_preflight_check_active(
+    const bool & _arg)
+  {
+    this->actuator_group_preflight_check_active = _arg;
     return *this;
   }
 
@@ -218,6 +233,9 @@ struct ControlAllocatorStatus_
       return false;
     }
     if (this->motor_stop_mask != other.motor_stop_mask) {
+      return false;
+    }
+    if (this->actuator_group_preflight_check_active != other.actuator_group_preflight_check_active) {
       return false;
     }
     return true;

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleOpticalFlow.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_optical_flow.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_OPTICAL_FLOW__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_OPTICAL_FLOW__BUILDER_HPP_
 

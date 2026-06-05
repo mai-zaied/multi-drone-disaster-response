@@ -113,7 +113,7 @@ px4_msgs__msg__SensorMag__copy(
 }
 
 px4_msgs__msg__SensorMag *
-px4_msgs__msg__SensorMag__create()
+px4_msgs__msg__SensorMag__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorMag * msg = (px4_msgs__msg__SensorMag *)allocator.allocate(sizeof(px4_msgs__msg__SensorMag), allocator.state);

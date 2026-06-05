@@ -82,6 +82,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -99,6 +100,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -116,6 +118,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -133,6 +136,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -150,6 +154,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     true,  // is array
     3,  // array size
     false,  // is upper bound
@@ -167,6 +172,7 @@ static rosidl_typesupport_introspection_c__MessageMember px4_msgs__msg__VehicleR
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     NULL,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -186,6 +192,7 @@ static const rosidl_typesupport_introspection_c__MessageMembers px4_msgs__msg__V
   "VehicleRatesSetpoint",  // message name
   6,  // number of fields
   sizeof(px4_msgs__msg__VehicleRatesSetpoint),
+  false,  // has_any_key_member_
   px4_msgs__msg__VehicleRatesSetpoint__rosidl_typesupport_introspection_c__VehicleRatesSetpoint_message_member_array,  // message members
   px4_msgs__msg__VehicleRatesSetpoint__rosidl_typesupport_introspection_c__VehicleRatesSetpoint_init_function,  // function to initialize message memory (memory has to be allocated)
   px4_msgs__msg__VehicleRatesSetpoint__rosidl_typesupport_introspection_c__VehicleRatesSetpoint_fini_function  // function to terminate message instance (will not free memory)
@@ -197,6 +204,9 @@ static rosidl_message_type_support_t px4_msgs__msg__VehicleRatesSetpoint__rosidl
   0,
   &px4_msgs__msg__VehicleRatesSetpoint__rosidl_typesupport_introspection_c__VehicleRatesSetpoint_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleRatesSetpoint__get_type_hash,
+  &px4_msgs__msg__VehicleRatesSetpoint__get_type_description,
+  &px4_msgs__msg__VehicleRatesSetpoint__get_type_description_sources,
 };
 
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_px4_msgs

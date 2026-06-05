@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/GimbalDeviceSetAttitude.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gimbal_device_set_attitude.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -153,6 +157,10 @@ struct GimbalDeviceSetAttitude_
     8u;
   static constexpr uint32_t GIMBAL_DEVICE_FLAGS_YAW_LOCK =
     16u;
+  static constexpr uint32_t GIMBAL_DEVICE_FLAGS_YAW_IN_VEHICLE_FRAME =
+    32u;
+  static constexpr uint32_t GIMBAL_DEVICE_FLAGS_YAW_IN_EARTH_FRAME =
+    64u;
 
   // pointer types
   using RawPtr =
@@ -255,6 +263,16 @@ constexpr uint32_t GimbalDeviceSetAttitude_<ContainerAllocator>::GIMBAL_DEVICE_F
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>
 constexpr uint32_t GimbalDeviceSetAttitude_<ContainerAllocator>::GIMBAL_DEVICE_FLAGS_YAW_LOCK;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint32_t GimbalDeviceSetAttitude_<ContainerAllocator>::GIMBAL_DEVICE_FLAGS_YAW_IN_VEHICLE_FRAME;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint32_t GimbalDeviceSetAttitude_<ContainerAllocator>::GIMBAL_DEVICE_FLAGS_YAW_IN_EARTH_FRAME;
 #endif  // __cplusplus < 201703L
 
 }  // namespace msg

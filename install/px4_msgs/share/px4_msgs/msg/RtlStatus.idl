@@ -44,7 +44,7 @@ module px4_msgs {
       uint8 rtl_type;
 
       @verbatim (language="comment", text=
-        "index of the chosen safe point, if in RTL_STATUS_TYPE_DIRECT_SAFE_POINT mode")
+        "index of the chosen safe point, UINT8_MAX if no rally point was chosen")
       uint8 safe_point_index;
     };
   };

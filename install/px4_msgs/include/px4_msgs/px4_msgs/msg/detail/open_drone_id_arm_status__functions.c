@@ -77,7 +77,7 @@ px4_msgs__msg__OpenDroneIdArmStatus__copy(
 }
 
 px4_msgs__msg__OpenDroneIdArmStatus *
-px4_msgs__msg__OpenDroneIdArmStatus__create()
+px4_msgs__msg__OpenDroneIdArmStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__OpenDroneIdArmStatus * msg = (px4_msgs__msg__OpenDroneIdArmStatus *)allocator.allocate(sizeof(px4_msgs__msg__OpenDroneIdArmStatus), allocator.state);

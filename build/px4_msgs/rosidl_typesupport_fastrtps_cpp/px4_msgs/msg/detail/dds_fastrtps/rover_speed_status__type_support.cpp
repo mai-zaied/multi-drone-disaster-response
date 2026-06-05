@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/RoverSpeedStatus.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/rover_speed_status__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/rover_speed_status__functions.h"
 #include "px4_msgs/msg/detail/rover_speed_status__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,18 +38,25 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: measured_speed_body_x
   cdr << ros_message.measured_speed_body_x;
+
   // Member: adjusted_speed_body_x_setpoint
   cdr << ros_message.adjusted_speed_body_x_setpoint;
+
   // Member: pid_throttle_body_x_integral
   cdr << ros_message.pid_throttle_body_x_integral;
+
   // Member: measured_speed_body_y
   cdr << ros_message.measured_speed_body_y;
+
   // Member: adjusted_speed_body_y_setpoint
   cdr << ros_message.adjusted_speed_body_y_setpoint;
+
   // Member: pid_throttle_body_y_integral
   cdr << ros_message.pid_throttle_body_y_integral;
+
   return true;
 }
 
@@ -79,6 +90,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -98,36 +110,42 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: measured_speed_body_x
   {
     size_t item_size = sizeof(ros_message.measured_speed_body_x);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: adjusted_speed_body_x_setpoint
   {
     size_t item_size = sizeof(ros_message.adjusted_speed_body_x_setpoint);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: pid_throttle_body_x_integral
   {
     size_t item_size = sizeof(ros_message.pid_throttle_body_x_integral);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: measured_speed_body_y
   {
     size_t item_size = sizeof(ros_message.measured_speed_body_y);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: adjusted_speed_body_y_setpoint
   {
     size_t item_size = sizeof(ros_message.adjusted_speed_body_y_setpoint);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: pid_throttle_body_y_integral
   {
     size_t item_size = sizeof(ros_message.pid_throttle_body_y_integral);
@@ -137,6 +155,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -157,65 +176,51 @@ max_serialized_size_RoverSpeedStatus(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: measured_speed_body_x
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: adjusted_speed_body_x_setpoint
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: pid_throttle_body_x_integral
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: measured_speed_body_y
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: adjusted_speed_body_y_setpoint
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: pid_throttle_body_y_integral
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -236,6 +241,193 @@ max_serialized_size_RoverSpeedStatus(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::RoverSpeedStatus & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: measured_speed_body_x
+  cdr << ros_message.measured_speed_body_x;
+
+  // Member: adjusted_speed_body_x_setpoint
+  cdr << ros_message.adjusted_speed_body_x_setpoint;
+
+  // Member: pid_throttle_body_x_integral
+  cdr << ros_message.pid_throttle_body_x_integral;
+
+  // Member: measured_speed_body_y
+  cdr << ros_message.measured_speed_body_y;
+
+  // Member: adjusted_speed_body_y_setpoint
+  cdr << ros_message.adjusted_speed_body_y_setpoint;
+
+  // Member: pid_throttle_body_y_integral
+  cdr << ros_message.pid_throttle_body_y_integral;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::RoverSpeedStatus & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: measured_speed_body_x
+  {
+    size_t item_size = sizeof(ros_message.measured_speed_body_x);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: adjusted_speed_body_x_setpoint
+  {
+    size_t item_size = sizeof(ros_message.adjusted_speed_body_x_setpoint);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: pid_throttle_body_x_integral
+  {
+    size_t item_size = sizeof(ros_message.pid_throttle_body_x_integral);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: measured_speed_body_y
+  {
+    size_t item_size = sizeof(ros_message.measured_speed_body_y);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: adjusted_speed_body_y_setpoint
+  {
+    size_t item_size = sizeof(ros_message.adjusted_speed_body_y_setpoint);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: pid_throttle_body_y_integral
+  {
+    size_t item_size = sizeof(ros_message.pid_throttle_body_y_integral);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_RoverSpeedStatus(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: measured_speed_body_x
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: adjusted_speed_body_x_setpoint
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: pid_throttle_body_x_integral
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: measured_speed_body_y
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: adjusted_speed_body_y_setpoint
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: pid_throttle_body_y_integral
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::RoverSpeedStatus;
+    is_plain =
+      (
+      offsetof(DataType, pid_throttle_body_y_integral) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _RoverSpeedStatus__cdr_serialize(
   const void * untyped_ros_message,
@@ -286,13 +478,17 @@ static message_type_support_callbacks_t _RoverSpeedStatus__callbacks = {
   _RoverSpeedStatus__cdr_serialize,
   _RoverSpeedStatus__cdr_deserialize,
   _RoverSpeedStatus__get_serialized_size,
-  _RoverSpeedStatus__max_serialized_size
+  _RoverSpeedStatus__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _RoverSpeedStatus__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_RoverSpeedStatus__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__RoverSpeedStatus__get_type_hash,
+  &px4_msgs__msg__RoverSpeedStatus__get_type_description,
+  &px4_msgs__msg__RoverSpeedStatus__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

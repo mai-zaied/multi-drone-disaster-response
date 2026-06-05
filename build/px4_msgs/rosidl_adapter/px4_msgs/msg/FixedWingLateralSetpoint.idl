@@ -10,11 +10,13 @@ module px4_msgs {
     };
     @verbatim (language="comment", text=
       "Fixed Wing Lateral Setpoint message" "\n"
+      "" "\n"
       "Used by the fw_lateral_longitudinal_control module" "\n"
       "At least one of course, airspeed_direction, or lateral_acceleration must be finite.")
     struct FixedWingLateralSetpoint {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
@@ -28,7 +30,7 @@ module px4_msgs {
       float airspeed_direction;
 
       @verbatim (language="comment", text=
-        "[m/s^2] [FRD] Lateral acceleration setpoint. NAN if not controlled directly, used as feedforward if either course setpoint or airspeed_direction is finite.")
+        "[m/s^2] [@frame FRD] Lateral acceleration setpoint. NAN if not controlled directly, used as feedforward if either course setpoint or airspeed_direction is finite.")
       float lateral_acceleration;
     };
   };

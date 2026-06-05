@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/SensorCombined.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/sensor_combined__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/sensor_combined__functions.h"
 #include "px4_msgs/msg/detail/sensor_combined__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,28 +38,38 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: gyro_rad
   {
     cdr << ros_message.gyro_rad;
   }
+
   // Member: gyro_integral_dt
   cdr << ros_message.gyro_integral_dt;
+
   // Member: accelerometer_timestamp_relative
   cdr << ros_message.accelerometer_timestamp_relative;
+
   // Member: accelerometer_m_s2
   {
     cdr << ros_message.accelerometer_m_s2;
   }
+
   // Member: accelerometer_integral_dt
   cdr << ros_message.accelerometer_integral_dt;
+
   // Member: accelerometer_clipping
   cdr << ros_message.accelerometer_clipping;
+
   // Member: gyro_clipping
   cdr << ros_message.gyro_clipping;
+
   // Member: accel_calibration_count
   cdr << ros_message.accel_calibration_count;
+
   // Member: gyro_calibration_count
   cdr << ros_message.gyro_calibration_count;
+
   return true;
 }
 
@@ -102,6 +116,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -121,6 +136,7 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: gyro_rad
   {
     size_t array_size = 3;
@@ -128,18 +144,21 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: gyro_integral_dt
   {
     size_t item_size = sizeof(ros_message.gyro_integral_dt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: accelerometer_timestamp_relative
   {
     size_t item_size = sizeof(ros_message.accelerometer_timestamp_relative);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: accelerometer_m_s2
   {
     size_t array_size = 3;
@@ -147,30 +166,35 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: accelerometer_integral_dt
   {
     size_t item_size = sizeof(ros_message.accelerometer_integral_dt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: accelerometer_clipping
   {
     size_t item_size = sizeof(ros_message.accelerometer_clipping);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: gyro_clipping
   {
     size_t item_size = sizeof(ros_message.gyro_clipping);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: accel_calibration_count
   {
     size_t item_size = sizeof(ros_message.accel_calibration_count);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: gyro_calibration_count
   {
     size_t item_size = sizeof(ros_message.gyro_calibration_count);
@@ -180,6 +204,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -200,89 +225,69 @@ max_serialized_size_SensorCombined(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: gyro_rad
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: gyro_integral_dt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: accelerometer_timestamp_relative
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: accelerometer_m_s2
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: accelerometer_integral_dt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: accelerometer_clipping
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: gyro_clipping
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: accel_calibration_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: gyro_calibration_count
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -302,6 +307,249 @@ max_serialized_size_SensorCombined(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::SensorCombined & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: gyro_rad
+  {
+    cdr << ros_message.gyro_rad;
+  }
+
+  // Member: gyro_integral_dt
+  cdr << ros_message.gyro_integral_dt;
+
+  // Member: accelerometer_timestamp_relative
+  cdr << ros_message.accelerometer_timestamp_relative;
+
+  // Member: accelerometer_m_s2
+  {
+    cdr << ros_message.accelerometer_m_s2;
+  }
+
+  // Member: accelerometer_integral_dt
+  cdr << ros_message.accelerometer_integral_dt;
+
+  // Member: accelerometer_clipping
+  cdr << ros_message.accelerometer_clipping;
+
+  // Member: gyro_clipping
+  cdr << ros_message.gyro_clipping;
+
+  // Member: accel_calibration_count
+  cdr << ros_message.accel_calibration_count;
+
+  // Member: gyro_calibration_count
+  cdr << ros_message.gyro_calibration_count;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::SensorCombined & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gyro_rad
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.gyro_rad[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gyro_integral_dt
+  {
+    size_t item_size = sizeof(ros_message.gyro_integral_dt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: accelerometer_timestamp_relative
+  {
+    size_t item_size = sizeof(ros_message.accelerometer_timestamp_relative);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: accelerometer_m_s2
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.accelerometer_m_s2[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: accelerometer_integral_dt
+  {
+    size_t item_size = sizeof(ros_message.accelerometer_integral_dt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: accelerometer_clipping
+  {
+    size_t item_size = sizeof(ros_message.accelerometer_clipping);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gyro_clipping
+  {
+    size_t item_size = sizeof(ros_message.gyro_clipping);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: accel_calibration_count
+  {
+    size_t item_size = sizeof(ros_message.accel_calibration_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: gyro_calibration_count
+  {
+    size_t item_size = sizeof(ros_message.gyro_calibration_count);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_SensorCombined(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: gyro_rad
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: gyro_integral_dt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: accelerometer_timestamp_relative
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: accelerometer_m_s2
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: accelerometer_integral_dt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: accelerometer_clipping
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: gyro_clipping
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: accel_calibration_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: gyro_calibration_count
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::SensorCombined;
+    is_plain =
+      (
+      offsetof(DataType, gyro_calibration_count) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _SensorCombined__cdr_serialize(
   const void * untyped_ros_message,
@@ -352,13 +600,17 @@ static message_type_support_callbacks_t _SensorCombined__callbacks = {
   _SensorCombined__cdr_serialize,
   _SensorCombined__cdr_deserialize,
   _SensorCombined__get_serialized_size,
-  _SensorCombined__max_serialized_size
+  _SensorCombined__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _SensorCombined__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_SensorCombined__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__SensorCombined__get_type_hash,
+  &px4_msgs__msg__SensorCombined__get_type_description,
+  &px4_msgs__msg__SensorCombined__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

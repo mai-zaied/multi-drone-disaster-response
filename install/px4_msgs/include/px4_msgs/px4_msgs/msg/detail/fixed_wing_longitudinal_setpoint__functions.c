@@ -97,7 +97,7 @@ px4_msgs__msg__FixedWingLongitudinalSetpoint__copy(
 }
 
 px4_msgs__msg__FixedWingLongitudinalSetpoint *
-px4_msgs__msg__FixedWingLongitudinalSetpoint__create()
+px4_msgs__msg__FixedWingLongitudinalSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FixedWingLongitudinalSetpoint * msg = (px4_msgs__msg__FixedWingLongitudinalSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__FixedWingLongitudinalSetpoint), allocator.state);

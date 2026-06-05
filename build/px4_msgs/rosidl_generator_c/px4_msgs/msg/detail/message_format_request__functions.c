@@ -77,7 +77,7 @@ px4_msgs__msg__MessageFormatRequest__copy(
 }
 
 px4_msgs__msg__MessageFormatRequest *
-px4_msgs__msg__MessageFormatRequest__create()
+px4_msgs__msg__MessageFormatRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MessageFormatRequest * msg = (px4_msgs__msg__MessageFormatRequest *)allocator.allocate(sizeof(px4_msgs__msg__MessageFormatRequest), allocator.state);

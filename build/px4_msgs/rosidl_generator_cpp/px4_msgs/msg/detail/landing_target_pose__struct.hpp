@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/LandingTargetPose.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_target_pose.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -42,15 +46,19 @@ struct LandingTargetPose_
       this->is_static = false;
       this->rel_pos_valid = false;
       this->rel_vel_valid = false;
+      this->rel_vel_ekf2_valid = false;
       this->x_rel = 0.0f;
       this->y_rel = 0.0f;
       this->z_rel = 0.0f;
       this->vx_rel = 0.0f;
       this->vy_rel = 0.0f;
+      this->vz_rel = 0.0f;
       this->cov_x_rel = 0.0f;
       this->cov_y_rel = 0.0f;
+      this->cov_z_rel = 0.0f;
       this->cov_vx_rel = 0.0f;
       this->cov_vy_rel = 0.0f;
+      this->cov_vz_rel = 0.0f;
       this->abs_pos_valid = false;
       this->x_abs = 0.0f;
       this->y_abs = 0.0f;
@@ -68,15 +76,19 @@ struct LandingTargetPose_
       this->is_static = false;
       this->rel_pos_valid = false;
       this->rel_vel_valid = false;
+      this->rel_vel_ekf2_valid = false;
       this->x_rel = 0.0f;
       this->y_rel = 0.0f;
       this->z_rel = 0.0f;
       this->vx_rel = 0.0f;
       this->vy_rel = 0.0f;
+      this->vz_rel = 0.0f;
       this->cov_x_rel = 0.0f;
       this->cov_y_rel = 0.0f;
+      this->cov_z_rel = 0.0f;
       this->cov_vx_rel = 0.0f;
       this->cov_vy_rel = 0.0f;
+      this->cov_vz_rel = 0.0f;
       this->abs_pos_valid = false;
       this->x_abs = 0.0f;
       this->y_abs = 0.0f;
@@ -97,6 +109,9 @@ struct LandingTargetPose_
   using _rel_vel_valid_type =
     bool;
   _rel_vel_valid_type rel_vel_valid;
+  using _rel_vel_ekf2_valid_type =
+    bool;
+  _rel_vel_ekf2_valid_type rel_vel_ekf2_valid;
   using _x_rel_type =
     float;
   _x_rel_type x_rel;
@@ -112,18 +127,27 @@ struct LandingTargetPose_
   using _vy_rel_type =
     float;
   _vy_rel_type vy_rel;
+  using _vz_rel_type =
+    float;
+  _vz_rel_type vz_rel;
   using _cov_x_rel_type =
     float;
   _cov_x_rel_type cov_x_rel;
   using _cov_y_rel_type =
     float;
   _cov_y_rel_type cov_y_rel;
+  using _cov_z_rel_type =
+    float;
+  _cov_z_rel_type cov_z_rel;
   using _cov_vx_rel_type =
     float;
   _cov_vx_rel_type cov_vx_rel;
   using _cov_vy_rel_type =
     float;
   _cov_vy_rel_type cov_vy_rel;
+  using _cov_vz_rel_type =
+    float;
+  _cov_vz_rel_type cov_vz_rel;
   using _abs_pos_valid_type =
     bool;
   _abs_pos_valid_type abs_pos_valid;
@@ -162,6 +186,12 @@ struct LandingTargetPose_
     this->rel_vel_valid = _arg;
     return *this;
   }
+  Type & set__rel_vel_ekf2_valid(
+    const bool & _arg)
+  {
+    this->rel_vel_ekf2_valid = _arg;
+    return *this;
+  }
   Type & set__x_rel(
     const float & _arg)
   {
@@ -192,6 +222,12 @@ struct LandingTargetPose_
     this->vy_rel = _arg;
     return *this;
   }
+  Type & set__vz_rel(
+    const float & _arg)
+  {
+    this->vz_rel = _arg;
+    return *this;
+  }
   Type & set__cov_x_rel(
     const float & _arg)
   {
@@ -204,6 +240,12 @@ struct LandingTargetPose_
     this->cov_y_rel = _arg;
     return *this;
   }
+  Type & set__cov_z_rel(
+    const float & _arg)
+  {
+    this->cov_z_rel = _arg;
+    return *this;
+  }
   Type & set__cov_vx_rel(
     const float & _arg)
   {
@@ -214,6 +256,12 @@ struct LandingTargetPose_
     const float & _arg)
   {
     this->cov_vy_rel = _arg;
+    return *this;
+  }
+  Type & set__cov_vz_rel(
+    const float & _arg)
+  {
+    this->cov_vz_rel = _arg;
     return *this;
   }
   Type & set__abs_pos_valid(
@@ -295,6 +343,9 @@ struct LandingTargetPose_
     if (this->rel_vel_valid != other.rel_vel_valid) {
       return false;
     }
+    if (this->rel_vel_ekf2_valid != other.rel_vel_ekf2_valid) {
+      return false;
+    }
     if (this->x_rel != other.x_rel) {
       return false;
     }
@@ -310,16 +361,25 @@ struct LandingTargetPose_
     if (this->vy_rel != other.vy_rel) {
       return false;
     }
+    if (this->vz_rel != other.vz_rel) {
+      return false;
+    }
     if (this->cov_x_rel != other.cov_x_rel) {
       return false;
     }
     if (this->cov_y_rel != other.cov_y_rel) {
       return false;
     }
+    if (this->cov_z_rel != other.cov_z_rel) {
+      return false;
+    }
     if (this->cov_vx_rel != other.cov_vx_rel) {
       return false;
     }
     if (this->cov_vy_rel != other.cov_vy_rel) {
+      return false;
+    }
+    if (this->cov_vz_rel != other.cov_vz_rel) {
       return false;
     }
     if (this->abs_pos_valid != other.abs_pos_valid) {

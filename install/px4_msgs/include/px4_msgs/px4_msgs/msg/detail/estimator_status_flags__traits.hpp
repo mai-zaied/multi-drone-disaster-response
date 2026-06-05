@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EstimatorStatusFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_status_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__TRAITS_HPP_
 
@@ -379,6 +382,20 @@ inline void to_flow_style_yaml(
   {
     out << "cs_gnss_hgt_fault: ";
     rosidl_generator_traits::value_to_yaml(msg.cs_gnss_hgt_fault, out);
+    out << ", ";
+  }
+
+  // member: cs_in_transition
+  {
+    out << "cs_in_transition: ";
+    rosidl_generator_traits::value_to_yaml(msg.cs_in_transition, out);
+    out << ", ";
+  }
+
+  // member: cs_heading_observable
+  {
+    out << "cs_heading_observable: ";
+    rosidl_generator_traits::value_to_yaml(msg.cs_heading_observable, out);
     out << ", ";
   }
 
@@ -978,6 +995,26 @@ inline void to_block_style_yaml(
     }
     out << "cs_gnss_hgt_fault: ";
     rosidl_generator_traits::value_to_yaml(msg.cs_gnss_hgt_fault, out);
+    out << "\n";
+  }
+
+  // member: cs_in_transition
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "cs_in_transition: ";
+    rosidl_generator_traits::value_to_yaml(msg.cs_in_transition, out);
+    out << "\n";
+  }
+
+  // member: cs_heading_observable
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "cs_heading_observable: ";
+    rosidl_generator_traits::value_to_yaml(msg.cs_heading_observable, out);
     out << "\n";
   }
 

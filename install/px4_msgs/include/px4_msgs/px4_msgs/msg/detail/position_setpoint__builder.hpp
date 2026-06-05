@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/PositionSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/position_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__BUILDER_HPP_
 
@@ -69,16 +72,32 @@ private:
   ::px4_msgs::msg::PositionSetpoint msg_;
 };
 
+class Init_PositionSetpoint_course
+{
+public:
+  explicit Init_PositionSetpoint_course(::px4_msgs::msg::PositionSetpoint & msg)
+  : msg_(msg)
+  {}
+  Init_PositionSetpoint_cruising_speed course(::px4_msgs::msg::PositionSetpoint::_course_type arg)
+  {
+    msg_.course = std::move(arg);
+    return Init_PositionSetpoint_cruising_speed(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::PositionSetpoint msg_;
+};
+
 class Init_PositionSetpoint_alt_acceptance_radius
 {
 public:
   explicit Init_PositionSetpoint_alt_acceptance_radius(::px4_msgs::msg::PositionSetpoint & msg)
   : msg_(msg)
   {}
-  Init_PositionSetpoint_cruising_speed alt_acceptance_radius(::px4_msgs::msg::PositionSetpoint::_alt_acceptance_radius_type arg)
+  Init_PositionSetpoint_course alt_acceptance_radius(::px4_msgs::msg::PositionSetpoint::_alt_acceptance_radius_type arg)
   {
     msg_.alt_acceptance_radius = std::move(arg);
-    return Init_PositionSetpoint_cruising_speed(msg_);
+    return Init_PositionSetpoint_course(msg_);
   }
 
 private:

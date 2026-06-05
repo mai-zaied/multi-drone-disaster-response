@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/device_information__functions.h"
 #include "px4_msgs/msg/detail/device_information__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -37,78 +38,40 @@ void DeviceInformation_fini_function(void * message_memory)
   typed_message->~DeviceInformation();
 }
 
-size_t size_function__DeviceInformation__vendor_name(const void * untyped_member)
+size_t size_function__DeviceInformation__name(const void * untyped_member)
 {
   (void)untyped_member;
-  return 32;
+  return 80;
 }
 
-const void * get_const_function__DeviceInformation__vendor_name(const void * untyped_member, size_t index)
+const void * get_const_function__DeviceInformation__name(const void * untyped_member, size_t index)
 {
   const auto & member =
-    *reinterpret_cast<const std::array<uint8_t, 32> *>(untyped_member);
+    *reinterpret_cast<const std::array<uint8_t, 80> *>(untyped_member);
   return &member[index];
 }
 
-void * get_function__DeviceInformation__vendor_name(void * untyped_member, size_t index)
+void * get_function__DeviceInformation__name(void * untyped_member, size_t index)
 {
   auto & member =
-    *reinterpret_cast<std::array<uint8_t, 32> *>(untyped_member);
+    *reinterpret_cast<std::array<uint8_t, 80> *>(untyped_member);
   return &member[index];
 }
 
-void fetch_function__DeviceInformation__vendor_name(
+void fetch_function__DeviceInformation__name(
   const void * untyped_member, size_t index, void * untyped_value)
 {
   const auto & item = *reinterpret_cast<const uint8_t *>(
-    get_const_function__DeviceInformation__vendor_name(untyped_member, index));
+    get_const_function__DeviceInformation__name(untyped_member, index));
   auto & value = *reinterpret_cast<uint8_t *>(untyped_value);
   value = item;
 }
 
-void assign_function__DeviceInformation__vendor_name(
+void assign_function__DeviceInformation__name(
   void * untyped_member, size_t index, const void * untyped_value)
 {
   auto & item = *reinterpret_cast<uint8_t *>(
-    get_function__DeviceInformation__vendor_name(untyped_member, index));
-  const auto & value = *reinterpret_cast<const uint8_t *>(untyped_value);
-  item = value;
-}
-
-size_t size_function__DeviceInformation__model_name(const void * untyped_member)
-{
-  (void)untyped_member;
-  return 32;
-}
-
-const void * get_const_function__DeviceInformation__model_name(const void * untyped_member, size_t index)
-{
-  const auto & member =
-    *reinterpret_cast<const std::array<uint8_t, 32> *>(untyped_member);
-  return &member[index];
-}
-
-void * get_function__DeviceInformation__model_name(void * untyped_member, size_t index)
-{
-  auto & member =
-    *reinterpret_cast<std::array<uint8_t, 32> *>(untyped_member);
-  return &member[index];
-}
-
-void fetch_function__DeviceInformation__model_name(
-  const void * untyped_member, size_t index, void * untyped_value)
-{
-  const auto & item = *reinterpret_cast<const uint8_t *>(
-    get_const_function__DeviceInformation__model_name(untyped_member, index));
-  auto & value = *reinterpret_cast<uint8_t *>(untyped_value);
-  value = item;
-}
-
-void assign_function__DeviceInformation__model_name(
-  void * untyped_member, size_t index, const void * untyped_value)
-{
-  auto & item = *reinterpret_cast<uint8_t *>(
-    get_function__DeviceInformation__model_name(untyped_member, index));
+    get_function__DeviceInformation__name(untyped_member, index));
   const auto & value = *reinterpret_cast<const uint8_t *>(untyped_value);
   item = value;
 }
@@ -227,12 +190,13 @@ void assign_function__DeviceInformation__serial_number(
   item = value;
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInformation_message_member_array[8] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInformation_message_member_array[7] = {
   {
     "timestamp",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -250,6 +214,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -263,37 +228,21 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     nullptr  // resize(index) function pointer
   },
   {
-    "vendor_name",  // name
+    "name",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
-    32,  // array size
+    80,  // array size
     false,  // is upper bound
-    offsetof(px4_msgs::msg::DeviceInformation, vendor_name),  // bytes offset in struct
+    offsetof(px4_msgs::msg::DeviceInformation, name),  // bytes offset in struct
     nullptr,  // default value
-    size_function__DeviceInformation__vendor_name,  // size() function pointer
-    get_const_function__DeviceInformation__vendor_name,  // get_const(index) function pointer
-    get_function__DeviceInformation__vendor_name,  // get(index) function pointer
-    fetch_function__DeviceInformation__vendor_name,  // fetch(index, &value) function pointer
-    assign_function__DeviceInformation__vendor_name,  // assign(index, value) function pointer
-    nullptr  // resize(index) function pointer
-  },
-  {
-    "model_name",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
-    0,  // upper bound of string
-    nullptr,  // members of sub message
-    true,  // is array
-    32,  // array size
-    false,  // is upper bound
-    offsetof(px4_msgs::msg::DeviceInformation, model_name),  // bytes offset in struct
-    nullptr,  // default value
-    size_function__DeviceInformation__model_name,  // size() function pointer
-    get_const_function__DeviceInformation__model_name,  // get_const(index) function pointer
-    get_function__DeviceInformation__model_name,  // get(index) function pointer
-    fetch_function__DeviceInformation__model_name,  // fetch(index, &value) function pointer
-    assign_function__DeviceInformation__model_name,  // assign(index, value) function pointer
+    size_function__DeviceInformation__name,  // size() function pointer
+    get_const_function__DeviceInformation__name,  // get_const(index) function pointer
+    get_function__DeviceInformation__name,  // get(index) function pointer
+    fetch_function__DeviceInformation__name,  // fetch(index, &value) function pointer
+    assign_function__DeviceInformation__name,  // assign(index, value) function pointer
     nullptr  // resize(index) function pointer
   },
   {
@@ -301,6 +250,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -318,6 +268,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     24,  // array size
     false,  // is upper bound
@@ -335,6 +286,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     24,  // array size
     false,  // is upper bound
@@ -352,6 +304,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     33,  // array size
     false,  // is upper bound
@@ -369,8 +322,9 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember DeviceInforma
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers DeviceInformation_message_members = {
   "px4_msgs::msg",  // message namespace
   "DeviceInformation",  // message name
-  8,  // number of fields
+  7,  // number of fields
   sizeof(px4_msgs::msg::DeviceInformation),
+  false,  // has_any_key_member_
   DeviceInformation_message_member_array,  // message members
   DeviceInformation_init_function,  // function to initialize message memory (memory has to be allocated)
   DeviceInformation_fini_function  // function to terminate message instance (will not free memory)
@@ -380,6 +334,9 @@ static const rosidl_message_type_support_t DeviceInformation_message_type_suppor
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &DeviceInformation_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__DeviceInformation__get_type_hash,
+  &px4_msgs__msg__DeviceInformation__get_type_description,
+  &px4_msgs__msg__DeviceInformation__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

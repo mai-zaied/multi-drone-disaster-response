@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleLocalPositionSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_local_position_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_LOCAL_POSITION_SETPOINT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_LOCAL_POSITION_SETPOINT__BUILDER_HPP_
 

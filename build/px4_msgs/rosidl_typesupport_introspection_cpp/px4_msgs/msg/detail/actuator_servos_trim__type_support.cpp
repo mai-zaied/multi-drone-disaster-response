@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/actuator_servos_trim__functions.h"
 #include "px4_msgs/msg/detail/actuator_servos_trim__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -40,20 +41,20 @@ void ActuatorServosTrim_fini_function(void * message_memory)
 size_t size_function__ActuatorServosTrim__trim(const void * untyped_member)
 {
   (void)untyped_member;
-  return 8;
+  return 15;
 }
 
 const void * get_const_function__ActuatorServosTrim__trim(const void * untyped_member, size_t index)
 {
   const auto & member =
-    *reinterpret_cast<const std::array<float, 8> *>(untyped_member);
+    *reinterpret_cast<const std::array<float, 15> *>(untyped_member);
   return &member[index];
 }
 
 void * get_function__ActuatorServosTrim__trim(void * untyped_member, size_t index)
 {
   auto & member =
-    *reinterpret_cast<std::array<float, 8> *>(untyped_member);
+    *reinterpret_cast<std::array<float, 15> *>(untyped_member);
   return &member[index];
 }
 
@@ -81,6 +82,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember ActuatorServo
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -98,8 +100,9 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember ActuatorServo
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
-    8,  // array size
+    15,  // array size
     false,  // is upper bound
     offsetof(px4_msgs::msg::ActuatorServosTrim, trim),  // bytes offset in struct
     nullptr,  // default value
@@ -117,6 +120,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers ActuatorServ
   "ActuatorServosTrim",  // message name
   2,  // number of fields
   sizeof(px4_msgs::msg::ActuatorServosTrim),
+  false,  // has_any_key_member_
   ActuatorServosTrim_message_member_array,  // message members
   ActuatorServosTrim_init_function,  // function to initialize message memory (memory has to be allocated)
   ActuatorServosTrim_fini_function  // function to terminate message instance (will not free memory)
@@ -126,6 +130,9 @@ static const rosidl_message_type_support_t ActuatorServosTrim_message_type_suppo
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &ActuatorServosTrim_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_hash,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_description,
+  &px4_msgs__msg__ActuatorServosTrim__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

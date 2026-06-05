@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/VehicleStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__BUILDER_HPP_
 
@@ -69,16 +72,32 @@ private:
   ::px4_msgs::msg::VehicleStatus msg_;
 };
 
+class Init_VehicleStatus_traffic_avoidance_system_present
+{
+public:
+  explicit Init_VehicleStatus_traffic_avoidance_system_present(::px4_msgs::msg::VehicleStatus & msg)
+  : msg_(msg)
+  {}
+  Init_VehicleStatus_rc_calibration_in_progress traffic_avoidance_system_present(::px4_msgs::msg::VehicleStatus::_traffic_avoidance_system_present_type arg)
+  {
+    msg_.traffic_avoidance_system_present = std::move(arg);
+    return Init_VehicleStatus_rc_calibration_in_progress(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::VehicleStatus msg_;
+};
+
 class Init_VehicleStatus_parachute_system_healthy
 {
 public:
   explicit Init_VehicleStatus_parachute_system_healthy(::px4_msgs::msg::VehicleStatus & msg)
   : msg_(msg)
   {}
-  Init_VehicleStatus_rc_calibration_in_progress parachute_system_healthy(::px4_msgs::msg::VehicleStatus::_parachute_system_healthy_type arg)
+  Init_VehicleStatus_traffic_avoidance_system_present parachute_system_healthy(::px4_msgs::msg::VehicleStatus::_parachute_system_healthy_type arg)
   {
     msg_.parachute_system_healthy = std::move(arg);
-    return Init_VehicleStatus_rc_calibration_in_progress(msg_);
+    return Init_VehicleStatus_traffic_avoidance_system_present(msg_);
   }
 
 private:
@@ -437,32 +456,16 @@ private:
   ::px4_msgs::msg::VehicleStatus msg_;
 };
 
-class Init_VehicleStatus_failure_detector_status
-{
-public:
-  explicit Init_VehicleStatus_failure_detector_status(::px4_msgs::msg::VehicleStatus & msg)
-  : msg_(msg)
-  {}
-  Init_VehicleStatus_hil_state failure_detector_status(::px4_msgs::msg::VehicleStatus::_failure_detector_status_type arg)
-  {
-    msg_.failure_detector_status = std::move(arg);
-    return Init_VehicleStatus_hil_state(msg_);
-  }
-
-private:
-  ::px4_msgs::msg::VehicleStatus msg_;
-};
-
 class Init_VehicleStatus_can_set_nav_states_mask
 {
 public:
   explicit Init_VehicleStatus_can_set_nav_states_mask(::px4_msgs::msg::VehicleStatus & msg)
   : msg_(msg)
   {}
-  Init_VehicleStatus_failure_detector_status can_set_nav_states_mask(::px4_msgs::msg::VehicleStatus::_can_set_nav_states_mask_type arg)
+  Init_VehicleStatus_hil_state can_set_nav_states_mask(::px4_msgs::msg::VehicleStatus::_can_set_nav_states_mask_type arg)
   {
     msg_.can_set_nav_states_mask = std::move(arg);
-    return Init_VehicleStatus_failure_detector_status(msg_);
+    return Init_VehicleStatus_hil_state(msg_);
   }
 
 private:
@@ -485,16 +488,48 @@ private:
   ::px4_msgs::msg::VehicleStatus msg_;
 };
 
+class Init_VehicleStatus_accepts_offboard_setpoints
+{
+public:
+  explicit Init_VehicleStatus_accepts_offboard_setpoints(::px4_msgs::msg::VehicleStatus & msg)
+  : msg_(msg)
+  {}
+  Init_VehicleStatus_valid_nav_states_mask accepts_offboard_setpoints(::px4_msgs::msg::VehicleStatus::_accepts_offboard_setpoints_type arg)
+  {
+    msg_.accepts_offboard_setpoints = std::move(arg);
+    return Init_VehicleStatus_valid_nav_states_mask(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::VehicleStatus msg_;
+};
+
+class Init_VehicleStatus_nav_state_display
+{
+public:
+  explicit Init_VehicleStatus_nav_state_display(::px4_msgs::msg::VehicleStatus & msg)
+  : msg_(msg)
+  {}
+  Init_VehicleStatus_accepts_offboard_setpoints nav_state_display(::px4_msgs::msg::VehicleStatus::_nav_state_display_type arg)
+  {
+    msg_.nav_state_display = std::move(arg);
+    return Init_VehicleStatus_accepts_offboard_setpoints(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::VehicleStatus msg_;
+};
+
 class Init_VehicleStatus_executor_in_charge
 {
 public:
   explicit Init_VehicleStatus_executor_in_charge(::px4_msgs::msg::VehicleStatus & msg)
   : msg_(msg)
   {}
-  Init_VehicleStatus_valid_nav_states_mask executor_in_charge(::px4_msgs::msg::VehicleStatus::_executor_in_charge_type arg)
+  Init_VehicleStatus_nav_state_display executor_in_charge(::px4_msgs::msg::VehicleStatus::_executor_in_charge_type arg)
   {
     msg_.executor_in_charge = std::move(arg);
-    return Init_VehicleStatus_valid_nav_states_mask(msg_);
+    return Init_VehicleStatus_nav_state_display(msg_);
   }
 
 private:

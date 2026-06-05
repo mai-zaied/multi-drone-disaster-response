@@ -4,6 +4,7 @@
 
 #include "cstddef"
 #include "rosidl_runtime_c/message_type_support_struct.h"
+#include "px4_msgs/msg/detail/parameter_set_value_response__functions.h"
 #include "px4_msgs/msg/detail/parameter_set_value_response__struct.hpp"
 #include "rosidl_typesupport_cpp/identifier.hpp"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
@@ -72,6 +73,9 @@ static const rosidl_message_type_support_t ParameterSetValueResponse_message_typ
   ::rosidl_typesupport_cpp::typesupport_identifier,
   reinterpret_cast<const type_support_map_t *>(&_ParameterSetValueResponse_message_typesupport_map),
   ::rosidl_typesupport_cpp::get_message_typesupport_handle_function,
+  &px4_msgs__msg__ParameterSetValueResponse__get_type_hash,
+  &px4_msgs__msg__ParameterSetValueResponse__get_type_description,
+  &px4_msgs__msg__ParameterSetValueResponse__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_cpp

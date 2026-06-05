@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "../rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_c.c"
-  "../rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
-  "../rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_introspection_c.c"
-  "../rosidl_generator_py/task_msgs/msg/__init__.py"
-  "../rosidl_generator_py/task_msgs/msg/_task.py"
-  "../rosidl_generator_py/task_msgs/msg/_task_s.c"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_c.c"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/_task_msgs_s.ep.rosidl_typesupport_introspection_c.c"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/msg/__init__.py"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/msg/_task.py"
+  "/home/dudz/multi-drone-disaster-response/build/task_msgs/rosidl_generator_py/task_msgs/msg/_task_s.c"
   "CMakeFiles/task_msgs__py"
 )
 

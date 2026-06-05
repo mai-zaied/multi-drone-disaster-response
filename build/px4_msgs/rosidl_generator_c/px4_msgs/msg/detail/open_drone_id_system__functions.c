@@ -157,7 +157,7 @@ px4_msgs__msg__OpenDroneIdSystem__copy(
 }
 
 px4_msgs__msg__OpenDroneIdSystem *
-px4_msgs__msg__OpenDroneIdSystem__create()
+px4_msgs__msg__OpenDroneIdSystem__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__OpenDroneIdSystem * msg = (px4_msgs__msg__OpenDroneIdSystem *)allocator.allocate(sizeof(px4_msgs__msg__OpenDroneIdSystem), allocator.state);

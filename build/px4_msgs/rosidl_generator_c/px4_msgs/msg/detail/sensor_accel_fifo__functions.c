@@ -133,7 +133,7 @@ px4_msgs__msg__SensorAccelFifo__copy(
 }
 
 px4_msgs__msg__SensorAccelFifo *
-px4_msgs__msg__SensorAccelFifo__create()
+px4_msgs__msg__SensorAccelFifo__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorAccelFifo * msg = (px4_msgs__msg__SensorAccelFifo *)allocator.allocate(sizeof(px4_msgs__msg__SensorAccelFifo), allocator.state);

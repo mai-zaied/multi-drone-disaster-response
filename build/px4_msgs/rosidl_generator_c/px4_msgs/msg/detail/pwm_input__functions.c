@@ -81,7 +81,7 @@ px4_msgs__msg__PwmInput__copy(
 }
 
 px4_msgs__msg__PwmInput *
-px4_msgs__msg__PwmInput__create()
+px4_msgs__msg__PwmInput__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PwmInput * msg = (px4_msgs__msg__PwmInput *)allocator.allocate(sizeof(px4_msgs__msg__PwmInput), allocator.state);

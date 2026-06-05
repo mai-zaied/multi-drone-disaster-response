@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/log_message__functions.h"
 #include "px4_msgs/msg/detail/log_message__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -81,6 +82,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LogMessage_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -98,6 +100,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LogMessage_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -115,6 +118,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember LogMessage_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     127,  // array size
     false,  // is upper bound
@@ -134,6 +138,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers LogMessage_m
   "LogMessage",  // message name
   3,  // number of fields
   sizeof(px4_msgs::msg::LogMessage),
+  false,  // has_any_key_member_
   LogMessage_message_member_array,  // message members
   LogMessage_init_function,  // function to initialize message memory (memory has to be allocated)
   LogMessage_fini_function  // function to terminate message instance (will not free memory)
@@ -143,6 +148,9 @@ static const rosidl_message_type_support_t LogMessage_message_type_support_handl
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &LogMessage_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__LogMessage__get_type_hash,
+  &px4_msgs__msg__LogMessage__get_type_description,
+  &px4_msgs__msg__LogMessage__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

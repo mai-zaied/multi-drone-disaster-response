@@ -113,7 +113,7 @@ px4_msgs__msg__CellularStatus__copy(
 }
 
 px4_msgs__msg__CellularStatus *
-px4_msgs__msg__CellularStatus__create()
+px4_msgs__msg__CellularStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__CellularStatus * msg = (px4_msgs__msg__CellularStatus *)allocator.allocate(sizeof(px4_msgs__msg__CellularStatus), allocator.state);

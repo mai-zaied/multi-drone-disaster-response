@@ -8,7 +8,11 @@ module px4_msgs {
     typedef float float__12[12];
     module ActuatorMotors_Constants {
       const uint32 MESSAGE_VERSION = 0;
+      @verbatim (language="comment", text=
+        "output_functions.yaml Motor.start")
       const uint8 ACTUATOR_FUNCTION_MOTOR1 = 101;
+      @verbatim (language="comment", text=
+        "output_functions.yaml Motor.count")
       const uint8 NUM_CONTROLS = 12;
     };
     @verbatim (language="comment", text=
@@ -33,7 +37,7 @@ module px4_msgs {
       uint16 reversible_flags;
 
       @verbatim (language="comment", text=
-        "[@range -1, 1] Normalized thrust. where 1 means maximum positive thrust, -1 maximum negative (if not supported by the output, <0 maps to NaN). NaN maps to disarmed (stop the motors)")
+        "[@range -1, 1] Normalized thrust. Where 1 means maximum positive thrust, -1 maximum negative (if not supported by the output, <0 maps to NaN). NaN maps to disarmed (stop the motors)")
       float__12 control;
     };
   };

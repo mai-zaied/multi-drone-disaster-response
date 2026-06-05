@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/UavcanParameterValue.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/uavcan_parameter_value.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__UAVCAN_PARAMETER_VALUE__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__UAVCAN_PARAMETER_VALUE__TRAITS_HPP_
 

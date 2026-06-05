@@ -161,7 +161,7 @@ px4_msgs__msg__EstimatorAidSource1d__copy(
 }
 
 px4_msgs__msg__EstimatorAidSource1d *
-px4_msgs__msg__EstimatorAidSource1d__create()
+px4_msgs__msg__EstimatorAidSource1d__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__EstimatorAidSource1d * msg = (px4_msgs__msg__EstimatorAidSource1d *)allocator.allocate(sizeof(px4_msgs__msg__EstimatorAidSource1d), allocator.state);

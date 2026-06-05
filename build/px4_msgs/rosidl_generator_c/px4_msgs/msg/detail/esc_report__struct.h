@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EscReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/esc_report.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESC_REPORT__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__ESC_REPORT__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'ACTUATOR_FUNCTION_MOTOR1'.
@@ -23,70 +25,13 @@ enum
   px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR1 = 101
 };
 
-/// Constant 'ACTUATOR_FUNCTION_MOTOR2'.
+/// Constant 'ACTUATOR_FUNCTION_MOTOR_MAX'.
+/**
+  * output_functions.yaml Motor.start + Motor.count - 1
+ */
 enum
 {
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR2 = 102
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR3'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR3 = 103
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR4'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR4 = 104
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR5'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR5 = 105
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR6'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR6 = 106
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR7'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR7 = 107
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR8'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR8 = 108
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR9'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR9 = 109
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR10'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR10 = 110
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR11'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR11 = 111
-};
-
-/// Constant 'ACTUATOR_FUNCTION_MOTOR12'.
-enum
-{
-  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR12 = 112
+  px4_msgs__msg__EscReport__ACTUATOR_FUNCTION_MOTOR_MAX = 112
 };
 
 /// Constant 'FAILURE_OVER_CURRENT'.
@@ -127,7 +72,7 @@ enum
 
 /// Constant 'FAILURE_INCONSISTENT_CMD'.
 /**
-  * (1 << 4)  Set if ESC received an inconsistent command (i.e out of boundaries)
+  * (1 << 4) Set if ESC received an inconsistent command (i.e out of boundaries)
  */
 enum
 {
@@ -191,7 +136,7 @@ enum
 /// Struct defined in msg/EscReport in the package px4_msgs.
 typedef struct px4_msgs__msg__EscReport
 {
-  /// time since system start (microseconds)
+  /// Time since system start
   uint64_t timestamp;
   /// Number of reported errors by ESC - if supported
   uint32_t esc_errorcount;
@@ -203,17 +148,15 @@ typedef struct px4_msgs__msg__EscReport
   float esc_current;
   /// Temperature measured from current ESC - if supported
   float esc_temperature;
-  /// Address of current ESC (in most cases 1-8 / must be set by driver)
-  uint8_t esc_address;
-  /// Counter of number of commands
-  uint8_t esc_cmdcount;
+  /// Temperature measured from current motor - if supported
+  int16_t motor_temperature;
   /// State of ESC - depend on Vendor
   uint8_t esc_state;
-  /// actuator output function (one of Motor1...MotorN)
+  /// Actuator output function (one of Motor1...MotorN)
   uint8_t actuator_function;
   /// Bitmask to indicate the internal ESC faults
   uint16_t failures;
-  /// Applied power 0-100 in % (negative values reserved)
+  /// [@range 0,100] Applied power (negative values reserved)
   int8_t esc_power;
 } px4_msgs__msg__EscReport;
 

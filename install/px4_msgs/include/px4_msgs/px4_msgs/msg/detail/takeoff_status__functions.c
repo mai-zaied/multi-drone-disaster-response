@@ -73,7 +73,7 @@ px4_msgs__msg__TakeoffStatus__copy(
 }
 
 px4_msgs__msg__TakeoffStatus *
-px4_msgs__msg__TakeoffStatus__create()
+px4_msgs__msg__TakeoffStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TakeoffStatus * msg = (px4_msgs__msg__TakeoffStatus *)allocator.allocate(sizeof(px4_msgs__msg__TakeoffStatus), allocator.state);

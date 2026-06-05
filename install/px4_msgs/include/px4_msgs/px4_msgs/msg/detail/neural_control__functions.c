@@ -97,7 +97,7 @@ px4_msgs__msg__NeuralControl__copy(
 }
 
 px4_msgs__msg__NeuralControl *
-px4_msgs__msg__NeuralControl__create()
+px4_msgs__msg__NeuralControl__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__NeuralControl * msg = (px4_msgs__msg__NeuralControl *)allocator.allocate(sizeof(px4_msgs__msg__NeuralControl), allocator.state);

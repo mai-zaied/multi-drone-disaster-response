@@ -65,7 +65,7 @@ px4_msgs__msg__Gripper__copy(
 }
 
 px4_msgs__msg__Gripper *
-px4_msgs__msg__Gripper__create()
+px4_msgs__msg__Gripper__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Gripper * msg = (px4_msgs__msg__Gripper *)allocator.allocate(sizeof(px4_msgs__msg__Gripper), allocator.state);

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FixedWingLateralSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/fixed_wing_lateral_setpoint.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_SETPOINT__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__FIXED_WING_LATERAL_SETPOINT__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   FixedWingLateralSetpoint
-)();
+)(void);
 
 #ifdef __cplusplus
 }

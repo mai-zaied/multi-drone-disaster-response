@@ -157,7 +157,7 @@ px4_msgs__msg__DistanceSensor__copy(
 }
 
 px4_msgs__msg__DistanceSensor *
-px4_msgs__msg__DistanceSensor__create()
+px4_msgs__msg__DistanceSensor__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__DistanceSensor * msg = (px4_msgs__msg__DistanceSensor *)allocator.allocate(sizeof(px4_msgs__msg__DistanceSensor), allocator.state);

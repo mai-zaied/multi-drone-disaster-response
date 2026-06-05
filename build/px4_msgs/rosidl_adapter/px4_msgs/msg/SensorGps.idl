@@ -197,6 +197,18 @@ module px4_msgs {
       @verbatim (language="comment", text=
         "Indicates if the RTCM message was used successfully by the receiver")
       uint8 rtcm_msg_used;
+
+      @verbatim (language="comment", text=
+        "[m] [@frame body frame FRD] X Position of GNSS antenna")
+      float antenna_offset_x;
+
+      @verbatim (language="comment", text=
+        "[m] [@frame body frame FRD] Y Position of GNSS antenna")
+      float antenna_offset_y;
+
+      @verbatim (language="comment", text=
+        "[m] [@frame body frame FRD] Z Position of GNSS antenna")
+      float antenna_offset_z;
     };
   };
 };

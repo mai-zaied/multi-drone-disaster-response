@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/EstimatorStatusFlags.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_status_flags.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_STATUS_FLAGS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -89,6 +93,8 @@ struct EstimatorStatusFlags_
       this->cs_gnss_fault = false;
       this->cs_yaw_manual = false;
       this->cs_gnss_hgt_fault = false;
+      this->cs_in_transition = false;
+      this->cs_heading_observable = false;
       this->fault_status_changes = 0ul;
       this->fs_bad_mag_x = false;
       this->fs_bad_mag_y = false;
@@ -161,6 +167,8 @@ struct EstimatorStatusFlags_
       this->cs_gnss_fault = false;
       this->cs_yaw_manual = false;
       this->cs_gnss_hgt_fault = false;
+      this->cs_in_transition = false;
+      this->cs_heading_observable = false;
       this->fault_status_changes = 0ul;
       this->fs_bad_mag_x = false;
       this->fs_bad_mag_y = false;
@@ -330,6 +338,12 @@ struct EstimatorStatusFlags_
   using _cs_gnss_hgt_fault_type =
     bool;
   _cs_gnss_hgt_fault_type cs_gnss_hgt_fault;
+  using _cs_in_transition_type =
+    bool;
+  _cs_in_transition_type cs_in_transition;
+  using _cs_heading_observable_type =
+    bool;
+  _cs_heading_observable_type cs_heading_observable;
   using _fault_status_changes_type =
     uint32_t;
   _fault_status_changes_type fault_status_changes;
@@ -674,6 +688,18 @@ struct EstimatorStatusFlags_
     this->cs_gnss_hgt_fault = _arg;
     return *this;
   }
+  Type & set__cs_in_transition(
+    const bool & _arg)
+  {
+    this->cs_in_transition = _arg;
+    return *this;
+  }
+  Type & set__cs_heading_observable(
+    const bool & _arg)
+  {
+    this->cs_heading_observable = _arg;
+    return *this;
+  }
   Type & set__fault_status_changes(
     const uint32_t & _arg)
   {
@@ -940,6 +966,12 @@ struct EstimatorStatusFlags_
       return false;
     }
     if (this->cs_gnss_hgt_fault != other.cs_gnss_hgt_fault) {
+      return false;
+    }
+    if (this->cs_in_transition != other.cs_in_transition) {
+      return false;
+    }
+    if (this->cs_heading_observable != other.cs_heading_observable) {
       return false;
     }
     if (this->fault_status_changes != other.fault_status_changes) {

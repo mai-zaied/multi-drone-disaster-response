@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/DistanceSensorModeChangeRequest.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/distance_sensor_mode_change_request.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__DISTANCE_SENSOR_MODE_CHANGE_REQUEST__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__DISTANCE_SENSOR_MODE_CHANGE_REQUEST__TRAITS_HPP_
 

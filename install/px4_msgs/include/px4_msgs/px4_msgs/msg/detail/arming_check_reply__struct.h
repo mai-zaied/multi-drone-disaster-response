@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ArmingCheckReply.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/arming_check_reply.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ARMING_CHECK_REPLY__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__ARMING_CHECK_REPLY__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -33,9 +35,14 @@ enum
 };
 
 /// Constant 'ORB_QUEUE_LENGTH'.
+/**
+  * Must be >= ExternalChecks::MAX_NUM_REGISTRATIONS so replies from all registered
+  * modes fit in the queue within a single request cycle (otherwise replies from the
+  * 5th+ mode overwrite earlier ones, causing spurious "unresponsive mode" failures).
+ */
 enum
 {
-  px4_msgs__msg__ArmingCheckReply__ORB_QUEUE_LENGTH = 4
+  px4_msgs__msg__ArmingCheckReply__ORB_QUEUE_LENGTH = 8
 };
 
 // Include directives for member types

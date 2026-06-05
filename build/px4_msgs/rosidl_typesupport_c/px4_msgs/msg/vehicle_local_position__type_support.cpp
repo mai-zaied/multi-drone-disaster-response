@@ -6,6 +6,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "px4_msgs/msg/detail/vehicle_local_position__struct.h"
 #include "px4_msgs/msg/detail/vehicle_local_position__type_support.h"
+#include "px4_msgs/msg/detail/vehicle_local_position__functions.h"
 #include "rosidl_typesupport_c/identifier.h"
 #include "rosidl_typesupport_c/message_type_support_dispatch.h"
 #include "rosidl_typesupport_c/type_support_map.h"
@@ -72,6 +73,9 @@ static const rosidl_message_type_support_t VehicleLocalPosition_message_type_sup
   rosidl_typesupport_c__typesupport_identifier,
   reinterpret_cast<const type_support_map_t *>(&_VehicleLocalPosition_message_typesupport_map),
   rosidl_typesupport_c__get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleLocalPosition__get_type_hash,
+  &px4_msgs__msg__VehicleLocalPosition__get_type_description,
+  &px4_msgs__msg__VehicleLocalPosition__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_c

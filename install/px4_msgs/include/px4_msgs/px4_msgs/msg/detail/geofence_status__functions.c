@@ -73,7 +73,7 @@ px4_msgs__msg__GeofenceStatus__copy(
 }
 
 px4_msgs__msg__GeofenceStatus *
-px4_msgs__msg__GeofenceStatus__create()
+px4_msgs__msg__GeofenceStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GeofenceStatus * msg = (px4_msgs__msg__GeofenceStatus *)allocator.allocate(sizeof(px4_msgs__msg__GeofenceStatus), allocator.state);

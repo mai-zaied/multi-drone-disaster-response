@@ -11,20 +11,21 @@ module px4_msgs {
     };
     @verbatim (language="comment", text=
       "Position and (optional) heading setpoints with corresponding speed constraints" "\n"
-      "Setpoints are intended as inputs to position and heading smoothers, respectively" "\n"
-      "Setpoints do not need to be kinematically consistent" "\n"
-      "Optional heading setpoints may be specified as controlled by the respective flag" "\n"
-      "Unset optional setpoints are not controlled" "\n"
-      "Unset optional constraints default to vehicle specifications")
+      "" "\n"
+      "Setpoints are intended as inputs to position and heading smoothers, respectively." "\n"
+      "Setpoints do not need to be kinematically consistent." "\n"
+      "Optional heading setpoints may be specified as controlled by the respective flag." "\n"
+      "Unset optional setpoints are not controlled." "\n"
+      "Unset optional constraints default to vehicle specifications.")
     struct GotoSetpoint {
       @verbatim (language="comment", text=
-        "time since system start (microseconds)")
+        "Time since system start")
+      @unit (value="us")
       uint64 timestamp;
 
       @verbatim (language="comment", text=
         "setpoints" "\n"
-        "[m] NED local world frame")
-      @unit (value="m")
+        "[m] [@frame NED] NED local world frame")
       float__3 position;
 
       @verbatim (language="comment", text=
@@ -42,7 +43,7 @@ module px4_msgs {
       boolean flag_set_max_horizontal_speed;
 
       @verbatim (language="comment", text=
-        "(optional) maximum speed (absolute) in the NE-plane")
+        "(optional) Maximum speed (absolute) in the NE-plane")
       @unit (value="m/s")
       float max_horizontal_speed;
 
@@ -51,7 +52,7 @@ module px4_msgs {
       boolean flag_set_max_vertical_speed;
 
       @verbatim (language="comment", text=
-        "(optional) maximum speed (absolute) in the D-axis")
+        "(optional) Maximum speed (absolute) in the D-axis")
       @unit (value="m/s")
       float max_vertical_speed;
 
@@ -60,7 +61,7 @@ module px4_msgs {
       boolean flag_set_max_heading_rate;
 
       @verbatim (language="comment", text=
-        "(optional) maximum heading rate (absolute)")
+        "(optional) Maximum heading rate (absolute)")
       @unit (value="rad/s")
       float max_heading_rate;
     };

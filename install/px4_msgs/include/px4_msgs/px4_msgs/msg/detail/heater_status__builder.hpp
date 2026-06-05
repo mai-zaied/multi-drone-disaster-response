@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/HeaterStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/heater_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__HEATER_STATUS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__HEATER_STATUS__BUILDER_HPP_
 
@@ -21,16 +24,80 @@ namespace msg
 namespace builder
 {
 
+class Init_HeaterStatus_temperature_source
+{
+public:
+  explicit Init_HeaterStatus_temperature_source(::px4_msgs::msg::HeaterStatus & msg)
+  : msg_(msg)
+  {}
+  ::px4_msgs::msg::HeaterStatus temperature_source(::px4_msgs::msg::HeaterStatus::_temperature_source_type arg)
+  {
+    msg_.temperature_source = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::HeaterStatus msg_;
+};
+
 class Init_HeaterStatus_mode
 {
 public:
   explicit Init_HeaterStatus_mode(::px4_msgs::msg::HeaterStatus & msg)
   : msg_(msg)
   {}
-  ::px4_msgs::msg::HeaterStatus mode(::px4_msgs::msg::HeaterStatus::_mode_type arg)
+  Init_HeaterStatus_temperature_source mode(::px4_msgs::msg::HeaterStatus::_mode_type arg)
   {
     msg_.mode = std::move(arg);
-    return std::move(msg_);
+    return Init_HeaterStatus_temperature_source(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::HeaterStatus msg_;
+};
+
+class Init_HeaterStatus_nominal_multiplier
+{
+public:
+  explicit Init_HeaterStatus_nominal_multiplier(::px4_msgs::msg::HeaterStatus & msg)
+  : msg_(msg)
+  {}
+  Init_HeaterStatus_mode nominal_multiplier(::px4_msgs::msg::HeaterStatus::_nominal_multiplier_type arg)
+  {
+    msg_.nominal_multiplier = std::move(arg);
+    return Init_HeaterStatus_mode(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::HeaterStatus msg_;
+};
+
+class Init_HeaterStatus_heater_current
+{
+public:
+  explicit Init_HeaterStatus_heater_current(::px4_msgs::msg::HeaterStatus & msg)
+  : msg_(msg)
+  {}
+  Init_HeaterStatus_nominal_multiplier heater_current(::px4_msgs::msg::HeaterStatus::_heater_current_type arg)
+  {
+    msg_.heater_current = std::move(arg);
+    return Init_HeaterStatus_nominal_multiplier(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::HeaterStatus msg_;
+};
+
+class Init_HeaterStatus_supply_voltage
+{
+public:
+  explicit Init_HeaterStatus_supply_voltage(::px4_msgs::msg::HeaterStatus & msg)
+  : msg_(msg)
+  {}
+  Init_HeaterStatus_heater_current supply_voltage(::px4_msgs::msg::HeaterStatus::_supply_voltage_type arg)
+  {
+    msg_.supply_voltage = std::move(arg);
+    return Init_HeaterStatus_heater_current(msg_);
   }
 
 private:
@@ -43,10 +110,10 @@ public:
   explicit Init_HeaterStatus_feed_forward_value(::px4_msgs::msg::HeaterStatus & msg)
   : msg_(msg)
   {}
-  Init_HeaterStatus_mode feed_forward_value(::px4_msgs::msg::HeaterStatus::_feed_forward_value_type arg)
+  Init_HeaterStatus_supply_voltage feed_forward_value(::px4_msgs::msg::HeaterStatus::_feed_forward_value_type arg)
   {
     msg_.feed_forward_value = std::move(arg);
-    return Init_HeaterStatus_mode(msg_);
+    return Init_HeaterStatus_supply_voltage(msg_);
   }
 
 private:

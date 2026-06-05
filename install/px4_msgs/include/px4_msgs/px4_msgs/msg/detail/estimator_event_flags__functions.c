@@ -209,7 +209,7 @@ px4_msgs__msg__EstimatorEventFlags__copy(
 }
 
 px4_msgs__msg__EstimatorEventFlags *
-px4_msgs__msg__EstimatorEventFlags__create()
+px4_msgs__msg__EstimatorEventFlags__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__EstimatorEventFlags * msg = (px4_msgs__msg__EstimatorEventFlags *)allocator.allocate(sizeof(px4_msgs__msg__EstimatorEventFlags), allocator.state);

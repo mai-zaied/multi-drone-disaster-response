@@ -73,7 +73,7 @@ px4_msgs__msg__SensorTemp__copy(
 }
 
 px4_msgs__msg__SensorTemp *
-px4_msgs__msg__SensorTemp__create()
+px4_msgs__msg__SensorTemp__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorTemp * msg = (px4_msgs__msg__SensorTemp *)allocator.allocate(sizeof(px4_msgs__msg__SensorTemp), allocator.state);

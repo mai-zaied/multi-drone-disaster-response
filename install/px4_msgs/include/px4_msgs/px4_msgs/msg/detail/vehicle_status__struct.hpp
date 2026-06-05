@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/VehicleStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/vehicle_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__VEHICLE_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -48,9 +52,10 @@ struct VehicleStatus_
       this->nav_state_user_intention = 0;
       this->nav_state = 0;
       this->executor_in_charge = 0;
+      this->nav_state_display = 0;
+      this->accepts_offboard_setpoints = false;
       this->valid_nav_states_mask = 0ul;
       this->can_set_nav_states_mask = 0ul;
-      this->failure_detector_status = 0;
       this->hil_state = 0;
       this->vehicle_type = 0;
       this->failsafe = false;
@@ -74,6 +79,7 @@ struct VehicleStatus_
       this->open_drone_id_system_healthy = false;
       this->parachute_system_present = false;
       this->parachute_system_healthy = false;
+      this->traffic_avoidance_system_present = false;
       this->rc_calibration_in_progress = false;
       this->calibration_enabled = false;
       this->pre_flight_checks_pass = false;
@@ -96,9 +102,10 @@ struct VehicleStatus_
       this->nav_state_user_intention = 0;
       this->nav_state = 0;
       this->executor_in_charge = 0;
+      this->nav_state_display = 0;
+      this->accepts_offboard_setpoints = false;
       this->valid_nav_states_mask = 0ul;
       this->can_set_nav_states_mask = 0ul;
-      this->failure_detector_status = 0;
       this->hil_state = 0;
       this->vehicle_type = 0;
       this->failsafe = false;
@@ -122,6 +129,7 @@ struct VehicleStatus_
       this->open_drone_id_system_healthy = false;
       this->parachute_system_present = false;
       this->parachute_system_healthy = false;
+      this->traffic_avoidance_system_present = false;
       this->rc_calibration_in_progress = false;
       this->calibration_enabled = false;
       this->pre_flight_checks_pass = false;
@@ -159,15 +167,18 @@ struct VehicleStatus_
   using _executor_in_charge_type =
     uint8_t;
   _executor_in_charge_type executor_in_charge;
+  using _nav_state_display_type =
+    uint8_t;
+  _nav_state_display_type nav_state_display;
+  using _accepts_offboard_setpoints_type =
+    bool;
+  _accepts_offboard_setpoints_type accepts_offboard_setpoints;
   using _valid_nav_states_mask_type =
     uint32_t;
   _valid_nav_states_mask_type valid_nav_states_mask;
   using _can_set_nav_states_mask_type =
     uint32_t;
   _can_set_nav_states_mask_type can_set_nav_states_mask;
-  using _failure_detector_status_type =
-    uint16_t;
-  _failure_detector_status_type failure_detector_status;
   using _hil_state_type =
     uint8_t;
   _hil_state_type hil_state;
@@ -237,6 +248,9 @@ struct VehicleStatus_
   using _parachute_system_healthy_type =
     bool;
   _parachute_system_healthy_type parachute_system_healthy;
+  using _traffic_avoidance_system_present_type =
+    bool;
+  _traffic_avoidance_system_present_type traffic_avoidance_system_present;
   using _rc_calibration_in_progress_type =
     bool;
   _rc_calibration_in_progress_type rc_calibration_in_progress;
@@ -308,6 +322,18 @@ struct VehicleStatus_
     this->executor_in_charge = _arg;
     return *this;
   }
+  Type & set__nav_state_display(
+    const uint8_t & _arg)
+  {
+    this->nav_state_display = _arg;
+    return *this;
+  }
+  Type & set__accepts_offboard_setpoints(
+    const bool & _arg)
+  {
+    this->accepts_offboard_setpoints = _arg;
+    return *this;
+  }
   Type & set__valid_nav_states_mask(
     const uint32_t & _arg)
   {
@@ -318,12 +344,6 @@ struct VehicleStatus_
     const uint32_t & _arg)
   {
     this->can_set_nav_states_mask = _arg;
-    return *this;
-  }
-  Type & set__failure_detector_status(
-    const uint16_t & _arg)
-  {
-    this->failure_detector_status = _arg;
     return *this;
   }
   Type & set__hil_state(
@@ -464,6 +484,12 @@ struct VehicleStatus_
     this->parachute_system_healthy = _arg;
     return *this;
   }
+  Type & set__traffic_avoidance_system_present(
+    const bool & _arg)
+  {
+    this->traffic_avoidance_system_present = _arg;
+    return *this;
+  }
   Type & set__rc_calibration_in_progress(
     const bool & _arg)
   {
@@ -485,7 +511,7 @@ struct VehicleStatus_
 
   // constant declarations
   static constexpr uint32_t MESSAGE_VERSION =
-    1u;
+    4u;
   static constexpr uint8_t ARMING_STATE_DISARMED =
     1u;
   static constexpr uint8_t ARMING_STATE_ARMED =
@@ -524,7 +550,7 @@ struct VehicleStatus_
     5u;
   static constexpr uint8_t NAVIGATION_STATE_POSITION_SLOW =
     6u;
-  static constexpr uint8_t NAVIGATION_STATE_FREE5 =
+  static constexpr uint8_t NAVIGATION_STATE_GUIDED_COURSE =
     7u;
   static constexpr uint8_t NAVIGATION_STATE_ALTITUDE_CRUISE =
     8u;
@@ -574,24 +600,6 @@ struct VehicleStatus_
     30u;
   static constexpr uint8_t NAVIGATION_STATE_MAX =
     31u;
-  static constexpr uint16_t FAILURE_NONE =
-    0u;
-  static constexpr uint16_t FAILURE_ROLL =
-    1u;
-  static constexpr uint16_t FAILURE_PITCH =
-    2u;
-  static constexpr uint16_t FAILURE_ALT =
-    4u;
-  static constexpr uint16_t FAILURE_EXT =
-    8u;
-  static constexpr uint16_t FAILURE_ARM_ESC =
-    16u;
-  static constexpr uint16_t FAILURE_BATTERY =
-    32u;
-  static constexpr uint16_t FAILURE_IMBALANCED_PROP =
-    64u;
-  static constexpr uint16_t FAILURE_MOTOR =
-    128u;
   static constexpr uint8_t HIL_STATE_OFF =
     0u;
   static constexpr uint8_t HIL_STATE_ON =
@@ -681,13 +689,16 @@ struct VehicleStatus_
     if (this->executor_in_charge != other.executor_in_charge) {
       return false;
     }
+    if (this->nav_state_display != other.nav_state_display) {
+      return false;
+    }
+    if (this->accepts_offboard_setpoints != other.accepts_offboard_setpoints) {
+      return false;
+    }
     if (this->valid_nav_states_mask != other.valid_nav_states_mask) {
       return false;
     }
     if (this->can_set_nav_states_mask != other.can_set_nav_states_mask) {
-      return false;
-    }
-    if (this->failure_detector_status != other.failure_detector_status) {
       return false;
     }
     if (this->hil_state != other.hil_state) {
@@ -757,6 +768,9 @@ struct VehicleStatus_
       return false;
     }
     if (this->parachute_system_healthy != other.parachute_system_healthy) {
+      return false;
+    }
+    if (this->traffic_avoidance_system_present != other.traffic_avoidance_system_present) {
       return false;
     }
     if (this->rc_calibration_in_progress != other.rc_calibration_in_progress) {
@@ -884,7 +898,7 @@ constexpr uint8_t VehicleStatus_<ContainerAllocator>::NAVIGATION_STATE_POSITION_
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>
-constexpr uint8_t VehicleStatus_<ContainerAllocator>::NAVIGATION_STATE_FREE5;
+constexpr uint8_t VehicleStatus_<ContainerAllocator>::NAVIGATION_STATE_GUIDED_COURSE;
 #endif  // __cplusplus < 201703L
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
@@ -1005,51 +1019,6 @@ constexpr uint8_t VehicleStatus_<ContainerAllocator>::NAVIGATION_STATE_EXTERNAL8
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>
 constexpr uint8_t VehicleStatus_<ContainerAllocator>::NAVIGATION_STATE_MAX;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_NONE;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_ROLL;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_PITCH;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_ALT;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_EXT;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_ARM_ESC;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_BATTERY;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_IMBALANCED_PROP;
-#endif  // __cplusplus < 201703L
-#if __cplusplus < 201703L
-// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
-template<typename ContainerAllocator>
-constexpr uint16_t VehicleStatus_<ContainerAllocator>::FAILURE_MOTOR;
 #endif  // __cplusplus < 201703L
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17

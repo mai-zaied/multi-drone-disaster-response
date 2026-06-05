@@ -97,7 +97,7 @@ px4_msgs__msg__PurePursuitStatus__copy(
 }
 
 px4_msgs__msg__PurePursuitStatus *
-px4_msgs__msg__PurePursuitStatus__create()
+px4_msgs__msg__PurePursuitStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__PurePursuitStatus * msg = (px4_msgs__msg__PurePursuitStatus *)allocator.allocate(sizeof(px4_msgs__msg__PurePursuitStatus), allocator.state);

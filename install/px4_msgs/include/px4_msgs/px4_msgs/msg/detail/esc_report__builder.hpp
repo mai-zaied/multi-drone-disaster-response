@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/EscReport.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/esc_report.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESC_REPORT__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESC_REPORT__BUILDER_HPP_
 
@@ -85,32 +88,16 @@ private:
   ::px4_msgs::msg::EscReport msg_;
 };
 
-class Init_EscReport_esc_cmdcount
+class Init_EscReport_motor_temperature
 {
 public:
-  explicit Init_EscReport_esc_cmdcount(::px4_msgs::msg::EscReport & msg)
+  explicit Init_EscReport_motor_temperature(::px4_msgs::msg::EscReport & msg)
   : msg_(msg)
   {}
-  Init_EscReport_esc_state esc_cmdcount(::px4_msgs::msg::EscReport::_esc_cmdcount_type arg)
+  Init_EscReport_esc_state motor_temperature(::px4_msgs::msg::EscReport::_motor_temperature_type arg)
   {
-    msg_.esc_cmdcount = std::move(arg);
+    msg_.motor_temperature = std::move(arg);
     return Init_EscReport_esc_state(msg_);
-  }
-
-private:
-  ::px4_msgs::msg::EscReport msg_;
-};
-
-class Init_EscReport_esc_address
-{
-public:
-  explicit Init_EscReport_esc_address(::px4_msgs::msg::EscReport & msg)
-  : msg_(msg)
-  {}
-  Init_EscReport_esc_cmdcount esc_address(::px4_msgs::msg::EscReport::_esc_address_type arg)
-  {
-    msg_.esc_address = std::move(arg);
-    return Init_EscReport_esc_cmdcount(msg_);
   }
 
 private:
@@ -123,10 +110,10 @@ public:
   explicit Init_EscReport_esc_temperature(::px4_msgs::msg::EscReport & msg)
   : msg_(msg)
   {}
-  Init_EscReport_esc_address esc_temperature(::px4_msgs::msg::EscReport::_esc_temperature_type arg)
+  Init_EscReport_motor_temperature esc_temperature(::px4_msgs::msg::EscReport::_esc_temperature_type arg)
   {
     msg_.esc_temperature = std::move(arg);
-    return Init_EscReport_esc_address(msg_);
+    return Init_EscReport_motor_temperature(msg_);
   }
 
 private:

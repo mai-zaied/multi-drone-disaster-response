@@ -73,7 +73,7 @@ px4_msgs__msg__ParameterResetRequest__copy(
 }
 
 px4_msgs__msg__ParameterResetRequest *
-px4_msgs__msg__ParameterResetRequest__create()
+px4_msgs__msg__ParameterResetRequest__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ParameterResetRequest * msg = (px4_msgs__msg__ParameterResetRequest *)allocator.allocate(sizeof(px4_msgs__msg__ParameterResetRequest), allocator.state);

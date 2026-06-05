@@ -121,7 +121,7 @@ px4_msgs__msg__TrajectorySetpoint__copy(
 }
 
 px4_msgs__msg__TrajectorySetpoint *
-px4_msgs__msg__TrajectorySetpoint__create()
+px4_msgs__msg__TrajectorySetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TrajectorySetpoint * msg = (px4_msgs__msg__TrajectorySetpoint *)allocator.allocate(sizeof(px4_msgs__msg__TrajectorySetpoint), allocator.state);

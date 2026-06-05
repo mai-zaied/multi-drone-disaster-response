@@ -183,7 +183,7 @@ module px4_msgs {
       float dist_bottom;
 
       @verbatim (language="comment", text=
-        "terrain estimate variance (m^2)")
+        "height above ground estimate variance (m^2)")
       float dist_bottom_var;
 
       @verbatim (language="comment", text=

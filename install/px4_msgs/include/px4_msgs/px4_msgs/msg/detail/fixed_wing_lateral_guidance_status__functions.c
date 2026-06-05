@@ -24,6 +24,7 @@ px4_msgs__msg__FixedWingLateralGuidanceStatus__init(px4_msgs__msg__FixedWingLate
   // bearing_feas_on_track
   // signed_track_error
   // track_error_bound
+  // switch_distance
   // adapted_period
   // wind_est_valid
   return true;
@@ -42,6 +43,7 @@ px4_msgs__msg__FixedWingLateralGuidanceStatus__fini(px4_msgs__msg__FixedWingLate
   // bearing_feas_on_track
   // signed_track_error
   // track_error_bound
+  // switch_distance
   // adapted_period
   // wind_est_valid
 }
@@ -80,6 +82,10 @@ px4_msgs__msg__FixedWingLateralGuidanceStatus__are_equal(const px4_msgs__msg__Fi
   if (lhs->track_error_bound != rhs->track_error_bound) {
     return false;
   }
+  // switch_distance
+  if (lhs->switch_distance != rhs->switch_distance) {
+    return false;
+  }
   // adapted_period
   if (lhs->adapted_period != rhs->adapted_period) {
     return false;
@@ -113,6 +119,8 @@ px4_msgs__msg__FixedWingLateralGuidanceStatus__copy(
   output->signed_track_error = input->signed_track_error;
   // track_error_bound
   output->track_error_bound = input->track_error_bound;
+  // switch_distance
+  output->switch_distance = input->switch_distance;
   // adapted_period
   output->adapted_period = input->adapted_period;
   // wind_est_valid
@@ -121,7 +129,7 @@ px4_msgs__msg__FixedWingLateralGuidanceStatus__copy(
 }
 
 px4_msgs__msg__FixedWingLateralGuidanceStatus *
-px4_msgs__msg__FixedWingLateralGuidanceStatus__create()
+px4_msgs__msg__FixedWingLateralGuidanceStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FixedWingLateralGuidanceStatus * msg = (px4_msgs__msg__FixedWingLateralGuidanceStatus *)allocator.allocate(sizeof(px4_msgs__msg__FixedWingLateralGuidanceStatus), allocator.state);

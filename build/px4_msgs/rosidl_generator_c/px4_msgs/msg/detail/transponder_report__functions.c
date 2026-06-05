@@ -177,7 +177,7 @@ px4_msgs__msg__TransponderReport__copy(
 }
 
 px4_msgs__msg__TransponderReport *
-px4_msgs__msg__TransponderReport__create()
+px4_msgs__msg__TransponderReport__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TransponderReport * msg = (px4_msgs__msg__TransponderReport *)allocator.allocate(sizeof(px4_msgs__msg__TransponderReport), allocator.state);

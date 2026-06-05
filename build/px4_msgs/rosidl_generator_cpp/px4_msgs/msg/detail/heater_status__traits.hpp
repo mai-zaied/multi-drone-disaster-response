@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/HeaterStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/heater_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__HEATER_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__HEATER_STATUS__TRAITS_HPP_
 
@@ -102,10 +105,38 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: supply_voltage
+  {
+    out << "supply_voltage: ";
+    rosidl_generator_traits::value_to_yaml(msg.supply_voltage, out);
+    out << ", ";
+  }
+
+  // member: heater_current
+  {
+    out << "heater_current: ";
+    rosidl_generator_traits::value_to_yaml(msg.heater_current, out);
+    out << ", ";
+  }
+
+  // member: nominal_multiplier
+  {
+    out << "nominal_multiplier: ";
+    rosidl_generator_traits::value_to_yaml(msg.nominal_multiplier, out);
+    out << ", ";
+  }
+
   // member: mode
   {
     out << "mode: ";
     rosidl_generator_traits::value_to_yaml(msg.mode, out);
+    out << ", ";
+  }
+
+  // member: temperature_source
+  {
+    out << "temperature_source: ";
+    rosidl_generator_traits::value_to_yaml(msg.temperature_source, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -224,6 +255,36 @@ inline void to_block_style_yaml(
     out << "\n";
   }
 
+  // member: supply_voltage
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "supply_voltage: ";
+    rosidl_generator_traits::value_to_yaml(msg.supply_voltage, out);
+    out << "\n";
+  }
+
+  // member: heater_current
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "heater_current: ";
+    rosidl_generator_traits::value_to_yaml(msg.heater_current, out);
+    out << "\n";
+  }
+
+  // member: nominal_multiplier
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "nominal_multiplier: ";
+    rosidl_generator_traits::value_to_yaml(msg.nominal_multiplier, out);
+    out << "\n";
+  }
+
   // member: mode
   {
     if (indentation > 0) {
@@ -231,6 +292,16 @@ inline void to_block_style_yaml(
     }
     out << "mode: ";
     rosidl_generator_traits::value_to_yaml(msg.mode, out);
+    out << "\n";
+  }
+
+  // member: temperature_source
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "temperature_source: ";
+    rosidl_generator_traits::value_to_yaml(msg.temperature_source, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

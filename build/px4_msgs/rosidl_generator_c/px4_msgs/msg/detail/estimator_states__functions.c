@@ -97,7 +97,7 @@ px4_msgs__msg__EstimatorStates__copy(
 }
 
 px4_msgs__msg__EstimatorStates *
-px4_msgs__msg__EstimatorStates__create()
+px4_msgs__msg__EstimatorStates__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__EstimatorStates * msg = (px4_msgs__msg__EstimatorStates *)allocator.allocate(sizeof(px4_msgs__msg__EstimatorStates), allocator.state);

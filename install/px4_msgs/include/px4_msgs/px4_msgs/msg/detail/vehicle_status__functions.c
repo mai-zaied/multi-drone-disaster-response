@@ -27,9 +27,10 @@ px4_msgs__msg__VehicleStatus__init(px4_msgs__msg__VehicleStatus * msg)
   // nav_state_user_intention
   // nav_state
   // executor_in_charge
+  // nav_state_display
+  // accepts_offboard_setpoints
   // valid_nav_states_mask
   // can_set_nav_states_mask
-  // failure_detector_status
   // hil_state
   // vehicle_type
   // failsafe
@@ -53,6 +54,7 @@ px4_msgs__msg__VehicleStatus__init(px4_msgs__msg__VehicleStatus * msg)
   // open_drone_id_system_healthy
   // parachute_system_present
   // parachute_system_healthy
+  // traffic_avoidance_system_present
   // rc_calibration_in_progress
   // calibration_enabled
   // pre_flight_checks_pass
@@ -75,9 +77,10 @@ px4_msgs__msg__VehicleStatus__fini(px4_msgs__msg__VehicleStatus * msg)
   // nav_state_user_intention
   // nav_state
   // executor_in_charge
+  // nav_state_display
+  // accepts_offboard_setpoints
   // valid_nav_states_mask
   // can_set_nav_states_mask
-  // failure_detector_status
   // hil_state
   // vehicle_type
   // failsafe
@@ -101,6 +104,7 @@ px4_msgs__msg__VehicleStatus__fini(px4_msgs__msg__VehicleStatus * msg)
   // open_drone_id_system_healthy
   // parachute_system_present
   // parachute_system_healthy
+  // traffic_avoidance_system_present
   // rc_calibration_in_progress
   // calibration_enabled
   // pre_flight_checks_pass
@@ -152,16 +156,20 @@ px4_msgs__msg__VehicleStatus__are_equal(const px4_msgs__msg__VehicleStatus * lhs
   if (lhs->executor_in_charge != rhs->executor_in_charge) {
     return false;
   }
+  // nav_state_display
+  if (lhs->nav_state_display != rhs->nav_state_display) {
+    return false;
+  }
+  // accepts_offboard_setpoints
+  if (lhs->accepts_offboard_setpoints != rhs->accepts_offboard_setpoints) {
+    return false;
+  }
   // valid_nav_states_mask
   if (lhs->valid_nav_states_mask != rhs->valid_nav_states_mask) {
     return false;
   }
   // can_set_nav_states_mask
   if (lhs->can_set_nav_states_mask != rhs->can_set_nav_states_mask) {
-    return false;
-  }
-  // failure_detector_status
-  if (lhs->failure_detector_status != rhs->failure_detector_status) {
     return false;
   }
   // hil_state
@@ -256,6 +264,10 @@ px4_msgs__msg__VehicleStatus__are_equal(const px4_msgs__msg__VehicleStatus * lhs
   if (lhs->parachute_system_healthy != rhs->parachute_system_healthy) {
     return false;
   }
+  // traffic_avoidance_system_present
+  if (lhs->traffic_avoidance_system_present != rhs->traffic_avoidance_system_present) {
+    return false;
+  }
   // rc_calibration_in_progress
   if (lhs->rc_calibration_in_progress != rhs->rc_calibration_in_progress) {
     return false;
@@ -299,12 +311,14 @@ px4_msgs__msg__VehicleStatus__copy(
   output->nav_state = input->nav_state;
   // executor_in_charge
   output->executor_in_charge = input->executor_in_charge;
+  // nav_state_display
+  output->nav_state_display = input->nav_state_display;
+  // accepts_offboard_setpoints
+  output->accepts_offboard_setpoints = input->accepts_offboard_setpoints;
   // valid_nav_states_mask
   output->valid_nav_states_mask = input->valid_nav_states_mask;
   // can_set_nav_states_mask
   output->can_set_nav_states_mask = input->can_set_nav_states_mask;
-  // failure_detector_status
-  output->failure_detector_status = input->failure_detector_status;
   // hil_state
   output->hil_state = input->hil_state;
   // vehicle_type
@@ -351,6 +365,8 @@ px4_msgs__msg__VehicleStatus__copy(
   output->parachute_system_present = input->parachute_system_present;
   // parachute_system_healthy
   output->parachute_system_healthy = input->parachute_system_healthy;
+  // traffic_avoidance_system_present
+  output->traffic_avoidance_system_present = input->traffic_avoidance_system_present;
   // rc_calibration_in_progress
   output->rc_calibration_in_progress = input->rc_calibration_in_progress;
   // calibration_enabled
@@ -361,7 +377,7 @@ px4_msgs__msg__VehicleStatus__copy(
 }
 
 px4_msgs__msg__VehicleStatus *
-px4_msgs__msg__VehicleStatus__create()
+px4_msgs__msg__VehicleStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleStatus * msg = (px4_msgs__msg__VehicleStatus *)allocator.allocate(sizeof(px4_msgs__msg__VehicleStatus), allocator.state);

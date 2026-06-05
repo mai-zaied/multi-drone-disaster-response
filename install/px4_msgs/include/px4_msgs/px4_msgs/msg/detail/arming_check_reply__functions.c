@@ -240,7 +240,7 @@ px4_msgs__msg__ArmingCheckReply__copy(
 }
 
 px4_msgs__msg__ArmingCheckReply *
-px4_msgs__msg__ArmingCheckReply__create()
+px4_msgs__msg__ArmingCheckReply__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ArmingCheckReply * msg = (px4_msgs__msg__ArmingCheckReply *)allocator.allocate(sizeof(px4_msgs__msg__ArmingCheckReply), allocator.state);

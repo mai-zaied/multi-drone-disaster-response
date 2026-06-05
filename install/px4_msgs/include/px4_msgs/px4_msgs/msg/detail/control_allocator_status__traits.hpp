@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ControlAllocatorStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/control_allocator_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__CONTROL_ALLOCATOR_STATUS__TRAITS_HPP_
 
@@ -111,6 +114,13 @@ inline void to_flow_style_yaml(
   {
     out << "motor_stop_mask: ";
     rosidl_generator_traits::value_to_yaml(msg.motor_stop_mask, out);
+    out << ", ";
+  }
+
+  // member: actuator_group_preflight_check_active
+  {
+    out << "actuator_group_preflight_check_active: ";
+    rosidl_generator_traits::value_to_yaml(msg.actuator_group_preflight_check_active, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -226,6 +236,16 @@ inline void to_block_style_yaml(
     }
     out << "motor_stop_mask: ";
     rosidl_generator_traits::value_to_yaml(msg.motor_stop_mask, out);
+    out << "\n";
+  }
+
+  // member: actuator_group_preflight_check_active
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "actuator_group_preflight_check_active: ";
+    rosidl_generator_traits::value_to_yaml(msg.actuator_group_preflight_check_active, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

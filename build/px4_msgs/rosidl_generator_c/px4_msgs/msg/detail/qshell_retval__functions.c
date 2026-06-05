@@ -73,7 +73,7 @@ px4_msgs__msg__QshellRetval__copy(
 }
 
 px4_msgs__msg__QshellRetval *
-px4_msgs__msg__QshellRetval__create()
+px4_msgs__msg__QshellRetval__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__QshellRetval * msg = (px4_msgs__msg__QshellRetval *)allocator.allocate(sizeof(px4_msgs__msg__QshellRetval), allocator.state);

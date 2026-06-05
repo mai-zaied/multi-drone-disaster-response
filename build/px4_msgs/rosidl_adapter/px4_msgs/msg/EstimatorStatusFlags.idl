@@ -212,6 +212,14 @@ module px4_msgs {
       boolean cs_gnss_hgt_fault;
 
       @verbatim (language="comment", text=
+        "48 - true if the vehicle is in vtol transition")
+      boolean cs_in_transition;
+
+      @verbatim (language="comment", text=
+        "49 - true when heading is observable")
+      boolean cs_heading_observable;
+
+      @verbatim (language="comment", text=
         "fault status" "\n"
         "number of filter fault status (fs) changes")
       uint32 fault_status_changes;

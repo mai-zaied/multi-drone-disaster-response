@@ -149,7 +149,7 @@ px4_msgs__msg__MagWorkerData__copy(
 }
 
 px4_msgs__msg__MagWorkerData *
-px4_msgs__msg__MagWorkerData__create()
+px4_msgs__msg__MagWorkerData__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MagWorkerData * msg = (px4_msgs__msg__MagWorkerData *)allocator.allocate(sizeof(px4_msgs__msg__MagWorkerData), allocator.state);

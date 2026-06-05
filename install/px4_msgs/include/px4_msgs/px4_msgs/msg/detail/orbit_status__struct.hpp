@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/OrbitStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/orbit_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ORBIT_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ORBIT_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -132,6 +136,14 @@ struct OrbitStatus_
   }
 
   // constant declarations
+  static constexpr uint8_t FRAME_GLOBAL =
+    0u;
+  static constexpr uint8_t FRAME_LOCAL_NED =
+    1u;
+  static constexpr uint8_t FRAME_GLOBAL_RELATIVE_ALT =
+    3u;
+  static constexpr uint8_t FRAME_GLOBAL_TERRAIN_ALT =
+    10u;
   static constexpr uint8_t ORBIT_YAW_BEHAVIOUR_HOLD_FRONT_TO_CIRCLE_CENTER =
     0u;
   static constexpr uint8_t ORBIT_YAW_BEHAVIOUR_HOLD_INITIAL_HEADING =
@@ -219,6 +231,26 @@ using OrbitStatus =
   px4_msgs::msg::OrbitStatus_<std::allocator<void>>;
 
 // constant definitions
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t OrbitStatus_<ContainerAllocator>::FRAME_GLOBAL;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t OrbitStatus_<ContainerAllocator>::FRAME_LOCAL_NED;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t OrbitStatus_<ContainerAllocator>::FRAME_GLOBAL_RELATIVE_ALT;
+#endif  // __cplusplus < 201703L
+#if __cplusplus < 201703L
+// static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
+template<typename ContainerAllocator>
+constexpr uint8_t OrbitStatus_<ContainerAllocator>::FRAME_GLOBAL_TERRAIN_ALT;
+#endif  // __cplusplus < 201703L
 #if __cplusplus < 201703L
 // static constexpr member variable definitions are only needed in C++14 and below, deprecated in C++17
 template<typename ContainerAllocator>

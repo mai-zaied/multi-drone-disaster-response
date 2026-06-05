@@ -153,7 +153,7 @@ px4_msgs__msg__VehicleLandDetected__copy(
 }
 
 px4_msgs__msg__VehicleLandDetected *
-px4_msgs__msg__VehicleLandDetected__create()
+px4_msgs__msg__VehicleLandDetected__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleLandDetected * msg = (px4_msgs__msg__VehicleLandDetected *)allocator.allocate(sizeof(px4_msgs__msg__VehicleLandDetected), allocator.state);

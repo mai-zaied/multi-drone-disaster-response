@@ -137,7 +137,7 @@ px4_msgs__msg__SensorsStatus__copy(
 }
 
 px4_msgs__msg__SensorsStatus *
-px4_msgs__msg__SensorsStatus__create()
+px4_msgs__msg__SensorsStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__SensorsStatus * msg = (px4_msgs__msg__SensorsStatus *)allocator.allocate(sizeof(px4_msgs__msg__SensorsStatus), allocator.state);

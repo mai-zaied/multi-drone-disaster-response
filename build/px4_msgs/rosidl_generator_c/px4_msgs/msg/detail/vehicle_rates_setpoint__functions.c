@@ -101,7 +101,7 @@ px4_msgs__msg__VehicleRatesSetpoint__copy(
 }
 
 px4_msgs__msg__VehicleRatesSetpoint *
-px4_msgs__msg__VehicleRatesSetpoint__create()
+px4_msgs__msg__VehicleRatesSetpoint__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleRatesSetpoint * msg = (px4_msgs__msg__VehicleRatesSetpoint *)allocator.allocate(sizeof(px4_msgs__msg__VehicleRatesSetpoint), allocator.state);

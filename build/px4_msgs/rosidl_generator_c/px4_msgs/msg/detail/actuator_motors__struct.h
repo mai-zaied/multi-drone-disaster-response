@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/ActuatorMotors.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/actuator_motors.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ACTUATOR_MOTORS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__ACTUATOR_MOTORS__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Constant 'MESSAGE_VERSION'.
@@ -24,12 +26,18 @@ enum
 };
 
 /// Constant 'ACTUATOR_FUNCTION_MOTOR1'.
+/**
+  * output_functions.yaml Motor.start
+ */
 enum
 {
   px4_msgs__msg__ActuatorMotors__ACTUATOR_FUNCTION_MOTOR1 = 101
 };
 
 /// Constant 'NUM_CONTROLS'.
+/**
+  * output_functions.yaml Motor.count
+ */
 enum
 {
   px4_msgs__msg__ActuatorMotors__NUM_CONTROLS = 12
@@ -50,7 +58,7 @@ typedef struct px4_msgs__msg__ActuatorMotors
   uint64_t timestamp_sample;
   /// Bitset indicating which motors are configured to be reversible
   uint16_t reversible_flags;
-  /// [@range -1, 1] Normalized thrust. where 1 means maximum positive thrust, -1 maximum negative (if not supported by the output, <0 maps to NaN). NaN maps to disarmed (stop the motors)
+  /// [@range -1, 1] Normalized thrust. Where 1 means maximum positive thrust, -1 maximum negative (if not supported by the output, <0 maps to NaN). NaN maps to disarmed (stop the motors)
   float control[12];
 } px4_msgs__msg__ActuatorMotors;
 

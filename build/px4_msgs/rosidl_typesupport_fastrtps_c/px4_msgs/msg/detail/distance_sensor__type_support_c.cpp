@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _DistanceSensor__ros_msg_type = px4_msgs__msg__DistanceSensor;
 
-static bool _DistanceSensor__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__DistanceSensor(
+  const px4_msgs__msg__DistanceSensor * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _DistanceSensor__ros_msg_type * ros_message = static_cast<const _DistanceSensor__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -103,7 +102,7 @@ static bool _DistanceSensor__cdr_serialize(
   {
     size_t size = 4;
     auto array_ptr = ros_message->q;
-    cdr.serializeArray(array_ptr, size);
+    cdr.serialize_array(array_ptr, size);
   }
 
   // Field name: orientation
@@ -119,15 +118,11 @@ static bool _DistanceSensor__cdr_serialize(
   return true;
 }
 
-static bool _DistanceSensor__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__DistanceSensor(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__DistanceSensor * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _DistanceSensor__ros_msg_type * ros_message = static_cast<_DistanceSensor__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -182,7 +177,7 @@ static bool _DistanceSensor__cdr_deserialize(
   {
     size_t size = 4;
     auto array_ptr = ros_message->q;
-    cdr.deserializeArray(array_ptr, size);
+    cdr.deserialize_array(array_ptr, size);
   }
 
   // Field name: orientation
@@ -198,6 +193,7 @@ static bool _DistanceSensor__cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__DistanceSensor(
   const void * untyped_ros_message,
@@ -212,67 +208,77 @@ size_t get_serialized_size_px4_msgs__msg__DistanceSensor(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name device_id
+
+  // Field name: device_id
   {
     size_t item_size = sizeof(ros_message->device_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name min_distance
+
+  // Field name: min_distance
   {
     size_t item_size = sizeof(ros_message->min_distance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name max_distance
+
+  // Field name: max_distance
   {
     size_t item_size = sizeof(ros_message->max_distance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name current_distance
+
+  // Field name: current_distance
   {
     size_t item_size = sizeof(ros_message->current_distance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name variance
+
+  // Field name: variance
   {
     size_t item_size = sizeof(ros_message->variance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name signal_quality
+
+  // Field name: signal_quality
   {
     size_t item_size = sizeof(ros_message->signal_quality);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name type
+
+  // Field name: type
   {
     size_t item_size = sizeof(ros_message->type);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name h_fov
+
+  // Field name: h_fov
   {
     size_t item_size = sizeof(ros_message->h_fov);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name v_fov
+
+  // Field name: v_fov
   {
     size_t item_size = sizeof(ros_message->v_fov);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name q
+
+  // Field name: q
   {
     size_t array_size = 4;
     auto array_ptr = ros_message->q;
@@ -281,13 +287,15 @@ size_t get_serialized_size_px4_msgs__msg__DistanceSensor(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name orientation
+
+  // Field name: orientation
   {
     size_t item_size = sizeof(ros_message->orientation);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode
+
+  // Field name: mode
   {
     size_t item_size = sizeof(ros_message->mode);
     current_alignment += item_size +
@@ -297,12 +305,6 @@ size_t get_serialized_size_px4_msgs__msg__DistanceSensor(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _DistanceSensor__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__DistanceSensor(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__DistanceSensor(
@@ -322,103 +324,422 @@ size_t max_serialized_size_px4_msgs__msg__DistanceSensor(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: device_id
+
+  // Field name: device_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: min_distance
+
+  // Field name: min_distance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: max_distance
+
+  // Field name: max_distance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: current_distance
+
+  // Field name: current_distance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: variance
+
+  // Field name: variance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: signal_quality
+
+  // Field name: signal_quality
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: type
+
+  // Field name: type
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: h_fov
+
+  // Field name: h_fov
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: v_fov
+
+  // Field name: v_fov
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: q
+
+  // Field name: q
   {
     size_t array_size = 4;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: orientation
+
+  // Field name: orientation
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: mode
+
+  // Field name: mode
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__DistanceSensor;
+    is_plain =
+      (
+      offsetof(DataType, mode) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__DistanceSensor(
+  const px4_msgs__msg__DistanceSensor * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: device_id
+  {
+    cdr << ros_message->device_id;
+  }
+
+  // Field name: min_distance
+  {
+    cdr << ros_message->min_distance;
+  }
+
+  // Field name: max_distance
+  {
+    cdr << ros_message->max_distance;
+  }
+
+  // Field name: current_distance
+  {
+    cdr << ros_message->current_distance;
+  }
+
+  // Field name: variance
+  {
+    cdr << ros_message->variance;
+  }
+
+  // Field name: signal_quality
+  {
+    cdr << ros_message->signal_quality;
+  }
+
+  // Field name: type
+  {
+    cdr << ros_message->type;
+  }
+
+  // Field name: h_fov
+  {
+    cdr << ros_message->h_fov;
+  }
+
+  // Field name: v_fov
+  {
+    cdr << ros_message->v_fov;
+  }
+
+  // Field name: q
+  {
+    size_t size = 4;
+    auto array_ptr = ros_message->q;
+    cdr.serialize_array(array_ptr, size);
+  }
+
+  // Field name: orientation
+  {
+    cdr << ros_message->orientation;
+  }
+
+  // Field name: mode
+  {
+    cdr << ros_message->mode;
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__DistanceSensor(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _DistanceSensor__ros_msg_type * ros_message = static_cast<const _DistanceSensor__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: device_id
+  {
+    size_t item_size = sizeof(ros_message->device_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: min_distance
+  {
+    size_t item_size = sizeof(ros_message->min_distance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: max_distance
+  {
+    size_t item_size = sizeof(ros_message->max_distance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: current_distance
+  {
+    size_t item_size = sizeof(ros_message->current_distance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: variance
+  {
+    size_t item_size = sizeof(ros_message->variance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: signal_quality
+  {
+    size_t item_size = sizeof(ros_message->signal_quality);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: type
+  {
+    size_t item_size = sizeof(ros_message->type);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: h_fov
+  {
+    size_t item_size = sizeof(ros_message->h_fov);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: v_fov
+  {
+    size_t item_size = sizeof(ros_message->v_fov);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: q
+  {
+    size_t array_size = 4;
+    auto array_ptr = ros_message->q;
+    (void)array_ptr;
+    size_t item_size = sizeof(array_ptr[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: orientation
+  {
+    size_t item_size = sizeof(ros_message->orientation);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode
+  {
+    size_t item_size = sizeof(ros_message->mode);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__DistanceSensor(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: device_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: min_distance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: max_distance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: current_distance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: variance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: signal_quality
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: type
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: h_fov
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: v_fov
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: q
+  {
+    size_t array_size = 4;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: orientation
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: mode
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -435,8 +756,41 @@ size_t max_serialized_size_px4_msgs__msg__DistanceSensor(
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _DistanceSensor__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__DistanceSensor * ros_message = static_cast<const px4_msgs__msg__DistanceSensor *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__DistanceSensor(ros_message, cdr);
+}
+
+static bool _DistanceSensor__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__DistanceSensor * ros_message = static_cast<px4_msgs__msg__DistanceSensor *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__DistanceSensor(cdr, ros_message);
+}
+
+static uint32_t _DistanceSensor__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__DistanceSensor(
+      untyped_ros_message, 0));
 }
 
 static size_t _DistanceSensor__max_serialized_size(char & bounds_info)
@@ -461,13 +815,17 @@ static message_type_support_callbacks_t __callbacks_DistanceSensor = {
   _DistanceSensor__cdr_serialize,
   _DistanceSensor__cdr_deserialize,
   _DistanceSensor__get_serialized_size,
-  _DistanceSensor__max_serialized_size
+  _DistanceSensor__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _DistanceSensor__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_DistanceSensor,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__DistanceSensor__get_type_hash,
+  &px4_msgs__msg__DistanceSensor__get_type_description,
+  &px4_msgs__msg__DistanceSensor__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *

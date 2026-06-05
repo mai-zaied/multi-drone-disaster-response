@@ -6,7 +6,7 @@
 module px4_msgs {
   module msg {
     module VehicleStatus_Constants {
-      const uint32 MESSAGE_VERSION = 1;
+      const uint32 MESSAGE_VERSION = 4;
       const uint8 ARMING_STATE_DISARMED = 1;
       const uint8 ARMING_STATE_ARMED = 2;
       const uint8 ARM_DISARM_REASON_STICK_GESTURE = 1;
@@ -38,7 +38,9 @@ module px4_msgs {
         "Auto return to launch mode")
       const uint8 NAVIGATION_STATE_AUTO_RTL = 5;
       const uint8 NAVIGATION_STATE_POSITION_SLOW = 6;
-      const uint8 NAVIGATION_STATE_FREE5 = 7;
+      @verbatim (language="comment", text=
+        "Guided Course mode (FW: maintain course/alt/speed)")
+      const uint8 NAVIGATION_STATE_GUIDED_COURSE = 7;
       @verbatim (language="comment", text=
         "Altitude with Cruise mode")
       const uint8 NAVIGATION_STATE_ALTITUDE_CRUISE = 8;
@@ -85,31 +87,6 @@ module px4_msgs {
       const uint8 NAVIGATION_STATE_EXTERNAL7 = 29;
       const uint8 NAVIGATION_STATE_EXTERNAL8 = 30;
       const uint8 NAVIGATION_STATE_MAX = 31;
-      const uint16 FAILURE_NONE = 0;
-      @verbatim (language="comment", text=
-        "(1 << 0)")
-      const uint16 FAILURE_ROLL = 1;
-      @verbatim (language="comment", text=
-        "(1 << 1)")
-      const uint16 FAILURE_PITCH = 2;
-      @verbatim (language="comment", text=
-        "(1 << 2)")
-      const uint16 FAILURE_ALT = 4;
-      @verbatim (language="comment", text=
-        "(1 << 3)")
-      const uint16 FAILURE_EXT = 8;
-      @verbatim (language="comment", text=
-        "(1 << 4)")
-      const uint16 FAILURE_ARM_ESC = 16;
-      @verbatim (language="comment", text=
-        "(1 << 5)")
-      const uint16 FAILURE_BATTERY = 32;
-      @verbatim (language="comment", text=
-        "(1 << 6)")
-      const uint16 FAILURE_IMBALANCED_PROP = 64;
-      @verbatim (language="comment", text=
-        "(1 << 7)")
-      const uint16 FAILURE_MOTOR = 128;
       const uint8 HIL_STATE_OFF = 0;
       const uint8 HIL_STATE_ON = 1;
       const uint8 VEHICLE_TYPE_UNSPECIFIED = 0;
@@ -160,16 +137,20 @@ module px4_msgs {
       uint8 executor_in_charge;
 
       @verbatim (language="comment", text=
+        "User-visible nav state sent via MAVLink (executor state if active, otherwise nav_state)")
+      uint8 nav_state_display;
+
+      @verbatim (language="comment", text=
+        "True if the current mode accepts offboard trajectory setpoints via MAVLink")
+      boolean accepts_offboard_setpoints;
+
+      @verbatim (language="comment", text=
         "Bitmask for all valid nav_state values")
       uint32 valid_nav_states_mask;
 
       @verbatim (language="comment", text=
         "Bitmask for all modes that a user can select")
       uint32 can_set_nav_states_mask;
-
-      @verbatim (language="comment", text=
-        "Bitmask of detected failures")
-      uint16 failure_detector_status;
 
       uint8 hil_state;
 
@@ -255,6 +236,8 @@ module px4_msgs {
       boolean parachute_system_present;
 
       boolean parachute_system_healthy;
+
+      boolean traffic_avoidance_system_present;
 
       boolean rc_calibration_in_progress;
 

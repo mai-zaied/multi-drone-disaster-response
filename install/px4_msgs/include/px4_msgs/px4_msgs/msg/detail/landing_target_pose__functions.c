@@ -21,15 +21,19 @@ px4_msgs__msg__LandingTargetPose__init(px4_msgs__msg__LandingTargetPose * msg)
   // is_static
   // rel_pos_valid
   // rel_vel_valid
+  // rel_vel_ekf2_valid
   // x_rel
   // y_rel
   // z_rel
   // vx_rel
   // vy_rel
+  // vz_rel
   // cov_x_rel
   // cov_y_rel
+  // cov_z_rel
   // cov_vx_rel
   // cov_vy_rel
+  // cov_vz_rel
   // abs_pos_valid
   // x_abs
   // y_abs
@@ -47,15 +51,19 @@ px4_msgs__msg__LandingTargetPose__fini(px4_msgs__msg__LandingTargetPose * msg)
   // is_static
   // rel_pos_valid
   // rel_vel_valid
+  // rel_vel_ekf2_valid
   // x_rel
   // y_rel
   // z_rel
   // vx_rel
   // vy_rel
+  // vz_rel
   // cov_x_rel
   // cov_y_rel
+  // cov_z_rel
   // cov_vx_rel
   // cov_vy_rel
+  // cov_vz_rel
   // abs_pos_valid
   // x_abs
   // y_abs
@@ -84,6 +92,10 @@ px4_msgs__msg__LandingTargetPose__are_equal(const px4_msgs__msg__LandingTargetPo
   if (lhs->rel_vel_valid != rhs->rel_vel_valid) {
     return false;
   }
+  // rel_vel_ekf2_valid
+  if (lhs->rel_vel_ekf2_valid != rhs->rel_vel_ekf2_valid) {
+    return false;
+  }
   // x_rel
   if (lhs->x_rel != rhs->x_rel) {
     return false;
@@ -104,6 +116,10 @@ px4_msgs__msg__LandingTargetPose__are_equal(const px4_msgs__msg__LandingTargetPo
   if (lhs->vy_rel != rhs->vy_rel) {
     return false;
   }
+  // vz_rel
+  if (lhs->vz_rel != rhs->vz_rel) {
+    return false;
+  }
   // cov_x_rel
   if (lhs->cov_x_rel != rhs->cov_x_rel) {
     return false;
@@ -112,12 +128,20 @@ px4_msgs__msg__LandingTargetPose__are_equal(const px4_msgs__msg__LandingTargetPo
   if (lhs->cov_y_rel != rhs->cov_y_rel) {
     return false;
   }
+  // cov_z_rel
+  if (lhs->cov_z_rel != rhs->cov_z_rel) {
+    return false;
+  }
   // cov_vx_rel
   if (lhs->cov_vx_rel != rhs->cov_vx_rel) {
     return false;
   }
   // cov_vy_rel
   if (lhs->cov_vy_rel != rhs->cov_vy_rel) {
+    return false;
+  }
+  // cov_vz_rel
+  if (lhs->cov_vz_rel != rhs->cov_vz_rel) {
     return false;
   }
   // abs_pos_valid
@@ -155,6 +179,8 @@ px4_msgs__msg__LandingTargetPose__copy(
   output->rel_pos_valid = input->rel_pos_valid;
   // rel_vel_valid
   output->rel_vel_valid = input->rel_vel_valid;
+  // rel_vel_ekf2_valid
+  output->rel_vel_ekf2_valid = input->rel_vel_ekf2_valid;
   // x_rel
   output->x_rel = input->x_rel;
   // y_rel
@@ -165,14 +191,20 @@ px4_msgs__msg__LandingTargetPose__copy(
   output->vx_rel = input->vx_rel;
   // vy_rel
   output->vy_rel = input->vy_rel;
+  // vz_rel
+  output->vz_rel = input->vz_rel;
   // cov_x_rel
   output->cov_x_rel = input->cov_x_rel;
   // cov_y_rel
   output->cov_y_rel = input->cov_y_rel;
+  // cov_z_rel
+  output->cov_z_rel = input->cov_z_rel;
   // cov_vx_rel
   output->cov_vx_rel = input->cov_vx_rel;
   // cov_vy_rel
   output->cov_vy_rel = input->cov_vy_rel;
+  // cov_vz_rel
+  output->cov_vz_rel = input->cov_vz_rel;
   // abs_pos_valid
   output->abs_pos_valid = input->abs_pos_valid;
   // x_abs
@@ -185,7 +217,7 @@ px4_msgs__msg__LandingTargetPose__copy(
 }
 
 px4_msgs__msg__LandingTargetPose *
-px4_msgs__msg__LandingTargetPose__create()
+px4_msgs__msg__LandingTargetPose__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__LandingTargetPose * msg = (px4_msgs__msg__LandingTargetPose *)allocator.allocate(sizeof(px4_msgs__msg__LandingTargetPose), allocator.state);

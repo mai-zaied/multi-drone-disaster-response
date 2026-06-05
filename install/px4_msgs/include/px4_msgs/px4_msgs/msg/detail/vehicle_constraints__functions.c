@@ -81,7 +81,7 @@ px4_msgs__msg__VehicleConstraints__copy(
 }
 
 px4_msgs__msg__VehicleConstraints *
-px4_msgs__msg__VehicleConstraints__create()
+px4_msgs__msg__VehicleConstraints__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleConstraints * msg = (px4_msgs__msg__VehicleConstraints *)allocator.allocate(sizeof(px4_msgs__msg__VehicleConstraints), allocator.state);

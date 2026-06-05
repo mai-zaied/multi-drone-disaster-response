@@ -4,6 +4,7 @@
 
 #include "cstddef"
 #include "rosidl_runtime_c/message_type_support_struct.h"
+#include "px4_msgs/msg/detail/neural_control__functions.h"
 #include "px4_msgs/msg/detail/neural_control__struct.hpp"
 #include "rosidl_typesupport_cpp/identifier.hpp"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
@@ -72,6 +73,9 @@ static const rosidl_message_type_support_t NeuralControl_message_type_support_ha
   ::rosidl_typesupport_cpp::typesupport_identifier,
   reinterpret_cast<const type_support_map_t *>(&_NeuralControl_message_typesupport_map),
   ::rosidl_typesupport_cpp::get_message_typesupport_handle_function,
+  &px4_msgs__msg__NeuralControl__get_type_hash,
+  &px4_msgs__msg__NeuralControl__get_type_description,
+  &px4_msgs__msg__NeuralControl__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_cpp

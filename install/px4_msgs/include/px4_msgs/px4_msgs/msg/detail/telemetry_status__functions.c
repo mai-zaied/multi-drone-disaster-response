@@ -43,6 +43,7 @@ px4_msgs__msg__TelemetryStatus__init(px4_msgs__msg__TelemetryStatus * msg)
   // heartbeat_type_onboard_controller
   // heartbeat_type_gimbal
   // heartbeat_type_adsb
+  // heartbeat_type_flarm
   // heartbeat_type_camera
   // heartbeat_type_parachute
   // heartbeat_type_open_drone_id
@@ -90,6 +91,7 @@ px4_msgs__msg__TelemetryStatus__fini(px4_msgs__msg__TelemetryStatus * msg)
   // heartbeat_type_onboard_controller
   // heartbeat_type_gimbal
   // heartbeat_type_adsb
+  // heartbeat_type_flarm
   // heartbeat_type_camera
   // heartbeat_type_parachute
   // heartbeat_type_open_drone_id
@@ -214,6 +216,10 @@ px4_msgs__msg__TelemetryStatus__are_equal(const px4_msgs__msg__TelemetryStatus *
   if (lhs->heartbeat_type_adsb != rhs->heartbeat_type_adsb) {
     return false;
   }
+  // heartbeat_type_flarm
+  if (lhs->heartbeat_type_flarm != rhs->heartbeat_type_flarm) {
+    return false;
+  }
   // heartbeat_type_camera
   if (lhs->heartbeat_type_camera != rhs->heartbeat_type_camera) {
     return false;
@@ -325,6 +331,8 @@ px4_msgs__msg__TelemetryStatus__copy(
   output->heartbeat_type_gimbal = input->heartbeat_type_gimbal;
   // heartbeat_type_adsb
   output->heartbeat_type_adsb = input->heartbeat_type_adsb;
+  // heartbeat_type_flarm
+  output->heartbeat_type_flarm = input->heartbeat_type_flarm;
   // heartbeat_type_camera
   output->heartbeat_type_camera = input->heartbeat_type_camera;
   // heartbeat_type_parachute
@@ -353,7 +361,7 @@ px4_msgs__msg__TelemetryStatus__copy(
 }
 
 px4_msgs__msg__TelemetryStatus *
-px4_msgs__msg__TelemetryStatus__create()
+px4_msgs__msg__TelemetryStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__TelemetryStatus * msg = (px4_msgs__msg__TelemetryStatus *)allocator.allocate(sizeof(px4_msgs__msg__TelemetryStatus), allocator.state);

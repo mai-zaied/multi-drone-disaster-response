@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/vehicle_imu__functions.h"
 #include "px4_msgs/msg/detail/vehicle_imu__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -119,6 +120,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -136,6 +138,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -153,6 +156,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -170,6 +174,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -187,6 +192,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     3,  // array size
     false,  // is upper bound
@@ -204,6 +210,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     true,  // is array
     3,  // array size
     false,  // is upper bound
@@ -221,6 +228,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -238,6 +246,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -255,6 +264,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -272,6 +282,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -289,6 +300,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -306,6 +318,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember VehicleImu_me
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -325,6 +338,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers VehicleImu_m
   "VehicleImu",  // message name
   12,  // number of fields
   sizeof(px4_msgs::msg::VehicleImu),
+  false,  // has_any_key_member_
   VehicleImu_message_member_array,  // message members
   VehicleImu_init_function,  // function to initialize message memory (memory has to be allocated)
   VehicleImu_fini_function  // function to terminate message instance (will not free memory)
@@ -334,6 +348,9 @@ static const rosidl_message_type_support_t VehicleImu_message_type_support_handl
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &VehicleImu_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleImu__get_type_hash,
+  &px4_msgs__msg__VehicleImu__get_type_description,
+  &px4_msgs__msg__VehicleImu__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

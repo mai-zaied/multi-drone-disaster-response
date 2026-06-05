@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/EscStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/esc_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESC_STATUS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESC_STATUS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -82,13 +86,13 @@ struct EscStatus_
     uint8_t;
   _esc_connectiontype_type esc_connectiontype;
   using _esc_online_flags_type =
-    uint8_t;
+    uint16_t;
   _esc_online_flags_type esc_online_flags;
   using _esc_armed_flags_type =
-    uint8_t;
+    uint16_t;
   _esc_armed_flags_type esc_armed_flags;
   using _esc_type =
-    std::array<px4_msgs::msg::EscReport_<ContainerAllocator>, 8>;
+    std::array<px4_msgs::msg::EscReport_<ContainerAllocator>, 12>;
   _esc_type esc;
 
   // setters for named parameter idiom
@@ -117,19 +121,19 @@ struct EscStatus_
     return *this;
   }
   Type & set__esc_online_flags(
-    const uint8_t & _arg)
+    const uint16_t & _arg)
   {
     this->esc_online_flags = _arg;
     return *this;
   }
   Type & set__esc_armed_flags(
-    const uint8_t & _arg)
+    const uint16_t & _arg)
   {
     this->esc_armed_flags = _arg;
     return *this;
   }
   Type & set__esc(
-    const std::array<px4_msgs::msg::EscReport_<ContainerAllocator>, 8> & _arg)
+    const std::array<px4_msgs::msg::EscReport_<ContainerAllocator>, 12> & _arg)
   {
     this->esc = _arg;
     return *this;
@@ -137,7 +141,7 @@ struct EscStatus_
 
   // constant declarations
   static constexpr uint8_t CONNECTED_ESC_MAX =
-    8u;
+    12u;
   static constexpr uint8_t ESC_CONNECTION_TYPE_PPM =
     0u;
   static constexpr uint8_t ESC_CONNECTION_TYPE_SERIAL =

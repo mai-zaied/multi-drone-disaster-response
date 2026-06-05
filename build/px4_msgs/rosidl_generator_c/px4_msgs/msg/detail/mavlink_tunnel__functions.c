@@ -101,7 +101,7 @@ px4_msgs__msg__MavlinkTunnel__copy(
 }
 
 px4_msgs__msg__MavlinkTunnel *
-px4_msgs__msg__MavlinkTunnel__create()
+px4_msgs__msg__MavlinkTunnel__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__MavlinkTunnel * msg = (px4_msgs__msg__MavlinkTunnel *)allocator.allocate(sizeof(px4_msgs__msg__MavlinkTunnel), allocator.state);

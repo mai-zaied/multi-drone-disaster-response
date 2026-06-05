@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LandingTargetPose.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_target_pose.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__STRUCT_H_
 
@@ -14,7 +17,6 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
-
 // Constants defined in the message
 
 /// Struct defined in msg/LandingTargetPose in the package px4_msgs.
@@ -23,7 +25,7 @@ extern "C"
  */
 typedef struct px4_msgs__msg__LandingTargetPose
 {
-  /// time since system start (microseconds)
+  /// Time since system start
   uint64_t timestamp;
   /// Flag indicating whether the landing target is static or moving with respect to the ground
   bool is_static;
@@ -31,24 +33,32 @@ typedef struct px4_msgs__msg__LandingTargetPose
   bool rel_pos_valid;
   /// Flag showing whether relative velocity is valid
   bool rel_vel_valid;
+  /// Flag showing whether relative velocity is valid for EKF2 auxiliary velocity aiding
+  bool rel_vel_ekf2_valid;
   /// X/north position of target, relative to vehicle (navigation frame)
   float x_rel;
   /// Y/east position of target, relative to vehicle (navigation frame)
   float y_rel;
   /// Z/down position of target, relative to vehicle (navigation frame)
   float z_rel;
-  /// X/north velocity  of target, relative to vehicle (navigation frame)
+  /// X/north velocity of target, relative to vehicle (navigation frame)
   float vx_rel;
   /// Y/east velocity of target, relative to vehicle (navigation frame)
   float vy_rel;
+  /// Z/down velocity of target, relative to vehicle (navigation frame)
+  float vz_rel;
   /// X/north position variance
   float cov_x_rel;
   /// Y/east position variance
   float cov_y_rel;
+  /// Z/down position variance
+  float cov_z_rel;
   /// X/north velocity variance
   float cov_vx_rel;
   /// Y/east velocity variance
   float cov_vy_rel;
+  /// Z/down velocity variance
+  float cov_vz_rel;
   /// Flag showing whether absolute position is valid
   bool abs_pos_valid;
   /// X/north position of target, relative to origin (navigation frame)

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/GimbalDeviceSetAttitude.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/gimbal_device_set_attitude.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__GIMBAL_DEVICE_SET_ATTITUDE__TRAITS_HPP_
 

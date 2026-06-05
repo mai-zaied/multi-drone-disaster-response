@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/IridiumsbdStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/iridiumsbd_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__IRIDIUMSBD_STATUS__FUNCTIONS_H_
 #define PX4_MSGS__MSG__DETAIL__IRIDIUMSBD_STATUS__FUNCTIONS_H_
 
@@ -13,6 +16,12 @@ extern "C"
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "rosidl_runtime_c/action_type_support_struct.h"
+#include "rosidl_runtime_c/message_type_support_struct.h"
+#include "rosidl_runtime_c/service_type_support_struct.h"
+#include "rosidl_runtime_c/type_description/type_description__struct.h"
+#include "rosidl_runtime_c/type_description/type_source__struct.h"
+#include "rosidl_runtime_c/type_hash.h"
 #include "rosidl_runtime_c/visibility_control.h"
 #include "px4_msgs/msg/rosidl_generator_c__visibility_control.h"
 
@@ -53,7 +62,7 @@ px4_msgs__msg__IridiumsbdStatus__fini(px4_msgs__msg__IridiumsbdStatus * msg);
  */
 ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
 px4_msgs__msg__IridiumsbdStatus *
-px4_msgs__msg__IridiumsbdStatus__create();
+px4_msgs__msg__IridiumsbdStatus__create(void);
 
 /// Destroy msg/IridiumsbdStatus message.
 /**
@@ -92,6 +101,30 @@ bool
 px4_msgs__msg__IridiumsbdStatus__copy(
   const px4_msgs__msg__IridiumsbdStatus * input,
   px4_msgs__msg__IridiumsbdStatus * output);
+
+/// Retrieve pointer to the hash of the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_type_hash_t *
+px4_msgs__msg__IridiumsbdStatus__get_type_hash(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeDescription *
+px4_msgs__msg__IridiumsbdStatus__get_type_description(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the single raw source text that defined this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeSource *
+px4_msgs__msg__IridiumsbdStatus__get_individual_type_description_source(
+  const rosidl_message_type_support_t * type_support);
+
+/// Retrieve pointer to the recursive raw sources that defined the description of this type.
+ROSIDL_GENERATOR_C_PUBLIC_px4_msgs
+const rosidl_runtime_c__type_description__TypeSource__Sequence *
+px4_msgs__msg__IridiumsbdStatus__get_type_description_sources(
+  const rosidl_message_type_support_t * type_support);
 
 /// Initialize array of msg/IridiumsbdStatus messages.
 /**

@@ -9,6 +9,7 @@
 #include "rosidl_runtime_c/message_type_support_struct.h"
 #include "rosidl_typesupport_cpp/message_type_support.hpp"
 #include "rosidl_typesupport_interface/macros.h"
+#include "px4_msgs/msg/detail/internal_combustion_engine_control__functions.h"
 #include "px4_msgs/msg/detail/internal_combustion_engine_control__struct.hpp"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
@@ -43,6 +44,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -60,6 +62,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -77,6 +80,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -94,6 +98,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -111,6 +116,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -128,6 +134,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember InternalCombu
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8,  // type
     0,  // upper bound of string
     nullptr,  // members of sub message
+    false,  // is key
     false,  // is array
     0,  // array size
     false,  // is upper bound
@@ -147,6 +154,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMembers InternalComb
   "InternalCombustionEngineControl",  // message name
   6,  // number of fields
   sizeof(px4_msgs::msg::InternalCombustionEngineControl),
+  false,  // has_any_key_member_
   InternalCombustionEngineControl_message_member_array,  // message members
   InternalCombustionEngineControl_init_function,  // function to initialize message memory (memory has to be allocated)
   InternalCombustionEngineControl_fini_function  // function to terminate message instance (will not free memory)
@@ -156,6 +164,9 @@ static const rosidl_message_type_support_t InternalCombustionEngineControl_messa
   ::rosidl_typesupport_introspection_cpp::typesupport_identifier,
   &InternalCombustionEngineControl_message_members,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__InternalCombustionEngineControl__get_type_hash,
+  &px4_msgs__msg__InternalCombustionEngineControl__get_type_description,
+  &px4_msgs__msg__InternalCombustionEngineControl__get_type_description_sources,
 };
 
 }  // namespace rosidl_typesupport_introspection_cpp

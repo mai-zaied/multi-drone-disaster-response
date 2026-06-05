@@ -49,7 +49,7 @@ px4_msgs__msg__ActuatorServos__are_equal(const px4_msgs__msg__ActuatorServos * l
     return false;
   }
   // control
-  for (size_t i = 0; i < 8; ++i) {
+  for (size_t i = 0; i < 15; ++i) {
     if (lhs->control[i] != rhs->control[i]) {
       return false;
     }
@@ -70,14 +70,14 @@ px4_msgs__msg__ActuatorServos__copy(
   // timestamp_sample
   output->timestamp_sample = input->timestamp_sample;
   // control
-  for (size_t i = 0; i < 8; ++i) {
+  for (size_t i = 0; i < 15; ++i) {
     output->control[i] = input->control[i];
   }
   return true;
 }
 
 px4_msgs__msg__ActuatorServos *
-px4_msgs__msg__ActuatorServos__create()
+px4_msgs__msg__ActuatorServos__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ActuatorServos * msg = (px4_msgs__msg__ActuatorServos *)allocator.allocate(sizeof(px4_msgs__msg__ActuatorServos), allocator.state);

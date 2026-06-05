@@ -1,6 +1,6 @@
 {
   "package_name": "task_msgs",
   "non_idl_tuples": [
-    "/home/maizaied03/ros2_ws/src/task_msgs:msg/Task.msg"
+    "/home/dudz/multi-drone-disaster-response/src/task_msgs:msg/Task.msg"
   ]
 }

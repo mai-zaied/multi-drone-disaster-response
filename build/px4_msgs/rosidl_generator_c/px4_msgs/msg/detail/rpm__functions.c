@@ -73,7 +73,7 @@ px4_msgs__msg__Rpm__copy(
 }
 
 px4_msgs__msg__Rpm *
-px4_msgs__msg__Rpm__create()
+px4_msgs__msg__Rpm__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Rpm * msg = (px4_msgs__msg__Rpm *)allocator.allocate(sizeof(px4_msgs__msg__Rpm), allocator.state);

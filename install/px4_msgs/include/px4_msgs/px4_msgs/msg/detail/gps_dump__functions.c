@@ -93,7 +93,7 @@ px4_msgs__msg__GpsDump__copy(
 }
 
 px4_msgs__msg__GpsDump *
-px4_msgs__msg__GpsDump__create()
+px4_msgs__msg__GpsDump__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__GpsDump * msg = (px4_msgs__msg__GpsDump *)allocator.allocate(sizeof(px4_msgs__msg__GpsDump), allocator.state);

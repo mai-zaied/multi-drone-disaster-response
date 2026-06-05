@@ -81,7 +81,7 @@ px4_msgs__msg__FixedWingRunwayControl__copy(
 }
 
 px4_msgs__msg__FixedWingRunwayControl *
-px4_msgs__msg__FixedWingRunwayControl__create()
+px4_msgs__msg__FixedWingRunwayControl__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__FixedWingRunwayControl * msg = (px4_msgs__msg__FixedWingRunwayControl *)allocator.allocate(sizeof(px4_msgs__msg__FixedWingRunwayControl), allocator.state);

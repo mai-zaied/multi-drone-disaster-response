@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/PositionSetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/position_setpoint.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__POSITION_SETPOINT__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -129,6 +131,8 @@ typedef struct px4_msgs__msg__PositionSetpoint
   float acceptance_radius;
   /// vertical acceptance radius, only used for fixed wing guidance, NAN = let guidance choose (meters)
   float alt_acceptance_radius;
+  /// desired course (bearing) over ground, NaN = unused
+  float course;
   /// the generally desired cruising speed (not a hard constraint)
   float cruising_speed;
   /// commands the vehicle to glide if the capability is available (fixed wing only)

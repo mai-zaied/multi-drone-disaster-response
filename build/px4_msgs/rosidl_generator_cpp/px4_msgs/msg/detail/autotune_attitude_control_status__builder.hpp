@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/AutotuneAttitudeControlStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/autotune_attitude_control_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__AUTOTUNE_ATTITUDE_CONTROL_STATUS__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__AUTOTUNE_ATTITUDE_CONTROL_STATUS__BUILDER_HPP_
 

@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/SensorGnssRelative.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/sensor_gnss_relative.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__SENSOR_GNSS_RELATIVE__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__SENSOR_GNSS_RELATIVE__BUILDER_HPP_
 

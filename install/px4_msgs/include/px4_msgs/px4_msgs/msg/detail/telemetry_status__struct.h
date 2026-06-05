@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/TelemetryStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/telemetry_status.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__TELEMETRY_STATUS__STRUCT_H_
 #define PX4_MSGS__MSG__DETAIL__TELEMETRY_STATUS__STRUCT_H_
 
@@ -13,7 +16,6 @@ extern "C"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
 
 // Constants defined in the message
 
@@ -103,6 +105,8 @@ typedef struct px4_msgs__msg__TelemetryStatus
   bool heartbeat_type_gimbal;
   /// MAV_TYPE_ADSB
   bool heartbeat_type_adsb;
+  /// MAV_TYPE_FLARM
+  bool heartbeat_type_flarm;
   /// MAV_TYPE_CAMERA
   bool heartbeat_type_camera;
   /// MAV_TYPE_PARACHUTE

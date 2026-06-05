@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LandingTargetPose.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/landing_target_pose.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__BUILDER_HPP_
 #define PX4_MSGS__MSG__DETAIL__LANDING_TARGET_POSE__BUILDER_HPP_
 
@@ -85,16 +88,32 @@ private:
   ::px4_msgs::msg::LandingTargetPose msg_;
 };
 
+class Init_LandingTargetPose_cov_vz_rel
+{
+public:
+  explicit Init_LandingTargetPose_cov_vz_rel(::px4_msgs::msg::LandingTargetPose & msg)
+  : msg_(msg)
+  {}
+  Init_LandingTargetPose_abs_pos_valid cov_vz_rel(::px4_msgs::msg::LandingTargetPose::_cov_vz_rel_type arg)
+  {
+    msg_.cov_vz_rel = std::move(arg);
+    return Init_LandingTargetPose_abs_pos_valid(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::LandingTargetPose msg_;
+};
+
 class Init_LandingTargetPose_cov_vy_rel
 {
 public:
   explicit Init_LandingTargetPose_cov_vy_rel(::px4_msgs::msg::LandingTargetPose & msg)
   : msg_(msg)
   {}
-  Init_LandingTargetPose_abs_pos_valid cov_vy_rel(::px4_msgs::msg::LandingTargetPose::_cov_vy_rel_type arg)
+  Init_LandingTargetPose_cov_vz_rel cov_vy_rel(::px4_msgs::msg::LandingTargetPose::_cov_vy_rel_type arg)
   {
     msg_.cov_vy_rel = std::move(arg);
-    return Init_LandingTargetPose_abs_pos_valid(msg_);
+    return Init_LandingTargetPose_cov_vz_rel(msg_);
   }
 
 private:
@@ -117,16 +136,32 @@ private:
   ::px4_msgs::msg::LandingTargetPose msg_;
 };
 
+class Init_LandingTargetPose_cov_z_rel
+{
+public:
+  explicit Init_LandingTargetPose_cov_z_rel(::px4_msgs::msg::LandingTargetPose & msg)
+  : msg_(msg)
+  {}
+  Init_LandingTargetPose_cov_vx_rel cov_z_rel(::px4_msgs::msg::LandingTargetPose::_cov_z_rel_type arg)
+  {
+    msg_.cov_z_rel = std::move(arg);
+    return Init_LandingTargetPose_cov_vx_rel(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::LandingTargetPose msg_;
+};
+
 class Init_LandingTargetPose_cov_y_rel
 {
 public:
   explicit Init_LandingTargetPose_cov_y_rel(::px4_msgs::msg::LandingTargetPose & msg)
   : msg_(msg)
   {}
-  Init_LandingTargetPose_cov_vx_rel cov_y_rel(::px4_msgs::msg::LandingTargetPose::_cov_y_rel_type arg)
+  Init_LandingTargetPose_cov_z_rel cov_y_rel(::px4_msgs::msg::LandingTargetPose::_cov_y_rel_type arg)
   {
     msg_.cov_y_rel = std::move(arg);
-    return Init_LandingTargetPose_cov_vx_rel(msg_);
+    return Init_LandingTargetPose_cov_z_rel(msg_);
   }
 
 private:
@@ -149,16 +184,32 @@ private:
   ::px4_msgs::msg::LandingTargetPose msg_;
 };
 
+class Init_LandingTargetPose_vz_rel
+{
+public:
+  explicit Init_LandingTargetPose_vz_rel(::px4_msgs::msg::LandingTargetPose & msg)
+  : msg_(msg)
+  {}
+  Init_LandingTargetPose_cov_x_rel vz_rel(::px4_msgs::msg::LandingTargetPose::_vz_rel_type arg)
+  {
+    msg_.vz_rel = std::move(arg);
+    return Init_LandingTargetPose_cov_x_rel(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::LandingTargetPose msg_;
+};
+
 class Init_LandingTargetPose_vy_rel
 {
 public:
   explicit Init_LandingTargetPose_vy_rel(::px4_msgs::msg::LandingTargetPose & msg)
   : msg_(msg)
   {}
-  Init_LandingTargetPose_cov_x_rel vy_rel(::px4_msgs::msg::LandingTargetPose::_vy_rel_type arg)
+  Init_LandingTargetPose_vz_rel vy_rel(::px4_msgs::msg::LandingTargetPose::_vy_rel_type arg)
   {
     msg_.vy_rel = std::move(arg);
-    return Init_LandingTargetPose_cov_x_rel(msg_);
+    return Init_LandingTargetPose_vz_rel(msg_);
   }
 
 private:
@@ -229,16 +280,32 @@ private:
   ::px4_msgs::msg::LandingTargetPose msg_;
 };
 
+class Init_LandingTargetPose_rel_vel_ekf2_valid
+{
+public:
+  explicit Init_LandingTargetPose_rel_vel_ekf2_valid(::px4_msgs::msg::LandingTargetPose & msg)
+  : msg_(msg)
+  {}
+  Init_LandingTargetPose_x_rel rel_vel_ekf2_valid(::px4_msgs::msg::LandingTargetPose::_rel_vel_ekf2_valid_type arg)
+  {
+    msg_.rel_vel_ekf2_valid = std::move(arg);
+    return Init_LandingTargetPose_x_rel(msg_);
+  }
+
+private:
+  ::px4_msgs::msg::LandingTargetPose msg_;
+};
+
 class Init_LandingTargetPose_rel_vel_valid
 {
 public:
   explicit Init_LandingTargetPose_rel_vel_valid(::px4_msgs::msg::LandingTargetPose & msg)
   : msg_(msg)
   {}
-  Init_LandingTargetPose_x_rel rel_vel_valid(::px4_msgs::msg::LandingTargetPose::_rel_vel_valid_type arg)
+  Init_LandingTargetPose_rel_vel_ekf2_valid rel_vel_valid(::px4_msgs::msg::LandingTargetPose::_rel_vel_valid_type arg)
   {
     msg_.rel_vel_valid = std::move(arg);
-    return Init_LandingTargetPose_x_rel(msg_);
+    return Init_LandingTargetPose_rel_vel_ekf2_valid(msg_);
   }
 
 private:

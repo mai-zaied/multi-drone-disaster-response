@@ -105,7 +105,7 @@ px4_msgs__msg__ConfigOverrides__copy(
 }
 
 px4_msgs__msg__ConfigOverrides *
-px4_msgs__msg__ConfigOverrides__create()
+px4_msgs__msg__ConfigOverrides__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__ConfigOverrides * msg = (px4_msgs__msg__ConfigOverrides *)allocator.allocate(sizeof(px4_msgs__msg__ConfigOverrides), allocator.state);

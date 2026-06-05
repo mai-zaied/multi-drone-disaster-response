@@ -77,7 +77,7 @@ px4_msgs__msg__LogMessage__copy(
 }
 
 px4_msgs__msg__LogMessage *
-px4_msgs__msg__LogMessage__create()
+px4_msgs__msg__LogMessage__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__LogMessage * msg = (px4_msgs__msg__LogMessage *)allocator.allocate(sizeof(px4_msgs__msg__LogMessage), allocator.state);

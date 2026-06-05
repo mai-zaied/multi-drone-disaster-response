@@ -233,7 +233,7 @@ px4_msgs__msg__VehicleImuStatus__copy(
 }
 
 px4_msgs__msg__VehicleImuStatus *
-px4_msgs__msg__VehicleImuStatus__create()
+px4_msgs__msg__VehicleImuStatus__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleImuStatus * msg = (px4_msgs__msg__VehicleImuStatus *)allocator.allocate(sizeof(px4_msgs__msg__VehicleImuStatus), allocator.state);

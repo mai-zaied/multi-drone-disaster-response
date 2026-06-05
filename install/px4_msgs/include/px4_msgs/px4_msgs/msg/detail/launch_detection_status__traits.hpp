@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/LaunchDetectionStatus.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/launch_detection_status.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__LAUNCH_DETECTION_STATUS__TRAITS_HPP_
 
@@ -36,6 +39,13 @@ inline void to_flow_style_yaml(
   {
     out << "launch_detection_state: ";
     rosidl_generator_traits::value_to_yaml(msg.launch_detection_state, out);
+    out << ", ";
+  }
+
+  // member: selected_control_surface_disarmed
+  {
+    out << "selected_control_surface_disarmed: ";
+    rosidl_generator_traits::value_to_yaml(msg.selected_control_surface_disarmed, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -61,6 +71,16 @@ inline void to_block_style_yaml(
     }
     out << "launch_detection_state: ";
     rosidl_generator_traits::value_to_yaml(msg.launch_detection_state, out);
+    out << "\n";
+  }
+
+  // member: selected_control_surface_disarmed
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "selected_control_surface_disarmed: ";
+    rosidl_generator_traits::value_to_yaml(msg.selected_control_surface_disarmed, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

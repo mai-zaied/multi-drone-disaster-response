@@ -2,8 +2,10 @@
 // with input from px4_msgs:msg/VehicleOpticalFlow.idl
 // generated code does not contain a copyright notice
 #include "px4_msgs/msg/detail/vehicle_optical_flow__rosidl_typesupport_fastrtps_cpp.hpp"
+#include "px4_msgs/msg/detail/vehicle_optical_flow__functions.h"
 #include "px4_msgs/msg/detail/vehicle_optical_flow__struct.hpp"
 
+#include <cstddef>
 #include <limits>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include "rosidl_typesupport_fastrtps_cpp/identifier.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support_decl.hpp"
+#include "rosidl_typesupport_fastrtps_cpp/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/wstring_conversion.hpp"
 #include "fastcdr/Cdr.h"
 
@@ -26,6 +29,7 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 
+
 bool
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 cdr_serialize(
@@ -34,30 +38,41 @@ cdr_serialize(
 {
   // Member: timestamp
   cdr << ros_message.timestamp;
+
   // Member: timestamp_sample
   cdr << ros_message.timestamp_sample;
+
   // Member: device_id
   cdr << ros_message.device_id;
+
   // Member: pixel_flow
   {
     cdr << ros_message.pixel_flow;
   }
+
   // Member: delta_angle
   {
     cdr << ros_message.delta_angle;
   }
+
   // Member: distance_m
   cdr << ros_message.distance_m;
+
   // Member: integration_timespan_us
   cdr << ros_message.integration_timespan_us;
+
   // Member: quality
   cdr << ros_message.quality;
+
   // Member: max_flow_rate
   cdr << ros_message.max_flow_rate;
+
   // Member: min_ground_distance
   cdr << ros_message.min_ground_distance;
+
   // Member: max_ground_distance
   cdr << ros_message.max_ground_distance;
+
   return true;
 }
 
@@ -107,6 +122,7 @@ cdr_deserialize(
   return true;
 }  // NOLINT(readability/fn_size)
 
+
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
 get_serialized_size(
@@ -126,18 +142,21 @@ get_serialized_size(
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: timestamp_sample
   {
     size_t item_size = sizeof(ros_message.timestamp_sample);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: device_id
   {
     size_t item_size = sizeof(ros_message.device_id);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: pixel_flow
   {
     size_t array_size = 2;
@@ -145,6 +164,7 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: delta_angle
   {
     size_t array_size = 3;
@@ -152,36 +172,42 @@ get_serialized_size(
     current_alignment += array_size * item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: distance_m
   {
     size_t item_size = sizeof(ros_message.distance_m);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: integration_timespan_us
   {
     size_t item_size = sizeof(ros_message.integration_timespan_us);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: quality
   {
     size_t item_size = sizeof(ros_message.quality);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: max_flow_rate
   {
     size_t item_size = sizeof(ros_message.max_flow_rate);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: min_ground_distance
   {
     size_t item_size = sizeof(ros_message.min_ground_distance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
+
   // Member: max_ground_distance
   {
     size_t item_size = sizeof(ros_message.max_ground_distance);
@@ -191,6 +217,7 @@ get_serialized_size(
 
   return current_alignment - initial_alignment;
 }
+
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
@@ -211,100 +238,78 @@ max_serialized_size_VehicleOpticalFlow(
   full_bounded = true;
   is_plain = true;
 
-
   // Member: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: timestamp_sample
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-
   // Member: device_id
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: pixel_flow
   {
     size_t array_size = 2;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: delta_angle
   {
     size_t array_size = 3;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: distance_m
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: integration_timespan_us
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: quality
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-
   // Member: max_flow_rate
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: min_ground_distance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-
   // Member: max_ground_distance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
@@ -325,6 +330,270 @@ max_serialized_size_VehicleOpticalFlow(
 
   return ret_val;
 }
+
+bool
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+cdr_serialize_key(
+  const px4_msgs::msg::VehicleOpticalFlow & ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Member: timestamp
+  cdr << ros_message.timestamp;
+
+  // Member: timestamp_sample
+  cdr << ros_message.timestamp_sample;
+
+  // Member: device_id
+  cdr << ros_message.device_id;
+
+  // Member: pixel_flow
+  {
+    cdr << ros_message.pixel_flow;
+  }
+
+  // Member: delta_angle
+  {
+    cdr << ros_message.delta_angle;
+  }
+
+  // Member: distance_m
+  cdr << ros_message.distance_m;
+
+  // Member: integration_timespan_us
+  cdr << ros_message.integration_timespan_us;
+
+  // Member: quality
+  cdr << ros_message.quality;
+
+  // Member: max_flow_rate
+  cdr << ros_message.max_flow_rate;
+
+  // Member: min_ground_distance
+  cdr << ros_message.min_ground_distance;
+
+  // Member: max_ground_distance
+  cdr << ros_message.max_ground_distance;
+
+  return true;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+get_serialized_size_key(
+  const px4_msgs::msg::VehicleOpticalFlow & ros_message,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Member: timestamp
+  {
+    size_t item_size = sizeof(ros_message.timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t item_size = sizeof(ros_message.timestamp_sample);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: device_id
+  {
+    size_t item_size = sizeof(ros_message.device_id);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: pixel_flow
+  {
+    size_t array_size = 2;
+    size_t item_size = sizeof(ros_message.pixel_flow[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: delta_angle
+  {
+    size_t array_size = 3;
+    size_t item_size = sizeof(ros_message.delta_angle[0]);
+    current_alignment += array_size * item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: distance_m
+  {
+    size_t item_size = sizeof(ros_message.distance_m);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: integration_timespan_us
+  {
+    size_t item_size = sizeof(ros_message.integration_timespan_us);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: quality
+  {
+    size_t item_size = sizeof(ros_message.quality);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: max_flow_rate
+  {
+    size_t item_size = sizeof(ros_message.max_flow_rate);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: min_ground_distance
+  {
+    size_t item_size = sizeof(ros_message.min_ground_distance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Member: max_ground_distance
+  {
+    size_t item_size = sizeof(ros_message.max_ground_distance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+size_t
+ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_px4_msgs
+max_serialized_size_key_VehicleOpticalFlow(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+
+  // Member: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: timestamp_sample
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Member: device_id
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: pixel_flow
+  {
+    size_t array_size = 2;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: delta_angle
+  {
+    size_t array_size = 3;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: distance_m
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: integration_timespan_us
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: quality
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Member: max_flow_rate
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: min_ground_distance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Member: max_ground_distance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs::msg::VehicleOpticalFlow;
+    is_plain =
+      (
+      offsetof(DataType, max_ground_distance) +
+      last_member_size
+      ) == ret_val;
+  }
+
+  return ret_val;
+}
+
 
 static bool _VehicleOpticalFlow__cdr_serialize(
   const void * untyped_ros_message,
@@ -375,13 +644,17 @@ static message_type_support_callbacks_t _VehicleOpticalFlow__callbacks = {
   _VehicleOpticalFlow__cdr_serialize,
   _VehicleOpticalFlow__cdr_deserialize,
   _VehicleOpticalFlow__get_serialized_size,
-  _VehicleOpticalFlow__max_serialized_size
+  _VehicleOpticalFlow__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _VehicleOpticalFlow__handle = {
   rosidl_typesupport_fastrtps_cpp::typesupport_identifier,
   &_VehicleOpticalFlow__callbacks,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__VehicleOpticalFlow__get_type_hash,
+  &px4_msgs__msg__VehicleOpticalFlow__get_type_description,
+  &px4_msgs__msg__VehicleOpticalFlow__get_type_description_sources,
 };
 
 }  // namespace typesupport_fastrtps_cpp

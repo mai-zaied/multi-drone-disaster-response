@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/OrbTestMedium.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/orb_test_medium.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ORB_TEST_MEDIUM__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ORB_TEST_MEDIUM__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

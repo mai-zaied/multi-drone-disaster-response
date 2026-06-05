@@ -113,7 +113,7 @@ px4_msgs__msg__Ekf2Timestamps__copy(
 }
 
 px4_msgs__msg__Ekf2Timestamps *
-px4_msgs__msg__Ekf2Timestamps__create()
+px4_msgs__msg__Ekf2Timestamps__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__Ekf2Timestamps * msg = (px4_msgs__msg__Ekf2Timestamps *)allocator.allocate(sizeof(px4_msgs__msg__Ekf2Timestamps), allocator.state);

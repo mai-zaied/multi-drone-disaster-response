@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/TrajectorySetpoint.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/trajectory_setpoint.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__TRAJECTORY_SETPOINT__TRAITS_HPP_
 #define PX4_MSGS__MSG__DETAIL__TRAJECTORY_SETPOINT__TRAITS_HPP_
 

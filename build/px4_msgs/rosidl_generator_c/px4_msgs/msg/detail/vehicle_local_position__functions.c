@@ -481,7 +481,7 @@ px4_msgs__msg__VehicleLocalPosition__copy(
 }
 
 px4_msgs__msg__VehicleLocalPosition *
-px4_msgs__msg__VehicleLocalPosition__create()
+px4_msgs__msg__VehicleLocalPosition__create(void)
 {
   rcutils_allocator_t allocator = rcutils_get_default_allocator();
   px4_msgs__msg__VehicleLocalPosition * msg = (px4_msgs__msg__VehicleLocalPosition *)allocator.allocate(sizeof(px4_msgs__msg__VehicleLocalPosition), allocator.state);

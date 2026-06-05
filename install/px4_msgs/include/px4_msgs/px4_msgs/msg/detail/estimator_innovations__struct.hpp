@@ -2,11 +2,15 @@
 // with input from px4_msgs:msg/EstimatorInnovations.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/estimator_innovations.hpp"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__ESTIMATOR_INNOVATIONS__STRUCT_HPP_
 #define PX4_MSGS__MSG__DETAIL__ESTIMATOR_INNOVATIONS__STRUCT_HPP_
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>

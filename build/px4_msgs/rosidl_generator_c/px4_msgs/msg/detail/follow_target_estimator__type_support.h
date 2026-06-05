@@ -2,6 +2,9 @@
 // with input from px4_msgs:msg/FollowTargetEstimator.idl
 // generated code does not contain a copyright notice
 
+// IWYU pragma: private, include "px4_msgs/msg/follow_target_estimator.h"
+
+
 #ifndef PX4_MSGS__MSG__DETAIL__FOLLOW_TARGET_ESTIMATOR__TYPE_SUPPORT_H_
 #define PX4_MSGS__MSG__DETAIL__FOLLOW_TARGET_ESTIMATOR__TYPE_SUPPORT_H_
 
@@ -24,7 +27,7 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(
   px4_msgs,
   msg,
   FollowTargetEstimator
-)();
+)(void);
 
 #ifdef __cplusplus
 }

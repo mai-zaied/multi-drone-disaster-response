@@ -5,9 +5,11 @@
 
 
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <string>
 #include "rosidl_typesupport_fastrtps_c/identifier.h"
+#include "rosidl_typesupport_fastrtps_c/serialization_helpers.hpp"
 #include "rosidl_typesupport_fastrtps_c/wstring_conversion.hpp"
 #include "rosidl_typesupport_fastrtps_cpp/message_type_support.h"
 #include "px4_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"
@@ -40,15 +42,12 @@ extern "C"
 
 using _FailsafeFlags__ros_msg_type = px4_msgs__msg__FailsafeFlags;
 
-static bool _FailsafeFlags__cdr_serialize(
-  const void * untyped_ros_message,
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_px4_msgs__msg__FailsafeFlags(
+  const px4_msgs__msg__FailsafeFlags * ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  const _FailsafeFlags__ros_msg_type * ros_message = static_cast<const _FailsafeFlags__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr << ros_message->timestamp;
@@ -204,6 +203,31 @@ static bool _FailsafeFlags__cdr_serialize(
     cdr << (ros_message->battery_unhealthy ? true : false);
   }
 
+  // Field name: fd_critical_failure
+  {
+    cdr << (ros_message->fd_critical_failure ? true : false);
+  }
+
+  // Field name: fd_esc_arming_failure
+  {
+    cdr << (ros_message->fd_esc_arming_failure ? true : false);
+  }
+
+  // Field name: fd_imbalanced_prop
+  {
+    cdr << (ros_message->fd_imbalanced_prop ? true : false);
+  }
+
+  // Field name: fd_motor_failure
+  {
+    cdr << (ros_message->fd_motor_failure ? true : false);
+  }
+
+  // Field name: fd_alt_loss
+  {
+    cdr << (ros_message->fd_alt_loss ? true : false);
+  }
+
   // Field name: geofence_breached
   {
     cdr << (ros_message->geofence_breached ? true : false);
@@ -239,38 +263,29 @@ static bool _FailsafeFlags__cdr_serialize(
     cdr << (ros_message->navigator_failure ? true : false);
   }
 
-  // Field name: fd_critical_failure
+  // Field name: parachute_unhealthy
   {
-    cdr << (ros_message->fd_critical_failure ? true : false);
+    cdr << (ros_message->parachute_unhealthy ? true : false);
   }
 
-  // Field name: fd_esc_arming_failure
+  // Field name: remote_id_unhealthy
   {
-    cdr << (ros_message->fd_esc_arming_failure ? true : false);
+    cdr << (ros_message->remote_id_unhealthy ? true : false);
   }
 
-  // Field name: fd_imbalanced_prop
+  // Field name: gnss_lost
   {
-    cdr << (ros_message->fd_imbalanced_prop ? true : false);
-  }
-
-  // Field name: fd_motor_failure
-  {
-    cdr << (ros_message->fd_motor_failure ? true : false);
+    cdr << (ros_message->gnss_lost ? true : false);
   }
 
   return true;
 }
 
-static bool _FailsafeFlags__cdr_deserialize(
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_deserialize_px4_msgs__msg__FailsafeFlags(
   eprosima::fastcdr::Cdr & cdr,
-  void * untyped_ros_message)
+  px4_msgs__msg__FailsafeFlags * ros_message)
 {
-  if (!untyped_ros_message) {
-    fprintf(stderr, "ros message handle is null\n");
-    return false;
-  }
-  _FailsafeFlags__ros_msg_type * ros_message = static_cast<_FailsafeFlags__ros_msg_type *>(untyped_ros_message);
   // Field name: timestamp
   {
     cdr >> ros_message->timestamp;
@@ -456,6 +471,41 @@ static bool _FailsafeFlags__cdr_deserialize(
     ros_message->battery_unhealthy = tmp ? true : false;
   }
 
+  // Field name: fd_critical_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->fd_critical_failure = tmp ? true : false;
+  }
+
+  // Field name: fd_esc_arming_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->fd_esc_arming_failure = tmp ? true : false;
+  }
+
+  // Field name: fd_imbalanced_prop
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->fd_imbalanced_prop = tmp ? true : false;
+  }
+
+  // Field name: fd_motor_failure
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->fd_motor_failure = tmp ? true : false;
+  }
+
+  // Field name: fd_alt_loss
+  {
+    uint8_t tmp;
+    cdr >> tmp;
+    ros_message->fd_alt_loss = tmp ? true : false;
+  }
+
   // Field name: geofence_breached
   {
     uint8_t tmp;
@@ -505,36 +555,30 @@ static bool _FailsafeFlags__cdr_deserialize(
     ros_message->navigator_failure = tmp ? true : false;
   }
 
-  // Field name: fd_critical_failure
+  // Field name: parachute_unhealthy
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message->fd_critical_failure = tmp ? true : false;
+    ros_message->parachute_unhealthy = tmp ? true : false;
   }
 
-  // Field name: fd_esc_arming_failure
+  // Field name: remote_id_unhealthy
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message->fd_esc_arming_failure = tmp ? true : false;
+    ros_message->remote_id_unhealthy = tmp ? true : false;
   }
 
-  // Field name: fd_imbalanced_prop
+  // Field name: gnss_lost
   {
     uint8_t tmp;
     cdr >> tmp;
-    ros_message->fd_imbalanced_prop = tmp ? true : false;
-  }
-
-  // Field name: fd_motor_failure
-  {
-    uint8_t tmp;
-    cdr >> tmp;
-    ros_message->fd_motor_failure = tmp ? true : false;
+    ros_message->gnss_lost = tmp ? true : false;
   }
 
   return true;
 }  // NOLINT(readability/fn_size)
+
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t get_serialized_size_px4_msgs__msg__FailsafeFlags(
@@ -550,255 +594,324 @@ size_t get_serialized_size_px4_msgs__msg__FailsafeFlags(
   (void)padding;
   (void)wchar_size;
 
-  // field.name timestamp
+  // Field name: timestamp
   {
     size_t item_size = sizeof(ros_message->timestamp);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_angular_velocity
+
+  // Field name: mode_req_angular_velocity
   {
     size_t item_size = sizeof(ros_message->mode_req_angular_velocity);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_attitude
+
+  // Field name: mode_req_attitude
   {
     size_t item_size = sizeof(ros_message->mode_req_attitude);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_local_alt
+
+  // Field name: mode_req_local_alt
   {
     size_t item_size = sizeof(ros_message->mode_req_local_alt);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_local_position
+
+  // Field name: mode_req_local_position
   {
     size_t item_size = sizeof(ros_message->mode_req_local_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_local_position_relaxed
+
+  // Field name: mode_req_local_position_relaxed
   {
     size_t item_size = sizeof(ros_message->mode_req_local_position_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_global_position
+
+  // Field name: mode_req_global_position
   {
     size_t item_size = sizeof(ros_message->mode_req_global_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_global_position_relaxed
+
+  // Field name: mode_req_global_position_relaxed
   {
     size_t item_size = sizeof(ros_message->mode_req_global_position_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_mission
+
+  // Field name: mode_req_mission
   {
     size_t item_size = sizeof(ros_message->mode_req_mission);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_offboard_signal
+
+  // Field name: mode_req_offboard_signal
   {
     size_t item_size = sizeof(ros_message->mode_req_offboard_signal);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_home_position
+
+  // Field name: mode_req_home_position
   {
     size_t item_size = sizeof(ros_message->mode_req_home_position);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_wind_and_flight_time_compliance
+
+  // Field name: mode_req_wind_and_flight_time_compliance
   {
     size_t item_size = sizeof(ros_message->mode_req_wind_and_flight_time_compliance);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_prevent_arming
+
+  // Field name: mode_req_prevent_arming
   {
     size_t item_size = sizeof(ros_message->mode_req_prevent_arming);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_manual_control
+
+  // Field name: mode_req_manual_control
   {
     size_t item_size = sizeof(ros_message->mode_req_manual_control);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name mode_req_other
+
+  // Field name: mode_req_other
   {
     size_t item_size = sizeof(ros_message->mode_req_other);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name angular_velocity_invalid
+
+  // Field name: angular_velocity_invalid
   {
     size_t item_size = sizeof(ros_message->angular_velocity_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name attitude_invalid
+
+  // Field name: attitude_invalid
   {
     size_t item_size = sizeof(ros_message->attitude_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name local_altitude_invalid
+
+  // Field name: local_altitude_invalid
   {
     size_t item_size = sizeof(ros_message->local_altitude_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name local_position_invalid
+
+  // Field name: local_position_invalid
   {
     size_t item_size = sizeof(ros_message->local_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name local_position_invalid_relaxed
+
+  // Field name: local_position_invalid_relaxed
   {
     size_t item_size = sizeof(ros_message->local_position_invalid_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name local_velocity_invalid
+
+  // Field name: local_velocity_invalid
   {
     size_t item_size = sizeof(ros_message->local_velocity_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name global_position_invalid
+
+  // Field name: global_position_invalid
   {
     size_t item_size = sizeof(ros_message->global_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name global_position_invalid_relaxed
+
+  // Field name: global_position_invalid_relaxed
   {
     size_t item_size = sizeof(ros_message->global_position_invalid_relaxed);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name auto_mission_missing
+
+  // Field name: auto_mission_missing
   {
     size_t item_size = sizeof(ros_message->auto_mission_missing);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name offboard_control_signal_lost
+
+  // Field name: offboard_control_signal_lost
   {
     size_t item_size = sizeof(ros_message->offboard_control_signal_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name home_position_invalid
+
+  // Field name: home_position_invalid
   {
     size_t item_size = sizeof(ros_message->home_position_invalid);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name manual_control_signal_lost
+
+  // Field name: manual_control_signal_lost
   {
     size_t item_size = sizeof(ros_message->manual_control_signal_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name gcs_connection_lost
+
+  // Field name: gcs_connection_lost
   {
     size_t item_size = sizeof(ros_message->gcs_connection_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name battery_warning
+
+  // Field name: battery_warning
   {
     size_t item_size = sizeof(ros_message->battery_warning);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name battery_low_remaining_time
+
+  // Field name: battery_low_remaining_time
   {
     size_t item_size = sizeof(ros_message->battery_low_remaining_time);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name battery_unhealthy
+
+  // Field name: battery_unhealthy
   {
     size_t item_size = sizeof(ros_message->battery_unhealthy);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name geofence_breached
-  {
-    size_t item_size = sizeof(ros_message->geofence_breached);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name mission_failure
-  {
-    size_t item_size = sizeof(ros_message->mission_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name vtol_fixed_wing_system_failure
-  {
-    size_t item_size = sizeof(ros_message->vtol_fixed_wing_system_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name wind_limit_exceeded
-  {
-    size_t item_size = sizeof(ros_message->wind_limit_exceeded);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name flight_time_limit_exceeded
-  {
-    size_t item_size = sizeof(ros_message->flight_time_limit_exceeded);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name position_accuracy_low
-  {
-    size_t item_size = sizeof(ros_message->position_accuracy_low);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name navigator_failure
-  {
-    size_t item_size = sizeof(ros_message->navigator_failure);
-    current_alignment += item_size +
-      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
-  }
-  // field.name fd_critical_failure
+
+  // Field name: fd_critical_failure
   {
     size_t item_size = sizeof(ros_message->fd_critical_failure);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name fd_esc_arming_failure
+
+  // Field name: fd_esc_arming_failure
   {
     size_t item_size = sizeof(ros_message->fd_esc_arming_failure);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name fd_imbalanced_prop
+
+  // Field name: fd_imbalanced_prop
   {
     size_t item_size = sizeof(ros_message->fd_imbalanced_prop);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
-  // field.name fd_motor_failure
+
+  // Field name: fd_motor_failure
   {
     size_t item_size = sizeof(ros_message->fd_motor_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_alt_loss
+  {
+    size_t item_size = sizeof(ros_message->fd_alt_loss);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: geofence_breached
+  {
+    size_t item_size = sizeof(ros_message->geofence_breached);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mission_failure
+  {
+    size_t item_size = sizeof(ros_message->mission_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: vtol_fixed_wing_system_failure
+  {
+    size_t item_size = sizeof(ros_message->vtol_fixed_wing_system_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: wind_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message->wind_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: flight_time_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message->flight_time_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: position_accuracy_low
+  {
+    size_t item_size = sizeof(ros_message->position_accuracy_low);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: navigator_failure
+  {
+    size_t item_size = sizeof(ros_message->navigator_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: parachute_unhealthy
+  {
+    size_t item_size = sizeof(ros_message->parachute_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: remote_id_unhealthy
+  {
+    size_t item_size = sizeof(ros_message->remote_id_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gnss_lost
+  {
+    size_t item_size = sizeof(ros_message->gnss_lost);
     current_alignment += item_size +
       eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
   }
@@ -806,12 +919,6 @@ size_t get_serialized_size_px4_msgs__msg__FailsafeFlags(
   return current_alignment - initial_alignment;
 }
 
-static uint32_t _FailsafeFlags__get_serialized_size(const void * untyped_ros_message)
-{
-  return static_cast<uint32_t>(
-    get_serialized_size_px4_msgs__msg__FailsafeFlags(
-      untyped_ros_message, 0));
-}
 
 ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
 size_t max_serialized_size_px4_msgs__msg__FailsafeFlags(
@@ -831,312 +938,1287 @@ size_t max_serialized_size_px4_msgs__msg__FailsafeFlags(
   full_bounded = true;
   is_plain = true;
 
-  // member: timestamp
+  // Field name: timestamp
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint64_t);
     current_alignment += array_size * sizeof(uint64_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
   }
-  // member: mode_req_angular_velocity
+
+  // Field name: mode_req_angular_velocity
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_attitude
+
+  // Field name: mode_req_attitude
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_local_alt
+
+  // Field name: mode_req_local_alt
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_local_position
+
+  // Field name: mode_req_local_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_local_position_relaxed
+
+  // Field name: mode_req_local_position_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_global_position
+
+  // Field name: mode_req_global_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_global_position_relaxed
+
+  // Field name: mode_req_global_position_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_mission
+
+  // Field name: mode_req_mission
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_offboard_signal
+
+  // Field name: mode_req_offboard_signal
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_home_position
+
+  // Field name: mode_req_home_position
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_wind_and_flight_time_compliance
+
+  // Field name: mode_req_wind_and_flight_time_compliance
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_prevent_arming
+
+  // Field name: mode_req_prevent_arming
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_manual_control
+
+  // Field name: mode_req_manual_control
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: mode_req_other
+
+  // Field name: mode_req_other
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint32_t);
     current_alignment += array_size * sizeof(uint32_t) +
       eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
   }
-  // member: angular_velocity_invalid
+
+  // Field name: angular_velocity_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: attitude_invalid
+
+  // Field name: attitude_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: local_altitude_invalid
+
+  // Field name: local_altitude_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: local_position_invalid
+
+  // Field name: local_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: local_position_invalid_relaxed
+
+  // Field name: local_position_invalid_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: local_velocity_invalid
+
+  // Field name: local_velocity_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: global_position_invalid
+
+  // Field name: global_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: global_position_invalid_relaxed
+
+  // Field name: global_position_invalid_relaxed
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: auto_mission_missing
+
+  // Field name: auto_mission_missing
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: offboard_control_signal_lost
+
+  // Field name: offboard_control_signal_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: home_position_invalid
+
+  // Field name: home_position_invalid
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: manual_control_signal_lost
+
+  // Field name: manual_control_signal_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: gcs_connection_lost
+
+  // Field name: gcs_connection_lost
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: battery_warning
+
+  // Field name: battery_warning
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: battery_low_remaining_time
+
+  // Field name: battery_low_remaining_time
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: battery_unhealthy
+
+  // Field name: battery_unhealthy
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: geofence_breached
+
+  // Field name: fd_critical_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: mission_failure
+
+  // Field name: fd_esc_arming_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: vtol_fixed_wing_system_failure
+
+  // Field name: fd_imbalanced_prop
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: wind_limit_exceeded
+
+  // Field name: fd_motor_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: flight_time_limit_exceeded
+
+  // Field name: fd_alt_loss
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: position_accuracy_low
+
+  // Field name: geofence_breached
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: navigator_failure
+
+  // Field name: mission_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: fd_critical_failure
+
+  // Field name: vtol_fixed_wing_system_failure
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: fd_esc_arming_failure
+
+  // Field name: wind_limit_exceeded
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: fd_imbalanced_prop
+
+  // Field name: flight_time_limit_exceeded
   {
     size_t array_size = 1;
-
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
-  // member: fd_motor_failure
+
+  // Field name: position_accuracy_low
   {
     size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
 
+  // Field name: navigator_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: parachute_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: remote_id_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: gnss_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+
+  size_t ret_val = current_alignment - initial_alignment;
+  if (is_plain) {
+    // All members are plain, and type is not empty.
+    // We still need to check that the in-memory alignment
+    // is the same as the CDR mandated alignment.
+    using DataType = px4_msgs__msg__FailsafeFlags;
+    is_plain =
+      (
+      offsetof(DataType, gnss_lost) +
+      last_member_size
+      ) == ret_val;
+  }
+  return ret_val;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+bool cdr_serialize_key_px4_msgs__msg__FailsafeFlags(
+  const px4_msgs__msg__FailsafeFlags * ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  // Field name: timestamp
+  {
+    cdr << ros_message->timestamp;
+  }
+
+  // Field name: mode_req_angular_velocity
+  {
+    cdr << ros_message->mode_req_angular_velocity;
+  }
+
+  // Field name: mode_req_attitude
+  {
+    cdr << ros_message->mode_req_attitude;
+  }
+
+  // Field name: mode_req_local_alt
+  {
+    cdr << ros_message->mode_req_local_alt;
+  }
+
+  // Field name: mode_req_local_position
+  {
+    cdr << ros_message->mode_req_local_position;
+  }
+
+  // Field name: mode_req_local_position_relaxed
+  {
+    cdr << ros_message->mode_req_local_position_relaxed;
+  }
+
+  // Field name: mode_req_global_position
+  {
+    cdr << ros_message->mode_req_global_position;
+  }
+
+  // Field name: mode_req_global_position_relaxed
+  {
+    cdr << ros_message->mode_req_global_position_relaxed;
+  }
+
+  // Field name: mode_req_mission
+  {
+    cdr << ros_message->mode_req_mission;
+  }
+
+  // Field name: mode_req_offboard_signal
+  {
+    cdr << ros_message->mode_req_offboard_signal;
+  }
+
+  // Field name: mode_req_home_position
+  {
+    cdr << ros_message->mode_req_home_position;
+  }
+
+  // Field name: mode_req_wind_and_flight_time_compliance
+  {
+    cdr << ros_message->mode_req_wind_and_flight_time_compliance;
+  }
+
+  // Field name: mode_req_prevent_arming
+  {
+    cdr << ros_message->mode_req_prevent_arming;
+  }
+
+  // Field name: mode_req_manual_control
+  {
+    cdr << ros_message->mode_req_manual_control;
+  }
+
+  // Field name: mode_req_other
+  {
+    cdr << ros_message->mode_req_other;
+  }
+
+  // Field name: angular_velocity_invalid
+  {
+    cdr << (ros_message->angular_velocity_invalid ? true : false);
+  }
+
+  // Field name: attitude_invalid
+  {
+    cdr << (ros_message->attitude_invalid ? true : false);
+  }
+
+  // Field name: local_altitude_invalid
+  {
+    cdr << (ros_message->local_altitude_invalid ? true : false);
+  }
+
+  // Field name: local_position_invalid
+  {
+    cdr << (ros_message->local_position_invalid ? true : false);
+  }
+
+  // Field name: local_position_invalid_relaxed
+  {
+    cdr << (ros_message->local_position_invalid_relaxed ? true : false);
+  }
+
+  // Field name: local_velocity_invalid
+  {
+    cdr << (ros_message->local_velocity_invalid ? true : false);
+  }
+
+  // Field name: global_position_invalid
+  {
+    cdr << (ros_message->global_position_invalid ? true : false);
+  }
+
+  // Field name: global_position_invalid_relaxed
+  {
+    cdr << (ros_message->global_position_invalid_relaxed ? true : false);
+  }
+
+  // Field name: auto_mission_missing
+  {
+    cdr << (ros_message->auto_mission_missing ? true : false);
+  }
+
+  // Field name: offboard_control_signal_lost
+  {
+    cdr << (ros_message->offboard_control_signal_lost ? true : false);
+  }
+
+  // Field name: home_position_invalid
+  {
+    cdr << (ros_message->home_position_invalid ? true : false);
+  }
+
+  // Field name: manual_control_signal_lost
+  {
+    cdr << (ros_message->manual_control_signal_lost ? true : false);
+  }
+
+  // Field name: gcs_connection_lost
+  {
+    cdr << (ros_message->gcs_connection_lost ? true : false);
+  }
+
+  // Field name: battery_warning
+  {
+    cdr << ros_message->battery_warning;
+  }
+
+  // Field name: battery_low_remaining_time
+  {
+    cdr << (ros_message->battery_low_remaining_time ? true : false);
+  }
+
+  // Field name: battery_unhealthy
+  {
+    cdr << (ros_message->battery_unhealthy ? true : false);
+  }
+
+  // Field name: fd_critical_failure
+  {
+    cdr << (ros_message->fd_critical_failure ? true : false);
+  }
+
+  // Field name: fd_esc_arming_failure
+  {
+    cdr << (ros_message->fd_esc_arming_failure ? true : false);
+  }
+
+  // Field name: fd_imbalanced_prop
+  {
+    cdr << (ros_message->fd_imbalanced_prop ? true : false);
+  }
+
+  // Field name: fd_motor_failure
+  {
+    cdr << (ros_message->fd_motor_failure ? true : false);
+  }
+
+  // Field name: fd_alt_loss
+  {
+    cdr << (ros_message->fd_alt_loss ? true : false);
+  }
+
+  // Field name: geofence_breached
+  {
+    cdr << (ros_message->geofence_breached ? true : false);
+  }
+
+  // Field name: mission_failure
+  {
+    cdr << (ros_message->mission_failure ? true : false);
+  }
+
+  // Field name: vtol_fixed_wing_system_failure
+  {
+    cdr << (ros_message->vtol_fixed_wing_system_failure ? true : false);
+  }
+
+  // Field name: wind_limit_exceeded
+  {
+    cdr << (ros_message->wind_limit_exceeded ? true : false);
+  }
+
+  // Field name: flight_time_limit_exceeded
+  {
+    cdr << (ros_message->flight_time_limit_exceeded ? true : false);
+  }
+
+  // Field name: position_accuracy_low
+  {
+    cdr << (ros_message->position_accuracy_low ? true : false);
+  }
+
+  // Field name: navigator_failure
+  {
+    cdr << (ros_message->navigator_failure ? true : false);
+  }
+
+  // Field name: parachute_unhealthy
+  {
+    cdr << (ros_message->parachute_unhealthy ? true : false);
+  }
+
+  // Field name: remote_id_unhealthy
+  {
+    cdr << (ros_message->remote_id_unhealthy ? true : false);
+  }
+
+  // Field name: gnss_lost
+  {
+    cdr << (ros_message->gnss_lost ? true : false);
+  }
+
+  return true;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t get_serialized_size_key_px4_msgs__msg__FailsafeFlags(
+  const void * untyped_ros_message,
+  size_t current_alignment)
+{
+  const _FailsafeFlags__ros_msg_type * ros_message = static_cast<const _FailsafeFlags__ros_msg_type *>(untyped_ros_message);
+  (void)ros_message;
+
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  (void)padding;
+  (void)wchar_size;
+
+  // Field name: timestamp
+  {
+    size_t item_size = sizeof(ros_message->timestamp);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_angular_velocity
+  {
+    size_t item_size = sizeof(ros_message->mode_req_angular_velocity);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_attitude
+  {
+    size_t item_size = sizeof(ros_message->mode_req_attitude);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_local_alt
+  {
+    size_t item_size = sizeof(ros_message->mode_req_local_alt);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_local_position
+  {
+    size_t item_size = sizeof(ros_message->mode_req_local_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_local_position_relaxed
+  {
+    size_t item_size = sizeof(ros_message->mode_req_local_position_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_global_position
+  {
+    size_t item_size = sizeof(ros_message->mode_req_global_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_global_position_relaxed
+  {
+    size_t item_size = sizeof(ros_message->mode_req_global_position_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_mission
+  {
+    size_t item_size = sizeof(ros_message->mode_req_mission);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_offboard_signal
+  {
+    size_t item_size = sizeof(ros_message->mode_req_offboard_signal);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_home_position
+  {
+    size_t item_size = sizeof(ros_message->mode_req_home_position);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_wind_and_flight_time_compliance
+  {
+    size_t item_size = sizeof(ros_message->mode_req_wind_and_flight_time_compliance);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_prevent_arming
+  {
+    size_t item_size = sizeof(ros_message->mode_req_prevent_arming);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_manual_control
+  {
+    size_t item_size = sizeof(ros_message->mode_req_manual_control);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mode_req_other
+  {
+    size_t item_size = sizeof(ros_message->mode_req_other);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: angular_velocity_invalid
+  {
+    size_t item_size = sizeof(ros_message->angular_velocity_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: attitude_invalid
+  {
+    size_t item_size = sizeof(ros_message->attitude_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: local_altitude_invalid
+  {
+    size_t item_size = sizeof(ros_message->local_altitude_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: local_position_invalid
+  {
+    size_t item_size = sizeof(ros_message->local_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: local_position_invalid_relaxed
+  {
+    size_t item_size = sizeof(ros_message->local_position_invalid_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: local_velocity_invalid
+  {
+    size_t item_size = sizeof(ros_message->local_velocity_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: global_position_invalid
+  {
+    size_t item_size = sizeof(ros_message->global_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: global_position_invalid_relaxed
+  {
+    size_t item_size = sizeof(ros_message->global_position_invalid_relaxed);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: auto_mission_missing
+  {
+    size_t item_size = sizeof(ros_message->auto_mission_missing);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: offboard_control_signal_lost
+  {
+    size_t item_size = sizeof(ros_message->offboard_control_signal_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: home_position_invalid
+  {
+    size_t item_size = sizeof(ros_message->home_position_invalid);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: manual_control_signal_lost
+  {
+    size_t item_size = sizeof(ros_message->manual_control_signal_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gcs_connection_lost
+  {
+    size_t item_size = sizeof(ros_message->gcs_connection_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: battery_warning
+  {
+    size_t item_size = sizeof(ros_message->battery_warning);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: battery_low_remaining_time
+  {
+    size_t item_size = sizeof(ros_message->battery_low_remaining_time);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: battery_unhealthy
+  {
+    size_t item_size = sizeof(ros_message->battery_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_critical_failure
+  {
+    size_t item_size = sizeof(ros_message->fd_critical_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_esc_arming_failure
+  {
+    size_t item_size = sizeof(ros_message->fd_esc_arming_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_imbalanced_prop
+  {
+    size_t item_size = sizeof(ros_message->fd_imbalanced_prop);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_motor_failure
+  {
+    size_t item_size = sizeof(ros_message->fd_motor_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: fd_alt_loss
+  {
+    size_t item_size = sizeof(ros_message->fd_alt_loss);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: geofence_breached
+  {
+    size_t item_size = sizeof(ros_message->geofence_breached);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: mission_failure
+  {
+    size_t item_size = sizeof(ros_message->mission_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: vtol_fixed_wing_system_failure
+  {
+    size_t item_size = sizeof(ros_message->vtol_fixed_wing_system_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: wind_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message->wind_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: flight_time_limit_exceeded
+  {
+    size_t item_size = sizeof(ros_message->flight_time_limit_exceeded);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: position_accuracy_low
+  {
+    size_t item_size = sizeof(ros_message->position_accuracy_low);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: navigator_failure
+  {
+    size_t item_size = sizeof(ros_message->navigator_failure);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: parachute_unhealthy
+  {
+    size_t item_size = sizeof(ros_message->parachute_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: remote_id_unhealthy
+  {
+    size_t item_size = sizeof(ros_message->remote_id_unhealthy);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  // Field name: gnss_lost
+  {
+    size_t item_size = sizeof(ros_message->gnss_lost);
+    current_alignment += item_size +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, item_size);
+  }
+
+  return current_alignment - initial_alignment;
+}
+
+ROSIDL_TYPESUPPORT_FASTRTPS_C_PUBLIC_px4_msgs
+size_t max_serialized_size_key_px4_msgs__msg__FailsafeFlags(
+  bool & full_bounded,
+  bool & is_plain,
+  size_t current_alignment)
+{
+  size_t initial_alignment = current_alignment;
+
+  const size_t padding = 4;
+  const size_t wchar_size = 4;
+  size_t last_member_size = 0;
+  (void)last_member_size;
+  (void)padding;
+  (void)wchar_size;
+
+  full_bounded = true;
+  is_plain = true;
+  // Field name: timestamp
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint64_t);
+    current_alignment += array_size * sizeof(uint64_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint64_t));
+  }
+
+  // Field name: mode_req_angular_velocity
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_attitude
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_local_alt
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_local_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_local_position_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_global_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_global_position_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_mission
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_offboard_signal
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_home_position
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_wind_and_flight_time_compliance
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_prevent_arming
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_manual_control
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: mode_req_other
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint32_t);
+    current_alignment += array_size * sizeof(uint32_t) +
+      eprosima::fastcdr::Cdr::alignment(current_alignment, sizeof(uint32_t));
+  }
+
+  // Field name: angular_velocity_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: attitude_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: local_altitude_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: local_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: local_position_invalid_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: local_velocity_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: global_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: global_position_invalid_relaxed
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: auto_mission_missing
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: offboard_control_signal_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: home_position_invalid
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: manual_control_signal_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: gcs_connection_lost
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: battery_warning
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: battery_low_remaining_time
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: battery_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: fd_critical_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: fd_esc_arming_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: fd_imbalanced_prop
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: fd_motor_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: fd_alt_loss
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: geofence_breached
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: mission_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: vtol_fixed_wing_system_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: wind_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: flight_time_limit_exceeded
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: position_accuracy_low
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: navigator_failure
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: parachute_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: remote_id_unhealthy
+  {
+    size_t array_size = 1;
+    last_member_size = array_size * sizeof(uint8_t);
+    current_alignment += array_size * sizeof(uint8_t);
+  }
+
+  // Field name: gnss_lost
+  {
+    size_t array_size = 1;
     last_member_size = array_size * sizeof(uint8_t);
     current_alignment += array_size * sizeof(uint8_t);
   }
@@ -1149,12 +2231,45 @@ size_t max_serialized_size_px4_msgs__msg__FailsafeFlags(
     using DataType = px4_msgs__msg__FailsafeFlags;
     is_plain =
       (
-      offsetof(DataType, fd_motor_failure) +
+      offsetof(DataType, gnss_lost) +
       last_member_size
       ) == ret_val;
   }
-
   return ret_val;
+}
+
+
+static bool _FailsafeFlags__cdr_serialize(
+  const void * untyped_ros_message,
+  eprosima::fastcdr::Cdr & cdr)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  const px4_msgs__msg__FailsafeFlags * ros_message = static_cast<const px4_msgs__msg__FailsafeFlags *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_serialize_px4_msgs__msg__FailsafeFlags(ros_message, cdr);
+}
+
+static bool _FailsafeFlags__cdr_deserialize(
+  eprosima::fastcdr::Cdr & cdr,
+  void * untyped_ros_message)
+{
+  if (!untyped_ros_message) {
+    fprintf(stderr, "ros message handle is null\n");
+    return false;
+  }
+  px4_msgs__msg__FailsafeFlags * ros_message = static_cast<px4_msgs__msg__FailsafeFlags *>(untyped_ros_message);
+  (void)ros_message;
+  return cdr_deserialize_px4_msgs__msg__FailsafeFlags(cdr, ros_message);
+}
+
+static uint32_t _FailsafeFlags__get_serialized_size(const void * untyped_ros_message)
+{
+  return static_cast<uint32_t>(
+    get_serialized_size_px4_msgs__msg__FailsafeFlags(
+      untyped_ros_message, 0));
 }
 
 static size_t _FailsafeFlags__max_serialized_size(char & bounds_info)
@@ -1179,13 +2294,17 @@ static message_type_support_callbacks_t __callbacks_FailsafeFlags = {
   _FailsafeFlags__cdr_serialize,
   _FailsafeFlags__cdr_deserialize,
   _FailsafeFlags__get_serialized_size,
-  _FailsafeFlags__max_serialized_size
+  _FailsafeFlags__max_serialized_size,
+  nullptr
 };
 
 static rosidl_message_type_support_t _FailsafeFlags__type_support = {
   rosidl_typesupport_fastrtps_c__identifier,
   &__callbacks_FailsafeFlags,
   get_message_typesupport_handle_function,
+  &px4_msgs__msg__FailsafeFlags__get_type_hash,
+  &px4_msgs__msg__FailsafeFlags__get_type_description,
+  &px4_msgs__msg__FailsafeFlags__get_type_description_sources,
 };
 
 const rosidl_message_type_support_t *
