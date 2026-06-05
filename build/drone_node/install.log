@@ -5,6 +5,7 @@
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/victim_detector.py
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/drone_commander.py
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/drone_reactor.py
+/home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/cloud_client.py
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/drone_task_publisher.py
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/drone_status_publisher.py
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/camera_bridge_simple.cpython-312.pyc
@@ -14,6 +15,7 @@
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/victim_detector.cpython-312.pyc
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/drone_commander.cpython-312.pyc
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/drone_reactor.cpython-312.pyc
+/home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/cloud_client.cpython-312.pyc
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/drone_task_publisher.cpython-312.pyc
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node/__pycache__/drone_status_publisher.cpython-312.pyc
 /home/dudz/multi-drone-disaster-response/install/drone_node/share/ament_index/resource_index/packages/drone_node
@@ -26,6 +28,7 @@
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node-0.0.0-py3.12.egg-info/dependency_links.txt
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/python3.12/site-packages/drone_node-0.0.0-py3.12.egg-info/requires.txt
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/drone_node/camera_bridge_simple
+/home/dudz/multi-drone-disaster-response/install/drone_node/lib/drone_node/cloud_client
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/drone_node/cloud_detector
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/drone_node/drone_commander
 /home/dudz/multi-drone-disaster-response/install/drone_node/lib/drone_node/drone_reactor

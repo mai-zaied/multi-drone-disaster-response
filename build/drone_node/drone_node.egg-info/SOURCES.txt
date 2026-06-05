@@ -10,6 +10,7 @@ setup.py
 ../../build/drone_node/drone_node.egg-info/zip-safe
 drone_node/__init__.py
 drone_node/camera_bridge_simple.py
+drone_node/cloud_client.py
 drone_node/cloud_detector.py
 drone_node/drone_commander.py
 drone_node/drone_naming.py

@@ -1,0 +1,38 @@
+[
+    {
+        "received_at": "2026-06-05T18:27:01.255203",
+        "data": {
+            "drone_id": "drone1",
+            "event": "test_cloud_storage",
+            "status": "ok"
+        }
+    },
+    {
+        "received_at": "2026-06-05T18:40:25.501886",
+        "source": "fog_decision_system",
+        "drone_id": "drone1",
+        "event": "survivor_detected",
+        "status": "uploaded",
+        "cloud_delay_seconds": 63084825.5002,
+        "raw_data": {
+            "source": "fog_decision_system",
+            "timestamp": 1717600000,
+            "drone_id": "drone1",
+            "event": "survivor_detected",
+            "status": "uploaded"
+        }
+    },
+    {
+        "received_at": "2026-06-05T18:49:16.331516",
+        "source": "fog_decision_system",
+        "drone_id": "unknown",
+        "event": "survivor_detected",
+        "status": "archived",
+        "cloud_delay_seconds": 0.0242,
+        "raw_data": {
+            "source": "fog_decision_system",
+            "timestamp": 1780685356.3056102,
+            "message": "survivor_detected"
+        }
+    }
+]
