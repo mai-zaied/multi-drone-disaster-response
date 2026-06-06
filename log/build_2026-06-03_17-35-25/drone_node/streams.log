@@ -1,0 +1,31 @@
+[0.587s] Invoking command in '/home/maizaied03/ros2_ws/src/drone_node': PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/drone_node build --build-base /home/maizaied03/ros2_ws/build/drone_node/build install --record /home/maizaied03/ros2_ws/build/drone_node/install.log --single-version-externally-managed install_data
+[0.733s] running egg_info
+[0.734s] writing ../../build/drone_node/drone_node.egg-info/PKG-INFO
+[0.734s] writing dependency_links to ../../build/drone_node/drone_node.egg-info/dependency_links.txt
+[0.734s] writing entry points to ../../build/drone_node/drone_node.egg-info/entry_points.txt
+[0.734s] writing requirements to ../../build/drone_node/drone_node.egg-info/requires.txt
+[0.734s] writing top-level names to ../../build/drone_node/drone_node.egg-info/top_level.txt
+[0.735s] reading manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+[0.738s] writing manifest file '../../build/drone_node/drone_node.egg-info/SOURCES.txt'
+[0.739s] running build
+[0.739s] running build_py
+[0.739s] copying drone_node/drone_commander.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+[0.739s] copying drone_node/drone_task_publisher.py -> /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node
+[0.739s] running install
+[0.739s] running install_lib
+[0.740s] copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/drone_commander.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+[0.740s] copying /home/maizaied03/ros2_ws/build/drone_node/build/lib/drone_node/drone_task_publisher.py -> /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node
+[0.740s] byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/drone_commander.py to drone_commander.cpython-310.pyc
+[0.742s] byte-compiling /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node/drone_task_publisher.py to drone_task_publisher.cpython-310.pyc
+[0.743s] running install_data
+[0.743s] running install_egg_info
+[0.744s] removing '/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node-0.0.0-py3.10.egg-info' (and everything under it)
+[0.744s] Copying ../../build/drone_node/drone_node.egg-info to /home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages/drone_node-0.0.0-py3.10.egg-info
+[0.745s] running install_scripts
+[0.759s] Installing camera_bridge_simple script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.759s] Installing drone_commander script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.759s] Installing drone_reactor script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.759s] Installing drone_status_publisher script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.759s] Installing drone_task_publisher script to /home/maizaied03/ros2_ws/install/drone_node/lib/drone_node
+[0.759s] writing list of installed files to '/home/maizaied03/ros2_ws/build/drone_node/install.log'
+[0.790s] Invoked command in '/home/maizaied03/ros2_ws/src/drone_node' returned '0': PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/drone_node build --build-base /home/maizaied03/ros2_ws/build/drone_node/build install --record /home/maizaied03/ros2_ws/build/drone_node/install.log --single-version-externally-managed install_data

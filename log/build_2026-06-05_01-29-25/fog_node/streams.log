@@ -1,0 +1,21 @@
+[0.702s] Invoking command in '/home/maizaied03/ros2_ws/src/fog_node': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data
+[0.877s] running egg_info
+[0.878s] writing ../../build/fog_node/fog_node.egg-info/PKG-INFO
+[0.878s] writing dependency_links to ../../build/fog_node/fog_node.egg-info/dependency_links.txt
+[0.878s] writing entry points to ../../build/fog_node/fog_node.egg-info/entry_points.txt
+[0.878s] writing requirements to ../../build/fog_node/fog_node.egg-info/requires.txt
+[0.878s] writing top-level names to ../../build/fog_node/fog_node.egg-info/top_level.txt
+[0.879s] reading manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+[0.880s] writing manifest file '../../build/fog_node/fog_node.egg-info/SOURCES.txt'
+[0.880s] running build
+[0.880s] running build_py
+[0.881s] running install
+[0.881s] running install_lib
+[0.882s] running install_data
+[0.882s] running install_egg_info
+[0.883s] removing '/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info' (and everything under it)
+[0.883s] Copying ../../build/fog_node/fog_node.egg-info to /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog_node-0.0.0-py3.10.egg-info
+[0.884s] running install_scripts
+[0.900s] Installing fog_server script to /home/maizaied03/ros2_ws/install/fog_node/lib/fog_node
+[0.901s] writing list of installed files to '/home/maizaied03/ros2_ws/build/fog_node/install.log'
+[0.923s] Invoked command in '/home/maizaied03/ros2_ws/src/fog_node' returned '0': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/fog_node build --build-base /home/maizaied03/ros2_ws/build/fog_node/build install --record /home/maizaied03/ros2_ws/build/fog_node/install.log --single-version-externally-managed install_data

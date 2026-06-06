@@ -23,6 +23,8 @@ Task 3.8 additions:
 import time
 import json
 from collections import deque
+import math
+
 
 import rclpy
 from rclpy.node import Node
@@ -46,6 +48,84 @@ from fog_node.drone_naming import (
 EVENT_BUFFER_SOFT_CAP = 10000   # drop oldest beyond this
 BATCH_CHUNK_SIZE = 1000          # split flush into chunks of this size
 
+# World origin from the Gazebo world SDF <spherical_coordinates>.
+# This is the lat/lon of the ENU world frame origin (0,0).
+WORLD_ORIGIN_LAT = 47.397971057728974
+WORLD_ORIGIN_LON = 8.546163739800146
+ 
+# Earth radius for the local-tangent-plane conversion.
+_EARTH_RADIUS_M = 6371000.0
+
+
+
+
+def enu_to_global(world_x, world_y):
+    """
+    Convert a world ENU position (meters East, meters North from the world
+    origin) to global latitude/longitude using an equirectangular
+    (local-tangent-plane) approximation. Accurate to well under a meter for
+    the ~100 m distances used here.
+ 
+    world_x = East (meters), world_y = North (meters).
+    """
+    origin_lat_rad = math.radians(WORLD_ORIGIN_LAT)
+    d_lat = world_y / _EARTH_RADIUS_M
+    d_lon = world_x / (_EARTH_RADIUS_M * math.cos(origin_lat_rad))
+    lat = WORLD_ORIGIN_LAT + math.degrees(d_lat)
+    lon = WORLD_ORIGIN_LON + math.degrees(d_lon)
+    return lat, lon
+ 
+ 
+def _grid_layout(n):
+    """
+    Choose a near-square (cols, rows) grid for n cells.
+    1->(1,1) 2->(2,1) 3->(3,1) 4->(2,2) 5->(3,2) 6->(3,2) ...
+    Prefers more columns than rows (wider than tall).
+    """
+    if n <= 1:
+        return (1, 1)
+    cols = math.ceil(math.sqrt(n))
+    rows = math.ceil(n / cols)
+    return (cols, rows)
+ 
+
+def divide_area(area_min_x, area_max_x, area_min_y, area_max_y,
+                scan_altitude, num_drones):
+    """
+    Divide a rectangular search area into num_drones cells arranged in a
+    near-square grid, and return one target per drone at each cell centroid.
+ 
+    Returns: dict { drone_id : {'world_x','world_y','lat','lon','alt',
+                                'cell_col','cell_row'} }
+    Targets are filled left-to-right, bottom-to-top. Extra cells (when the
+    grid has more cells than drones) are simply left unassigned.
+    """
+    cols, rows = _grid_layout(num_drones)
+    cell_w = (area_max_x - area_min_x) / cols
+    cell_h = (area_max_y - area_min_y) / rows
+ 
+    assignments = {}
+    idx = 0
+    for r in range(rows):
+        for c in range(cols):
+            if idx >= num_drones:
+                break
+            cx = area_min_x + (c + 0.5) * cell_w
+            cy = area_min_y + (r + 0.5) * cell_h
+            lat, lon = enu_to_global(cx, cy)
+            drone_id = f'drone{idx}'
+            assignments[drone_id] = {
+                'world_x': round(cx, 2),
+                'world_y': round(cy, 2),
+                'lat': lat,
+                'lon': lon,
+                'alt': float(scan_altitude),
+                'cell_col': c,
+                'cell_row': r,
+            }
+            idx += 1
+    return assignments
+
 
 class FogServer(Node):
     def __init__(self):
@@ -56,6 +136,19 @@ class FogServer(Node):
         self.num_drones = int(self.get_parameter('num_drones').value)
         if self.num_drones < 1:
             raise ValueError(f'num_drones must be >= 1, got {self.num_drones}')
+        
+        self.declare_parameter('area_min_x', -80.0)
+        self.declare_parameter('area_max_x', 100.0)
+        self.declare_parameter('area_min_y', -40.0)
+        self.declare_parameter('area_max_y', 75.0)
+        self.declare_parameter('scan_altitude', 12.0)   # meters above takeoff
+ 
+        self.area_min_x = float(self.get_parameter('area_min_x').value)
+        self.area_max_x = float(self.get_parameter('area_max_x').value)
+        self.area_min_y = float(self.get_parameter('area_min_y').value)
+        self.area_max_y = float(self.get_parameter('area_max_y').value)
+        self.scan_altitude = float(self.get_parameter('scan_altitude').value)
+
 
         # ---- PX4 QoS ----
         px4_qos = QoSProfile(
@@ -101,6 +194,15 @@ class FogServer(Node):
                 f'status={status_topic}, task={task_topic}, camera={camera_topic}'
             )
 
+            # Mission command publisher (fog -> drone commander)
+            mission_cmd_topic = f'/{drone_id}/mission_command'
+            if not hasattr(self, 'mission_cmd_publishers'):
+                self.mission_cmd_publishers = {}
+            self.mission_cmd_publishers[drone_id] = self.create_publisher(
+                String, mission_cmd_topic, 10
+            )
+
+
         # ---- Cloud archival infrastructure ----
         # bounded buffer of event dicts; oldest are evicted automatically
         self.event_buffer = deque(maxlen=EVENT_BUFFER_SOFT_CAP)
@@ -114,6 +216,10 @@ class FogServer(Node):
         # end-of-mission service
         self.end_mission_srv = self.create_service(
             Trigger, '/fog/end_mission', self.end_mission_callback
+        )
+
+        self.start_mission_srv = self.create_service(
+            Trigger, '/fog/start_mission', self.start_mission_callback
         )
 
         self.get_logger().info(
@@ -273,6 +379,58 @@ class FogServer(Node):
         response.message = (
             f'Flushed {total_events} events in {total_batches} batch(es). '
             f'Dropped during mission due to overflow: {dropped}.'
+        )
+        return response
+    
+
+    # ------------------------------------------------------------------
+    # Start-of-mission service
+    # ------------------------------------------------------------------
+    def start_mission_callback(self, request, response):
+        """
+        Divide the search area among the drones and command each one to fly to
+        its assigned cell centroid. (Add this as a METHOD of FogServer — the
+        `self` argument makes that explicit.)
+        """
+        assignments = divide_area(
+            self.area_min_x, self.area_max_x,
+            self.area_min_y, self.area_max_y,
+            self.scan_altitude, self.num_drones,
+        )
+    
+        cols, rows = _grid_layout(self.num_drones)
+        self.get_logger().info(
+            f'[FOG START_MISSION] Dividing area '
+            f'X[{self.area_min_x},{self.area_max_x}] '
+            f'Y[{self.area_min_y},{self.area_max_y}] '
+            f'into {cols}x{rows} grid for {self.num_drones} drone(s).'
+        )
+    
+        for drone_id, target in assignments.items():
+            cmd = {
+                'command': 'START_MISSION',
+                'target': {
+                    'world_x': target['world_x'],   # ENU East  (used by commander)
+                    'world_y': target['world_y'],   # ENU North (used by commander)
+                    'alt': target['alt'],
+                    'lat': target['lat'],            # kept for reference / logging
+                    'lon': target['lon'],
+                },
+            }
+            msg = String()
+            msg.data = json.dumps(cmd)
+            self.mission_cmd_publishers[drone_id].publish(msg)
+            self.get_logger().info(
+                f'[FOG START_MISSION] {drone_id} -> cell '
+                f"(col={target['cell_col']}, row={target['cell_row']}) "
+                f"world=({target['world_x']}, {target['world_y']}) "
+                f"alt={target['alt']}m  "
+                f"global=({target['lat']:.7f}, {target['lon']:.7f})"
+            )
+    
+        response.success = True
+        response.message = (
+            f'Mission started: {len(assignments)} drone(s) commanded to their cells.'
         )
         return response
 

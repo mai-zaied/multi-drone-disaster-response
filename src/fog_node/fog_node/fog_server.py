@@ -1,7 +1,7 @@
 """
 fog_server.py
 
-Fog node — scalable to N drones, with end-of-mission cloud archival.
+Fog node — scalable to ANY number of drones, with end-of-mission cloud archival.
 
 For each drone in [0, num_drones), the fog subscribes to:
   - The drone's PX4 VehicleStatus topic
@@ -10,6 +10,14 @@ For each drone in [0, num_drones), the fog subscribes to:
 
 And publishes a Task-2-style decision per drone on:
   - /fog/{drone_id}/decision
+
+Mission control:
+- /fog/start_mission partitions the search area into one cell per drone using
+  RECURSIVE BISECTION (repeatedly cut the longer side, split the drones in
+  half, recurse). This tiles the rectangle into N gap-free, area-balanced,
+  near-square cells for ANY N. Each START_MISSION command carries the cell's
+  full world-ENU rectangle plus its centroid, so the commander can sweep the
+  whole cell.
 
 Task 3.8 additions:
 - Maintains an in-memory event buffer (bounded, drops oldest on overflow).
@@ -23,6 +31,8 @@ Task 3.8 additions:
 import time
 import json
 from collections import deque
+import math
+
 
 import rclpy
 from rclpy.node import Node
@@ -46,6 +56,99 @@ from fog_node.drone_naming import (
 EVENT_BUFFER_SOFT_CAP = 10000   # drop oldest beyond this
 BATCH_CHUNK_SIZE = 1000          # split flush into chunks of this size
 
+# World origin from the Gazebo world SDF <spherical_coordinates>.
+# This is the lat/lon of the ENU world frame origin (0,0). MUST match the
+# value the commander uses.
+WORLD_ORIGIN_LAT = 47.397971057728974
+WORLD_ORIGIN_LON = 8.546163739800146
+
+# Earth radius for the local-tangent-plane conversion.
+_EARTH_RADIUS_M = 6371000.0
+
+
+def enu_to_global(world_x, world_y):
+    """
+    Convert a world ENU position (meters East, meters North from the world
+    origin) to global latitude/longitude using an equirectangular
+    (local-tangent-plane) approximation. Accurate to well under a meter for
+    the ~100 m distances used here.
+
+    world_x = East (meters), world_y = North (meters).
+    """
+    origin_lat_rad = math.radians(WORLD_ORIGIN_LAT)
+    d_lat = world_y / _EARTH_RADIUS_M
+    d_lon = world_x / (_EARTH_RADIUS_M * math.cos(origin_lat_rad))
+    lat = WORLD_ORIGIN_LAT + math.degrees(d_lat)
+    lon = WORLD_ORIGIN_LON + math.degrees(d_lon)
+    return lat, lon
+
+
+def partition_area(min_x, max_x, min_y, max_y, n):
+    """
+    Recursive bisection of a rectangle into n gap-free, area-balanced,
+    near-square cells, for ANY n >= 1.
+
+    At each step we give floor(n/2) drones to one part and the rest to the
+    other, cutting the rectangle's LONGER side proportionally so each part's
+    area is proportional to its drone count. Cutting the longer side keeps the
+    resulting cells close to square, which makes the per-cell lawnmower sweep
+    efficient. The union of all returned cells is exactly the input rectangle
+    (no gaps, no overlaps).
+
+    Returns a list of n tuples: (cell_min_x, cell_max_x, cell_min_y, cell_max_y).
+    """
+    if n <= 1:
+        return [(min_x, max_x, min_y, max_y)]
+
+    a = n // 2
+    b = n - a
+    span_x = max_x - min_x
+    span_y = max_y - min_y
+
+    if span_x >= span_y:
+        cut = min_x + span_x * (a / n)
+        return (partition_area(min_x, cut, min_y, max_y, a)
+                + partition_area(cut, max_x, min_y, max_y, b))
+    else:
+        cut = min_y + span_y * (a / n)
+        return (partition_area(min_x, max_x, min_y, cut, a)
+                + partition_area(min_x, max_x, cut, max_y, b))
+
+
+def divide_area(area_min_x, area_max_x, area_min_y, area_max_y,
+                scan_altitude, num_drones):
+    """
+    Partition the search area into one cell per drone (recursive bisection)
+    and return an assignment per drone: the cell centroid (for a quick fly-to)
+    AND the cell's full rectangle (for area coverage).
+
+    Returns: dict { drone_id : {'world_x','world_y','lat','lon','alt',
+                                'cell_index',
+                                'min_x','max_x','min_y','max_y'} }
+    """
+    cells = partition_area(area_min_x, area_max_x,
+                           area_min_y, area_max_y, num_drones)
+
+    assignments = {}
+    for i, (cmin_x, cmax_x, cmin_y, cmax_y) in enumerate(cells):
+        cx = (cmin_x + cmax_x) / 2.0
+        cy = (cmin_y + cmax_y) / 2.0
+        lat, lon = enu_to_global(cx, cy)
+        drone_id = f'drone{i}'
+        assignments[drone_id] = {
+            'world_x': round(cx, 2),
+            'world_y': round(cy, 2),
+            'lat': lat,
+            'lon': lon,
+            'alt': float(scan_altitude),
+            'cell_index': i,
+            'min_x': round(cmin_x, 2),
+            'max_x': round(cmax_x, 2),
+            'min_y': round(cmin_y, 2),
+            'max_y': round(cmax_y, 2),
+        }
+    return assignments
+
 
 class FogServer(Node):
     def __init__(self):
@@ -57,6 +160,40 @@ class FogServer(Node):
         if self.num_drones < 1:
             raise ValueError(f'num_drones must be >= 1, got {self.num_drones}')
 
+        self.declare_parameter('area_min_x', -80.0)
+        self.declare_parameter('area_max_x', 100.0)
+        self.declare_parameter('area_min_y', -40.0)
+        self.declare_parameter('area_max_y', 75.0)
+        self.declare_parameter('scan_altitude', 12.0)   # meters above takeoff
+
+        # Drone spawn locations in world ENU (East=x, North=y), matching each
+        # drone's PX4_GZ_MODEL_POSE at launch. Defaults to the current 3-drone
+        # setup; override with -p spawns_x:="[...]" -p spawns_y:="[...]".
+        # There should be (at least) num_drones entries in each list.
+        self.declare_parameter('spawns_x', [18.0, 23.0, 30.0])
+        self.declare_parameter('spawns_y', [25.0, 25.0, 25.0])
+
+        self.area_min_x = float(self.get_parameter('area_min_x').value)
+        self.area_max_x = float(self.get_parameter('area_max_x').value)
+        self.area_min_y = float(self.get_parameter('area_min_y').value)
+        self.area_max_y = float(self.get_parameter('area_max_y').value)
+        self.scan_altitude = float(self.get_parameter('scan_altitude').value)
+
+        self.spawns_x = [float(v) for v in self.get_parameter('spawns_x').value]
+        self.spawns_y = [float(v) for v in self.get_parameter('spawns_y').value]
+        if len(self.spawns_x) != len(self.spawns_y):
+            raise ValueError(
+                f'spawns_x ({len(self.spawns_x)}) and spawns_y '
+                f'({len(self.spawns_y)}) must have the same length.'
+            )
+        if len(self.spawns_x) < self.num_drones:
+            self.get_logger().warn(
+                f'[FOG] only {len(self.spawns_x)} spawn(s) given for '
+                f'{self.num_drones} drone(s); drones beyond that will '
+                f'auto-calibrate their spawn from PX4.'
+            )
+
+
         # ---- PX4 QoS ----
         px4_qos = QoSProfile(
             reliability=ReliabilityPolicy.BEST_EFFORT,
@@ -66,6 +203,7 @@ class FogServer(Node):
 
         # ---- Per-drone state ----
         self.decision_publishers = {}
+        self.mission_cmd_publishers = {}
         self.stats = {}
 
         for instance in range(self.num_drones):
@@ -94,12 +232,20 @@ class FogServer(Node):
             self.decision_publishers[drone_id] = self.create_publisher(
                 String, decision_topic, 10
             )
+
+            # Mission command publisher (fog -> drone commander)
+            mission_cmd_topic = f'/{drone_id}/mission_command'
+            self.mission_cmd_publishers[drone_id] = self.create_publisher(
+                String, mission_cmd_topic, 10
+            )
+
             self.stats[drone_id] = {'status': 0, 'tasks': 0, 'frames': 0}
 
             self.get_logger().info(
                 f'[FOG] {drone_id} (instance={instance}): '
                 f'status={status_topic}, task={task_topic}, camera={camera_topic}'
             )
+
 
         # ---- Cloud archival infrastructure ----
         # bounded buffer of event dicts; oldest are evicted automatically
@@ -114,6 +260,10 @@ class FogServer(Node):
         # end-of-mission service
         self.end_mission_srv = self.create_service(
             Trigger, '/fog/end_mission', self.end_mission_callback
+        )
+
+        self.start_mission_srv = self.create_service(
+            Trigger, '/fog/start_mission', self.start_mission_callback
         )
 
         self.get_logger().info(
@@ -273,6 +423,69 @@ class FogServer(Node):
         response.message = (
             f'Flushed {total_events} events in {total_batches} batch(es). '
             f'Dropped during mission due to overflow: {dropped}.'
+        )
+        return response
+
+
+    # ------------------------------------------------------------------
+    # Start-of-mission service
+    # ------------------------------------------------------------------
+    def start_mission_callback(self, request, response):
+        """
+        Partition the search area among the drones and command each one to fly
+        to (and sweep) its assigned cell. The command carries both the cell
+        centroid and the cell's full world-ENU rectangle.
+        """
+        assignments = divide_area(
+            self.area_min_x, self.area_max_x,
+            self.area_min_y, self.area_max_y,
+            self.scan_altitude, self.num_drones,
+        )
+
+        self.get_logger().info(
+            f'[FOG START_MISSION] Partitioning area '
+            f'X[{self.area_min_x},{self.area_max_x}] '
+            f'Y[{self.area_min_y},{self.area_max_y}] '
+            f'into {self.num_drones} cell(s).'
+        )
+
+        for drone_id, target in assignments.items():
+            idx = target['cell_index']
+            tgt = {
+                'world_x': target['world_x'],   # ENU East  centroid
+                'world_y': target['world_y'],   # ENU North centroid
+                'alt': target['alt'],
+                'lat': target['lat'],            # kept for reference / logging
+                'lon': target['lon'],
+                'area': {                        # full cell rectangle (ENU)
+                    'min_x': target['min_x'],
+                    'max_x': target['max_x'],
+                    'min_y': target['min_y'],
+                    'max_y': target['max_y'],
+                },
+            }
+            # Attach this drone's spawn (from the fog params) so the commander
+            # can convert world ENU -> its local NED frame.
+            spawn_str = 'auto-calibrate'
+            if idx < len(self.spawns_x):
+                tgt['spawn'] = {'x': self.spawns_x[idx], 'y': self.spawns_y[idx]}
+                spawn_str = f'({self.spawns_x[idx]}, {self.spawns_y[idx]})'
+
+            cmd = {'command': 'START_MISSION', 'target': tgt}
+            msg = String()
+            msg.data = json.dumps(cmd)
+            self.mission_cmd_publishers[drone_id].publish(msg)
+            self.get_logger().info(
+                f'[FOG START_MISSION] {drone_id} -> cell {idx} '
+                f"centroid=({target['world_x']}, {target['world_y']}) "
+                f"area X[{target['min_x']},{target['max_x']}] "
+                f"Y[{target['min_y']},{target['max_y']}] "
+                f"alt={target['alt']}m spawn={spawn_str}"
+            )
+
+        response.success = True
+        response.message = (
+            f'Mission started: {len(assignments)} drone(s) commanded to their cells.'
         )
         return response
 

@@ -28,7 +28,7 @@ setup(
         'drone_reactor = drone_node.drone_reactor:main',
         'drone_task_publisher = drone_node.drone_task_publisher:main',
         'camera_bridge_simple = drone_node.camera_bridge_simple:main',
-
+        'drone_commander = drone_node.drone_commander:main',
 
     ],
 },

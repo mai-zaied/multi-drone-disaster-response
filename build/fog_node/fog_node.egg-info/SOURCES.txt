@@ -11,7 +11,11 @@ setup.py
 fog_node/__init__.py
 fog_node/drone_naming.py
 fog_node/fog_server.py
+fog_node.egg-info/PKG-INFO
+fog_node.egg-info/SOURCES.txt
+fog_node.egg-info/dependency_links.txt
+fog_node.egg-info/entry_points.txt
+fog_node.egg-info/requires.txt
+fog_node.egg-info/top_level.txt
+fog_node.egg-info/zip-safe
 resource/fog_node
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
