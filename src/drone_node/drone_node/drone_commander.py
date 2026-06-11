@@ -111,6 +111,13 @@ class DroneCommander(Node):
         self.max_step = float(self.get_parameter('max_step').value)
         self.declare_parameter('default_alt', 12.0)
         self.default_alt = float(self.get_parameter('default_alt').value)
+        # Stop-and-go capture mode: hover at each footprint-spaced grid point
+        # for hover_sec so every capture is sharp, level, and truly nadir.
+        # False = continuous flight (faster; camera fires while moving).
+        self.declare_parameter('stop_and_go', False)
+        self.stop_and_go = bool(self.get_parameter('stop_and_go').value)
+        self.declare_parameter('hover_sec', 2.0)
+        self.hover_sec = float(self.get_parameter('hover_sec').value)
 
         # PX4 SITL: instance N uses MAVLink system id N+1.
         self.sysid = self.instance + 1
@@ -172,6 +179,7 @@ class DroneCommander(Node):
         self.waypoints = [(0.0, 0.0)]   # (world_x, world_y)
         self.wp_idx = 0
         self.scan_loops = 0
+        self._hover_until = None        # stop_and_go: hover deadline at a point
         self.counter = 0
         self.mode_sent = False
         self.arm_sent = False
@@ -282,6 +290,25 @@ class DroneCommander(Node):
                     wps.append((xv, min_y + inset))
         return wps
 
+    def densify(self, wps, spacing):
+        """
+        Insert intermediate capture points along every path segment, spaced by
+        `spacing` (the camera footprint length minus overlap). This turns the
+        lane-endpoint lawnmower into the grid of capture points for
+        stop-and-go: hover, capture, move one footprint, repeat.
+        """
+        if spacing <= 0.5 or len(wps) < 2:
+            return wps
+        out = [wps[0]]
+        for a, b in zip(wps, wps[1:]):
+            seg = math.hypot(b[0] - a[0], b[1] - a[1])
+            n = max(1, math.ceil(seg / spacing))
+            for k in range(1, n + 1):
+                t = k / n
+                out.append((a[0] + (b[0] - a[0]) * t,
+                            a[1] + (b[1] - a[1]) * t))
+        return out
+
     # ------------------------------------------------------------------
     def mission_command_callback(self, msg: String):
         try:
@@ -315,11 +342,15 @@ class DroneCommander(Node):
                 self.waypoints = self.build_lawnmower(
                     float(area['min_x']), float(area['max_x']),
                     float(area['min_y']), float(area['max_y']))
+                if self.stop_and_go:
+                    spacing = float(t.get('capture_spacing', 10.0))
+                    self.waypoints = self.densify(self.waypoints, spacing)
             else:
                 self.waypoints = [(float(t['world_x']), float(t['world_y']))]
 
             self.wp_idx = 0
             self.scan_loops = 0
+            self._hover_until = None
             self.active = True
             self.phase = PHASE_CLIMB
             self.counter = 0
@@ -338,6 +369,7 @@ class DroneCommander(Node):
             self.send_command(VehicleCommand.VEHICLE_CMD_NAV_RETURN_TO_LAUNCH)
             self.active = False
             self.phase = PHASE_IDLE
+            self._hover_until = None
         else:
             self.get_logger().warn(
                 f'[COMMANDER] {self.drone_id}: unknown command "{command}"')
@@ -443,6 +475,16 @@ class DroneCommander(Node):
                     f'[COMMANDER] {self.drone_id}: over cell, DESCEND '
                     f'{self.transit_alt}m -> {self.alt}m.')
             else:  # PHASE_SCAN — loop forever
+                if self.stop_and_go:
+                    # Hover at this capture point so the frame is sharp,
+                    # level, and truly nadir, then advance.
+                    now_s = self.get_clock().now().nanoseconds / 1e9
+                    if self._hover_until is None:
+                        self._hover_until = now_s + self.hover_sec
+                        return
+                    if now_s < self._hover_until:
+                        return
+                    self._hover_until = None
                 self.wp_idx += 1
                 if self.wp_idx >= len(self.waypoints):
                     self.wp_idx = 0

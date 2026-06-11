@@ -588,6 +588,11 @@ class FogServer(Node):
 
         swath_w = 2.0 * self.scan_altitude * self._tan_half_h
         rec_lane = swath_w * (1.0 - self.coverage_overlap)
+        # Along-track capture spacing: footprint LENGTH x (1 - overlap).
+        # This is the "move one footprint, capture, move again" rule, with an
+        # overlap margin (standard survey frontlap practice).
+        footprint_l = 2.0 * self.scan_altitude * self._tan_half_v
+        capture_spacing = round(footprint_l * (1.0 - self.coverage_overlap), 1)
 
         self.get_logger().info('[FOG START_MISSION] ' + '=' * 50)
         if self.use_zones:
@@ -605,7 +610,8 @@ class FogServer(Node):
         self.get_logger().info(
             f'[FOG START_MISSION] transit_alt={self.transit_altitude}m, '
             f'scan_alt={self.scan_altitude}m, scan swath={swath_w:.1f}m '
-            f'-> set commander lane_spacing <= {rec_lane:.1f}m')
+            f'-> set commander lane_spacing <= {rec_lane:.1f}m; '
+            f'capture_spacing={capture_spacing}m (for stop_and_go).')
         self.get_logger().info(
             f'[FOG START_MISSION] ASSIGNMENTS ({len(assignments)} drone(s)):')
 
@@ -620,6 +626,7 @@ class FogServer(Node):
                 'world_x': a['cx'], 'world_y': a['cy'],
                 'alt': self.scan_altitude,
                 'transit_alt': self.transit_altitude,
+                'capture_spacing': capture_spacing,
                 'lat': lat, 'lon': lon,
                 'area': {'min_x': a['min_x'], 'max_x': a['max_x'],
                          'min_y': a['min_y'], 'max_y': a['max_y']}}
