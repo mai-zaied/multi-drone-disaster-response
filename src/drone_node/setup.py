@@ -1,7 +1,5 @@
 from setuptools import find_packages, setup
-
 package_name = 'drone_node'
-
 setup(
     name=package_name,
     version='0.0.0',
@@ -23,15 +21,15 @@ setup(
         ],
     },
     entry_points={
-    'console_scripts': [
-        'drone_status_publisher = drone_node.drone_status_publisher:main',
-        'drone_reactor = drone_node.drone_reactor:main',
-        'drone_task_publisher = drone_node.drone_task_publisher:main',
-        'camera_bridge_simple = drone_node.camera_bridge_simple:main',
-        'victim_detector = drone_node.victim_detector:main',
-        'cloud_detector = drone_node.cloud_detector:main',
-        'drone_commander = drone_node.drone_commander:mai',
-        'cloud_client = drone_node.cloud_client:main',
-    ],
-},
+        'console_scripts': [
+            'drone_status_publisher = drone_node.drone_status_publisher:main',
+            'drone_reactor = drone_node.drone_reactor:main',
+            'drone_task_publisher = drone_node.drone_task_publisher:main',
+            'camera_bridge_simple = drone_node.camera_bridge_simple:main',
+            'drone_commander = drone_node.drone_commander:main',
+            'victim_detector = drone_node.victim_detector:main',
+            'cloud_detector = drone_node.cloud_detector:main',
+            'cloud_client = drone_node.cloud_client:main',
+        ],
+    },
 )
