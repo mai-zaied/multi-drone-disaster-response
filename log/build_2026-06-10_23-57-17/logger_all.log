@@ -1,0 +1,242 @@
+[0.100s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'drone_node', 'fog_node', '--symlink-install']
+[0.101s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['drone_node', 'fog_node'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7dfbef837a60>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7dfbef9e9120>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7dfbef9e9120>>)
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.236s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.236s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/maizaied03/ros2_ws'
+[0.236s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.236s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.237s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['ignore', 'ignore_ament_install']
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'ignore'
+[0.244s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'ignore_ament_install'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['colcon_pkg']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'colcon_pkg'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['colcon_meta']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'colcon_meta'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['ros']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'ros'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['cmake', 'python']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'cmake'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'python'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extensions ['python_setup_py']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(Docs) by extension 'python_setup_py'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.245s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extensions ['ignore', 'ignore_ament_install']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extension 'ignore'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extension 'ignore_ament_install'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extensions ['colcon_pkg']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extension 'colcon_pkg'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extensions ['colcon_meta']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extension 'colcon_meta'
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extensions ['ros']
+[0.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/cloud_node) by extension 'ros'
+[0.249s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cloud_node' with type 'ros.ament_python' and name 'cloud_node'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extensions ['ignore', 'ignore_ament_install']
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extension 'ignore'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extension 'ignore_ament_install'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extensions ['colcon_pkg']
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extension 'colcon_pkg'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extensions ['colcon_meta']
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extension 'colcon_meta'
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extensions ['ros']
+[0.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/drone_node) by extension 'ros'
+[0.250s] DEBUG:colcon.colcon_core.package_identification:Package 'src/drone_node' with type 'ros.ament_python' and name 'drone_node'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['ignore', 'ignore_ament_install']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ignore'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ignore_ament_install'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['colcon_pkg']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'colcon_pkg'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['colcon_meta']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'colcon_meta'
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extensions ['ros']
+[0.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/fog_node) by extension 'ros'
+[0.251s] DEBUG:colcon.colcon_core.package_identification:Package 'src/fog_node' with type 'ros.ament_python' and name 'fog_node'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['ignore', 'ignore_ament_install']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ignore'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ignore_ament_install'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['colcon_pkg']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'colcon_pkg'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['colcon_meta']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'colcon_meta'
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extensions ['ros']
+[0.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/multi_drone_offboard) by extension 'ros'
+[0.252s] DEBUG:colcon.colcon_core.package_identification:Package 'src/multi_drone_offboard' with type 'ros.ament_python' and name 'multi_drone_offboard'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ignore'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ignore_ament_install'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['colcon_pkg']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'colcon_pkg'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['colcon_meta']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'colcon_meta'
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extensions ['ros']
+[0.252s] Level 1:colcon.colcon_core.package_identification:_identify(src/px4_msgs) by extension 'ros'
+[0.254s] DEBUG:colcon.colcon_core.package_identification:Package 'src/px4_msgs' with type 'ros.ament_cmake' and name 'px4_msgs'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extension 'ignore'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extension 'ignore_ament_install'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extensions ['colcon_pkg']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extension 'colcon_pkg'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extensions ['colcon_meta']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extension 'colcon_meta'
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extensions ['ros']
+[0.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/task_msgs) by extension 'ros'
+[0.255s] DEBUG:colcon.colcon_core.package_identification:Package 'src/task_msgs' with type 'ros.ament_cmake' and name 'task_msgs'
+[0.255s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.255s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.255s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.255s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.255s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.281s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'cloud_node' in 'src/cloud_node'
+[0.281s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'px4_msgs' in 'src/px4_msgs'
+[0.281s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'task_msgs' in 'src/task_msgs'
+[0.281s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'multi_drone_offboard' in 'src/multi_drone_offboard'
+[0.282s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.282s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.284s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 291 installed packages in /opt/ros/humble
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.309s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_args' from command line to 'None'
+[0.309s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_target' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_clean_cache' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_clean_first' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'cmake_force_configure' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'ament_cmake_args' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'catkin_cmake_args' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'drone_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.310s] DEBUG:colcon.colcon_core.verb:Building package 'drone_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/maizaied03/ros2_ws/build/drone_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/maizaied03/ros2_ws/install/drone_node', 'merge_install': False, 'path': '/home/maizaied03/ros2_ws/src/drone_node', 'symlink_install': True, 'test_result_base': None}
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_args' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_target' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_clean_cache' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_clean_first' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'cmake_force_configure' from command line to 'False'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'ament_cmake_args' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'catkin_cmake_args' from command line to 'None'
+[0.310s] Level 5:colcon.colcon_core.verb:set package 'fog_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.310s] DEBUG:colcon.colcon_core.verb:Building package 'fog_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/maizaied03/ros2_ws/build/fog_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/maizaied03/ros2_ws/install/fog_node', 'merge_install': False, 'path': '/home/maizaied03/ros2_ws/src/fog_node', 'symlink_install': True, 'test_result_base': None}
+[0.310s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.311s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.311s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/maizaied03/ros2_ws/src/drone_node' with build type 'ament_python'
+[0.311s] Level 1:colcon.colcon_core.shell:create_environment_hook('drone_node', 'ament_prefix_path')
+[0.314s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.314s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/ament_prefix_path.ps1'
+[0.315s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/ament_prefix_path.dsv'
+[0.315s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/ament_prefix_path.sh'
+[0.316s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.316s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.318s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/maizaied03/ros2_ws/src/fog_node' with build type 'ament_python'
+[0.318s] Level 1:colcon.colcon_core.shell:create_environment_hook('fog_node', 'ament_prefix_path')
+[0.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.ps1'
+[0.318s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.dsv'
+[0.319s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/ament_prefix_path.sh'
+[0.319s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.319s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.489s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/maizaied03/ros2_ws/src/drone_node'
+[0.489s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.489s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.652s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/maizaied03/ros2_ws/src/fog_node'
+[0.652s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.652s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.966s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/build/fog_node': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/maizaied03/ros2_ws/build/fog_node/build --no-deps symlink_data
+[0.968s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/maizaied03/ros2_ws/build/drone_node': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/maizaied03/ros2_ws/build/drone_node/build --no-deps symlink_data
+[1.266s] Level 1:colcon.colcon_core.shell:create_environment_hook('fog_node', 'pythonpath_develop')
+[1.266s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/build/fog_node/share/fog_node/hook/pythonpath_develop.ps1'
+[1.266s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/build/fog_node' returned '0': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:/home/maizaied03/ros2_ws/install/px4_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:/home/maizaied03/ros2_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/fog_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:/home/maizaied03/ros2_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/maizaied03/ros2_ws/build/fog_node/build --no-deps symlink_data
+[1.267s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/build/fog_node/share/fog_node/hook/pythonpath_develop.dsv'
+[1.267s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/build/fog_node/share/fog_node/hook/pythonpath_develop.sh'
+[1.270s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node' for CMake module files
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node' for CMake config files
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib'
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/bin'
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib/pkgconfig/fog_node.pc'
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages'
+[1.271s] Level 1:colcon.colcon_core.shell:create_environment_hook('fog_node', 'pythonpath')
+[1.271s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.ps1'
+[1.272s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.dsv'
+[1.272s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/hook/pythonpath.sh'
+[1.272s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/fog_node/bin'
+[1.272s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(fog_node)
+[1.273s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.ps1'
+[1.273s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.dsv'
+[1.274s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.sh'
+[1.274s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.bash'
+[1.275s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/fog_node/share/fog_node/package.zsh'
+[1.276s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/fog_node/share/colcon-core/packages/fog_node)
+[1.276s] Level 1:colcon.colcon_core.shell:create_environment_hook('drone_node', 'pythonpath_develop')
+[1.276s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/build/drone_node/share/drone_node/hook/pythonpath_develop.ps1'
+[1.277s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/maizaied03/ros2_ws/build/drone_node' returned '0': AMENT_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/maizaied03/ros2_ws/install/task_msgs LD_LIBRARY_PATH=/home/maizaied03/ros2_ws/install/task_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/maizaied03/ros2_ws/build/drone_node/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages:/home/maizaied03/ros2_ws/install/task_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/maizaied03/ros2_ws/build/drone_node/build --no-deps symlink_data
+[1.277s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/build/drone_node/share/drone_node/hook/pythonpath_develop.dsv'
+[1.277s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/build/drone_node/share/drone_node/hook/pythonpath_develop.sh'
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node' for CMake module files
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node' for CMake config files
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node/lib'
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node/bin'
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node/lib/pkgconfig/drone_node.pc'
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node/lib/python3.10/site-packages'
+[1.278s] Level 1:colcon.colcon_core.shell:create_environment_hook('drone_node', 'pythonpath')
+[1.278s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/pythonpath.ps1'
+[1.279s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/pythonpath.dsv'
+[1.279s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/hook/pythonpath.sh'
+[1.279s] Level 1:colcon.colcon_core.environment:checking '/home/maizaied03/ros2_ws/install/drone_node/bin'
+[1.279s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(drone_node)
+[1.280s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/package.ps1'
+[1.280s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/package.dsv'
+[1.280s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/package.sh'
+[1.280s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/package.bash'
+[1.281s] INFO:colcon.colcon_core.shell:Creating package script '/home/maizaied03/ros2_ws/install/drone_node/share/drone_node/package.zsh'
+[1.281s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/maizaied03/ros2_ws/install/drone_node/share/colcon-core/packages/drone_node)
+[1.281s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.281s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.281s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.281s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.285s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.286s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.286s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.293s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.294s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.ps1'
+[1.295s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/maizaied03/ros2_ws/install/_local_setup_util_ps1.py'
+[1.296s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.ps1'
+[1.297s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.sh'
+[1.297s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/maizaied03/ros2_ws/install/_local_setup_util_sh.py'
+[1.298s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.sh'
+[1.298s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.bash'
+[1.299s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.bash'
+[1.299s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/maizaied03/ros2_ws/install/local_setup.zsh'
+[1.301s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/maizaied03/ros2_ws/install/setup.zsh'

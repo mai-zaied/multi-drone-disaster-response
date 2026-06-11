@@ -1,0 +1,15 @@
+running develop
+running egg_info
+writing fog_node.egg-info/PKG-INFO
+writing dependency_links to fog_node.egg-info/dependency_links.txt
+writing entry points to fog_node.egg-info/entry_points.txt
+writing requirements to fog_node.egg-info/requires.txt
+writing top-level names to fog_node.egg-info/top_level.txt
+reading manifest file 'fog_node.egg-info/SOURCES.txt'
+writing manifest file 'fog_node.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/maizaied03/ros2_ws/install/fog_node/lib/python3.10/site-packages/fog-node.egg-link (link to .)
+Installing fog_server script to /home/maizaied03/ros2_ws/install/fog_node/lib/fog_node
+
+Installed /home/maizaied03/ros2_ws/build/fog_node
+running symlink_data
