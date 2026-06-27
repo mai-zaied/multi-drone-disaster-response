@@ -1,4 +1,0 @@
-[console_scripts]
-camera_bridge = multi_drone_offboard.camera_bridge:main
-monitor = multi_drone_offboard.swarm_monitor:main
-offboard = multi_drone_offboard.offboard_control:main

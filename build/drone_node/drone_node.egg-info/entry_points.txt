@@ -1,9 +1,0 @@
-[console_scripts]
-camera_bridge_simple = drone_node.camera_bridge_simple:main
-cloud_client = drone_node.cloud_client:main
-cloud_detector = drone_node.cloud_detector:main
-drone_commander = drone_node.drone_commander:mai
-drone_reactor = drone_node.drone_reactor:main
-drone_status_publisher = drone_node.drone_status_publisher:main
-drone_task_publisher = drone_node.drone_task_publisher:main
-victim_detector = drone_node.victim_detector:main
