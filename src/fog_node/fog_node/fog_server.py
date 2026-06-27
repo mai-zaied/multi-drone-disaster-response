@@ -294,6 +294,9 @@ class FogServer(Node):
         self.victim_alert_pub = self.create_publisher(
             String, '/fog/victim_alerts', 10)
 
+        # ---- Coverage telemetry (Task 6 metric: Coverage Efficiency) ----
+        self.coverage_pub = self.create_publisher(String, '/fog/coverage', 10)
+
         self.end_mission_srv = self.create_service(
             Trigger, '/fog/end_mission', self.end_mission_callback)
         self.start_mission_srv = self.create_service(
@@ -755,6 +758,22 @@ class FogServer(Node):
             overall = sum(self.coverage_pct.values()) / len(self.coverage_pct)
             self.get_logger().info('[FOG COVERAGE] ' + ' '.join(cov)
                                    + f' | mean={overall:.0f}%')
+
+        # Publish coverage telemetry for the evaluation harness (Task 6).
+        # Overall is bin-weighted (same definition as the end-of-mission report).
+        if self.cov_grid:
+            total_bins = sum(g.total for g in self.cov_grid.values())
+            covered_bins = sum(len(g.covered) for g in self.cov_grid.values())
+            overall_pct = (100.0 * covered_bins / total_bins) if total_bins else 0.0
+            cov_msg = String()
+            cov_msg.data = json.dumps({
+                'overall_pct': round(overall_pct, 2),
+                'covered_bins': covered_bins,
+                'total_bins': total_bins,
+                'per_drone': {d: round(g.pct(), 2) for d, g in self.cov_grid.items()},
+                'ts': time.time(),
+            })
+            self.coverage_pub.publish(cov_msg)
 
         cur_len = len(self.event_buffer)
         if cur_len != self._prev_buffer_len:

@@ -11,6 +11,8 @@ victim, the Task 6 metrics:
     completion_time_sec   detection -> drone arrival at victim
     detected / completed  success flags
     utilisation           tasks routed local / fog / cloud (per drone)
+    coverage_overall_pct  area coverage % from /fog/coverage (Task 6 metric)
+    energy_total_pct      battery % consumed across drones (energy proxy)
 
 One run = one (mode, scenario, run_id) combination. Launch it, run the
 mission, Ctrl-C it; it writes:
@@ -42,6 +44,7 @@ battery/status  /{drone}/battery_status, /decision/status   (reliability markers
 import csv
 import json
 import os
+import re
 import statistics
 import time
 from collections import defaultdict, deque
@@ -94,6 +97,10 @@ class MetricsCollector(Node):
         self.open_by_drone = defaultdict(deque)
         # utilisation counters: drone -> {local, fog, cloud}
         self.util = defaultdict(lambda: {"local": 0, "fog": 0, "cloud": 0})
+        # coverage (latest /fog/coverage) + energy (battery %) state
+        self.coverage = None
+        self.batt_first = {}
+        self.batt_last = {}
         self.seq = 0
         self.t_start = time.time()
 
@@ -101,6 +108,7 @@ class MetricsCollector(Node):
         self.create_subscription(String, "/fog/victim_alerts", self.fog_alert_cb, 10)
         self.create_subscription(String, "/fog/decision_log", self.decision_cb, 10)
         self.create_subscription(String, "/decision/status", self.status_cb, 10)
+        self.create_subscription(String, "/fog/coverage", self.coverage_cb, 10)
 
         # ---- Per-drone ----
         for i in range(self.num_drones):
@@ -289,8 +297,24 @@ class MetricsCollector(Node):
     def status_cb(self, msg):
         pass  # reliability marker; presence noted via logs
 
+    def coverage_cb(self, msg):
+        try:
+            self.coverage = json.loads(msg.data)
+        except Exception:
+            pass
+
     def battery_cb(self, msg, drone):
-        pass  # reliability marker
+        # Energy proxy: track battery % over the run -> consumed = first - last.
+        m = re.search(r'battery=([\d.]+)', msg.data)
+        if not m:
+            return
+        try:
+            pct = float(m.group(1))
+        except ValueError:
+            return
+        if drone not in self.batt_first:
+            self.batt_first[drone] = pct
+        self.batt_last[drone] = pct
 
     # ------------------------------------------------------------------
     # output
@@ -335,6 +359,21 @@ class MetricsCollector(Node):
             for k in util_total:
                 util_total[k] += d[k]
 
+        # ---- energy proxy: battery % consumed over the run ----
+        energy = {}
+        total_consumed = 0.0
+        for d in self.batt_first:
+            start = self.batt_first[d]
+            end = self.batt_last.get(d, start)
+            consumed = max(0.0, start - end)
+            energy[d] = {"start_pct": round(start, 2), "end_pct": round(end, 2),
+                         "consumed_pct": round(consumed, 2)}
+            total_consumed += consumed
+        n_batt = len(energy)
+
+        cov_overall = (self.coverage.get("overall_pct")
+                       if isinstance(self.coverage, dict) else None)
+
         summary = {
             "mode": self.mode, "scenario": self.scenario, "run_id": self.run_id,
             "fault": self.fault, "num_drones": self.num_drones,
@@ -350,6 +389,13 @@ class MetricsCollector(Node):
             "latency_sec": agg(lats),
             "completion_time_sec": agg(comps),
             "utilisation": {"per_drone": dict(self.util), "total": util_total},
+            "coverage": self.coverage,
+            "coverage_overall_pct": cov_overall,
+            "energy": {"per_drone": energy,
+                       "total_consumed_pct": round(total_consumed, 2),
+                       "mean_consumed_pct": (round(total_consumed / n_batt, 2)
+                                             if n_batt else None)},
+            "energy_total_pct": round(total_consumed, 2) if energy else None,
         }
         json_path = os.path.join(self.out_dir, base + ".summary.json")
         with open(json_path, "w") as f:

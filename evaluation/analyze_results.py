@@ -230,6 +230,44 @@ def objective_table(tbl):
     print("\n[table_objectives]\n" + "\n".join(lines))
 
 
+def coverage_energy(summaries):
+    """Coverage Efficiency + Energy Consumption (slide-12 metrics) per mode."""
+    rows = {}
+    for s in summaries:
+        m = s.get("mode")
+        if m is None:
+            continue
+        rows.setdefault(m, {"cov": [], "en": []})
+        if s.get("coverage_overall_pct") is not None:
+            rows[m]["cov"].append(s["coverage_overall_pct"])
+        if s.get("energy_total_pct") is not None:
+            rows[m]["en"].append(s["energy_total_pct"])
+    have_cov = any(v["cov"] for v in rows.values())
+    have_en = any(v["en"] for v in rows.values())
+    if not (have_cov or have_en):
+        print("  (skip coverage/energy: no /fog/coverage or battery data captured)")
+        return
+    data = {}
+    if have_cov:
+        data["coverage_mean_pct"] = {m: round(sum(v["cov"]) / len(v["cov"]), 2)
+                                     for m, v in rows.items() if v["cov"]}
+    if have_en:
+        data["energy_mean_pct"] = {m: round(sum(v["en"]) / len(v["en"]), 2)
+                                   for m, v in rows.items() if v["en"]}
+    tbl = pd.DataFrame(data).reindex(ordered_modes(list(rows)))
+    save_table(tbl, "table_coverage_energy")
+    if have_cov:
+        ax = tbl["coverage_mean_pct"].dropna().plot(kind="bar", color="#55A868")
+        ax.set_ylabel("Coverage (%)"); ax.set_ylim(0, 100); ax.set_xlabel("")
+        ax.set_title("Graph 6 — Coverage Efficiency by Mode")
+        _save(ax, "g6_coverage_by_mode.png")
+    if have_en:
+        ax = tbl["energy_mean_pct"].dropna().plot(kind="bar", color="#C44E52")
+        ax.set_ylabel("Battery consumed (%)"); ax.set_xlabel("")
+        ax.set_title("Graph 7 — Energy Consumption by Mode")
+        _save(ax, "g7_energy_by_mode.png")
+
+
 def _save(ax, name):
     os.makedirs(PLOTS_DIR, exist_ok=True)
     plt.tight_layout()
@@ -255,6 +293,7 @@ def main():
     fig_scalability(df)
     fig_reliability(df)
     objective_table(tbl)
+    coverage_energy(summaries)
     print("\nDone. Tables in", TABLES_DIR, "| plots in", PLOTS_DIR)
 
 
