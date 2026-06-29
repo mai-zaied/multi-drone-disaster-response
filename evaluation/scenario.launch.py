@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
 """
-scenario.launch.py — one command to bring up the EVALUATION LAYER for a Task 6
-scenario, once the sim + PX4 + commanders + fog_server are already running.
+scenario.launch.py — one command to bring up the EVALUATION DETECTOR LAYER for a
+Task 6 scenario, once the sim + PX4 + commanders + fog_server are already running.
 
-It starts, tagged for the chosen mode:
+It starts, for the chosen mode:
   * the tier detector  (cloud_detector x N for cloud, victim_detector x N for
     local; nothing for fog — fog_server does detection itself)
   * decision_node      (so victims are dispatched -> completion time)
   * battery_simulator x N
-  * metrics_collector  (mode + fault tagged)
 
-It does NOT start the simulator, PX4, commanders, or fog_server — those need the
-manual env/param steps in the run guide. Start those first, then launch this.
+It does NOT start: the simulator, PX4, commanders, fog_server (manual env/param
+steps), or the metrics_collector. Run the COLLECTOR IN ITS OWN TERMINAL so it
+saves reliably — a launch Ctrl-C can SIGTERM-kill bundled processes before they
+save. The launch prints the exact collector command (with the right fault tag) on
+startup.
 
 Usage:
   ros2 launch ./scenario.launch.py mode:=fog   run_id:=run_01
   ros2 launch ./scenario.launch.py mode:=cloud run_id:=run_01
   ros2 launch ./scenario.launch.py mode:=local run_id:=run_01
-  (optional: num_drones:=3 scenario:=medium collector_path:=evaluation/metrics_collector.py)
+  (optional: num_drones:=3 scenario:=medium)
 """
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, OpaqueFunction, ExecuteProcess
+from launch.actions import DeclareLaunchArgument, OpaqueFunction, LogInfo
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -33,7 +35,6 @@ def launch_setup(context, *args, **kwargs):
     run_id = LaunchConfiguration("run_id").perform(context)
     scenario = LaunchConfiguration("scenario").perform(context)
     num_drones = int(LaunchConfiguration("num_drones").perform(context))
-    collector_path = LaunchConfiguration("collector_path").perform(context)
     fault = FAULT_FOR_MODE.get(mode, "none")
 
     nodes = []
@@ -65,15 +66,13 @@ def launch_setup(context, *args, **kwargs):
             name=f"battery_simulator_{i}",
             arguments=["--ros-args", "-p", f"drone_id:=drone{i}"]))
 
-    # ---- metrics collector (plain script in evaluation/) ----
-    nodes.append(ExecuteProcess(
-        cmd=["python3", collector_path, "--ros-args",
-             "-p", f"mode:={mode}", "-p", f"scenario:={scenario}",
-             "-p", f"run_id:={run_id}", "-p", f"num_drones:={num_drones}",
-             "-p", f"fault:={fault}"],
-        output="screen"))
-
-    return nodes
+    # Tell the operator exactly how to start the collector in its own terminal.
+    collector_cmd = (
+        "RUN THE COLLECTOR IN ITS OWN TERMINAL:\n"
+        f"  cd ~/ros2_ws && python3 evaluation/metrics_collector.py --ros-args "
+        f"-p mode:={mode} -p scenario:={scenario} -p run_id:={run_id} "
+        f"-p num_drones:={num_drones} -p fault:={fault}")
+    return [LogInfo(msg=collector_cmd)] + nodes
 
 
 def generate_launch_description():
@@ -83,7 +82,5 @@ def generate_launch_description():
         DeclareLaunchArgument("run_id", default_value="run_01"),
         DeclareLaunchArgument("scenario", default_value="medium"),
         DeclareLaunchArgument("num_drones", default_value="3"),
-        DeclareLaunchArgument("collector_path",
-                              default_value="evaluation/metrics_collector.py"),
         OpaqueFunction(function=launch_setup),
     ])

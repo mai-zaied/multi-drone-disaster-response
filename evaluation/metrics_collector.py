@@ -113,11 +113,12 @@ class MetricsCollector(Node):
         self.fault = str(self.get_parameter("fault").value)
         self.auto_finish = bool(self.get_parameter("auto_finish").value)
         self.grace_sec = float(self.get_parameter("grace_sec").value)
-        self.out_dir = str(self.get_parameter("out_dir").value)
+        self.out_dir = os.path.abspath(str(self.get_parameter("out_dir").value))
         os.makedirs(self.out_dir, exist_ok=True)
 
         self._saved = False
         self._end_seen = False
+        self._mismatch_warned = set()
 
         self.records = []                       # one dict per detection alert
         self.open_by_drone = defaultdict(deque)  # drone -> indices not linked/closed
@@ -170,8 +171,12 @@ class MetricsCollector(Node):
         self.get_logger().info(
             f"[METRICS] mode={self.mode} scenario={self.scenario} run={self.run_id} "
             f"drones={self.num_drones} fault={self.fault} "
-            f"auto_finish={self.auto_finish} grace={self.grace_sec:.0f}s "
-            f"-> {self.out_dir}")
+            f"auto_finish={self.auto_finish} grace={self.grace_sec:.0f}s")
+        self.get_logger().warn(
+            f"[METRICS] WILL SAVE TO: "
+            f"{os.path.join(self.out_dir, f'{self.mode}_{self.scenario}_{self.run_id}')}"
+            f".csv / .summary.json")
+        self._hb = self.create_timer(15.0, self._heartbeat)
         if not _HAVE_TASK:
             self.get_logger().warn(
                 "[METRICS] task_msgs not importable -> utilisation + local-mode "
@@ -222,8 +227,25 @@ class MetricsCollector(Node):
     # ------------------------------------------------------------------
     # detection handlers (mode-specific)
     # ------------------------------------------------------------------
+    def _heartbeat(self):
+        self.get_logger().info(
+            f"[METRICS HEARTBEAT] mode={self.mode} recorded_detections={len(self.records)} "
+            f"events c/a/r={len(self.events_created)}/{len(self.events_assigned)}"
+            f"/{len(self.events_resolved)} batt_drones={len(self.batt_last)} "
+            f"coverage={'yes' if self.coverage else 'no'}")
+
+    def _warn_mismatch(self, src_mode, topic):
+        if (src_mode, topic) in self._mismatch_warned:
+            return
+        self._mismatch_warned.add((src_mode, topic))
+        self.get_logger().error(
+            f"[METRICS] receiving {src_mode.upper()} detections on {topic} but this "
+            f"collector is mode={self.mode} -> NOT recording them. Restart it with "
+            f"-p mode:={src_mode}.")
+
     def fog_alert_cb(self, msg):
         if self.mode != "fog":
+            self._warn_mismatch("fog", "/fog/victim_alerts")
             return
         try:
             a = json.loads(msg.data)
@@ -240,6 +262,7 @@ class MetricsCollector(Node):
 
     def cloud_cb(self, msg, drone):
         if self.mode != "cloud":
+            self._warn_mismatch("cloud", f"/{drone}/cloud/detection")
             return
         try:
             r = json.loads(msg.data)
@@ -510,6 +533,22 @@ class MetricsCollector(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = MetricsCollector()
+
+    # Save even if killed by SIGTERM (e.g. a launch shutdown), which would not
+    # otherwise raise KeyboardInterrupt or run the finally block.
+    import signal
+
+    def _on_term(signum, frame):
+        try:
+            node.save()
+        finally:
+            if rclpy.ok():
+                rclpy.shutdown()
+    try:
+        signal.signal(signal.SIGTERM, _on_term)
+    except Exception:
+        pass
+
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

@@ -1,0 +1,8 @@
+task_id,mode,scenario,run_id,fault,num_drones,drone,event_id,latency_sec,comm_delay_sec,completion_time_sec,response_time_sec,detected,completed,confidence,num_persons,detail
+fog-00000,fog,medium,run_01,none,3,drone2,E001,0.4499,,,,1,0,0.369,1,fog_alert
+fog-00001,fog,medium,run_01,none,3,drone1,E002,0.27,,,,1,0,0.271,1,fog_alert
+fog-00002,fog,medium,run_01,none,3,drone1,E003,0.2244,,7.7801,0.2568,1,1,0.679,1,fog_alert
+fog-00003,fog,medium,run_01,none,3,drone1,E004,0.1308,,11.4356,0.9137,1,1,0.446,1,fog_alert
+fog-00004,fog,medium,run_01,none,3,drone1,E005,0.1737,,0.8068,0.2852,1,1,0.728,1,fog_alert
+fog-00005,fog,medium,run_01,none,3,drone1,E006,0.1637,,,,1,0,0.727,1,fog_alert
+fog-00006,fog,medium,run_01,none,3,drone1,,0.7767,,,,1,0,0.686,1,fog_alert

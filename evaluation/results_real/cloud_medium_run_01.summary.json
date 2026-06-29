@@ -1,0 +1,98 @@
+{
+  "mode": "cloud",
+  "scenario": "medium",
+  "run_id": "run_01",
+  "fault": "fog_down",
+  "num_drones": 3,
+  "duration_sec": 424.59,
+  "detection_events": 0,
+  "completed": 0,
+  "completion_ratio": null,
+  "events": {
+    "created": 0,
+    "assigned": 0,
+    "resolved": 0
+  },
+  "latency_sec": {
+    "n": 0,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "max": null,
+    "stdev": null
+  },
+  "completion_time_sec": {
+    "n": 0,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "max": null,
+    "stdev": null
+  },
+  "response_time_sec": {
+    "n": 0,
+    "mean": null,
+    "median": null,
+    "min": null,
+    "max": null,
+    "stdev": null
+  },
+  "utilisation": {
+    "per_drone": {
+      "drone1": {
+        "local": 0,
+        "fog": 0,
+        "cloud": 31
+      },
+      "drone2": {
+        "local": 0,
+        "fog": 0,
+        "cloud": 31
+      },
+      "drone0": {
+        "local": 0,
+        "fog": 0,
+        "cloud": 31
+      }
+    },
+    "total": {
+      "local": 0,
+      "fog": 0,
+      "cloud": 93
+    }
+  },
+  "coverage": {
+    "overall_pct": 98.68,
+    "covered_bins": 5151,
+    "total_bins": 5220,
+    "per_drone": {
+      "drone0": 100.0,
+      "drone1": 100.0,
+      "drone2": 96.03
+    },
+    "ts": 1782744777.9941697
+  },
+  "coverage_overall_pct": 98.68,
+  "energy": {
+    "per_drone": {
+      "drone0": {
+        "start_pct": 98.84,
+        "end_pct": 51.23,
+        "consumed_pct": 47.61
+      },
+      "drone2": {
+        "start_pct": 98.84,
+        "end_pct": 51.24,
+        "consumed_pct": 47.6
+      },
+      "drone1": {
+        "start_pct": 98.84,
+        "end_pct": 51.36,
+        "consumed_pct": 47.48
+      }
+    },
+    "total_consumed_pct": 142.69,
+    "mean_consumed_pct": 47.56
+  },
+  "energy_total_pct": 142.69
+}
