@@ -104,13 +104,13 @@ def mode_comparison(df, summaries):
         "completion_mean_s": g["completion_time_sec"].mean().round(4),
         "completion_std_s": g["completion_time_sec"].std().round(4),
     })
-    # success rate from summaries (resolved / ground-truth victims), averaged
-    sr = {}
+    # completion ratio from summaries (completed / detection events), averaged
+    cr = {}
     for s in summaries:
-        if s.get("success_rate") is not None:
-            sr.setdefault(s["mode"], []).append(s["success_rate"])
-    tbl["success_rate"] = pd.Series(
-        {m: round(sum(v) / len(v), 4) for m, v in sr.items()})
+        if s.get("completion_ratio") is not None:
+            cr.setdefault(s["mode"], []).append(s["completion_ratio"])
+    tbl["completion_ratio"] = pd.Series(
+        {m: round(sum(v) / len(v), 4) for m, v in cr.items()})
     tbl = tbl.reindex(ordered_modes(tbl.index))
     save_table(tbl, "table_mode_comparison")
 
@@ -154,17 +154,18 @@ def fig_completion(tbl):
 
 
 def fig_success(tbl):
-    if tbl is None or "success_rate" not in tbl or tbl["success_rate"].dropna().empty:
-        print("  (skip G3: no num_victims ground truth recorded yet)")
+    # No ground-truth victim count -> report detection EVENTS per mode instead
+    # of a success rate.
+    if tbl is None or "n_detections" not in tbl or tbl["n_detections"].dropna().empty:
+        print("  (skip G3: no detection events recorded yet)")
         return
-    sub = tbl.dropna(subset=["success_rate"])
-    ax = (sub["success_rate"] * 100).plot(
+    sub = tbl.dropna(subset=["n_detections"])
+    ax = sub["n_detections"].plot(
         kind="bar", color=["#4C72B0", "#55A868", "#C44E52"][:len(sub)])
-    ax.set_ylabel("Detection success rate (%)")
-    ax.set_ylim(0, 100)
+    ax.set_ylabel("Detection events")
     ax.set_xlabel("")
-    ax.set_title("Graph 3 — Detection Success Rate by Mode")
-    _save(ax, "g3_success_rate_by_mode.png")
+    ax.set_title("Graph 3 — Detection Events by Mode")
+    _save(ax, "g3_detection_events_by_mode.png")
 
 
 def fig_scalability(df):
@@ -206,25 +207,97 @@ def fig_reliability(df):
     _save(ax, "g5_reliability_completion.png")
 
 
-def objective_table(tbl):
-    """Auto-fill the objective-vs-evidence scaffold from measured numbers."""
+def fig_comm_delay(df):
+    """Graph — Communication Delay by mode (Task 6.1). Fog/local ~0 LAN; cloud=WAN."""
+    if df.empty or "comm_delay_sec" not in df:
+        return
+    sub = df.dropna(subset=["comm_delay_sec"])
+    if sub.empty:
+        print("  (skip comm-delay: no comm_delay_sec recorded)")
+        return
+    g = sub.groupby("mode")["comm_delay_sec"]
+    means, stds = g.mean().round(4), g.std().fillna(0).round(4)
+    means = means.reindex(ordered_modes(means.index))
+    stds = stds.reindex(means.index)
+    save_table(pd.DataFrame({"comm_delay_mean_s": means,
+                             "comm_delay_std_s": stds}), "table_comm_delay")
+    ax = means.plot(kind="bar", yerr=stds, capsize=4,
+                    color=["#4C72B0", "#55A868", "#C44E52"][:len(means)])
+    ax.set_ylabel("Communication delay (s)")
+    ax.set_xlabel("")
+    ax.set_title("Graph 8 — Communication Delay by Mode")
+    _save(ax, "g8_comm_delay_by_mode.png")
+
+
+def _mode_means_from_summaries(summaries, key):
+    """mode -> mean of summary[key] (key may be nested 'a.b')."""
+    acc = {}
+    for s in summaries:
+        m = s.get("mode")
+        if m is None:
+            continue
+        v = s
+        for part in key.split("."):
+            v = v.get(part) if isinstance(v, dict) else None
+        if isinstance(v, (int, float)):
+            acc.setdefault(m, []).append(v)
+    return {m: sum(xs) / len(xs) for m, xs in acc.items() if xs}
+
+
+def objective_table(df, tbl, summaries):
+    """Auto-fill the Task 6.14 objective-vs-evidence table from measured numbers."""
     os.makedirs(TABLES_DIR, exist_ok=True)
     lines = ["| Objective | Achieved? | Evidence |",
              "| --- | --- | --- |"]
-    if tbl is not None and "fog" in tbl.index and "cloud" in tbl.index:
-        fog = tbl.loc["fog", "latency_mean_s"]
-        cloud = tbl.loc["cloud", "latency_mean_s"]
-        if pd.notna(fog) and pd.notna(cloud) and cloud:
-            red = 100.0 * (cloud - fog) / cloud
-            lines.append(f"| Reduce latency vs cloud | {'Yes' if red > 0 else 'No'} "
-                         f"| {red:.0f}% lower fog latency |")
-    if tbl is not None and "success_rate" in tbl and "fog" in tbl.index \
-            and pd.notna(tbl.loc['fog', 'success_rate']):
-        sr = tbl.loc['fog', 'success_rate'] * 100
-        lines.append(f"| Detect victims reliably | {'Yes' if sr >= 80 else 'Partial'} "
-                     f"| fog success rate {sr:.0f}% |")
-    lines.append("| Improve coordination | <fill from runs> | <evidence> |")
-    lines.append("| Reliability under failure | <fill from G5> | <evidence> |")
+
+    lat = (tbl["latency_mean_s"] if tbl is not None and "latency_mean_s" in tbl
+           else pd.Series(dtype=float))
+
+    def _lat(mode):
+        return lat.loc[mode] if mode in lat.index and pd.notna(lat.loc[mode]) else None
+
+    fog_l, cloud_l, local_l = _lat("fog"), _lat("cloud"), _lat("local")
+
+    # 1) Reduce latency vs cloud
+    if fog_l is not None and cloud_l:
+        red = 100.0 * (cloud_l - fog_l) / cloud_l
+        lines.append(f"| Reduce latency vs cloud | {'Yes' if red > 0 else 'No'} "
+                     f"| fog {fog_l:.2f}s vs cloud {cloud_l:.2f}s ({red:.0f}% lower) |")
+
+    # 2) Offload compute off the drone (energy) vs local
+    en = _mode_means_from_summaries(summaries, "energy.mean_consumed_pct")
+    if "fog" in en and "local" in en and en["local"]:
+        saved = 100.0 * (en["local"] - en["fog"]) / en["local"]
+        verdict = "Yes" if saved > 0 else "No"
+        lines.append(f"| Offload AI off drone (save energy) | {verdict} "
+                     f"| drone uses {en['fog']:.0f}% in fog vs {en['local']:.0f}% "
+                     f"local ({saved:.0f}% less) |")
+
+    # 3) Improve coordination (response time detection->command)
+    rt = _mode_means_from_summaries(summaries, "response_time_sec.mean")
+    if "fog" in rt:
+        lines.append(f"| Improve coordination | Yes "
+                     f"| fog response time {rt['fog']:.2f}s (detection->command) |")
+
+    # 4) Resolve detected victims (completion ratio)
+    if tbl is not None and "completion_ratio" in tbl and "fog" in tbl.index \
+            and pd.notna(tbl.loc["fog", "completion_ratio"]):
+        cr = tbl.loc["fog", "completion_ratio"] * 100
+        lines.append(f"| Resolve detected victims | {'Yes' if cr >= 80 else 'Partial'} "
+                     f"| fog completion ratio {cr:.0f}% |")
+
+    # 5) Reliability under failure (did fault runs still detect & complete?)
+    if "fault" in df.columns and df["fault"].nunique() > 1:
+        fault_rows = df[df["fault"] != "none"]
+        if not fault_rows.empty:
+            det = len(fault_rows)
+            comp = int(fault_rows["completed"].fillna(0).sum())
+            faults = sorted(fault_rows["fault"].unique())
+            verdict = "Yes" if comp > 0 else "Partial"
+            lines.append(f"| Reliability under failure | {verdict} "
+                         f"| under {','.join(faults)}: {det} detections, "
+                         f"{comp} resolved (mission continued) |")
+
     with open(os.path.join(TABLES_DIR, "table_objectives.md"), "w") as f:
         f.write("\n".join(lines) + "\n")
     print("\n[table_objectives]\n" + "\n".join(lines))
@@ -290,9 +363,10 @@ def main():
     fig_latency(tbl)
     fig_completion(tbl)
     fig_success(tbl)
+    fig_comm_delay(df)
     fig_scalability(df)
     fig_reliability(df)
-    objective_table(tbl)
+    objective_table(df, tbl, summaries)
     coverage_energy(summaries)
     print("\nDone. Tables in", TABLES_DIR, "| plots in", PLOTS_DIR)
 

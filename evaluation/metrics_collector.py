@@ -2,43 +2,37 @@
 """
 metrics_collector.py — Task 6 instrumentation (local / fog / cloud).
 
-Runs as a passive observer node alongside one experiment. It listens to the
-real ROS 2 topics the system already publishes and records, per detected
-victim, the Task 6 metrics:
+Passive observer node. Listens to the real ROS 2 topics the system already
+publishes and records, per detection, the Task 6 metrics, then auto-saves a CSV
++ summary.json when the mission ends.
 
-    latency_sec           detection -> decision (or detection->result)
-    comm_delay_sec        transport/processing portion of the latency
-    completion_time_sec   detection -> drone arrival at victim
-    detected / completed  success flags
-    utilisation           tasks routed local / fog / cloud (per drone)
-    coverage_overall_pct  area coverage % from /fog/coverage (Task 6 metric)
-    energy_total_pct      battery % consumed across drones (energy proxy)
+WHAT CHANGED vs the previous version (completion-time wiring)
+------------------------------------------------------------
+Completion time used to be keyed by the *detecting* drone. But decision_node
+dispatches the *nearest* drone (`_select_drone`), which is often — not always —
+the detector. When detector != rescuer, the arrival was reported by a drone with
+no open detection row, so completion silently never closed (this is one reason
+completion came back empty even in coordinated runs).
 
-One run = one (mode, scenario, run_id) combination. Launch it, run the
-mission, Ctrl-C it; it writes:
+Now completion is linked by EVENT, using the `reporting_drones` and authoritative
+`completion_time` that decision_node emits on /fog/decision_log:
 
-    <out_dir>/<mode>_<scenario>_<run_id>.csv          (one row per detection)
-    <out_dir>/<mode>_<scenario>_<run_id>.summary.json (per-run aggregates)
+    detection (drone A)            -> open row, keyed by A
+    ASSIGNED  (event E, [A], ->B)  -> link A's oldest open row to event E
+    RESOLVED  (event E, completion_time) -> close that row with the real time
+
+A drone-keyed feedback path (ARRIVED/HOLDING) is kept as a FALLBACK so runs
+without a healthy decision_log still record completion when detector == rescuer.
+
+The summary now reports BOTH:
+  * raw per-detection latency (the latency dataset, one row per alert), and
+  * event-level lifecycle from decision_log (events_created/assigned/resolved,
+    completion_ratio, authoritative completion_time / response_time aggregates).
 
 Parameters
 ----------
-mode         local | fog | cloud      which processing path is under test
-scenario     small | medium | large | congestion | failure   (free label)
-run_id       e.g. run_01 ... run_10
-num_drones   number of drone instances launched
-num_victims  GROUND TRUTH victim count in the scene (for success rate; 0=unknown)
-fault        none | fog_down | drone_down | comm_delay   (reliability tag)
-out_dir      output directory (default evaluation/results_real)
-
-Topic sources (all real, already emitted by the system)
--------------------------------------------------------
-fog detection   /fog/victim_alerts        JSON {drone_id, num_persons, detections[]}
-fog decision    /fog/decision_log         JSON {kind: ASSIGNED|RESOLVED, drone, ts}
-completion      /{drone}/mission_feedback JSON {state: ARRIVED|HOLDING|...}
-local detection /{drone}/task/fog Task     VICTIM_DETECTION payload.inference_time_ms
-cloud detection /{drone}/cloud/detection  JSON {total_ms, inference_ms, detections[]}
-utilisation     /{drone}/task/{local,fog,cloud} Task message counts
-battery/status  /{drone}/battery_status, /decision/status   (reliability markers)
+mode local|fog|cloud · scenario · run_id · num_drones · fault
+auto_finish (default true) · grace_sec (default 90) · out_dir
 """
 
 import csv
@@ -63,13 +57,42 @@ except Exception:  # task_msgs not built / workspace not sourced
 
 CSV_FIELDS = [
     "task_id", "mode", "scenario", "run_id", "fault", "num_drones", "drone",
-    "latency_sec", "comm_delay_sec", "completion_time_sec",
-    "detected", "completed", "confidence", "num_persons", "detail",
+    "event_id", "latency_sec", "comm_delay_sec", "completion_time_sec",
+    "response_time_sec", "detected", "completed", "confidence", "num_persons",
+    "detail",
 ]
 
 ARRIVAL_STATES = ("ARRIVED", "HOLDING")
 
 
+# ----------------------------------------------------------------------
+# Pure helpers (no ROS) — unit-testable in isolation
+# ----------------------------------------------------------------------
+def pick_detection_row(records, open_by_drone, reporting_drones):
+    """Oldest still-open, not-yet-linked detection row reported by any of
+    `reporting_drones`. Returns the record index, or None."""
+    best = None
+    for drone in reporting_drones or ():
+        for idx in open_by_drone.get(drone, ()):
+            rec = records[idx]
+            if rec.get("event_id"):
+                continue
+            if best is None or idx < best:
+                best = idx
+    return best
+
+
+def remove_from_open(open_by_drone, drone, idx):
+    q = open_by_drone.get(drone)
+    if not q:
+        return
+    for k, j in enumerate(q):
+        if j == idx:
+            del q[k]
+            return
+
+
+# ----------------------------------------------------------------------
 class MetricsCollector(Node):
     def __init__(self):
         super().__init__("metrics_collector")
@@ -78,37 +101,48 @@ class MetricsCollector(Node):
         self.declare_parameter("scenario", "medium")
         self.declare_parameter("run_id", "run_01")
         self.declare_parameter("num_drones", 3)
-        self.declare_parameter("num_victims", 0)
         self.declare_parameter("fault", "none")
+        self.declare_parameter("auto_finish", True)
+        self.declare_parameter("grace_sec", 90.0)
         self.declare_parameter("out_dir", "evaluation/results_real")
 
         self.mode = str(self.get_parameter("mode").value).lower()
         self.scenario = str(self.get_parameter("scenario").value)
         self.run_id = str(self.get_parameter("run_id").value)
         self.num_drones = int(self.get_parameter("num_drones").value)
-        self.num_victims = int(self.get_parameter("num_victims").value)
         self.fault = str(self.get_parameter("fault").value)
+        self.auto_finish = bool(self.get_parameter("auto_finish").value)
+        self.grace_sec = float(self.get_parameter("grace_sec").value)
         self.out_dir = str(self.get_parameter("out_dir").value)
         os.makedirs(self.out_dir, exist_ok=True)
 
-        # records: one dict per detection event
-        self.records = []
-        # per-drone FIFO of record indices still awaiting decision/completion
-        self.open_by_drone = defaultdict(deque)
-        # utilisation counters: drone -> {local, fog, cloud}
+        self._saved = False
+        self._end_seen = False
+
+        self.records = []                       # one dict per detection alert
+        self.open_by_drone = defaultdict(deque)  # drone -> indices not linked/closed
+        self.row_by_event = {}                  # event_id -> record index
         self.util = defaultdict(lambda: {"local": 0, "fog": 0, "cloud": 0})
-        # coverage (latest /fog/coverage) + energy (battery %) state
         self.coverage = None
         self.batt_first = {}
         self.batt_last = {}
         self.seq = 0
         self.t_start = time.time()
 
-        # ---- Fog path ----
+        # Event-level lifecycle from decision_log (authoritative for completion)
+        self.events_created = set()
+        self.events_assigned = set()
+        self.events_resolved = set()
+        self.event_completion_times = []   # authoritative detection->arrival (s)
+        self.event_response_times = []     # authoritative detection->command (s)
+
+        # ---- Fog / decision path ----
         self.create_subscription(String, "/fog/victim_alerts", self.fog_alert_cb, 10)
         self.create_subscription(String, "/fog/decision_log", self.decision_cb, 10)
         self.create_subscription(String, "/decision/status", self.status_cb, 10)
         self.create_subscription(String, "/fog/coverage", self.coverage_cb, 10)
+        self.create_subscription(
+            String, "/fog/cloud/mission_log", self.mission_end_cb, 10)
 
         # ---- Per-drone ----
         for i in range(self.num_drones):
@@ -135,15 +169,14 @@ class MetricsCollector(Node):
 
         self.get_logger().info(
             f"[METRICS] mode={self.mode} scenario={self.scenario} run={self.run_id} "
-            f"drones={self.num_drones} victims={self.num_victims} fault={self.fault} "
+            f"drones={self.num_drones} fault={self.fault} "
+            f"auto_finish={self.auto_finish} grace={self.grace_sec:.0f}s "
             f"-> {self.out_dir}")
         if not _HAVE_TASK:
             self.get_logger().warn(
                 "[METRICS] task_msgs not importable -> utilisation + local-mode "
                 "latency disabled. Source the workspace before launching.")
 
-    # ------------------------------------------------------------------
-    # helpers
     # ------------------------------------------------------------------
     @staticmethod
     def _max_conf(dets):
@@ -161,9 +194,11 @@ class MetricsCollector(Node):
             "task_id": f"{self.mode}-{self.seq:05d}",
             "mode": self.mode, "scenario": self.scenario, "run_id": self.run_id,
             "fault": self.fault, "num_drones": self.num_drones, "drone": drone,
+            "event_id": "",
             "t_detect": t_detect, "t_decision": None, "t_complete": None,
             "latency_sec": "" if latency is None else round(latency, 4),
             "comm_delay_sec": "", "completion_time_sec": "",
+            "response_time_sec": "",
             "detected": 1, "completed": 0,
             "confidence": confidence, "num_persons": num_persons,
             "detail": detail,
@@ -175,10 +210,13 @@ class MetricsCollector(Node):
         return rec
 
     def _oldest_open(self, drone, field):
-        """Oldest open record for a drone whose `field` is still unset."""
+        """Oldest open (not linked) record for a drone whose `field` is unset."""
         for idx in self.open_by_drone.get(drone, ()):
-            if self.records[idx][field] is None:
-                return self.records[idx]
+            rec = self.records[idx]
+            if rec.get("event_id"):
+                continue
+            if rec[field] is None:
+                return idx
         return None
 
     # ------------------------------------------------------------------
@@ -194,9 +232,11 @@ class MetricsCollector(Node):
         drone = a.get("drone_id", "drone?")
         conf = round(self._max_conf(a.get("detections", [])), 3)
         n = int(a.get("num_persons", 1))
-        self._new_record(drone, time.time(), confidence=conf,
+        infer_ms = float(a.get("inference_time_ms", 0.0))
+        lat = (infer_ms / 1000.0) if infer_ms > 0 else None
+        self._new_record(drone, time.time(), latency=lat, confidence=conf,
                          num_persons=n, detail="fog_alert")
-        self.get_logger().info(f"[DETECT/fog] {drone} conf={conf}")
+        self.get_logger().info(f"[DETECT/fog] {drone} conf={conf} infer={infer_ms:.0f}ms")
 
     def cloud_cb(self, msg, drone):
         if self.mode != "cloud":
@@ -214,16 +254,13 @@ class MetricsCollector(Node):
             drone, time.time(), latency=total_ms / 1000.0,
             confidence=round(self._max_conf(dets), 3),
             num_persons=len(dets), detail="cloud_detection")
-        # comm delay = WAN portion (total - local inference)
         rec["comm_delay_sec"] = round(max(0.0, (total_ms - infer_ms) / 1000.0), 4)
         self.get_logger().info(
             f"[DETECT/cloud] {drone} latency={rec['latency_sec']}s "
             f"(wan={rec['comm_delay_sec']}s)")
 
     def taskfog_cb(self, msg, drone):
-        # utilisation count for the fog tier
         self.util[drone]["fog"] += 1
-        # local-mode detection: VICTIM_DETECTION carries on-drone inference time
         if self.mode != "local":
             return
         if getattr(msg, "task_type", "") != "VICTIM_DETECTION":
@@ -244,55 +281,84 @@ class MetricsCollector(Node):
         self.util[drone][tier] += 1
 
     # ------------------------------------------------------------------
-    # decision + completion handlers
+    # decision lifecycle (link + close by EVENT)
     # ------------------------------------------------------------------
     def decision_cb(self, msg):
-        if self.mode != "fog":
-            return
         try:
             rec = json.loads(msg.data)
         except Exception:
             return
         kind = str(rec.get("kind", "")).upper()
-        drone = rec.get("drone")
-        if drone is None:
+        ev_id = rec.get("event_id")
+
+        if kind == "EVENT_CREATED" and ev_id:
+            self.events_created.add(ev_id)
             return
-        if kind == "ASSIGNED":
-            r = self._oldest_open(drone, "t_decision")
-            if r is not None:
+
+        if kind == "ASSIGNED" and ev_id:
+            self.events_assigned.add(ev_id)
+            reporting = rec.get("reporting_drones") or []
+            # Fall back to the assigned drone if the reporter list is missing.
+            if not reporting and rec.get("drone"):
+                reporting = [rec["drone"]]
+            idx = pick_detection_row(self.records, self.open_by_drone, reporting)
+            if idx is not None:
+                r = self.records[idx]
+                r["event_id"] = ev_id
                 r["t_decision"] = time.time()
-                lat = r["t_decision"] - r["t_detect"]
-                r["latency_sec"] = round(lat, 4)
-                r["comm_delay_sec"] = round(lat, 4)  # alert->command transit+compute
+                # Coordination latency (only if no inference latency was captured)
+                if r["latency_sec"] in ("", None):
+                    lat = round(r["t_decision"] - r["t_detect"], 4)
+                    r["latency_sec"] = lat
+                    r["comm_delay_sec"] = lat
+                remove_from_open(self.open_by_drone, r["drone"], idx)
+                self.row_by_event[ev_id] = idx
                 self.get_logger().info(
-                    f"[DECISION/fog] {drone} latency={r['latency_sec']}s")
-        elif kind == "RESOLVED":
-            self._close(drone)
+                    f"[ASSIGN/{self.mode}] {ev_id} <- detection by {r['drone']}")
+            return
+
+        if kind == "RESOLVED" and ev_id:
+            self.events_resolved.add(ev_id)
+            ct = rec.get("completion_time")
+            rt = rec.get("response_time")
+            if ct is not None:
+                self.event_completion_times.append(float(ct))
+            if rt is not None:
+                self.event_response_times.append(float(rt))
+            idx = self.row_by_event.pop(ev_id, None)
+            if idx is not None:
+                r = self.records[idx]
+                # Authoritative time from decision_node; else our own clock.
+                comp = float(ct) if ct is not None else (time.time() - r["t_detect"])
+                r["completion_time_sec"] = round(comp, 4)
+                if rt is not None:
+                    r["response_time_sec"] = round(float(rt), 4)
+                r["t_complete"] = time.time()
+                r["completed"] = 1
+                self.get_logger().info(
+                    f"[COMPLETE/{self.mode}] {ev_id} {r['drone']} "
+                    f"completion={r['completion_time_sec']}s")
+            return
 
     def feedback_cb(self, msg, drone):
+        """Fallback: close an UNLINKED open row when its own drone arrives.
+        (Primary close path is decision_log RESOLVED, by event.)"""
         try:
             fb = json.loads(msg.data)
         except Exception:
             return
-        if str(fb.get("state", "")).upper() in ARRIVAL_STATES:
-            self._close(drone)
-
-    def _close(self, drone):
-        r = self._oldest_open(drone, "t_complete")
-        if r is None:
+        if str(fb.get("state", "")).upper() not in ARRIVAL_STATES:
             return
+        idx = self._oldest_open(drone, "t_complete")
+        if idx is None:
+            return
+        r = self.records[idx]
         r["t_complete"] = time.time()
         r["completion_time_sec"] = round(r["t_complete"] - r["t_detect"], 4)
         r["completed"] = 1
-        # pop this index from the open queue
-        q = self.open_by_drone.get(drone)
-        if q:
-            for k, idx in enumerate(q):
-                if self.records[idx] is r:
-                    del q[k]
-                    break
+        remove_from_open(self.open_by_drone, drone, idx)
         self.get_logger().info(
-            f"[COMPLETE] {drone} completion={r['completion_time_sec']}s")
+            f"[COMPLETE/fallback] {drone} completion={r['completion_time_sec']}s")
 
     def status_cb(self, msg):
         pass  # reliability marker; presence noted via logs
@@ -303,8 +369,32 @@ class MetricsCollector(Node):
         except Exception:
             pass
 
+    # ------------------------------------------------------------------
+    def mission_end_cb(self, msg):
+        if self._end_seen:
+            return
+        self._end_seen = True
+        self.get_logger().info(
+            "[METRICS] end-of-mission detected (fog flush). "
+            f"Collecting trailing events for {self.grace_sec:.0f}s, then saving.")
+        if self.auto_finish:
+            self._grace_timer = self.create_timer(
+                self.grace_sec, self._auto_finish_once)
+
+    def _auto_finish_once(self):
+        if self._saved:
+            return
+        try:
+            self._grace_timer.cancel()
+        except Exception:
+            pass
+        self.get_logger().info(
+            "[METRICS] grace window elapsed -> saving and shutting down.")
+        self.save()
+        if rclpy.ok():
+            rclpy.shutdown()
+
     def battery_cb(self, msg, drone):
-        # Energy proxy: track battery % over the run -> consumed = first - last.
         m = re.search(r'battery=([\d.]+)', msg.data)
         if not m:
             return
@@ -317,15 +407,13 @@ class MetricsCollector(Node):
         self.batt_last[drone] = pct
 
     # ------------------------------------------------------------------
-    # output
-    # ------------------------------------------------------------------
     def _finalise_rows(self):
-        rows = []
-        for r in self.records:
-            rows.append({k: r.get(k, "") for k in CSV_FIELDS})
-        return rows
+        return [{k: r.get(k, "") for k in CSV_FIELDS} for r in self.records]
 
     def save(self):
+        if self._saved:
+            return
+        self._saved = True
         rows = self._finalise_rows()
         base = f"{self.mode}_{self.scenario}_{self.run_id}"
         csv_path = os.path.join(self.out_dir, base + ".csv")
@@ -334,7 +422,6 @@ class MetricsCollector(Node):
             w.writeheader()
             w.writerows(rows)
 
-        # ---- summary aggregates ----
         lats = [r["latency_sec"] for r in self.records
                 if isinstance(r["latency_sec"], (int, float))]
         comps = [r["completion_time_sec"] for r in self.records
@@ -359,7 +446,6 @@ class MetricsCollector(Node):
             for k in util_total:
                 util_total[k] += d[k]
 
-        # ---- energy proxy: battery % consumed over the run ----
         energy = {}
         total_consumed = 0.0
         for d in self.batt_first:
@@ -374,20 +460,35 @@ class MetricsCollector(Node):
         cov_overall = (self.coverage.get("overall_pct")
                        if isinstance(self.coverage, dict) else None)
 
+        # Event-level lifecycle (authoritative for completion)
+        n_assigned = len(self.events_assigned)
+        n_resolved = len(self.events_resolved)
+        event_completion_ratio = (round(n_resolved / n_assigned, 4)
+                                  if n_assigned else None)
+
         summary = {
             "mode": self.mode, "scenario": self.scenario, "run_id": self.run_id,
             "fault": self.fault, "num_drones": self.num_drones,
-            "num_victims": self.num_victims,
             "duration_sec": round(time.time() - self.t_start, 2),
-            "detections": detections, "completed": completed,
-            "detection_rate": (round(min(1.0, detections / self.num_victims), 4)
-                               if self.num_victims > 0 else None),
-            "success_rate": (round(min(1.0, completed / self.num_victims), 4)
-                             if self.num_victims > 0 else None),
-            "completion_ratio": (round(completed / detections, 4)
-                                 if detections else None),
+            "detection_events": detections,
+            "completed": completed,
+            # completion_ratio is now EVENT-based (resolved / assigned), so many
+            # alerts of one victim no longer dilute it. Falls back to row-based
+            # if no events were assigned (e.g. detector==rescuer feedback path).
+            "completion_ratio": (event_completion_ratio
+                                 if event_completion_ratio is not None
+                                 else (round(completed / detections, 4)
+                                       if detections else None)),
+            "events": {
+                "created": len(self.events_created),
+                "assigned": n_assigned,
+                "resolved": n_resolved,
+            },
             "latency_sec": agg(lats),
-            "completion_time_sec": agg(comps),
+            # Prefer authoritative detection->arrival times from decision_node;
+            # fall back to per-row completion (feedback path) if none.
+            "completion_time_sec": agg(self.event_completion_times or comps),
+            "response_time_sec": agg(self.event_response_times),
             "utilisation": {"per_drone": dict(self.util), "total": util_total},
             "coverage": self.coverage,
             "coverage_overall_pct": cov_overall,
@@ -402,8 +503,8 @@ class MetricsCollector(Node):
             json.dump(summary, f, indent=2)
 
         self.get_logger().info(
-            f"[METRICS SAVED] {csv_path}  ({detections} detections, "
-            f"{completed} completed)  + {json_path}")
+            f"[METRICS SAVED] {csv_path}  ({detections} detection events, "
+            f"{n_resolved} resolved / {n_assigned} assigned)  + {json_path}")
 
 
 def main(args=None):

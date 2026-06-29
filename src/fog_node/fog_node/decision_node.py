@@ -455,14 +455,28 @@ class DecisionNode(Node):
     def _resolve_event(self, ev, drone):
         ev.status = 'RESOLVED'
         ev.resolved_at = time.time()
-        if ev.assigned_at is not None:
-            self.metrics['completion_times'].append(ev.resolved_at - ev.assigned_at)
+        # arrival   = assignment -> arrival (what we already tracked internally)
+        # completion = detection  -> arrival (Task 6 "task completion time")
+        # response   = detection  -> first command
+        arrival = (ev.resolved_at - ev.assigned_at
+                   if ev.assigned_at is not None else None)
+        completion = (ev.resolved_at - ev.first_detection_at
+                      if ev.first_detection_at is not None else None)
+        response = (ev.first_command_at - ev.first_detection_at
+                    if ev.first_command_at is not None else None)
+        if arrival is not None:
+            self.metrics['completion_times'].append(arrival)
         self.metrics['events_resolved'] += 1
         drone.assigned_event = None
         self.get_logger().warn(
             f'[DECISION RESOLVED] {ev.event_id} reached by {drone.drone_id} '
-            f'in {ev.resolved_at - (ev.assigned_at or ev.resolved_at):.1f}s')
-        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id)
+            f'in {arrival if arrival is not None else 0.0:.1f}s '
+            f'(completion={completion if completion is not None else 0.0:.1f}s)')
+        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id, extra={
+            'arrival_time': round(arrival, 4) if arrival is not None else None,
+            'completion_time': round(completion, 4) if completion is not None else None,
+            'response_time': round(response, 4) if response is not None else None,
+        })
         # Send the rescuer into a hold over the victim.
         self._send_command(drone.drone_id, 'HOVER', {
             'world_x': round(ev.world_x, 2),
@@ -489,7 +503,7 @@ class DecisionNode(Node):
     # ==================================================================
     # Helpers
     # ==================================================================
-    def _emit_decision(self, kind, event=None, drone=None, action=None):
+    def _emit_decision(self, kind, event=None, drone=None, action=None, extra=None):
         rec = {'kind': kind, 'ts': time.time()}
         if event is not None:
             rec.update({
@@ -500,11 +514,18 @@ class DecisionNode(Node):
                 'num_reports': event.num_reports,
                 'priority': round(event.priority(), 3),
                 'status': event.status,
+                # The drone(s) that REPORTED this event. The metrics collector
+                # uses this to link the original detection row to the event,
+                # even when the dispatched (nearest) drone differs from the
+                # detector. Without it, detector != rescuer loses completion.
+                'reporting_drones': sorted(event.reporting_drones),
             })
         if drone is not None:
             rec['drone'] = drone
         if action is not None:
             rec['action'] = action
+        if extra:
+            rec.update(extra)
         m = String()
         m.data = json.dumps(rec)
         self.decision_log_pub.publish(m)

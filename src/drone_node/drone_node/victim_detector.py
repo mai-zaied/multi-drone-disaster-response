@@ -20,6 +20,7 @@ import cv2
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import String
 from task_msgs.msg import Task
 
 from drone_node.drone_naming import drone_id_for
@@ -51,6 +52,11 @@ class VictimDetector(Node):
             Image, f'/{self.drone_id}/detection/image', 10)
         self.task_pub = self.create_publisher(
             Task, f'/{self.drone_id}/task/fog', 10)
+        # Energy accounting: tells battery_simulator the drone is running YOLO
+        # on-board (LOCAL mode), so it adds the AI surcharge. This is the whole
+        # point of the local-vs-fog energy comparison.
+        self.task_status_pub = self.create_publisher(
+            String, f'/{self.drone_id}/task_status', 10)
 
         self.get_logger().info(
             f'[DETECTOR] {self.drone_id}: listening on {camera_topic}')
@@ -87,6 +93,11 @@ class VictimDetector(Node):
         start = time.time()
         results = self.model(frame, verbose=False, device='cpu')
         inference_ms = (time.time() - start) * 1000
+
+        # Every frame runs YOLO on the drone -> keep the battery AI surcharge on.
+        st = String()
+        st.data = f'LOCAL_AI_PROCESSING inference={inference_ms:.0f}ms'
+        self.task_status_pub.publish(st)
 
         # Extract person detections above threshold
         detections = []
