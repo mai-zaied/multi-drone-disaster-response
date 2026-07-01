@@ -4,7 +4,7 @@
   "run_id": "run_01",
   "fault": "fog_down",
   "num_drones": 3,
-  "duration_sec": 424.59,
+  "duration_sec": 626.7,
   "detection_events": 0,
   "completed": 0,
   "completion_ratio": null,
@@ -39,60 +39,60 @@
   },
   "utilisation": {
     "per_drone": {
-      "drone1": {
+      "drone0": {
         "local": 0,
         "fog": 0,
-        "cloud": 31
+        "cloud": 37
       },
       "drone2": {
         "local": 0,
         "fog": 0,
-        "cloud": 31
+        "cloud": 36
       },
-      "drone0": {
+      "drone1": {
         "local": 0,
         "fog": 0,
-        "cloud": 31
+        "cloud": 37
       }
     },
     "total": {
       "local": 0,
       "fog": 0,
-      "cloud": 93
+      "cloud": 110
     }
   },
   "coverage": {
-    "overall_pct": 98.68,
-    "covered_bins": 5151,
+    "overall_pct": 96.95,
+    "covered_bins": 5061,
     "total_bins": 5220,
     "per_drone": {
-      "drone0": 100.0,
-      "drone1": 100.0,
-      "drone2": 96.03
+      "drone0": 97.18,
+      "drone1": 97.93,
+      "drone2": 95.75
     },
-    "ts": 1782744777.9941697
+    "ts": 1782909385.9196503
   },
-  "coverage_overall_pct": 98.68,
+  "coverage_overall_pct": 96.95,
   "energy": {
     "per_drone": {
       "drone0": {
-        "start_pct": 98.84,
-        "end_pct": 51.23,
-        "consumed_pct": 47.61
+        "start_pct": 99.54,
+        "end_pct": 32.19,
+        "consumed_pct": 67.35
       },
       "drone2": {
-        "start_pct": 98.84,
-        "end_pct": 51.24,
-        "consumed_pct": 47.6
+        "start_pct": 99.52,
+        "end_pct": 32.41,
+        "consumed_pct": 67.11
       },
       "drone1": {
-        "start_pct": 98.84,
-        "end_pct": 51.36,
-        "consumed_pct": 47.48
+        "start_pct": 99.52,
+        "end_pct": 32.5,
+        "consumed_pct": 67.02
       }
     },
-    "total_consumed_pct": 142.69,
-    "mean_consumed_pct": 47.56
+    "total_consumed_pct": 201.48,
+    "mean_consumed_pct": 67.16
   },
-  "energy_total_pct": 142.69
+  "energy_total_pct": 201.48
 }

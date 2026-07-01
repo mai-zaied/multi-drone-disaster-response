@@ -32,6 +32,17 @@ low-altitude footprint is modelled correctly). Needs the camera bridge per
 drone. Coverage % is reported every 5 s and a final report + ASCII map is
 printed and written to /tmp/fog_coverage_<ts>.txt on end_mission.
 
+DRONE-FAILURE REPARTITIONING (Task 6.9 reliability scenario)
+If a drone becomes unreachable, the fog drops it from the active set and
+REPARTITIONS the search area among the survivors, then re-sends START_MISSION so
+the remaining drones expand their sweep to cover the whole area — the mission
+continues instead of leaving a hole. A failure is triggered either:
+  * deterministically for experiments:  fail_drone_id + fail_after_sec, or
+  * realistically by a telemetry watchdog:  heartbeat_timeout_sec > 0
+Already-covered ground is carried over into the new partition, so survivors don't
+re-sweep what was already done. Failure/repartition events are logged, buffered
+to the cloud archive, and published on /fog/reliability.
+
 All existing contracts (Task message, /fog/{drone}/decision, topic and
 service names) are unchanged.
 """
@@ -182,6 +193,23 @@ class FogServer(Node):
         # automatically (report + cloud flush). Set 0 to disable auto-ending
         # (drones then loop until a manual /fog/end_mission).
         self.declare_parameter('coverage_target_pct', 98.0)
+        # Mean-coverage auto-finish: when the bin-weighted OVERALL coverage across
+        # all active cells reaches this %, end the mission (RTL all + report +
+        # cloud flush). Independent of the per-cell coverage_target_pct above; set
+        # coverage_target_pct:=0.0 to use only this mean-based finish. 0 = disabled.
+        self.declare_parameter('auto_finish_coverage_pct', 0.0)
+
+        # ---- Drone-failure / repartition scenario (Task 6.9) ----
+        # fail_drone_id >= 0 injects a deterministic failure of that instance
+        # fail_after_sec seconds after START_MISSION (for repeatable experiments).
+        # heartbeat_timeout_sec > 0 additionally declares any active drone failed
+        # when its PX4 telemetry goes silent for that long (realistic "unreachable").
+        # On failure the area is repartitioned among the survivors and re-dispatched.
+        self.declare_parameter('fail_drone_id', -1)
+        self.declare_parameter('fail_after_sec', 60.0)
+        self.declare_parameter('fail_action', 'RTL')          # sent to the failed drone
+        self.declare_parameter('heartbeat_timeout_sec', 0.0)  # 0 = auto-detect off
+        self.declare_parameter('repartition_on_failure', True)
 
         self.area_min_x = float(self.get_parameter('area_min_x').value)
         self.area_max_x = float(self.get_parameter('area_max_x').value)
@@ -215,6 +243,14 @@ class FogServer(Node):
         self.coverage_cell_m = float(self.get_parameter('coverage_cell_m').value)
         self.coverage_overlap = float(self.get_parameter('coverage_overlap').value)
         self.coverage_target_pct = float(self.get_parameter('coverage_target_pct').value)
+        self.auto_finish_coverage_pct = float(
+            self.get_parameter('auto_finish_coverage_pct').value)
+
+        self.fail_drone_id = int(self.get_parameter('fail_drone_id').value)
+        self.fail_after_sec = float(self.get_parameter('fail_after_sec').value)
+        self.fail_action = str(self.get_parameter('fail_action').value)
+        self.heartbeat_timeout = float(self.get_parameter('heartbeat_timeout_sec').value)
+        self.repartition = bool(self.get_parameter('repartition_on_failure').value)
 
         # ---- Detection model (loaded only if enabled) ----
         self.model = None
@@ -244,6 +280,11 @@ class FogServer(Node):
         self._cell_done = {}      # drone_id -> True once its cell hit the target
         self._armed = {}
         self._coverage_done = False
+        # ---- Drone-failure state ----
+        self.active_drones = set()      # drone_ids currently in the mission
+        self.failed_drones = set()      # drone_ids declared unreachable
+        self.last_seen = {}             # drone_id -> last telemetry wall-clock
+        self._mission_start_t = None    # set on START_MISSION (for fail_after_sec)
         # Bounds used for the report's ASCII map (set at start_mission)
         self.map_bounds = (self.area_min_x, self.area_max_x,
                            self.area_min_y, self.area_max_y)
@@ -297,6 +338,9 @@ class FogServer(Node):
         # ---- Coverage telemetry (Task 6 metric: Coverage Efficiency) ----
         self.coverage_pub = self.create_publisher(String, '/fog/coverage', 10)
 
+        # ---- Reliability telemetry (Task 6.9: drone failure / repartition) ----
+        self.reliability_pub = self.create_publisher(String, '/fog/reliability', 10)
+
         self.end_mission_srv = self.create_service(
             Trigger, '/fog/end_mission', self.end_mission_callback)
         self.start_mission_srv = self.create_service(
@@ -312,37 +356,56 @@ class FogServer(Node):
             '[FOG] coverage tracking ON (needs the camera bridge per drone)')
 
         self.create_timer(5.0, self.log_stats)
+        # Drone-failure watchdog (injected schedule + telemetry heartbeat).
+        self.create_timer(1.0, self._failure_watchdog)
+        if self.fail_drone_id >= 0:
+            self.get_logger().warn(
+                f'[FOG RELIABILITY] injected failure ARMED: '
+                f'{drone_id_for(self.fail_drone_id)} will fail '
+                f'{self.fail_after_sec:.0f}s after START_MISSION '
+                f'(repartition={self.repartition}).')
+        if self.heartbeat_timeout > 0:
+            self.get_logger().info(
+                f'[FOG RELIABILITY] telemetry watchdog ON '
+                f'(declare failed after {self.heartbeat_timeout:.0f}s silence).')
 
     # ------------------------------------------------------------------
     # Assignment builders
     # ------------------------------------------------------------------
-    def _build_assignments(self):
+    def _build_assignments(self, active_ids=None):
         """
         Returns dict { drone_id : {min_x,max_x,min_y,max_y,cx,cy,zone} }.
         Zone mode: drones assigned to zones round-robin; a zone shared by k
         drones is subdivided into k cells. Rectangle mode: bisection of the
-        one rectangle.
+        one rectangle. `active_ids` (list of drone_ids) partitions among exactly
+        those drones — used after a failure to repartition among survivors.
+        Default (None) = all drones 0..num_drones-1, i.e. the original behaviour.
         """
+        if active_ids is None:
+            active_ids = [drone_id_for(i) for i in range(self.num_drones)]
+        n = len(active_ids)
         assignments = {}
+        if n == 0:
+            return assignments
         if self.use_zones and self.zones_x:
             num_zones = len(self.zones_x)
-            if num_zones > self.num_drones:
+            if num_zones > n:
                 self.get_logger().warn(
-                    f'[FOG] {num_zones} zones but only {self.num_drones} '
-                    f'drone(s): zones {self.num_drones}..{num_zones - 1} '
+                    f'[FOG] {num_zones} zones but only {n} '
+                    f'active drone(s): zones {n}..{num_zones - 1} '
                     f'will NOT be scanned.')
-            # Round-robin drones onto zones
-            groups = {}   # zone_idx -> [drone instances]
-            for i in range(self.num_drones):
-                z = i % num_zones
-                groups.setdefault(z, []).append(i)
+            # Round-robin active drones onto zones
+            groups = {}   # zone_idx -> [drone_ids]
+            for k, did in enumerate(active_ids):
+                z = k % num_zones
+                groups.setdefault(z, []).append(did)
             for z, members in sorted(groups.items()):
                 zx, zy = self.zones_x[z], self.zones_y[z]
                 h = self.zone_half
                 cells = partition_area(zx - h, zx + h, zy - h, zy + h,
                                        len(members))
-                for inst, (x0, x1, y0, y1) in zip(members, cells):
-                    assignments[drone_id_for(inst)] = {
+                for did, (x0, x1, y0, y1) in zip(members, cells):
+                    assignments[did] = {
                         'min_x': round(x0, 2), 'max_x': round(x1, 2),
                         'min_y': round(y0, 2), 'max_y': round(y1, 2),
                         'cx': round((x0 + x1) / 2, 2),
@@ -351,15 +414,14 @@ class FogServer(Node):
                     }
         else:
             cells = partition_area(self.area_min_x, self.area_max_x,
-                                   self.area_min_y, self.area_max_y,
-                                   self.num_drones)
-            for i, (x0, x1, y0, y1) in enumerate(cells):
-                assignments[drone_id_for(i)] = {
+                                   self.area_min_y, self.area_max_y, n)
+            for idx, (did, (x0, x1, y0, y1)) in enumerate(zip(active_ids, cells)):
+                assignments[did] = {
                     'min_x': round(x0, 2), 'max_x': round(x1, 2),
                     'min_y': round(y0, 2), 'max_y': round(y1, 2),
                     'cx': round((x0 + x1) / 2, 2),
                     'cy': round((y0 + y1) / 2, 2),
-                    'zone': i,
+                    'zone': idx,
                 }
         return assignments
 
@@ -375,6 +437,7 @@ class FogServer(Node):
     # ------------------------------------------------------------------
     def status_callback(self, msg: VehicleStatus, drone_id: str):
         self.stats[drone_id]['status'] += 1
+        self.last_seen[drone_id] = time.time()
 
         is_armed = (msg.arming_state == 2)
         if is_armed and not self._armed[drone_id]:
@@ -396,6 +459,7 @@ class FogServer(Node):
 
     def local_pos_callback(self, msg: VehicleLocalPosition, drone_id: str):
         self.local_pos[drone_id] = msg
+        self.last_seen[drone_id] = time.time()
 
     # ------------------------------------------------------------------
     def task_callback(self, msg: Task, drone_id: str):
@@ -665,13 +729,12 @@ class FogServer(Node):
         return response
 
     # ------------------------------------------------------------------
-    def start_mission_callback(self, request, response):
-        assignments = self._build_assignments()
-
-        self.cov_grid = {}
-        self.coverage_pct = {}
-        self._cell_done = {}
-        self._coverage_done = False
+    def _dispatch_assignments(self, assignments, header='START_MISSION'):
+        """Build a fresh coverage grid per assigned drone, set map bounds, and
+        publish START_MISSION to each. Shared by the initial start and by a
+        post-failure repartition, so both use identical mission geometry."""
+        if not assignments:
+            return
 
         # Map bounds = union of all assigned cells (plus a small border)
         mnx = min(a['min_x'] for a in assignments.values()) - 5
@@ -683,31 +746,29 @@ class FogServer(Node):
         swath_w = 2.0 * self.scan_altitude * self._tan_half_h
         rec_lane = swath_w * (1.0 - self.coverage_overlap)
         # Along-track capture spacing: footprint LENGTH x (1 - overlap).
-        # This is the "move one footprint, capture, move again" rule, with an
-        # overlap margin (standard survey frontlap practice).
         footprint_l = 2.0 * self.scan_altitude * self._tan_half_v
         capture_spacing = round(footprint_l * (1.0 - self.coverage_overlap), 1)
 
-        self.get_logger().info('[FOG START_MISSION] ' + '=' * 50)
+        self.get_logger().info(f'[FOG {header}] ' + '=' * 50)
         if self.use_zones:
             zones_str = ', '.join(
                 f'zone{z}@({self.zones_x[z]},{self.zones_y[z]})'
                 for z in range(len(self.zones_x)))
             self.get_logger().info(
-                f'[FOG START_MISSION] DISASTER ZONES: {zones_str} '
+                f'[FOG {header}] DISASTER ZONES: {zones_str} '
                 f'(each a {2 * self.zone_half:.0f}x{2 * self.zone_half:.0f} m box)')
         else:
             self.get_logger().info(
-                f'[FOG START_MISSION] AREA TO COVER: '
+                f'[FOG {header}] AREA TO COVER: '
                 f'X[{self.area_min_x},{self.area_max_x}] '
                 f'Y[{self.area_min_y},{self.area_max_y}]')
         self.get_logger().info(
-            f'[FOG START_MISSION] transit_alt={self.transit_altitude}m, '
+            f'[FOG {header}] transit_alt={self.transit_altitude}m, '
             f'scan_alt={self.scan_altitude}m, scan swath={swath_w:.1f}m '
             f'-> set commander lane_spacing <= {rec_lane:.1f}m; '
             f'capture_spacing={capture_spacing}m (for stop_and_go).')
         self.get_logger().info(
-            f'[FOG START_MISSION] ASSIGNMENTS ({len(assignments)} drone(s)):')
+            f'[FOG {header}] ASSIGNMENTS ({len(assignments)} drone(s)):')
 
         for drone_id, a in assignments.items():
             self.cov_grid[drone_id] = CoverageGrid(
@@ -734,17 +795,153 @@ class FogServer(Node):
             m.data = json.dumps({'command': 'START_MISSION', 'target': tgt})
             self.mission_cmd_publishers[drone_id].publish(m)
             self.get_logger().info(
-                f'[FOG START_MISSION]   {drone_id} -> zone {a["zone"]}: '
+                f'[FOG {header}]   {drone_id} -> zone {a["zone"]}: '
                 f'cell X[{a["min_x"]},{a["max_x"]}] Y[{a["min_y"]},{a["max_y"]}] '
                 f'transit@{self.transit_altitude}m scan@{self.scan_altitude}m '
                 f'{spawn_str}')
 
-        self.get_logger().info('[FOG START_MISSION] ' + '=' * 50)
+        self.get_logger().info(f'[FOG {header}] ' + '=' * 50)
+
+    def start_mission_callback(self, request, response):
+        assignments = self._build_assignments()
+
+        self.cov_grid = {}
+        self.coverage_pct = {}
+        self._cell_done = {}
+        self._coverage_done = False
+
+        # Reset failure/repartition tracking for this mission.
+        self.active_drones = set(assignments.keys())
+        self.failed_drones = set()
+        self._mission_start_t = time.time()
+        now = self._mission_start_t
+        for d in assignments:
+            self.last_seen[d] = now
+
+        self._dispatch_assignments(assignments, header='START_MISSION')
+
         response.success = True
         response.message = (
             f'Mission started: {len(assignments)} drone(s) assigned '
             f'({"zones" if self.use_zones else "rectangle"} mode).')
         return response
+
+    # ------------------------------------------------------------------
+    # Drone-failure handling + repartition (Task 6.9 reliability)
+    # ------------------------------------------------------------------
+    def _failure_watchdog(self):
+        """Fires at 1 Hz. Triggers the injected failure on schedule and/or
+        declares a drone failed when its telemetry goes silent."""
+        if self._mission_start_t is None:
+            return
+        now = time.time()
+        elapsed = now - self._mission_start_t
+
+        # (1) Deterministic injected failure (repeatable experiments)
+        if self.fail_drone_id >= 0:
+            did = drone_id_for(self.fail_drone_id)
+            if did in self.active_drones and elapsed >= self.fail_after_sec:
+                self._handle_drone_failure(did, f'injected @T+{elapsed:.0f}s')
+
+        # (2) Telemetry heartbeat (realistic "unreachable")
+        if self.heartbeat_timeout > 0 and elapsed > self.heartbeat_timeout:
+            for did in list(self.active_drones):
+                ls = self.last_seen.get(did)
+                if ls is not None and (now - ls) > self.heartbeat_timeout:
+                    self._handle_drone_failure(
+                        did, f'no telemetry for {now - ls:.1f}s')
+
+    def _handle_drone_failure(self, drone_id, reason):
+        if drone_id not in self.active_drones:
+            return  # idempotent — already handled
+
+        # Capture progress-so-far BEFORE we tear anything down, so survivors
+        # inherit already-covered ground (including the failed drone's).
+        old_grids = list(self.cov_grid.values())
+
+        self.active_drones.discard(drone_id)
+        self.failed_drones.add(drone_id)
+        self._cell_done.pop(drone_id, None)
+
+        self.get_logger().error('[FOG RELIABILITY] ' + '!' * 50)
+        self.get_logger().error(
+            f'[FOG RELIABILITY] DRONE FAILURE: {drone_id} unreachable '
+            f'({reason}). Survivors: {sorted(self.active_drones) or "NONE"}.')
+        self._record_event('DRONE_FAILED', drone_id, {
+            'reason': reason, 'active_remaining': sorted(self.active_drones)})
+        self._publish_reliability('DRONE_FAILED', drone_id, reason)
+
+        # Best-effort: tell the failed drone to leave the airspace (it may be
+        # unreachable, in which case this simply goes nowhere).
+        if self.fail_action and drone_id in self.mission_cmd_publishers:
+            m = String()
+            m.data = json.dumps({'command': self.fail_action})
+            self.mission_cmd_publishers[drone_id].publish(m)
+
+        if self.repartition and self.active_drones:
+            self._repartition(old_grids, reason)
+        elif not self.active_drones:
+            self.get_logger().error(
+                '[FOG RELIABILITY] no active drones left — ending mission.')
+            self._finish_mission()
+        else:
+            # No repartition: just drop the failed drone from coverage stats so
+            # completion no longer waits on its cell.
+            self.cov_grid.pop(drone_id, None)
+            self.coverage_pct.pop(drone_id, None)
+        self.get_logger().error('[FOG RELIABILITY] ' + '!' * 50)
+
+    def _repartition(self, old_grids, reason):
+        """Repartition the whole area among the surviving drones and re-dispatch,
+        carrying over already-covered ground so they don't re-sweep it."""
+        active = sorted(self.active_drones)
+        assignments = self._build_assignments(active_ids=active)
+
+        # Fresh grids for the survivors' NEW (larger) cells.
+        self.cov_grid = {}
+        self.coverage_pct = {}
+        self._cell_done = {}
+        self._coverage_done = False
+
+        self.get_logger().warn(
+            f'[FOG REPARTITION] area split among {len(active)} survivor(s): '
+            f'{active}')
+        self._dispatch_assignments(assignments, header='REPARTITION')
+
+        # Carry over previously-covered ground into the new grids.
+        seeded = 0
+        for og in old_grids:
+            for (i, j) in og.covered:
+                x = og.min_x + (i + 0.5) * og.cell
+                y = og.min_y + (j + 0.5) * og.cell
+                for g in self.cov_grid.values():
+                    if g.contains(x, y):
+                        g.mark_footprint(x, y, g.cell * 0.4, g.cell * 0.4)
+                        seeded += 1
+                        break
+        for d, g in self.cov_grid.items():
+            self.coverage_pct[d] = g.pct()
+        if seeded:
+            self.get_logger().info(
+                f'[FOG REPARTITION] carried over {seeded} covered bin(s); '
+                f'survivor coverage now '
+                + ' '.join(f'{d}={p:.0f}%' for d, p in
+                           sorted(self.coverage_pct.items())))
+
+        self._record_event('REPARTITION', 'fog', {
+            'reason': reason, 'active': active,
+            'cells': {d: [a['min_x'], a['max_x'], a['min_y'], a['max_y']]
+                      for d, a in assignments.items()}})
+        self._publish_reliability('REPARTITION', ','.join(active), reason)
+
+    def _publish_reliability(self, event, who, reason):
+        msg = String()
+        msg.data = json.dumps({
+            'event': event, 'drone': who, 'reason': reason,
+            'active': sorted(self.active_drones),
+            'failed': sorted(self.failed_drones),
+            'ts': time.time()})
+        self.reliability_pub.publish(msg)
 
     # ------------------------------------------------------------------
     def log_stats(self):
@@ -774,6 +971,18 @@ class FogServer(Node):
                 'ts': time.time(),
             })
             self.coverage_pub.publish(cov_msg)
+
+            # Mean-coverage auto-finish (Task 6): end once overall coverage of the
+            # active cells reaches the threshold. Works with survivor-only cells
+            # after a repartition, so the drone-failure run still ends cleanly.
+            if (self.auto_finish_coverage_pct > 0.0 and not self._coverage_done
+                    and overall_pct >= self.auto_finish_coverage_pct):
+                self._coverage_done = True
+                self.get_logger().info(
+                    f'[FOG COVERAGE] overall {overall_pct:.1f}% >= '
+                    f'{self.auto_finish_coverage_pct:.0f}% target — '
+                    f'mission complete, finishing.')
+                self._finish_mission()
 
         cur_len = len(self.event_buffer)
         if cur_len != self._prev_buffer_len:

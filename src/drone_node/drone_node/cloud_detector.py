@@ -1,36 +1,37 @@
 #!/usr/bin/env python3
 """
-cloud_detector.py — simulated CLOUD-tier victim detection (Task 6 baseline).
+cloud_detector.py — simulated CLOUD-tier victim detection (Task 6 baseline B:
+"fog unavailable -> offload + detect on the cloud").
 
 Models the cloud path: the drone uploads a frame over a slow WAN, the cloud runs
-YOLO, and the result comes back a round-trip later. Used for the local-vs-fog-vs
--cloud comparison and the "fog unavailable -> offload to cloud" scenario.
+YOLO, and the result comes back a round-trip later.
 
-WHAT CHANGED vs the old version
--------------------------------
-1. NON-BLOCKING WAN delay. The old node did `time.sleep(1-3 s)` inside the camera
-   callback, freezing the whole executor every frame. Now the latest frame is
-   cached, inference runs on a timer, and the result is queued for delayed
-   publication (a 20 Hz pump releases it when its WAN round-trip elapses). The
-   executor never blocks.
+WHAT CHANGED vs the previous version (the time-metric fix)
+---------------------------------------------------------
+The previous node sampled the camera at 1 Hz (process_period=1.0) while the
+camera bridge publishes at 2 Hz. Over a ~7 min run it processed only ~30 frames
+per drone and therefore CAUGHT THE STATIC VICTIM ZERO TIMES -> zero
+/fog/victim_alerts -> the collector recorded latency/completion/response = null
+for the whole cloud scenario.
 
-2. FEEDS THE COORDINATOR. The old node published ONLY /{drone}/cloud/detection,
-   so decision_node never saw cloud detections and cloud-mode completion could
-   never close. Now it ALSO publishes /fog/victim_alerts (after the WAN delay),
-   so decision_node dispatches a rescuer and completion time is recorded.
-
-3. ENERGY ACCOUNTING. Emits a CLOUD_UPLOAD marker on /{drone}/task_status so the
-   battery sim adds the (small) upload surcharge, and a /{drone}/task/cloud Task
-   for utilisation counting (Task 6.10).
+Fixes:
+  1. PROCESS AT THE BRIDGE RATE. process_period now defaults to 0.5 s (= 2 Hz),
+     so every published frame is inferred, matching how fog_server detects. This
+     is what makes the victim reliably caught and the cloud latency recorded.
+  2. FRAME-STARVATION WATCHDOG. If no camera frames arrive for a few seconds the
+     node logs a clear warning, so a silent "0 detections" run can never happen
+     again without an obvious reason on screen (check the bridges / QoS / topic).
+  3. Still NON-BLOCKING WAN delay (timer + delayed-release pump) and still feeds
+     the coordinator via /fog/victim_alerts so completion time closes.
 
 Topics out:
   /{drone}/cloud/detection   JSON {total_ms, inference_ms, wan_delay_ms, detections}
   /fog/victim_alerts         JSON {drone_id, num_persons, detections, inference_time_ms}
-  /{drone}/task_status       'CLOUD_UPLOAD ...'   (battery surcharge)
-  /{drone}/task/cloud        Task                  (utilisation)
+  /{drone}/task_status       'CLOUD_UPLOAD ...'   (battery upload surcharge)
+  /{drone}/task/cloud        Task                  (utilisation, Task 6.10)
 
-Params: instance, wan_min (1.0), wan_max (3.0), process_period (1.0),
-        conf_threshold (0.25), emit_victim_alerts (true).
+Params: instance, wan_min (1.0), wan_max (3.0), process_period (0.5),
+        conf_threshold (0.25), emit_victim_alerts (true), starvation_warn_sec (4.0).
 """
 
 import os
@@ -69,9 +70,10 @@ class CloudDetector(Node):
         self.declare_parameter('instance', 0)
         self.declare_parameter('wan_min', 1.0)
         self.declare_parameter('wan_max', 3.0)
-        self.declare_parameter('process_period', 1.0)
+        self.declare_parameter('process_period', 0.5)   # was 1.0; match 2 Hz bridge
         self.declare_parameter('conf_threshold', 0.25)
         self.declare_parameter('emit_victim_alerts', True)
+        self.declare_parameter('starvation_warn_sec', 4.0)
 
         self.instance = int(self.get_parameter('instance').value)
         self.drone_id = drone_id_for(self.instance)
@@ -80,13 +82,17 @@ class CloudDetector(Node):
         self.process_period = float(self.get_parameter('process_period').value)
         self.conf_th = float(self.get_parameter('conf_threshold').value)
         self.emit_alerts = bool(self.get_parameter('emit_victim_alerts').value)
+        self.starvation_warn = float(self.get_parameter('starvation_warn_sec').value)
 
         from ultralytics import YOLO
         self.model = YOLO('yolov8n.pt')
+        # Warmup so the first real inference isn't a multi-second stall.
+        self.model(np.zeros((480, 640, 3), dtype=np.uint8),
+                   verbose=False, device='cpu')
         self.get_logger().info(
             f'[CLOUD DETECTOR] {self.drone_id}: YOLOv8n loaded, '
             f'WAN {self.wan_min}-{self.wan_max}s (non-blocking), '
-            f'inference every {self.process_period}s')
+            f'inference every {self.process_period}s (matches 2 Hz bridge)')
 
         self.create_subscription(
             Image, f'/{self.drone_id}/camera/image', self.camera_callback, 1)
@@ -102,24 +108,48 @@ class CloudDetector(Node):
 
         self.latest_frame = None
         self.frame_count = 0
+        self.processed_count = 0
+        self.last_frame_time = None
+        self.last_starv_warn = 0.0
         self.pending = deque()   # (due_at, result_dict)
 
         self.create_timer(self.process_period, self.process_latest)
-        self.create_timer(0.05, self.pump_pending)   # 20 Hz release
+        self.create_timer(0.05, self.pump_pending)        # 20 Hz release
+        self.create_timer(2.0, self.check_starvation)     # frame watchdog
 
     # ------------------------------------------------------------------
     def camera_callback(self, msg: Image):
         self.frame_count += 1
+        self.last_frame_time = time.time()
         try:
             self.latest_frame = np.frombuffer(msg.data, dtype=np.uint8).reshape(
                 msg.height, msg.width, 3).copy()
         except ValueError:
             self.latest_frame = None
 
+    def check_starvation(self):
+        """Make a silent 'no frames -> 0 detections' run impossible to miss."""
+        now = time.time()
+        if self.last_frame_time is None:
+            if now - self.last_starv_warn > self.starvation_warn:
+                self.last_starv_warn = now
+                self.get_logger().warn(
+                    f'[CLOUD DETECTOR] {self.drone_id}: NO camera frames yet on '
+                    f'/{self.drone_id}/camera/image -> cloud detection cannot run. '
+                    f'Is camera_bridge_simple (instance={self.instance}) up?')
+            return
+        gap = now - self.last_frame_time
+        if gap > self.starvation_warn and now - self.last_starv_warn > self.starvation_warn:
+            self.last_starv_warn = now
+            self.get_logger().warn(
+                f'[CLOUD DETECTOR] {self.drone_id}: no camera frame for {gap:.1f}s '
+                f'(received={self.frame_count}, processed={self.processed_count}).')
+
     def process_latest(self):
         frame = self.latest_frame
         if frame is None:
             return
+        self.processed_count += 1
 
         # The drone is uploading a frame right now -> battery upload surcharge.
         ts = String()

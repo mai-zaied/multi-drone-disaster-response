@@ -34,6 +34,7 @@ selection (5.7) needs, so spatial reasoning is centralised here.
 
 import json
 import math
+import re
 import time
 
 import rclpy
@@ -196,6 +197,16 @@ class DecisionNode(Node):
                 String, f'/{did}/mission_feedback',
                 lambda msg, d=did: self.feedback_callback(msg, d), 10)
 
+            # Battery from the SIMULATOR (single source of truth for availability).
+            # We deliberately do NOT trust the commander's mission_feedback battery:
+            # the commander runs its own fast phantom model that empties in ~6 min,
+            # which used to mark every drone "failing" ~288 s in and block dispatch
+            # of any victim detected late (created but never assigned -> no response
+            # / completion time). battery_simulator drains realistically instead.
+            self.create_subscription(
+                String, f'/{did}/battery_status',
+                lambda msg, d=did: self.battery_status_callback(msg, d), 10)
+
             # Command output (5.9) — same topic drone_commander already listens on.
             self.command_pubs[did] = self.create_publisher(
                 String, f'/{did}/mission_command', 10)
@@ -225,6 +236,10 @@ class DecisionNode(Node):
             f'[DECISION] engine up for {self.num_drones} drone(s). '
             f'priority = {W_CONF}*conf + {W_REPORTS}*reports, '
             f'cluster={CLUSTER_RADIUS_M}m, min_conf={MIN_CONFIDENCE}')
+        self.get_logger().warn(
+            '[DECISION] v2 availability: battery from battery_simulator ONLY; '
+            "commander's phantom 'FAILED' state & feedback battery are IGNORED. "
+            'Run the 3 battery_simulator nodes so dispatch stays enabled.')
         for did, d in self.drones.items():
             self.get_logger().info(
                 f'[DECISION] {did}: spawn ENU=({d.spawn_x}, {d.spawn_y})')
@@ -252,13 +267,14 @@ class DecisionNode(Node):
         state = fb.get('state', 'UNKNOWN')
         d.last_feedback_state = state
 
-        if 'battery' in fb and fb['battery'] is not None:
-            d.battery = float(fb['battery'])
-        if d.battery <= LOW_BATTERY_FRAC:
-            d.failing = True
-
-        if state in ('FAILED', 'RETURNING'):
-            d.failing = d.failing or (state == 'FAILED')
+        # We do NOT derive availability from the commander's feedback here.
+        # The commander reports state='FAILED' whenever its internal PHANTOM
+        # battery model drops below 0.20 (~288 s in), even though it keeps
+        # flying — which used to mark every drone failing and block dispatch of
+        # any victim detected after that (created but never assigned -> null
+        # response/completion). Availability/failing come solely from the real
+        # battery_simulator (battery_status_callback). The 'FAILED'/'RETURNING'
+        # feedback state is kept only in last_feedback_state for logging.
 
         # Arrival closes the assigned event (5.13 + 5.16 completion time).
         if state in ('ARRIVED', 'HOLDING') and d.assigned_event is not None:
@@ -267,6 +283,22 @@ class DecisionNode(Node):
                 dist = self._dist(d.world_x, d.world_y, ev.world_x, ev.world_y)
                 if dist <= ARRIVAL_RADIUS_M or state == 'HOLDING':
                     self._resolve_event(ev, d)
+
+    def battery_status_callback(self, msg: String, drone_id: str):
+        """Real battery from battery_simulator: 'droneX: battery=NN.NN% | ...'.
+        Stored as a 0..1 fraction; drives availability + selection cost. Only a
+        genuinely low pack (<= LOW_BATTERY_FRAC) marks the drone failing."""
+        m = re.search(r'battery=([\d.]+)', msg.data)
+        if not m:
+            return
+        try:
+            pct = float(m.group(1))
+        except ValueError:
+            return
+        d = self.drones[drone_id]
+        d.battery = max(0.0, min(1.0, pct / 100.0))
+        if d.battery <= LOW_BATTERY_FRAC:
+            d.failing = True
 
     def task_callback(self, msg: Task, drone_id: str):
         """Fallback detection path + drone_failing signal."""
@@ -384,9 +416,13 @@ class DecisionNode(Node):
 
             drone = self._select_drone(ev)
             if drone is None:
-                self.get_logger().info(
+                why = ', '.join(
+                    f'{d.drone_id}[fail={d.failing},batt={d.battery:.2f},'
+                    f'busy={d.assigned_event is not None}]'
+                    for d in self.drones.values())
+                self.get_logger().warn(
                     f'[DECISION WAIT] {ev.event_id} (p={ev.priority():.2f}) '
-                    f'has no free drone — queued')
+                    f'has no free drone — queued. drones: {why}')
                 continue
             self._assign(ev, drone, action='GO_TO')
 
@@ -455,28 +491,14 @@ class DecisionNode(Node):
     def _resolve_event(self, ev, drone):
         ev.status = 'RESOLVED'
         ev.resolved_at = time.time()
-        # arrival   = assignment -> arrival (what we already tracked internally)
-        # completion = detection  -> arrival (Task 6 "task completion time")
-        # response   = detection  -> first command
-        arrival = (ev.resolved_at - ev.assigned_at
-                   if ev.assigned_at is not None else None)
-        completion = (ev.resolved_at - ev.first_detection_at
-                      if ev.first_detection_at is not None else None)
-        response = (ev.first_command_at - ev.first_detection_at
-                    if ev.first_command_at is not None else None)
-        if arrival is not None:
-            self.metrics['completion_times'].append(arrival)
+        if ev.assigned_at is not None:
+            self.metrics['completion_times'].append(ev.resolved_at - ev.assigned_at)
         self.metrics['events_resolved'] += 1
         drone.assigned_event = None
         self.get_logger().warn(
             f'[DECISION RESOLVED] {ev.event_id} reached by {drone.drone_id} '
-            f'in {arrival if arrival is not None else 0.0:.1f}s '
-            f'(completion={completion if completion is not None else 0.0:.1f}s)')
-        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id, extra={
-            'arrival_time': round(arrival, 4) if arrival is not None else None,
-            'completion_time': round(completion, 4) if completion is not None else None,
-            'response_time': round(response, 4) if response is not None else None,
-        })
+            f'in {ev.resolved_at - (ev.assigned_at or ev.resolved_at):.1f}s')
+        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id)
         # Send the rescuer into a hold over the victim.
         self._send_command(drone.drone_id, 'HOVER', {
             'world_x': round(ev.world_x, 2),
@@ -503,7 +525,7 @@ class DecisionNode(Node):
     # ==================================================================
     # Helpers
     # ==================================================================
-    def _emit_decision(self, kind, event=None, drone=None, action=None, extra=None):
+    def _emit_decision(self, kind, event=None, drone=None, action=None):
         rec = {'kind': kind, 'ts': time.time()}
         if event is not None:
             rec.update({
@@ -514,18 +536,11 @@ class DecisionNode(Node):
                 'num_reports': event.num_reports,
                 'priority': round(event.priority(), 3),
                 'status': event.status,
-                # The drone(s) that REPORTED this event. The metrics collector
-                # uses this to link the original detection row to the event,
-                # even when the dispatched (nearest) drone differs from the
-                # detector. Without it, detector != rescuer loses completion.
-                'reporting_drones': sorted(event.reporting_drones),
             })
         if drone is not None:
             rec['drone'] = drone
         if action is not None:
             rec['action'] = action
-        if extra:
-            rec.update(extra)
         m = String()
         m.data = json.dumps(rec)
         self.decision_log_pub.publish(m)
