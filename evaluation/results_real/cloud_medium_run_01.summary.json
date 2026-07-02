@@ -4,7 +4,7 @@
   "run_id": "run_01",
   "fault": "fog_down",
   "num_drones": 3,
-  "duration_sec": 626.7,
+  "duration_sec": 460.94,
   "detection_events": 0,
   "completed": 0,
   "completion_ratio": null,
@@ -42,57 +42,57 @@
       "drone0": {
         "local": 0,
         "fog": 0,
-        "cloud": 37
+        "cloud": 51
       },
       "drone2": {
         "local": 0,
         "fog": 0,
-        "cloud": 36
+        "cloud": 50
       },
       "drone1": {
         "local": 0,
         "fog": 0,
-        "cloud": 37
+        "cloud": 51
       }
     },
     "total": {
       "local": 0,
       "fog": 0,
-      "cloud": 110
+      "cloud": 152
     }
   },
   "coverage": {
-    "overall_pct": 96.95,
-    "covered_bins": 5061,
+    "overall_pct": 96.57,
+    "covered_bins": 5041,
     "total_bins": 5220,
     "per_drone": {
-      "drone0": 97.18,
+      "drone0": 97.13,
       "drone1": 97.93,
-      "drone2": 95.75
+      "drone2": 94.66
     },
-    "ts": 1782909385.9196503
+    "ts": 1782992082.7862573
   },
-  "coverage_overall_pct": 96.95,
+  "coverage_overall_pct": 96.57,
   "energy": {
     "per_drone": {
-      "drone0": {
-        "start_pct": 99.54,
-        "end_pct": 32.19,
-        "consumed_pct": 67.35
-      },
       "drone2": {
-        "start_pct": 99.52,
-        "end_pct": 32.41,
-        "consumed_pct": 67.11
+        "start_pct": 99.53,
+        "end_pct": 47.3,
+        "consumed_pct": 52.23
+      },
+      "drone0": {
+        "start_pct": 99.06,
+        "end_pct": 46.67,
+        "consumed_pct": 52.39
       },
       "drone1": {
-        "start_pct": 99.52,
-        "end_pct": 32.5,
-        "consumed_pct": 67.02
+        "start_pct": 99.2,
+        "end_pct": 46.93,
+        "consumed_pct": 52.27
       }
     },
-    "total_consumed_pct": 201.48,
-    "mean_consumed_pct": 67.16
+    "total_consumed_pct": 156.89,
+    "mean_consumed_pct": 52.3
   },
-  "energy_total_pct": 201.48
+  "energy_total_pct": 156.89
 }

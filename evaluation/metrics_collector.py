@@ -136,6 +136,7 @@ class MetricsCollector(Node):
         self.events_resolved = set()
         self.event_completion_times = []   # authoritative detection->arrival (s)
         self.event_response_times = []     # authoritative detection->command (s)
+        self._resp_recorded = set()        # events whose response_time is logged
 
         # ---- Fog / decision path ----
         self.create_subscription(String, "/fog/victim_alerts", self.fog_alert_cb, 10)
@@ -334,10 +335,22 @@ class MetricsCollector(Node):
                     lat = round(r["t_decision"] - r["t_detect"], 4)
                     r["latency_sec"] = lat
                     r["comm_delay_sec"] = lat
+                # RESPONSE TIME (detection -> command) is known NOW, at assignment.
+                # Record it here so it is captured even if the drone never reaches
+                # the victim (e.g. the mission ends first, or SCAN vs GO_TO).
+                # Completion time is still recorded later on RESOLVED (arrival).
+                if ev_id not in self._resp_recorded:
+                    rt = rec.get("response_time")
+                    rt = (float(rt) if rt is not None
+                          else round(r["t_decision"] - r["t_detect"], 4))
+                    r["response_time_sec"] = round(rt, 4)
+                    self.event_response_times.append(round(rt, 4))
+                    self._resp_recorded.add(ev_id)
                 remove_from_open(self.open_by_drone, r["drone"], idx)
                 self.row_by_event[ev_id] = idx
                 self.get_logger().info(
-                    f"[ASSIGN/{self.mode}] {ev_id} <- detection by {r['drone']}")
+                    f"[ASSIGN/{self.mode}] {ev_id} <- detection by {r['drone']} "
+                    f"response={r['response_time_sec']}s")
             return
 
         if kind == "RESOLVED" and ev_id:
@@ -346,8 +359,11 @@ class MetricsCollector(Node):
             rt = rec.get("response_time")
             if ct is not None:
                 self.event_completion_times.append(float(ct))
-            if rt is not None:
+            # Response is normally recorded at ASSIGNED; only add here if that
+            # event was never seen assigned (e.g. an ASSIGNED msg was missed).
+            if rt is not None and ev_id not in self._resp_recorded:
                 self.event_response_times.append(float(rt))
+                self._resp_recorded.add(ev_id)
             idx = self.row_by_event.pop(ev_id, None)
             if idx is not None:
                 r = self.records[idx]
