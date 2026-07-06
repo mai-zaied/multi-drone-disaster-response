@@ -1,0 +1,1 @@
+task_id,mode,scenario,run_id,fault,num_drones,drone,event_id,latency_sec,comm_delay_sec,completion_time_sec,response_time_sec,detected,completed,confidence,num_persons,detail
