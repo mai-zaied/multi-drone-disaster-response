@@ -1,10 +1,29 @@
 """
 victim_detector.py
 
-Victim detection node using YOLOv8n on CPU.
+LOCAL-tier victim detection node using YOLOv8n on CPU (Task 6 baseline C:
+"fog + cloud unavailable -> detect on the drone itself").
 
-Subscribes to /droneN/camera/image, runs person detection,
-publishes annotated image and detection Task messages.
+Subscribes to /droneN/camera/image, runs person detection, and publishes:
+  /{drone}/detection/image   annotated frame
+  /{drone}/task/fog          Task VICTIM_DETECTION  (utilisation: local tier)
+  /{drone}/task_status       'LOCAL_AI_PROCESSING'  (battery AI surcharge)
+  /fog/victim_alerts         JSON alert  <-- THIS IS THE FIX
+
+WHY THE /fog/victim_alerts PUBLICATION MATTERS (the time-metric fix)
+-------------------------------------------------------------------
+metrics_collector reads detection LATENCY from a single unified contract:
+    /fog/victim_alerts -> inference_time_ms
+and it closes COMPLETION time when the dispatched rescuer arrives. The old
+local detector only emitted /{drone}/task/fog, so in LOCAL runs the collector
+saw no inference latency at all (latency n=0) and completion rarely closed.
+
+Publishing /fog/victim_alerts here puts LOCAL mode on the exact same measurement
+path as FOG mode, so latency / response / completion are all recorded. The only
+difference vs fog is `processed_at: 'local'` and that inference_time_ms is the
+ON-DRONE inference time (no fog hop), which is precisely the metric we want to
+compare. decision_node's existing dedup guards against re-dispatching the same
+static victim across consecutive frames.
 
 Parameterised by 'instance' (PX4 instance index).
 """
@@ -20,6 +39,7 @@ import cv2
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
+from std_msgs.msg import String
 from task_msgs.msg import Task
 
 from drone_node.drone_naming import drone_id_for
@@ -35,7 +55,9 @@ class VictimDetector(Node):
 
         # Parameters
         self.declare_parameter('instance', 0)
+        self.declare_parameter('emit_victim_alerts', True)
         self.instance = int(self.get_parameter('instance').value)
+        self.emit_alerts = bool(self.get_parameter('emit_victim_alerts').value)
         self.drone_id = drone_id_for(self.instance)
 
         # State
@@ -51,9 +73,18 @@ class VictimDetector(Node):
             Image, f'/{self.drone_id}/detection/image', 10)
         self.task_pub = self.create_publisher(
             Task, f'/{self.drone_id}/task/fog', 10)
+        # Energy accounting: tells battery_simulator the drone is running YOLO
+        # on-board (LOCAL mode), so it adds the AI surcharge. This is the whole
+        # point of the local-vs-fog energy comparison.
+        self.task_status_pub = self.create_publisher(
+            String, f'/{self.drone_id}/task_status', 10)
+        # THE FIX: feed the coordinator + the metrics collector on the unified
+        # detection contract, so LOCAL mode records latency/response/completion.
+        self.alert_pub = self.create_publisher(String, '/fog/victim_alerts', 10)
 
         self.get_logger().info(
-            f'[DETECTOR] {self.drone_id}: listening on {camera_topic}')
+            f'[DETECTOR] {self.drone_id}: listening on {camera_topic} '
+            f'| victim_alerts={"on" if self.emit_alerts else "off"}')
 
         # Load model via one-shot timer so ROS executor starts spinning first
         self.create_timer(0.1, self._load_model_once)
@@ -87,6 +118,11 @@ class VictimDetector(Node):
         start = time.time()
         results = self.model(frame, verbose=False, device='cpu')
         inference_ms = (time.time() - start) * 1000
+
+        # Every frame runs YOLO on the drone -> keep the battery AI surcharge on.
+        st = String()
+        st.data = f'LOCAL_AI_PROCESSING inference={inference_ms:.0f}ms'
+        self.task_status_pub.publish(st)
 
         # Extract person detections above threshold
         detections = []
@@ -123,7 +159,7 @@ class VictimDetector(Node):
         det_msg.data = annotated.tobytes()
         self.det_image_pub.publish(det_msg)
 
-        # Publish Task message if detections found
+        # Publish Task message + victim alert if detections found
         if detections:
             task = Task()
             task.task_id = f'{self.drone_id}-victim-{self.det_seq:04d}'
@@ -138,6 +174,21 @@ class VictimDetector(Node):
                 'num_persons': len(detections),
             })
             self.task_pub.publish(task)
+
+            # Unified detection contract -> collector latency + coordinator
+            # dispatch (-> response + completion time). inference_time_ms is the
+            # ON-DRONE inference time: exactly the LOCAL-tier latency we compare.
+            if self.emit_alerts:
+                alert = String()
+                alert.data = json.dumps({
+                    'drone_id': self.drone_id,
+                    'num_persons': len(detections),
+                    'detections': detections,
+                    'inference_time_ms': round(inference_ms, 1),
+                    'processed_at': 'local',
+                    'timestamp': time.time(),
+                })
+                self.alert_pub.publish(alert)
 
             self.get_logger().warn(
                 f'[DETECTION] {self.drone_id}: {len(detections)} person(s) '
@@ -160,7 +211,8 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     node.destroy_node()
-    rclpy.shutdown()
+    if rclpy.ok():
+        rclpy.shutdown()
 
 
 if __name__ == '__main__':

@@ -44,10 +44,41 @@ Parameters:
 - default_alt (double)    : fallback altitude if a command omits one. Default 12.0.
 - stop_and_go (bool)      : hover at each capture point. Default False.
 - hover_sec (double)      : hover dwell for stop_and_go. Default 2.0.
+- divert_resume_sec (double): after a GO_TO/SCAN_AREA/HOVER diversion reaches
+                            its target, how long to dwell there before
+                            automatically resuming the interrupted area-
+                            coverage sweep. Default 12.0. See WHAT CHANGED.
 - spawn_x / spawn_y (double): optional pre-seed of the spawn (ENU East/North).
                             The fog command and global-ref auto-calibration both
                             override / cross-check this. Defaults per instance.
 - simulate_low_battery (bool): force the battery model low (drone-failure demo).
+
+WHAT CHANGED (Task 6 fix — drones parking forever after responding to a victim)
+---------------------------------------------------------------------------------
+GO_TO, SCAN_AREA, and HOVER all work by overwriting self.waypoints with either
+a single point or a tiny local box, then flying it via the SAME phased core as
+START_MISSION. That's fine for REACHING the diversion target, but nothing ever
+put the original lawnmower sweep back afterwards: PHASE_HOLD (the single-point
+case) has no exit at all in update_phase(), and a diverted SCAN_AREA box just
+loops PHASE_SCAN forever exactly like the main sweep does by design. Since
+decision_node only ever sends a FOLLOW-UP command (HOVER) when an event
+resolves — never a "go back to searching" command — a drone that responds to
+ANY detection, resolved or not, was permanently removed from area coverage.
+This is why coverage can stall well short of the auto-finish target as more
+victims are detected, and it looks like the drone just "gets stuck".
+
+Fix: _begin_mission() (GO_TO/SCAN_AREA) and the HOVER branch of
+mission_command_callback() now snapshot the interrupted sweep
+(self._resume_state) before overwriting self.waypoints. update_phase() starts
+a divert_resume_sec countdown (self._resume_at) the moment the diversion
+target is reached (DESCEND -> HOLD or DESCEND -> SCAN), and checks it first on
+every tick regardless of phase; once it elapses, _resume_coverage() restores
+the saved waypoints/index/altitudes and re-enters CLIMB -> TRANSIT -> DESCEND
+-> SCAN to get back to where it left off. This is deliberately TIME-based
+rather than tied to decision_node ever resolving the event, so a drone always
+eventually returns to coverage even if resolution never fires for some other
+reason (e.g. a mismatched arrival-radius parameter — see decision_node.py's
+own Task 6 note on that).
 """
 
 import json
@@ -130,6 +161,8 @@ class DroneCommander(Node):
         self.stop_and_go = bool(self.get_parameter('stop_and_go').value)
         self.declare_parameter('hover_sec', 2.0)
         self.hover_sec = float(self.get_parameter('hover_sec').value)
+        self.declare_parameter('divert_resume_sec', 12.0)
+        self.divert_resume_sec = float(self.get_parameter('divert_resume_sec').value)
 
         # Optional spawn pre-seed (Task-5 interface). Default per instance.
         default_sx, default_sy = DEFAULT_SPAWNS.get(self.instance, (0.0, 0.0))
@@ -220,6 +253,19 @@ class DroneCommander(Node):
         self.latest_local_pos = None
         self._wait_log_counter = 0
 
+        # ---- Diversion resume state (Task 6 fix) ----
+        # GO_TO / SCAN_AREA / HOVER all overwrite self.waypoints with a
+        # single point (or a tiny local box), and PHASE_HOLD has no exit —
+        # so without this, ANY responded detection permanently drops that
+        # drone out of area coverage. _resume_state snapshots the interrupted
+        # lawnmower sweep the moment a diversion begins; _resume_at is the
+        # wall-clock deadline (set once the diversion target is reached) at
+        # which _resume_coverage() restores it. See _begin_mission(),
+        # the HOVER branch of mission_command_callback(), and update_phase().
+        self._resume_state = None
+        self._resume_at = None
+        self._resuming = False       # True only during a resume descent (below)
+
         # ---- Task-5 feedback / battery state ----
         self.command = 'NONE'
         self.state = 'IDLE'
@@ -238,6 +284,10 @@ class DroneCommander(Node):
             f'[COMMANDER] {self.drone_id}: do_scan={self.do_scan}, '
             f'lane_spacing={self.lane_spacing}m, max_step={self.max_step}m, '
             f'simulate_low_battery={self.simulate_low_battery}.')
+        self.get_logger().info(
+            f'[COMMANDER] {self.drone_id}: divert_resume_sec='
+            f'{self.divert_resume_sec}s (auto-resumes area coverage this long '
+            f'after reaching a GO_TO/SCAN_AREA/HOVER diversion target).')
         self.get_logger().info(
             f'[COMMANDER] {self.drone_id}: commands on {cmd_in_topic}, '
             f'feedback on {feedback_topic}, PX4 input prefix {in_prefix}')
@@ -360,6 +410,35 @@ class DroneCommander(Node):
         capture_spacing). `area` (dict min_x/max_x/min_y/max_y) triggers a
         lawnmower sweep; otherwise a single hold waypoint.
         """
+        if command == 'START_MISSION':
+            # A fresh top-level mission redefines what "normal" coverage is
+            # (e.g. Scenario D's repartition reassigning a new area to a
+            # survivor) — any stale diversion save from before no longer
+            # applies, so drop it rather than resuming into the wrong area.
+            self._resume_state = None
+            self._resume_at = None
+            self._resuming = False
+        elif command in ('GO_TO', 'SCAN_AREA') and self._resume_state is None:
+            # Diverting away from the ongoing area-coverage sweep (or the
+            # idle single point if none was active yet). Snapshot it now,
+            # BEFORE self.waypoints is overwritten below, so
+            # _resume_coverage() can restore it once the diversion is done.
+            # Guarded by "is None" so a second diversion arriving before the
+            # first one has resumed doesn't overwrite the ORIGINAL sweep with
+            # an already-diverted (single-point) one.
+            self._resume_state = {
+                'waypoints': list(self.waypoints),
+                'wp_idx': self.wp_idx,
+                'alt': self.alt,
+                'transit_alt': self.transit_alt,
+                'scan_loops': self.scan_loops,
+            }
+            self.get_logger().info(
+                f'[COMMANDER] {self.drone_id}: diverting for {command} — saved '
+                f'coverage sweep (waypoint {self.wp_idx}/{len(self.waypoints)}, '
+                f'{self.scan_loops} loop(s) done) to resume ~{self.divert_resume_sec:.0f}s '
+                f'after reaching the diversion target.')
+
         self.alt = float(target.get('alt', self.default_alt))
         self.transit_alt = float(target.get('transit_alt', self.alt))
         if self.transit_alt < self.alt:
@@ -434,6 +513,24 @@ class DroneCommander(Node):
             self.state = 'SCANNING'
 
         elif command == 'HOVER':
+            # Same save guard as _begin_mission()'s GO_TO/SCAN_AREA branch —
+            # HOVER doesn't route through _begin_mission, but can equally be
+            # the first thing that overwrites an active coverage sweep (e.g.
+            # a HOVER sent standalone rather than as a post-GO_TO follow-up).
+            # In the normal flow this is a no-op: the prior GO_TO already
+            # saved it, so this guard just prevents clobbering that save.
+            if self._resume_state is None:
+                self._resume_state = {
+                    'waypoints': list(self.waypoints),
+                    'wp_idx': self.wp_idx,
+                    'alt': self.alt,
+                    'transit_alt': self.transit_alt,
+                    'scan_loops': self.scan_loops,
+                }
+                self.get_logger().info(
+                    f'[COMMANDER] {self.drone_id}: diverting for HOVER — saved '
+                    f'coverage sweep (waypoint {self.wp_idx}/{len(self.waypoints)}) '
+                    f'to resume ~{self.divert_resume_sec:.0f}s from now.')
             # Prefer the commanded hold point (e.g. the decision node parks the
             # rescuer over the victim's world_x/world_y); otherwise hold the
             # current position. Altitude follows the command, else keeps scan alt.
@@ -453,7 +550,17 @@ class DroneCommander(Node):
             self.active = True
             self.command = 'HOVER'
             self.state = 'HOLDING'
-            self.get_logger().info(f'[COMMANDER] {self.drone_id}: HOVER (holding)')
+            # HOVER jumps straight to PHASE_HOLD (skips the CLIMB/TRANSIT/
+            # DESCEND transition in update_phase() where the deadline is
+            # normally set), so set it here too. Guarded by "is None" — a
+            # HOVER confirming an already-parked GO_TO must NOT push the
+            # deadline back out; the dwell is bounded from first arrival,
+            # not restarted by every subsequent state message.
+            if self._resume_at is None:
+                self._resume_at = time.time() + self.divert_resume_sec
+            self.get_logger().info(
+                f'[COMMANDER] {self.drone_id}: HOVER (holding, auto-resume '
+                f'coverage in ~{max(0.0, self._resume_at - time.time()):.0f}s)')
 
         elif command in ('RTL', 'RETURN_HOME'):
             self.get_logger().info(
@@ -462,6 +569,9 @@ class DroneCommander(Node):
             self.active = False
             self.phase = PHASE_IDLE
             self._hover_until = None
+            self._resume_state = None    # mission's over; nothing to resume
+            self._resume_at = None
+            self._resuming = False
             self.command = command
             self.state = 'RETURNING'
 
@@ -514,6 +624,18 @@ class DroneCommander(Node):
             return
         alt_now = -self.latest_local_pos.z
 
+        # Auto-resume (Task 6 fix): a diversion (GO_TO / SCAN_AREA / HOVER)
+        # parked us in PHASE_HOLD (no exit — see below) or looping a tiny
+        # local SCAN_AREA box (which otherwise loops forever too, same as
+        # the main sweep). Once we've dwelt divert_resume_sec at the
+        # diversion target, go back to the saved area-coverage sweep
+        # regardless of which of those two we're in. Checked first, every
+        # tick, so it pre-empts whatever phase-specific logic follows.
+        if (self._resume_state is not None and self._resume_at is not None
+                and time.time() >= self._resume_at):
+            self._resume_coverage()
+            return
+
         if self.phase == PHASE_CLIMB:
             if alt_now < self.transit_alt - 1.0:
                 return
@@ -537,15 +659,32 @@ class DroneCommander(Node):
             if len(self.waypoints) > 1:
                 self.phase = PHASE_SCAN
                 self.state = 'SCANNING'
-                self.wp_idx = 1
+                if self._resuming:
+                    # Resuming an interrupted sweep: TRANSIT already flew us
+                    # to the SAVED waypoint and we descended over it, so
+                    # continue the sweep from there. Resetting to 1 here (the
+                    # fresh-mission behaviour) would restart the whole sweep —
+                    # harmless for coverage %, but wasteful, and badly so under
+                    # stop_and_go where the sweep is densified into many more
+                    # waypoints. wp_idx is already the restored value; the
+                    # drone is sitting on waypoint[wp_idx], so the first SCAN
+                    # tick advances it to the next uncovered point.
+                    self._resuming = False
+                else:
+                    self.wp_idx = 1
+                if self._resume_state is not None and self._resume_at is None:
+                    self._resume_at = time.time() + self.divert_resume_sec
                 self.get_logger().info(
                     f'[COMMANDER] {self.drone_id}: at scan altitude '
                     f'{alt_now:.1f}m, SCAN ({len(self.waypoints)} waypoints, '
-                    f'looping until RTL).')
+                    f'from waypoint {self.wp_idx}, looping until RTL).')
             else:
                 self.phase = PHASE_HOLD
+                self._resuming = False    # single-point hold is never a resume
                 # Single-target hold: GO_TO -> ARRIVED, explicit HOVER -> HOLDING.
                 self.state = 'HOLDING' if self.command == 'HOVER' else 'ARRIVED'
+                if self._resume_state is not None and self._resume_at is None:
+                    self._resume_at = time.time() + self.divert_resume_sec
                 self.get_logger().info(
                     f'[COMMANDER] {self.drone_id}: at scan altitude, HOLD.')
             return
@@ -579,6 +718,49 @@ class DroneCommander(Node):
                     self.get_logger().info(
                         f'[COMMANDER] {self.drone_id}: scan pass '
                         f'{self.scan_loops} complete, restarting sweep.')
+
+    # ------------------------------------------------------------------
+    def _resume_coverage(self):
+        """
+        Restore the lawnmower sweep saved before a GO_TO/SCAN_AREA/HOVER
+        diversion and re-enter the phased flight sequence to get back to it.
+
+        Re-starts at PHASE_CLIMB (not straight back into SCAN) deliberately:
+        the drone is currently sitting at the LOW scan/rescue altitude, at
+        the diversion point, which is generally nowhere near the saved
+        waypoint — climbing to transit_alt first and re-doing TRANSIT/DESCEND
+        gives the same obstacle-safe, gentle profile a fresh dispatch gets,
+        rather than a low-altitude straight-line cut across the map.
+
+        mode_sent/arm_sent/counter are deliberately left untouched: the drone
+        is already armed and in OFFBOARD, so there is nothing to (re-)send —
+        resetting them would just replay the one-shot arm/mode commands.
+        """
+        st = self._resume_state
+        self._resume_state = None
+        self._resume_at = None
+        # Tells the DESCEND->SCAN transition NOT to reset wp_idx to 1: we want
+        # to continue this saved sweep from where it was interrupted.
+        self._resuming = True
+
+        self.waypoints = st['waypoints']
+        self.wp_idx = st['wp_idx']
+        self.alt = st['alt']
+        self.transit_alt = st['transit_alt']
+        self.scan_loops = st['scan_loops']
+        self._hover_until = None
+        self.cur_target_world = (self.waypoints[min(self.wp_idx, len(self.waypoints) - 1)][0],
+                                 self.waypoints[min(self.wp_idx, len(self.waypoints) - 1)][1],
+                                 self.alt)
+        self.phase = PHASE_CLIMB
+        self.command = 'RESUME_COVERAGE'
+        self.state = 'EN_ROUTE'
+
+        self.get_logger().warn(
+            f'[COMMANDER] {self.drone_id}: diversion complete — RESUMING area '
+            f'coverage at waypoint {self.wp_idx}/{len(self.waypoints)} '
+            f'({self.scan_loops} loop(s) done before diversion) '
+            f'-> CLIMB, TRANSIT, DESCEND, SCAN.')
 
     # ------------------------------------------------------------------
     def control_loop(self):

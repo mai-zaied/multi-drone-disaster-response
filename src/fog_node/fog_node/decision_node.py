@@ -30,10 +30,35 @@ known spawn points. A detection from droneX is tagged with droneX's current worl
 position — the drone is flying over the victim, so its position is the victim's
 location to within the camera footprint. This is also exactly the data nearest-drone
 selection (5.7) needs, so spatial reasoning is centralised here.
+
+WHAT CHANGED (Task 6 fix — response_time / completion_time silently n=0)
+-------------------------------------------------------------------------
+metrics_collector.py links a decision_log event back to a detection row using
+two fields it reads off the ASSIGNED/RESOLVED message: `reporting_drones` and
+authoritative `response_time` / `completion_time`. `_emit_decision()` computed
+all of this internally (self.metrics['response_times'] / ['completion_times'])
+but never actually put `reporting_drones`, `response_time`, or `completion_time`
+into the JSON it published — only `event_id`, position, confidence, `drone`
+(the ASSIGNED rescuer), and `action` went out. metrics_collector's fallback
+then used the rescuer's id as the "reporter", which only worked by coincidence
+when the rescuer happened to also be the detecting drone. Whenever the
+nearest-cost drone dispatched to a victim was a DIFFERENT drone than the one
+whose camera saw it — routine with 3 drones — linkage silently failed:
+`assigned` incremented but `response_time_sec`/`completion_time_sec` stayed at
+n=0 for the whole run, with no error anywhere.
+
+Fix: `_emit_decision()` now also emits `reporting_drones` (sorted list — the
+raw Event.reporting_drones set() isn't JSON-serialisable, which is likely why
+it was dropped originally) whenever an event is attached, plus `response_time`
+from `_assign()` and `completion_time` (+ a redundant `response_time`) from
+`_resolve_event()`. Definitions are unchanged from TASK_5_README.md 5.16:
+response_time = first detection -> first command; completion_time =
+assignment -> arrival. No parameters, topics, or launch commands changed.
 """
 
 import json
 import math
+import re
 import time
 
 import rclpy
@@ -63,7 +88,12 @@ W_REPORTS = 0.3           # 5.6 weight on number of corroborating reports
 REPORT_SATURATION = 3     # this many reports counts as "fully corroborated"
 
 CLUSTER_RADIUS_M = 6.0    # 5.5 detections within this distance = same victim
-MIN_CONFIDENCE = 0.40     # below this -> SCAN_AREA (re-scan) instead of dispatch
+MIN_CONFIDENCE = 0.25     # >= this -> GO_TO (rescue, resolves on arrival);
+                          # below -> SCAN_AREA (re-scan). Matches the detectors'
+                          # CONFIDENCE_THRESHOLD=0.25 so every accepted detection
+                          # is dispatched as a rescue that can actually resolve
+                          # (SCAN_AREA loops in SCANNING and never reports ARRIVED,
+                          # so it never produced a completion time).
 NOISE_CONFIDENCE = 0.20   # below this -> ignore entirely
 
 SELECT_W_DIST = 0.6       # 5.7 selection: weight on distance
@@ -71,7 +101,9 @@ SELECT_W_BATTERY = 0.4    # 5.7 selection: weight on (1 - battery)
 DIST_NORMALISER_M = 100.0 # distance scale for normalisation
 
 LOW_BATTERY_FRAC = 0.20   # at/below this a drone is treated as failing
-ARRIVAL_RADIUS_M = 3.0    # event considered reached within this distance
+ARRIVAL_RADIUS_M = 3.0    # Task 6: diagnostic reference only (see feedback_callback)
+                          # — no longer gates resolution; the commander's own
+                          # ARRIVED/HOLDING state is authoritative.
 SCAN_ALTITUDE = 12.0      # default GO_TO altitude (m above spawn)
 
 COORDINATE_PERIOD_SEC = 1.0   # how often the planner runs
@@ -196,6 +228,16 @@ class DecisionNode(Node):
                 String, f'/{did}/mission_feedback',
                 lambda msg, d=did: self.feedback_callback(msg, d), 10)
 
+            # Battery from the SIMULATOR (single source of truth for availability).
+            # We deliberately do NOT trust the commander's mission_feedback battery:
+            # the commander runs its own fast phantom model that empties in ~6 min,
+            # which used to mark every drone "failing" ~288 s in and block dispatch
+            # of any victim detected late (created but never assigned -> no response
+            # / completion time). battery_simulator drains realistically instead.
+            self.create_subscription(
+                String, f'/{did}/battery_status',
+                lambda msg, d=did: self.battery_status_callback(msg, d), 10)
+
             # Command output (5.9) — same topic drone_commander already listens on.
             self.command_pubs[did] = self.create_publisher(
                 String, f'/{did}/mission_command', 10)
@@ -225,6 +267,10 @@ class DecisionNode(Node):
             f'[DECISION] engine up for {self.num_drones} drone(s). '
             f'priority = {W_CONF}*conf + {W_REPORTS}*reports, '
             f'cluster={CLUSTER_RADIUS_M}m, min_conf={MIN_CONFIDENCE}')
+        self.get_logger().warn(
+            '[DECISION] v2 availability: battery from battery_simulator ONLY; '
+            "commander's phantom 'FAILED' state & feedback battery are IGNORED. "
+            'Run the 3 battery_simulator nodes so dispatch stays enabled.')
         for did, d in self.drones.items():
             self.get_logger().info(
                 f'[DECISION] {did}: spawn ENU=({d.spawn_x}, {d.spawn_y})')
@@ -252,21 +298,64 @@ class DecisionNode(Node):
         state = fb.get('state', 'UNKNOWN')
         d.last_feedback_state = state
 
-        if 'battery' in fb and fb['battery'] is not None:
-            d.battery = float(fb['battery'])
-        if d.battery <= LOW_BATTERY_FRAC:
-            d.failing = True
-
-        if state in ('FAILED', 'RETURNING'):
-            d.failing = d.failing or (state == 'FAILED')
+        # We do NOT derive availability from the commander's feedback here.
+        # The commander reports state='FAILED' whenever its internal PHANTOM
+        # battery model drops below 0.20 (~288 s in), even though it keeps
+        # flying — which used to mark every drone failing and block dispatch of
+        # any victim detected after that (created but never assigned -> null
+        # response/completion). Availability/failing come solely from the real
+        # battery_simulator (battery_status_callback). The 'FAILED'/'RETURNING'
+        # feedback state is kept only in last_feedback_state for logging.
 
         # Arrival closes the assigned event (5.13 + 5.16 completion time).
         if state in ('ARRIVED', 'HOLDING') and d.assigned_event is not None:
             ev = self._event_by_id(d.assigned_event)
             if ev is not None and ev.status != 'RESOLVED':
+                # BUGFIX (Task 6): this used to also require
+                # dist <= ARRIVAL_RADIUS_M (a hardcoded 3.0 m here) before
+                # trusting an 'ARRIVED' report. But the commander decides
+                # 'ARRIVED' using ITS OWN, independently configured
+                # `waypoint_radius` parameter — if that's set larger than
+                # ARRIVAL_RADIUS_M (e.g. `-p waypoint_radius:=4.0`, a value
+                # this run guide's commander invocations now use), the
+                # commander can park at a distance THIS file then refuses to
+                # accept as "close enough": the drone stops moving (nothing
+                # else ever commands it) but RESOLVED never fires, so no
+                # HOVER is ever sent either — a permanent deadlock that looks
+                # exactly like "drone got stuck hovering", and
+                # completion_time_sec stays n=0 even though the drone
+                # genuinely reached the victim. The commander is the one
+                # actually flying the drone, so its own state is authoritative
+                # here; we no longer re-derive a second, competing threshold.
+                # Distance is still computed and logged (elevated to a
+                # warning past ARRIVAL_RADIUS_M) purely as a diagnostic, e.g.
+                # to catch a spawn-calibration or coordinate-frame problem.
                 dist = self._dist(d.world_x, d.world_y, ev.world_x, ev.world_y)
-                if dist <= ARRIVAL_RADIUS_M or state == 'HOLDING':
-                    self._resolve_event(ev, d)
+                log = (self.get_logger().warn if dist > ARRIVAL_RADIUS_M
+                       else self.get_logger().info)
+                log(f'[DECISION ARRIVE] {drone_id} reports {state} for '
+                    f'{ev.event_id} at dist={dist:.1f}m'
+                    + ('' if dist <= ARRIVAL_RADIUS_M else
+                       f' (beyond the {ARRIVAL_RADIUS_M}m reference — '
+                       f'resolving anyway; check waypoint_radius vs this '
+                       f'value, or spawn calibration, if this is frequent)'))
+                self._resolve_event(ev, d)
+
+    def battery_status_callback(self, msg: String, drone_id: str):
+        """Real battery from battery_simulator: 'droneX: battery=NN.NN% | ...'.
+        Stored as a 0..1 fraction; drives availability + selection cost. Only a
+        genuinely low pack (<= LOW_BATTERY_FRAC) marks the drone failing."""
+        m = re.search(r'battery=([\d.]+)', msg.data)
+        if not m:
+            return
+        try:
+            pct = float(m.group(1))
+        except ValueError:
+            return
+        d = self.drones[drone_id]
+        d.battery = max(0.0, min(1.0, pct / 100.0))
+        if d.battery <= LOW_BATTERY_FRAC:
+            d.failing = True
 
     def task_callback(self, msg: Task, drone_id: str):
         """Fallback detection path + drone_failing signal."""
@@ -384,9 +473,13 @@ class DecisionNode(Node):
 
             drone = self._select_drone(ev)
             if drone is None:
-                self.get_logger().info(
+                why = ', '.join(
+                    f'{d.drone_id}[fail={d.failing},batt={d.battery:.2f},'
+                    f'busy={d.assigned_event is not None}]'
+                    for d in self.drones.values())
+                self.get_logger().warn(
                     f'[DECISION WAIT] {ev.event_id} (p={ev.priority():.2f}) '
-                    f'has no free drone — queued')
+                    f'has no free drone — queued. drones: {why}')
                 continue
             self._assign(ev, drone, action='GO_TO')
 
@@ -412,15 +505,22 @@ class DecisionNode(Node):
         ev.assigned_at = now
         drone.assigned_event = ev.event_id
 
+        # 5.16 response time: first detection -> first command, recorded once
+        # per event only (a later reassignment after a drone failure re-uses
+        # the same first_command_at, so the clock is not reset).
+        response_time = None
         if ev.first_command_at is None:
             ev.first_command_at = now
-            self.metrics['response_times'].append(now - ev.first_detection_at)
+            response_time = round(now - ev.first_detection_at, 4)
+            self.metrics['response_times'].append(response_time)
 
         self.get_logger().warn(
             f'[DECISION ASSIGN] {ev.event_id} -> {drone.drone_id} '
             f'(action={action}, cost={getattr(drone, "_last_cost", 0):.2f}, '
-            f'priority={ev.priority():.2f})')
-        self._emit_decision('ASSIGNED', event=ev, drone=drone.drone_id, action=action)
+            f'priority={ev.priority():.2f})'
+            + (f' response={response_time}s' if response_time is not None else ''))
+        self._emit_decision('ASSIGNED', event=ev, drone=drone.drone_id, action=action,
+                            response_time=response_time)
 
         self._send_command(drone.drone_id, action, {
             'world_x': round(ev.world_x, 2),
@@ -455,14 +555,24 @@ class DecisionNode(Node):
     def _resolve_event(self, ev, drone):
         ev.status = 'RESOLVED'
         ev.resolved_at = time.time()
+        completion_time = None
         if ev.assigned_at is not None:
-            self.metrics['completion_times'].append(ev.resolved_at - ev.assigned_at)
+            completion_time = round(ev.resolved_at - ev.assigned_at, 4)
+            self.metrics['completion_times'].append(completion_time)
+        # Redundant response_time (already sent once from _assign) so
+        # metrics_collector can still recover it here if that earlier
+        # ASSIGNED decision_log message was ever dropped/missed.
+        response_time = None
+        if ev.first_command_at is not None:
+            response_time = round(ev.first_command_at - ev.first_detection_at, 4)
         self.metrics['events_resolved'] += 1
         drone.assigned_event = None
         self.get_logger().warn(
             f'[DECISION RESOLVED] {ev.event_id} reached by {drone.drone_id} '
             f'in {ev.resolved_at - (ev.assigned_at or ev.resolved_at):.1f}s')
-        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id)
+        self._emit_decision('RESOLVED', event=ev, drone=drone.drone_id,
+                            completion_time=completion_time,
+                            response_time=response_time)
         # Send the rescuer into a hold over the victim.
         self._send_command(drone.drone_id, 'HOVER', {
             'world_x': round(ev.world_x, 2),
@@ -489,7 +599,8 @@ class DecisionNode(Node):
     # ==================================================================
     # Helpers
     # ==================================================================
-    def _emit_decision(self, kind, event=None, drone=None, action=None):
+    def _emit_decision(self, kind, event=None, drone=None, action=None,
+                       response_time=None, completion_time=None):
         rec = {'kind': kind, 'ts': time.time()}
         if event is not None:
             rec.update({
@@ -500,11 +611,34 @@ class DecisionNode(Node):
                 'num_reports': event.num_reports,
                 'priority': round(event.priority(), 3),
                 'status': event.status,
+                # BUGFIX (Task 6): metrics_collector links a decision_log event
+                # back to the DETECTING drone's open row via this list (see
+                # pick_detection_row() in metrics_collector.py). This key was
+                # never emitted before — event.reporting_drones is a set(),
+                # which json.dumps() cannot serialise directly, so it has to be
+                # converted to a sorted list here. Without it, metrics_collector
+                # fell back to treating the ASSIGNED (rescuer) drone as the
+                # reporter, which only happened to work when the rescuer was
+                # also the detector — i.e. it silently broke response_time and
+                # completion_time linkage on every run where the nearest-cost
+                # drone dispatched to the victim was NOT the one that spotted it.
+                'reporting_drones': sorted(event.reporting_drones),
             })
         if drone is not None:
             rec['drone'] = drone
         if action is not None:
             rec['action'] = action
+        # BUGFIX (Task 6): decision_node already computes both of these
+        # (self.metrics['response_times'] / ['completion_times']) but never
+        # put the per-event values on the wire, so metrics_collector's
+        # rec.get("response_time") / rec.get("completion_time") always read
+        # None. See TASK_5_README.md 5.16 for the definitions this preserves:
+        # response_time = first detection -> first command (set in _assign);
+        # completion_time = assignment -> arrival (set in _resolve_event).
+        if response_time is not None:
+            rec['response_time'] = response_time
+        if completion_time is not None:
+            rec['completion_time'] = completion_time
         m = String()
         m.data = json.dumps(rec)
         self.decision_log_pub.publish(m)

@@ -1,2 +1,5 @@
-task_id,mode,scenario,run_id,latency_sec,completion_time_sec,detected,completed,detection_msg,decision_msg,feedback_msg,status_msg,battery_msg
-785199,fog,medium,run_01,6.4031,11.8507,1,1,victim_detected drone0 confidence=0.91,assign drone0 GO_TO target,drone0 reached target,,
+task_id,mode,scenario,run_id,fault,num_drones,drone,event_id,latency_sec,comm_delay_sec,completion_time_sec,response_time_sec,detected,completed,confidence,num_persons,detail
+fog-00000,fog,medium,run_01,none,3,drone0,E001,0.6388,,2.2974,0.4721,1,1,0.269,1,fog_alert
+fog-00001,fog,medium,run_01,none,3,drone2,E002,0.279,,1.9807,0.1686,1,1,0.292,1,fog_alert
+fog-00002,fog,medium,run_01,none,3,drone1,E003,0.922,,2.4713,0.3145,1,1,0.322,1,fog_alert
+fog-00003,fog,medium,run_01,none,3,drone1,E004,0.8075,,6.471,0.6063,1,1,0.259,1,fog_alert
