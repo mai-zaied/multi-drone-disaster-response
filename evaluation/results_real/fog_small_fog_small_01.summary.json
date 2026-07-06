@@ -1,10 +1,10 @@
 {
-  "mode": "cloud",
-  "scenario": "medium",
-  "run_id": "run_01",
-  "fault": "fog_down",
+  "mode": "fog",
+  "scenario": "small",
+  "run_id": "fog_small_01",
+  "fault": "none",
   "num_drones": 3,
-  "duration_sec": 386.81,
+  "duration_sec": 180.27,
   "detection_events": 0,
   "completed": 0,
   "completion_ratio": null,
@@ -39,87 +39,87 @@
   },
   "utilisation": {
     "per_drone": {
-      "drone1": {
-        "local": 0,
-        "fog": 0,
-        "cloud": 50
-      },
       "drone0": {
         "local": 0,
-        "fog": 0,
-        "cloud": 50
+        "fog": 51,
+        "cloud": 0
+      },
+      "drone1": {
+        "local": 0,
+        "fog": 51,
+        "cloud": 0
       },
       "drone2": {
         "local": 0,
-        "fog": 0,
-        "cloud": 49
+        "fog": 50,
+        "cloud": 0
       }
     },
     "total": {
       "local": 0,
-      "fog": 0,
-      "cloud": 149
+      "fog": 152,
+      "cloud": 0
     }
   },
   "tiers": {
     "edge": {
       "active": true,
       "role": "capture + stream frames",
-      "frames": 2894,
+      "frames": 291,
       "on_drone_inferences": 0
     },
     "fog": {
-      "active": false,
+      "active": true,
       "role": "detection + coordination",
-      "inferences": 0
+      "inferences": 152
     },
     "cloud": {
-      "active": true,
-      "role": "offload inference + mission archival",
-      "inferences": 149,
+      "active": false,
+      "role": "mission archival",
+      "inferences": 0,
       "archive_batches": 0,
       "archive_events": 0
     }
   },
   "tiers_active": [
     "edge",
-    "cloud"
+    "fog"
   ],
   "tiers_active_count": 2,
   "coverage": {
-    "overall_pct": 95.65,
-    "covered_bins": 4993,
-    "total_bins": 5220,
-    "area_m2": 20700.0,
-    "frames_total": 2894,
+    "overall_pct": 97.55,
+    "covered_bins": 1273,
+    "total_bins": 1305,
+    "area_m2": 5130.0,
+    "frames_total": 291,
     "per_drone": {
-      "drone0": 96.44,
-      "drone1": 96.38,
-      "drone2": 94.14
+      "drone0": 95.4,
+      "drone1": 100.0,
+      "drone2": 97.24
     },
-    "ts": 1783268783.2460785
+    "ts": 1783262427.2413769
   },
-  "coverage_overall_pct": 95.65,
+  "coverage_overall_pct": 97.55,
   "energy": {
     "per_drone": {
-      "drone0": {
-        "start_pct": 98.38,
-        "end_pct": 60.77,
-        "consumed_pct": 37.61
+      "drone1": {
+        "start_pct": 99.71,
+        "end_pct": 85.05,
+        "consumed_pct": 14.66
       },
       "drone2": {
-        "start_pct": 99.38,
-        "end_pct": 61.96,
-        "consumed_pct": 37.42
+        "start_pct": 99.8,
+        "end_pct": 85.22,
+        "consumed_pct": 14.58
       },
-      "drone1": {
-        "start_pct": 98.84,
-        "end_pct": 61.37,
-        "consumed_pct": 37.47
+      "drone0": {
+        "start_pct": 99.58,
+        "end_pct": 84.81,
+        "consumed_pct": 14.77
       }
     },
-    "total_consumed_pct": 112.5,
-    "mean_consumed_pct": 37.5
+    "total_consumed_pct": 44.01,
+    "mean_consumed_pct": 14.67
   },
-  "energy_total_pct": 112.5
+  "energy_total_pct": 44.01
 }
