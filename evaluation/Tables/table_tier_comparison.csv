@@ -1,0 +1,4 @@
+,source_file,duration_s,detection_events,latency_mean_s,response_mean_s,completion_mean_s,coverage_pct,energy_mean_pct,energy_rate_pct_per_min,completion_ratio
+Fog (proposed 3-tier),fog_medium_run_01.summary (2).json,363.68,4,0.6618,0.3904,3.3051,97.34,40.08,6.612406511218653,1.0
+Cloud fallback (fog down),cloud_medium_run_01.summary (1).json,437.74,4,9.3905,0.5028,2.8159,97.68,51.5,7.058984785489103,1.0
+Local fallback (fog+cloud down),local_medium_run_01.summary.json,383.23,4,1.519,0.8723,4.591,96.55,51.58,8.075568196644312,0.75
