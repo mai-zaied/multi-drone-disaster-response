@@ -158,6 +158,12 @@ class FogServer(Node):
         # ---- Parameters ----
         self.declare_parameter('num_drones', 3)
         self.declare_parameter('enable_detection', False)
+        # Cloud tier: whether to archive the mission log to the cloud at the
+        # end. True for fog + cloud scenarios (cloud reachable); set false for
+        # the local / fog+cloud-down fallback so the cloud tier is correctly
+        # reported as inactive.
+        self.declare_parameter('archive_to_cloud', True)
+        self.archive_to_cloud = bool(self.get_parameter('archive_to_cloud').value)
         self.num_drones = int(self.get_parameter('num_drones').value)
         self.enable_detection = bool(self.get_parameter('enable_detection').value)
         if self.num_drones < 1:
@@ -209,6 +215,10 @@ class FogServer(Node):
         self.declare_parameter('fail_after_sec', 60.0)
         self.declare_parameter('fail_action', 'RTL')          # sent to the failed drone
         self.declare_parameter('heartbeat_timeout_sec', 0.0)  # 0 = auto-detect off
+        # Grace window (s) after a drone is (re)dispatched before the heartbeat
+        # watchdog may fail it, so a not-yet-streaming or momentarily-starved
+        # drone isn't falsely declared dead. Should exceed heartbeat_timeout_sec.
+        self.declare_parameter('heartbeat_grace_sec', 20.0)
         self.declare_parameter('repartition_on_failure', True)
 
         self.area_min_x = float(self.get_parameter('area_min_x').value)
@@ -250,14 +260,26 @@ class FogServer(Node):
         self.fail_after_sec = float(self.get_parameter('fail_after_sec').value)
         self.fail_action = str(self.get_parameter('fail_action').value)
         self.heartbeat_timeout = float(self.get_parameter('heartbeat_timeout_sec').value)
+        self.heartbeat_grace = float(self.get_parameter('heartbeat_grace_sec').value)
         self.repartition = bool(self.get_parameter('repartition_on_failure').value)
 
         # ---- Detection model (loaded only if enabled) ----
+        self.declare_parameter('detect_period', 0.4)   # inference cadence (timer)
+        self.declare_parameter('detect_imgsz', 640)    # lower on weak CPUs
+        self.detect_period = float(self.get_parameter('detect_period').value)
+        self.detect_imgsz = int(self.get_parameter('detect_imgsz').value)
         self.model = None
+        self._latest_frame = {}   # drone_id -> newest frame (detection buffer)
+        self._detect_rr = -1      # round-robin pointer across drones
         if self.enable_detection:
             from ultralytics import YOLO
             self.model = YOLO('yolov8n.pt')
-            self.get_logger().info('[FOG] YOLOv8n detection ENABLED (CPU)')
+            # Warm up so the first real inference isn't a multi-second stall.
+            self.model(np.zeros((480, 640, 3), dtype=np.uint8),
+                       verbose=False, device='cpu', imgsz=self.detect_imgsz)
+            self.get_logger().info(
+                f'[FOG] YOLOv8n detection ENABLED (CPU, imgsz={self.detect_imgsz}, '
+                f'infer every {self.detect_period}s over the newest frame per drone)')
         else:
             self.get_logger().info(
                 '[FOG] Detection disabled (use enable_detection:=true to enable)')
@@ -272,6 +294,7 @@ class FogServer(Node):
         # ---- Per-drone state ----
         self.decision_publishers = {}
         self.mission_cmd_publishers = {}
+        self.util_task_pubs = {}      # Task 6 fog-utilisation (see loop below)
         self.stats = {}
         self.spawn_of = {}
         self.local_pos = {}
@@ -284,6 +307,8 @@ class FogServer(Node):
         self.active_drones = set()      # drone_ids currently in the mission
         self.failed_drones = set()      # drone_ids declared unreachable
         self.last_seen = {}             # drone_id -> last telemetry wall-clock
+        self._dispatch_grace_until = {} # drone_id -> wall-clock until which the
+                                        # heartbeat watchdog must not fail it
         self._mission_start_t = None    # set on START_MISSION (for fail_after_sec)
         # Bounds used for the report's ASCII map (set at start_mission)
         self.map_bounds = (self.area_min_x, self.area_max_x,
@@ -313,6 +338,18 @@ class FogServer(Node):
                 String, f'/fog/{drone_id}/decision', 10)
             self.mission_cmd_publishers[drone_id] = self.create_publisher(
                 String, f'/{drone_id}/mission_command', 10)
+            # Task 6 utilisation (fog tier): metrics_collector counts one unit
+            # of fog utilisation per Task on /{drone}/task/fog — the SAME topic
+            # this node subscribes to for the Task-4 drone->fog contract.
+            # Nothing ever published there in fog mode, so every fog-mode
+            # summary showed utilisation fog=0 while cloud mode (whose
+            # cloud_detector publishes /{drone}/task/cloud per processed
+            # frame) counted fine. camera_callback now publishes one
+            # FOG_PROCESSING task per frame the fog actually infers, and
+            # task_callback filters that type out to avoid a self-receive
+            # loop (see both).
+            self.util_task_pubs[drone_id] = self.create_publisher(
+                Task, task_topic, 10)
             self.stats[drone_id] = {'status': 0, 'tasks': 0, 'frames': 0}
             self._armed[drone_id] = False
 
@@ -338,6 +375,20 @@ class FogServer(Node):
         # ---- Coverage telemetry (Task 6 metric: Coverage Efficiency) ----
         self.coverage_pub = self.create_publisher(String, '/fog/coverage', 10)
 
+        # Track in-flight rescues so auto-finish waits for a dispatched drone to
+        # actually REACH its victim before ending the mission. decision_node
+        # publishes ASSIGNED/RESOLVED lifecycle on /fog/decision_log; an event
+        # assigned but not yet resolved is a rescue still in progress. Without
+        # this, a victim detected late (near the coverage target) is dispatched
+        # but the mission auto-finishes before arrival, so it shows as
+        # created/assigned-but-not-resolved with no completion time.
+        self.declare_parameter('rescue_grace_sec', 30.0)
+        self.rescue_grace_sec = float(self.get_parameter('rescue_grace_sec').value)
+        self._open_rescues = {}          # event_id -> first_seen wall-clock
+        self._finish_deferred_since = None
+        self.create_subscription(
+            String, '/fog/decision_log', self._decision_log_cb, 10)
+
         # ---- Reliability telemetry (Task 6.9: drone failure / repartition) ----
         self.reliability_pub = self.create_publisher(String, '/fog/reliability', 10)
 
@@ -356,6 +407,10 @@ class FogServer(Node):
             '[FOG] coverage tracking ON (needs the camera bridge per drone)')
 
         self.create_timer(5.0, self.log_stats)
+        # Detection runs on a timer over the newest frame per drone (see
+        # camera_callback / _detect_latest) so a slow inference never processes
+        # a stale backlog. Harmless no-op when detection is disabled.
+        self.create_timer(self.detect_period, self._detect_latest)
         # Drone-failure watchdog (injected schedule + telemetry heartbeat).
         self.create_timer(1.0, self._failure_watchdog)
         if self.fail_drone_id >= 0:
@@ -463,6 +518,15 @@ class FogServer(Node):
 
     # ------------------------------------------------------------------
     def task_callback(self, msg: Task, drone_id: str):
+        if msg.task_type == 'FOG_PROCESSING':
+            # Our OWN per-frame utilisation marker (published in
+            # camera_callback for metrics_collector). This node subscribes to
+            # the same topic for the drone->fog Task-4 contract, so it
+            # receives its own messages — without this filter every inferred
+            # frame would flood _record_event/the cloud archive at 2 Hz per
+            # drone. Skip entirely: don't count it in stats['tasks'] either,
+            # so that stat keeps meaning "drone-originated tasks".
+            return
         self.stats[drone_id]['tasks'] += 1
 
         now_ns = self.get_clock().now().nanoseconds
@@ -502,24 +566,61 @@ class FogServer(Node):
     def camera_callback(self, msg: Image, drone_id: str):
         self.stats[drone_id]['frames'] += 1
 
-        # Coverage tracking always runs (area-partitioning).
+        # Coverage tracking always runs (area-partitioning). Cheap: no YOLO.
         self._mark_coverage(drone_id)
 
         # Victim detection only when enabled (Task 4).
         if not self.enable_detection or self.model is None:
             return
 
-        # Convert ROS Image to numpy
+        # Store ONLY the newest frame for this drone; inference happens on a
+        # timer (_detect_latest). Running YOLO synchronously here — for THREE
+        # cameras, on one single-threaded executor — built a stale-frame
+        # backlog: the fog analysed frames seconds old, so a drone could pass
+        # directly over the victim and the fog never inferred a frame that
+        # actually contained it. Storing-and-timing (same latest-frame pattern
+        # as cloud_detector / victim_detector) means the fog always infers the
+        # CURRENT view, which is what makes detection reliable under load.
         try:
             frame = np.frombuffer(msg.data, dtype=np.uint8).reshape(
-                msg.height, msg.width, 3)
+                msg.height, msg.width, 3).copy()
         except ValueError:
             return
+        self._latest_frame[drone_id] = frame
 
-        # Run YOLOv8 inference
+    def _detect_latest(self):
+        """Timer: run YOLO on the newest frame of ONE drone per tick (round
+        robin), so a slow inference can never back up a stale queue and the
+        three cameras share the fog's inference budget fairly."""
+        if not self.enable_detection or self.model is None:
+            return
+        drones = [d for d in sorted(self._latest_frame)
+                  if self._latest_frame[d] is not None]
+        if not drones:
+            return
+        # Round-robin pointer so no single drone monopolises inference.
+        self._detect_rr = (self._detect_rr + 1) % len(drones)
+        drone_id = drones[self._detect_rr]
+        frame = self._latest_frame[drone_id]
+
         start = time.time()
-        results = self.model(frame, verbose=False, device='cpu')
+        results = self.model(frame, verbose=False, device='cpu',
+                             imgsz=self.detect_imgsz)
         inference_ms = (time.time() - start) * 1000
+
+        # Task 6 utilisation: one FOG_PROCESSING task per frame the fog tier
+        # actually inferred, mirroring cloud_detector's per-processed-frame
+        # /{drone}/task/cloud. metrics_collector counts these into
+        # utilisation.per_drone[drone].fog. task_callback ignores this type
+        # (self-receive filter).
+        ut = Task()
+        ut.task_id = f'fog-{drone_id}-proc-{self.stats[drone_id]["frames"]:05d}'
+        ut.task_type = 'FOG_PROCESSING'
+        ut.drone_id = drone_id
+        ut.timestamp = self.get_clock().now().to_msg()
+        ut.priority = 1
+        ut.payload = json.dumps({'inference_ms': round(inference_ms, 1)})
+        self.util_task_pubs[drone_id].publish(ut)
 
         # Extract person detections
         detections = []
@@ -574,6 +675,27 @@ class FogServer(Node):
                 'timestamp': time.time(),
             })
             self.victim_alert_pub.publish(alert)
+
+    def _decision_log_cb(self, msg):
+        """Track rescues in flight from decision_node's lifecycle log so
+        auto-finish can wait for them (see the auto-finish gate in log_stats)."""
+        try:
+            rec = json.loads(msg.data)
+        except Exception:
+            return
+        kind = rec.get('kind')
+        eid = rec.get('event_id')
+        if not eid:
+            return
+        if kind == 'ASSIGNED':
+            # a rescuer was dispatched to this victim; it's now in flight
+            self._open_rescues.setdefault(eid, time.time())
+        elif kind == 'RESOLVED':
+            # rescuer arrived; no longer holding the mission open for it
+            self._open_rescues.pop(eid, None)
+            # reset the defer clock once the last open rescue closes
+            if not self._open_rescues:
+                self._finish_deferred_since = None
 
     def _mark_coverage(self, drone_id):
         grid = self.cov_grid.get(drone_id)
@@ -718,6 +840,15 @@ class FogServer(Node):
             path = self._write_report(text)
             self.get_logger().info(
                 '[FOG COVERAGE] FINAL REPORT (saved to %s):\n%s' % (path, text))
+        # The end-of-mission archive is the CLOUD tier's characteristic work.
+        # In scenarios where the cloud is meant to be unavailable (the local /
+        # fog+cloud-down fallback), set archive_to_cloud:=false so the run
+        # truthfully shows the cloud tier as inactive instead of archiving.
+        if not self.archive_to_cloud:
+            self.get_logger().info(
+                '[FOG END_MISSION] archive_to_cloud=false -> skipping cloud '
+                'flush (cloud tier represented as unavailable this run).')
+            return 0, 0, 0
         return self._flush_to_cloud()
 
     def end_mission_callback(self, request, response):
@@ -775,6 +906,9 @@ class FogServer(Node):
                 a['min_x'], a['max_x'], a['min_y'], a['max_y'],
                 self.coverage_cell_m)
             self.coverage_pct[drone_id] = 0.0
+            # Give this drone a telemetry grace window from now: it was just
+            # (re)dispatched and may not have streamed fresh PX4 telemetry yet.
+            self._dispatch_grace_until[drone_id] = time.time() + self.heartbeat_grace
 
             lat, lon = enu_to_global(a['cx'], a['cy'])
             tgt = {
@@ -843,9 +977,24 @@ class FogServer(Node):
             if did in self.active_drones and elapsed >= self.fail_after_sec:
                 self._handle_drone_failure(did, f'injected @T+{elapsed:.0f}s')
 
-        # (2) Telemetry heartbeat (realistic "unreachable")
+        # (2) Telemetry heartbeat (realistic "unreachable").
+        # Two guards make this robust on a CPU-loaded laptop, where a healthy
+        # drone's PX4 telemetry can stall for several seconds:
+        #   - never fail the LAST survivor (a cascade that empties the mission
+        #     is never what "one drone fails" is meant to test); and
+        #   - honour a per-drone grace window after (re)dispatch, since a drone
+        #     that was just told to START_MISSION/REPARTITION hasn't necessarily
+        #     streamed fresh telemetry yet.
+        # Without these, a starved-but-alive drone gets marked failed on top of
+        # the scheduled failure -> 2+ "failures" and the whole area repartitioned
+        # onto a single drone (the catastrophic 4% coverage case).
         if self.heartbeat_timeout > 0 and elapsed > self.heartbeat_timeout:
             for did in list(self.active_drones):
+                if len(self.active_drones) <= 1:
+                    break  # keep at least one drone flying the mission
+                grace = self._dispatch_grace_until.get(did, 0.0)
+                if now < grace:
+                    continue
                 ls = self.last_seen.get(did)
                 if ls is not None and (now - ls) > self.heartbeat_timeout:
                     self._handle_drone_failure(
@@ -962,11 +1111,20 @@ class FogServer(Node):
             total_bins = sum(g.total for g in self.cov_grid.values())
             covered_bins = sum(len(g.covered) for g in self.cov_grid.values())
             overall_pct = (100.0 * covered_bins / total_bins) if total_bins else 0.0
+            # Scanned area in m^2 = sum of each assigned cell's real extent (so
+            # zone mode and rectangle mode both report the true area covered).
+            area_m2 = sum((g.max_x - g.min_x) * (g.max_y - g.min_y)
+                          for g in self.cov_grid.values())
+            # Edge-tier activity: total camera frames captured/streamed by the
+            # drones so far (the edge tier's characteristic work in EVERY mode).
+            frames_total = sum(s['frames'] for s in self.stats.values())
             cov_msg = String()
             cov_msg.data = json.dumps({
                 'overall_pct': round(overall_pct, 2),
                 'covered_bins': covered_bins,
                 'total_bins': total_bins,
+                'area_m2': round(area_m2, 1),
+                'frames_total': frames_total,
                 'per_drone': {d: round(g.pct(), 2) for d, g in self.cov_grid.items()},
                 'ts': time.time(),
             })
@@ -977,6 +1135,26 @@ class FogServer(Node):
             # after a repartition, so the drone-failure run still ends cleanly.
             if (self.auto_finish_coverage_pct > 0.0 and not self._coverage_done
                     and overall_pct >= self.auto_finish_coverage_pct):
+                # Hold the finish while a dispatched rescuer is still en route to
+                # a victim, so its completion time gets recorded — but only up to
+                # rescue_grace_sec so a stuck/never-arriving rescue can't hang the
+                # mission forever.
+                now = time.time()
+                open_ids = list(self._open_rescues)
+                if open_ids:
+                    if self._finish_deferred_since is None:
+                        self._finish_deferred_since = now
+                        self.get_logger().info(
+                            f'[FOG COVERAGE] {overall_pct:.1f}% >= target, but '
+                            f'holding finish up to {self.rescue_grace_sec:.0f}s for '
+                            f'{len(open_ids)} in-flight rescue(s): {open_ids}')
+                    waited = now - self._finish_deferred_since
+                    if waited < self.rescue_grace_sec:
+                        return   # keep flying; check again next telemetry tick
+                    self.get_logger().warn(
+                        f'[FOG COVERAGE] rescue grace {self.rescue_grace_sec:.0f}s '
+                        f'elapsed with {len(open_ids)} rescue(s) still open '
+                        f'{open_ids} — finishing anyway.')
                 self._coverage_done = True
                 self.get_logger().info(
                     f'[FOG COVERAGE] overall {overall_pct:.1f}% >= '

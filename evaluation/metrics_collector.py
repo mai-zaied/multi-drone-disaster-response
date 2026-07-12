@@ -32,7 +32,7 @@ The summary now reports BOTH:
 Parameters
 ----------
 mode local|fog|cloud · scenario · run_id · num_drones · fault
-auto_finish (default true) · grace_sec (default 90) · out_dir
+auto_finish (default true) · grace_sec (default 15) · out_dir
 """
 
 import csv
@@ -103,7 +103,7 @@ class MetricsCollector(Node):
         self.declare_parameter("num_drones", 3)
         self.declare_parameter("fault", "none")
         self.declare_parameter("auto_finish", True)
-        self.declare_parameter("grace_sec", 90.0)
+        self.declare_parameter("grace_sec", 15.0)
         self.declare_parameter("out_dir", "evaluation/results_real")
 
         self.mode = str(self.get_parameter("mode").value).lower()
@@ -119,6 +119,8 @@ class MetricsCollector(Node):
         self._saved = False
         self._end_seen = False
         self._mismatch_warned = set()
+        self._cloud_archive_batches = 0   # cloud tier: mission-log flush batches
+        self._cloud_archive_events = 0    # cloud tier: events archived
 
         self.records = []                       # one dict per detection alert
         self.open_by_drone = defaultdict(deque)  # drone -> indices not linked/closed
@@ -234,6 +236,15 @@ class MetricsCollector(Node):
             f"events c/a/r={len(self.events_created)}/{len(self.events_assigned)}"
             f"/{len(self.events_resolved)} batt_drones={len(self.batt_last)} "
             f"coverage={'yes' if self.coverage else 'no'}")
+        # Periodic SNAPSHOT to disk (non-final): if the OS OOM-killer sends
+        # SIGKILL — which cannot be caught, so the shutdown save never runs —
+        # the most recent snapshot is already written. Only snapshot once
+        # there's something worth saving, and never after the final save.
+        if not self._saved and (self.records or self.coverage or self.batt_last):
+            try:
+                self.save(final=False)
+            except Exception as e:
+                self.get_logger().warn(f"[METRICS] snapshot failed: {e}")
 
     def _warn_mismatch(self, src_mode, topic):
         if (src_mode, topic) in self._mismatch_warned:
@@ -410,6 +421,17 @@ class MetricsCollector(Node):
 
     # ------------------------------------------------------------------
     def mission_end_cb(self, msg):
+        # Cloud tier activity: the fog flushes the mission archive here at
+        # end-of-mission. Count the batches/events so utilisation can show the
+        # cloud tier as ACTIVE in fog runs (it archived), not just when cloud
+        # does detection. Accumulate across batches (there can be several).
+        try:
+            rec = json.loads(msg.data)
+            self._cloud_archive_batches += 1
+            self._cloud_archive_events += int(rec.get("event_count", 0)) or len(
+                rec.get("events", []) or [])
+        except Exception:
+            pass
         if self._end_seen:
             return
         self._end_seen = True
@@ -449,10 +471,18 @@ class MetricsCollector(Node):
     def _finalise_rows(self):
         return [{k: r.get(k, "") for k in CSV_FIELDS} for r in self.records]
 
-    def save(self):
-        if self._saved:
-            return
-        self._saved = True
+    def save(self, final=True):
+        # `final=True`  -> the definitive end-of-run save (latches _saved so the
+        #                  shutdown path doesn't double-write).
+        # `final=False` -> a periodic SNAPSHOT written during the run so an
+        #                  OOM SIGKILL (which cannot be caught) can never wipe a
+        #                  completed mission: the last snapshot is already on
+        #                  disk. Snapshots are cheap (a few detections) and
+        #                  overwrite the same files atomically.
+        if final:
+            if self._saved:
+                return
+            self._saved = True
         rows = self._finalise_rows()
         base = f"{self.mode}_{self.scenario}_{self.run_id}"
         csv_path = os.path.join(self.out_dir, base + ".csv")
@@ -466,7 +496,14 @@ class MetricsCollector(Node):
         comps = [r["completion_time_sec"] for r in self.records
                  if isinstance(r["completion_time_sec"], (int, float))]
         detections = len(self.records)
-        completed = sum(1 for r in self.records if r["completed"])
+        # "completed" = number of completed EVENTS. Prefer the event-level count
+        # (decision_log RESOLVED) so it matches events.resolved and the ratio;
+        # this is the authoritative path under localization-completion, where
+        # completion is an event fact, not a per-detection-row arrival. Fall back
+        # to the per-row flag only when no event lifecycle was seen.
+        row_completed = sum(1 for r in self.records if r["completed"])
+        completed = (len(self.events_resolved)
+                     if self.events_resolved else row_completed)
 
         def agg(xs):
             if not xs:
@@ -485,6 +522,44 @@ class MetricsCollector(Node):
             for k in util_total:
                 util_total[k] += d[k]
 
+        # ---- TIER ACTIVITY (which tiers were used this run) ----
+        # "Utilisation" as on/off-per-tier, the honest cross-tier view: the
+        # three tiers do different KINDS of work (frames vs inferences vs
+        # archival), so a single shared % across them would be meaningless.
+        # A fog run correctly shows ALL THREE active — the edge captured and
+        # streamed the frames, the fog ran detection + coordination, and the
+        # cloud received the end-of-mission archive.
+        edge_frames = 0
+        if isinstance(self.coverage, dict):
+            edge_frames = int(self.coverage.get("frames_total", 0) or 0)
+        fog_infer = util_total["fog"]
+        cloud_infer = util_total["cloud"]
+        edge_infer = util_total["local"]   # on-drone AI (local mode)
+
+        tiers = {
+            "edge": {
+                "active": edge_frames > 0 or edge_infer > 0,
+                "role": "capture + stream frames" + (
+                    " + on-drone AI" if edge_infer > 0 else ""),
+                "frames": edge_frames,
+                "on_drone_inferences": edge_infer,
+            },
+            "fog": {
+                "active": fog_infer > 0,
+                "role": "detection + coordination",
+                "inferences": fog_infer,
+            },
+            "cloud": {
+                "active": cloud_infer > 0 or self._cloud_archive_batches > 0,
+                "role": ("offload inference + " if cloud_infer > 0 else "")
+                        + "mission archival",
+                "inferences": cloud_infer,
+                "archive_batches": self._cloud_archive_batches,
+                "archive_events": self._cloud_archive_events,
+            },
+        }
+        tiers_active = [t for t in ("edge", "fog", "cloud") if tiers[t]["active"]]
+
         energy = {}
         total_consumed = 0.0
         for d in self.batt_first:
@@ -499,11 +574,22 @@ class MetricsCollector(Node):
         cov_overall = (self.coverage.get("overall_pct")
                        if isinstance(self.coverage, dict) else None)
 
-        # Event-level lifecycle (authoritative for completion)
+        # Event-level lifecycle (authoritative for completion).
+        n_created = len(self.events_created)
         n_assigned = len(self.events_assigned)
         n_resolved = len(self.events_resolved)
-        event_completion_ratio = (round(n_resolved / n_assigned, 4)
-                                  if n_assigned else None)
+        # completion_ratio = resolved / CREATED. Created is the right denominator
+        # for BOTH completion definitions: under localization-completion every
+        # created event resolves (ratio -> 1.0), and under arrival-completion a
+        # created event only resolves if a drone arrives (ratio < 1.0). The old
+        # code divided by ASSIGNED, which could exceed 1.0 (e.g. resolved=4 but
+        # assigned=3 when an event completed at localization before dispatch) —
+        # an impossible >100% ratio. Some RESOLVED ids can arrive without a
+        # matching CREATED (dropped message), so union them into the denominator
+        # and clamp to 1.0 to stay well-defined.
+        denom = len(self.events_created | self.events_resolved)
+        event_completion_ratio = (round(min(n_resolved / denom, 1.0), 4)
+                                  if denom else None)
 
         summary = {
             "mode": self.mode, "scenario": self.scenario, "run_id": self.run_id,
@@ -511,9 +597,9 @@ class MetricsCollector(Node):
             "duration_sec": round(time.time() - self.t_start, 2),
             "detection_events": detections,
             "completed": completed,
-            # completion_ratio is now EVENT-based (resolved / assigned), so many
-            # alerts of one victim no longer dilute it. Falls back to row-based
-            # if no events were assigned (e.g. detector==rescuer feedback path).
+            # completion_ratio is EVENT-based (resolved / created, clamped <=1),
+            # so many alerts of one victim don't dilute it and it can never
+            # exceed 100%. Falls back to row-based if no events were seen.
             "completion_ratio": (event_completion_ratio
                                  if event_completion_ratio is not None
                                  else (round(completed / detections, 4)
@@ -528,7 +614,19 @@ class MetricsCollector(Node):
             # fall back to per-row completion (feedback path) if none.
             "completion_time_sec": agg(self.event_completion_times or comps),
             "response_time_sec": agg(self.event_response_times),
+            # Raw inference counts per tier (the analyzer + g16 use these).
+            # NOTE: the old `detection_share_pct` field (which showed "fog 100%")
+            # was REMOVED — it only ever meant "which tier ran the detection",
+            # which in a fog run is trivially 100% fog and kept being misread as
+            # "only fog was used". The real "which tiers were engaged" answer is
+            # the `tiers` / `tiers_active` block below (edge + fog + cloud).
             "utilisation": {"per_drone": dict(self.util), "total": util_total},
+            # Which tiers were ACTIVE this run + each tier's own work. A fog run
+            # shows edge + fog + cloud all active (capture / detect / archive).
+            # THIS is the "how much did we use each tier" answer.
+            "tiers": tiers,
+            "tiers_active": tiers_active,
+            "tiers_active_count": len(tiers_active),
             "coverage": self.coverage,
             "coverage_overall_pct": cov_overall,
             "energy": {"per_drone": energy,
@@ -538,12 +636,21 @@ class MetricsCollector(Node):
             "energy_total_pct": round(total_consumed, 2) if energy else None,
         }
         json_path = os.path.join(self.out_dir, base + ".summary.json")
-        with open(json_path, "w") as f:
+        # Atomic write (temp + rename) so an OOM-kill mid-write can never leave
+        # a truncated/corrupt summary — the previous good one stays intact.
+        tmp = json_path + ".tmp"
+        with open(tmp, "w") as f:
             json.dump(summary, f, indent=2)
+        os.replace(tmp, json_path)
 
-        self.get_logger().info(
-            f"[METRICS SAVED] {csv_path}  ({detections} detection events, "
-            f"{n_resolved} resolved / {n_assigned} assigned)  + {json_path}")
+        if final:
+            self.get_logger().info(
+                f"[METRICS SAVED] {csv_path}  ({detections} detection events, "
+                f"{n_resolved} resolved / {n_assigned} assigned)  + {json_path}")
+        else:
+            self.get_logger().info(
+                f"[METRICS SNAPSHOT] {detections} detections, "
+                f"{n_resolved}/{n_assigned} resolved so far -> {json_path}")
 
 
 def main(args=None):

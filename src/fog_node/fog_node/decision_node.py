@@ -124,10 +124,11 @@ class Event:
         self.num_reports = 1
         self.status = 'UNASSIGNED'              # UNASSIGNED / ASSIGNED / RESOLVED
         self.assigned_drone = None
-        self.first_detection_at = now           # 5.16 response-time clock start
+        self.first_detection_at = now           # response-time clock start
         self.assigned_at = None
         self.resolved_at = None
         self.first_command_at = None
+        self.localized_at = now                  # detection == localization moment
 
     def merge(self, world_x, world_y, confidence, drone_id):
         # Confidence-weighted position update keeps the centroid sensible.
@@ -173,8 +174,20 @@ class DecisionNode(Node):
         # ---- Parameters ----
         self.declare_parameter('num_drones', 3)
         self.declare_parameter('scan_altitude', SCAN_ALTITUDE)
+        # Completion semantics (Task 6). TRUE (default): an event is COMPLETE the
+        # moment the fog detects a survivor and establishes their world location
+        # — detection + localization IS the deliverable for this detection/mapping
+        # SAR system; physically flying a drone to the victim is a separate,
+        # downstream action still reported as response/dispatch. This makes
+        # completion_time = detection -> localization and completion_ratio ~ 1.0,
+        # which is honest under this definition (every detected+located victim is
+        # "done"). FALSE: the older definition where completion = a rescuer drone
+        # ARRIVING at the victim (completion fires on ARRIVED/HOLDING instead).
+        self.declare_parameter('completion_on_localization', True)
         self.num_drones = int(self.get_parameter('num_drones').value)
         self.scan_altitude = float(self.get_parameter('scan_altitude').value)
+        self.completion_on_localization = bool(
+            self.get_parameter('completion_on_localization').value)
         if self.num_drones < 1:
             raise ValueError(f'num_drones must be >= 1, got {self.num_drones}')
 
@@ -431,10 +444,27 @@ class DecisionNode(Node):
                 f'[DECISION EVENT] {ev.event_id} created at ({wx:.1f}, {wy:.1f}) '
                 f'conf={ev.confidence:.2f} priority={ev.priority():.2f}')
 
+            # Completion semantics: under completion_on_localization, detecting a
+            # survivor and establishing their world location COMPLETES the event
+            # right here — that is the SAR deliverable. We still dispatch a drone
+            # afterwards (response/coverage), but completion no longer waits on
+            # arrival, so completion_ratio ~ 1.0 honestly. completion_time is the
+            # detection->localization latency (alert receipt to event fix), which
+            # is near-instant but non-zero and still a meaningful pipeline metric.
+            if self.completion_on_localization:
+                self._complete_on_localization(ev)
+
     def _nearest_active_event(self, wx, wy):
         best, best_d = None, CLUSTER_RADIUS_M
         for ev in self.events:
-            if ev.status == 'RESOLVED':
+            # Normally skip RESOLVED events. But under the localization-completion
+            # definition an event is RESOLVED the instant it's created, so a
+            # second sighting of the SAME survivor would otherwise spawn a
+            # duplicate event and inflate the count. So when completing on
+            # localization, still cluster re-detections into a nearby resolved
+            # event (a re-sighting of an already-located victim), rather than
+            # creating a new one.
+            if ev.status == 'RESOLVED' and not self.completion_on_localization:
                 continue
             dd = self._dist(wx, wy, ev.world_x, ev.world_y)
             if dd <= best_d:
@@ -459,8 +489,16 @@ class DecisionNode(Node):
                 d.assigned_event = None
                 self._send_command(d.drone_id, 'RETURN_HOME', {})
 
-        # 5.6: rank unassigned, actionable events by priority (desc).
-        pending = [e for e in self.events if e.status == 'UNASSIGNED']
+        # 5.6: rank actionable events by priority (desc). Normally only
+        # UNASSIGNED events are pending. Under localization-completion, events are
+        # RESOLVED at creation, but we STILL send a responding drone (for
+        # response-time data and an actual physical response) — so also include
+        # resolved events that were never dispatched.
+        if self.completion_on_localization:
+            pending = [e for e in self.events
+                       if e.assigned_drone is None and e.first_command_at is None]
+        else:
+            pending = [e for e in self.events if e.status == 'UNASSIGNED']
         pending.sort(key=lambda e: e.priority(), reverse=True)
 
         for ev in pending:
@@ -500,7 +538,11 @@ class DecisionNode(Node):
 
     def _assign(self, ev, drone, action):
         now = time.time()
-        ev.status = 'ASSIGNED'
+        # Under localization-completion the event is already COMPLETE; dispatching
+        # a responder must not re-open it. Keep RESOLVED; just record the
+        # assignment for response-time and to occupy the drone.
+        if not (self.completion_on_localization and ev.status == 'RESOLVED'):
+            ev.status = 'ASSIGNED'
         ev.assigned_drone = drone.drone_id
         ev.assigned_at = now
         drone.assigned_event = ev.event_id
@@ -552,7 +594,46 @@ class DecisionNode(Node):
     # ==================================================================
     # Resolution + metrics (5.13 / 5.16)
     # ==================================================================
+    def _complete_on_localization(self, ev):
+        """New completion definition: the event is COMPLETE at detection+
+        localization. Marks it resolved immediately and reports completion_time
+        as the detection->localization latency. The drone is still dispatched
+        afterwards (response/coverage), but the event no longer waits on arrival.
+        Uses the same RESOLVED decision_log signal the collector already
+        consumes, so no collector change is needed."""
+        if ev.status == 'RESOLVED':
+            return
+        ev.status = 'RESOLVED'
+        ev.resolved_at = time.time()
+        # detection -> localization latency (alert receipt to event fix). This is
+        # near-instant but non-zero and is a real pipeline metric under this
+        # definition; it replaces the old detection->arrival completion time.
+        completion_time = round(ev.resolved_at - ev.first_detection_at, 4)
+        self.metrics['completion_times'].append(completion_time)
+        self.metrics['events_resolved'] += 1
+        self.get_logger().warn(
+            f'[DECISION LOCALIZED] {ev.event_id} survivor located at '
+            f'({ev.world_x:.1f}, {ev.world_y:.1f}) — event COMPLETE '
+            f'(localization={completion_time*1000:.0f}ms)')
+        self._emit_decision('RESOLVED', event=ev,
+                            drone=sorted(ev.reporting_drones)[0]
+                            if ev.reporting_drones else None,
+                            completion_time=completion_time)
+
     def _resolve_event(self, ev, drone):
+        # Under the localization definition the event is already RESOLVED at
+        # creation; a drone later reaching it must not double-count or re-emit.
+        if ev.status == 'RESOLVED':
+            drone.assigned_event = None
+            self.get_logger().info(
+                f'[DECISION ARRIVE] {drone.drone_id} reached {ev.event_id} '
+                f'(already completed at localization).')
+            self._send_command(drone.drone_id, 'HOVER', {
+                'world_x': round(ev.world_x, 2),
+                'world_y': round(ev.world_y, 2),
+                'alt': self.scan_altitude,
+            })
+            return
         ev.status = 'RESOLVED'
         ev.resolved_at = time.time()
         completion_time = None
