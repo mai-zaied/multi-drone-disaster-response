@@ -597,6 +597,21 @@ class DroneCommander(Node):
     def target_ned(self):
         """The TRUE target for the current phase (uncapped), in local NED."""
         if self.phase == PHASE_CLIMB:
+            # Climb STRAIGHT UP from wherever the drone currently is, holding
+            # its present horizontal position, then let TRANSIT do the crossing
+            # at transit_alt. The old target [0,0,-transit_alt] (the local
+            # origin/spawn) was fine at mission start — the drone begins AT the
+            # spawn, so it was a pure vertical climb — but on a mid-map
+            # _resume_coverage() re-entry it dragged the drone diagonally back
+            # toward spawn WHILE still low, and because current_setpoint()
+            # intentionally does not cap horizontal step during CLIMB, that was
+            # a fast low crossing straight through any trees in between (the
+            # "drone got stuck in a tree on resume" report). Holding current x,y
+            # keeps CLIMB purely vertical in every case, so the drone always
+            # clears obstacles before it starts crossing.
+            if self.latest_local_pos is not None:
+                return [self.latest_local_pos.x, self.latest_local_pos.y,
+                        -self.transit_alt]
             return [0.0, 0.0, -self.transit_alt]
         idx = min(self.wp_idx, len(self.waypoints) - 1)
         wx, wy = self.waypoints[idx]

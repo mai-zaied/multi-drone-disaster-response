@@ -23,6 +23,23 @@ Fixes:
      again without an obvious reason on screen (check the bridges / QoS / topic).
   3. Still NON-BLOCKING WAN delay (timer + delayed-release pump) and still feeds
      the coordinator via /fog/victim_alerts so completion time closes.
+  4. CPU THREAD CAP + THROUGHPUT WATCHDOG (the "cloud run had utilisation but
+     zero detections" fix). Even at process_period=0.5 the ACHIEVED rate
+     collapsed in real runs: torch defaults to using every CPU core, so three
+     cloud_detector processes + Gazebo + 3x PX4 thrash each other and one
+     inference stretches to many seconds (observed: 51 processed frames per
+     drone over 460 s = one per ~9 s — with frames that sparse the static
+     victim is simply never inside a processed frame, hence detections = 0
+     while utilisation still counts). torch_threads (default 2) caps each
+     process BEFORE torch/ultralytics spin up their pools; imgsz (default 640,
+     the YOLO/fog default) is exposed for weaker machines. A [CLOUD RATE] log
+     every 10 s reports achieved fps vs target and WARNS when CPU-starved, so
+     this failure mode can never again end a run silently. Rationale for
+     making the simulated cloud's inference FAST rather than throttling it:
+     the real cloud tier is a GPU server — its inference is quick and the WAN
+     round-trip (still simulated, wan_min-wan_max, unchanged) is what makes
+     the cloud path slow. A laptop-starved CPU inference made the simulated
+     cloud slower than the simulated fog for the wrong reason.
 
 Topics out:
   /{drone}/cloud/detection   JSON {total_ms, inference_ms, wan_delay_ms, detections}
@@ -31,7 +48,8 @@ Topics out:
   /{drone}/task/cloud        Task                  (utilisation, Task 6.10)
 
 Params: instance, wan_min (1.0), wan_max (3.0), process_period (0.5),
-        conf_threshold (0.25), emit_victim_alerts (true), starvation_warn_sec (4.0).
+        conf_threshold (0.25), emit_victim_alerts (true), starvation_warn_sec (4.0),
+        torch_threads (2), imgsz (640).
 """
 
 import os
@@ -74,6 +92,20 @@ class CloudDetector(Node):
         self.declare_parameter('conf_threshold', 0.25)
         self.declare_parameter('emit_victim_alerts', True)
         self.declare_parameter('starvation_warn_sec', 4.0)
+        # THE THROUGHPUT FIX (see WHAT CHANGED #4 in the docstring): cap the
+        # CPU threads each detector process uses. Without a cap, all three
+        # cloud_detector processes let torch grab EVERY core, and together
+        # with Gazebo + 3x PX4 they thrash each other so badly that one
+        # "0.5 s-period" inference takes many seconds — a whole run can end
+        # with ~0.1 effective fps per drone and the victim never inside a
+        # processed frame (observed: utilisation cloud=51 per drone over a
+        # 460 s run = one frame per ~9 s, detections = 0).
+        self.declare_parameter('torch_threads', 2)
+        # Inference input size. 640 = YOLO default (same as the fog tier —
+        # keeps detection ability identical). If [CLOUD RATE] still reports
+        # starvation on a weaker machine, 416 or 320 trades small-object
+        # sensitivity for a large speedup.
+        self.declare_parameter('imgsz', 640)
 
         self.instance = int(self.get_parameter('instance').value)
         self.drone_id = drone_id_for(self.instance)
@@ -83,14 +115,28 @@ class CloudDetector(Node):
         self.conf_th = float(self.get_parameter('conf_threshold').value)
         self.emit_alerts = bool(self.get_parameter('emit_victim_alerts').value)
         self.starvation_warn = float(self.get_parameter('starvation_warn_sec').value)
+        self.torch_threads = max(1, int(self.get_parameter('torch_threads').value))
+        self.imgsz = int(self.get_parameter('imgsz').value)
 
+        # Thread caps MUST be set before torch/ultralytics initialise their
+        # thread pools, which is why the import happens down here, after the
+        # parameters are read, and the env vars are set first.
+        os.environ.setdefault('OMP_NUM_THREADS', str(self.torch_threads))
+        os.environ.setdefault('MKL_NUM_THREADS', str(self.torch_threads))
+        import torch
+        torch.set_num_threads(self.torch_threads)
+        try:
+            torch.set_num_interop_threads(1)
+        except RuntimeError:
+            pass   # already initialised elsewhere in this process; cap above still applies
         from ultralytics import YOLO
         self.model = YOLO('yolov8n.pt')
         # Warmup so the first real inference isn't a multi-second stall.
         self.model(np.zeros((480, 640, 3), dtype=np.uint8),
-                   verbose=False, device='cpu')
+                   verbose=False, device='cpu', imgsz=self.imgsz)
         self.get_logger().info(
-            f'[CLOUD DETECTOR] {self.drone_id}: YOLOv8n loaded, '
+            f'[CLOUD DETECTOR] {self.drone_id}: YOLOv8n loaded '
+            f'(threads={self.torch_threads}, imgsz={self.imgsz}), '
             f'WAN {self.wan_min}-{self.wan_max}s (non-blocking), '
             f'inference every {self.process_period}s (matches 2 Hz bridge)')
 
@@ -112,10 +158,45 @@ class CloudDetector(Node):
         self.last_frame_time = None
         self.last_starv_warn = 0.0
         self.pending = deque()   # (due_at, result_dict)
+        # Effective-rate watchdog state (WHAT CHANGED #4): the old frame
+        # watchdog only caught "no frames arriving"; it could NOT catch
+        # "frames arriving fine but inference too slow to keep up", which
+        # produces the same silent 0-detection run.
+        self._rate_prev_processed = 0
+        self._rate_prev_t = time.time()
+        self._infer_ms_sum = 0.0
 
         self.create_timer(self.process_period, self.process_latest)
         self.create_timer(0.05, self.pump_pending)        # 20 Hz release
         self.create_timer(2.0, self.check_starvation)     # frame watchdog
+        self.create_timer(10.0, self.report_rate)         # throughput watchdog
+
+    # ------------------------------------------------------------------
+    def report_rate(self):
+        """Every 10 s: log the ACHIEVED inference rate vs the target, and WARN
+        loudly when the CPU can't keep up — so a starved run can never again
+        end silently with detections=0."""
+        now = time.time()
+        dt = max(1e-6, now - self._rate_prev_t)
+        done = self.processed_count - self._rate_prev_processed
+        eff_fps = done / dt
+        target_fps = 1.0 / self.process_period
+        mean_ms = (self._infer_ms_sum / done) if done else 0.0
+        self._rate_prev_processed = self.processed_count
+        self._rate_prev_t = now
+        self._infer_ms_sum = 0.0
+        if self.processed_count == 0:
+            return   # frame watchdog already covers the no-frames case
+        line = (f'[CLOUD RATE] {self.drone_id}: {eff_fps:.2f} fps effective '
+                f'(target {target_fps:.1f}), mean inference {mean_ms:.0f}ms, '
+                f'received={self.frame_count} processed={self.processed_count}')
+        if eff_fps < 0.5 * target_fps:
+            self.get_logger().warn(
+                line + ' -> CPU-STARVED: inference cannot keep up; victims can '
+                       'be missed. Lower imgsz (e.g. -p imgsz:=416) or close '
+                       'other CPU-heavy processes.')
+        else:
+            self.get_logger().info(line)
 
     # ------------------------------------------------------------------
     def camera_callback(self, msg: Image):
@@ -157,8 +238,10 @@ class CloudDetector(Node):
         self.task_status_pub.publish(ts)
 
         start = time.time()
-        results = self.model(frame, verbose=False, device='cpu')
+        results = self.model(frame, verbose=False, device='cpu',
+                             imgsz=self.imgsz)
         inference_ms = (time.time() - start) * 1000
+        self._infer_ms_sum += inference_ms
 
         detections = []
         boxes = results[0].boxes

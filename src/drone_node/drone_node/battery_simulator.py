@@ -16,6 +16,7 @@ pays for on-board AI; in FOG mode it offloads that cost; CLOUD sits in between
 
 Output line format is UNCHANGED so metrics_collector still parses `battery=NN.NN`:
     droneX: battery=NN.NN% | state=SCANNING+AI | drain=0.18%/1.0s
+    B(t+Δt) = B(t) − [ r_avionics + r_flight(state(t)) + r_proc(mode(t)) ] · Δt
 """
 
 import json
@@ -26,16 +27,16 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 
-AVIONICS_BASE_RATE = 0.02   # always-present avionics draw (%/s)
+AVIONICS_BASE_RATE = 0.015  # always-present avionics draw (%/s)
 
-FLIGHT_RATE = {             # added on top, by flight state (%/s)
+FLIGHT_RATE = {
     'IDLE': 0.00,
-    'EN_ROUTE': 0.12,       # CLIMB + TRANSIT + DESCEND (highest)
-    'SCANNING': 0.10,       # lawnmower sweep
-    'ARRIVED': 0.07,        # holding over a target
-    'HOLDING': 0.07,
-    'RETURNING': 0.11,      # RTL
-    'FAILED': 0.07,
+    'EN_ROUTE': 0.08,       # CLIMB + TRANSIT + DESCEND (highest)
+    'SCANNING': 0.06,       # lawnmower sweep
+    'ARRIVED': 0.045,       # holding over a target
+    'HOLDING': 0.045,
+    'RETURNING': 0.075,     # RTL
+    'FAILED': 0.045,
 }
 DEFAULT_FLIGHT_RATE = 0.05
 
@@ -81,7 +82,16 @@ class BatterySimulator(Node):
         self.declare_parameter('avionics_base_rate', AVIONICS_BASE_RATE)
         self.declare_parameter('ai_surcharge_rate', AI_SURCHARGE_RATE)
         self.declare_parameter('upload_surcharge_rate', UPLOAD_SURCHARGE_RATE)
-        self.declare_parameter('processing_timeout', 4.0)
+        # How long one task_status message keeps the surcharge active. Must
+        # exceed the SLOWEST gap between the detector's task_status publishes,
+        # or the surcharge lapses between messages and a busy drone paradoxically
+        # looks CHEAPER. A CPU-starved local detector can take ~6-8 s per
+        # inference (Scenario C), so the old 4 s was too short — it made starved
+        # local energy dip below healthy local. 10 s comfortably spans those
+        # gaps: while a mode's detector is running at all, its surcharge stays
+        # continuously on, which is the intended "this drone is doing on-board
+        # AI / uploading for the whole run" semantics.
+        self.declare_parameter('processing_timeout', 10.0)
 
         self.drone_id = self.get_parameter('drone_id').value
         self.battery = float(self.get_parameter('initial_battery').value)

@@ -397,6 +397,239 @@ def fig_reliability(summaries):
 
 
 # ----------------------------------------------------------------------
+# NEW figures (Task 6.12 checklist)
+# ----------------------------------------------------------------------
+def _area_of(s):
+    """Scanned area (m^2) for a run, from fog coverage telemetry."""
+    return _get(s, "coverage.area_m2")
+
+
+def _scn(s):
+    """Human label combining mode + scenario size (e.g. 'fog / large')."""
+    return f"{s.get('mode')}/{s.get('scenario')}"
+
+
+def fig_battery_comparison(summaries):
+    """g11 - mean battery consumed (%) per processing tier."""
+    en = mode_means(summaries, "energy.mean_consumed_pct")
+    if not en:
+        print("  (skip g11 battery comparison: no energy in summaries)")
+        return
+    modes = ordered_modes(en)
+    ys = [en[m] for m in modes]
+    fig, ax = plt.subplots(figsize=(6.2, 4.2))
+    ax.bar([MODE_LABEL.get(m, m) for m in modes], ys,
+           color=[MODE_COLOR.get(m, "#888") for m in modes])
+    for i, v in enumerate(ys):
+        ax.text(i, v, f"{v:.0f}%", ha="center", va="bottom")
+    ax.set_ylabel("Mean battery consumed (%)")
+    ax.set_title("Graph 11 - Battery Consumption by Tier")
+    ax.set_ylim(0, max(ys) * 1.2)
+    save_table(pd.DataFrame({"tier": modes, "battery_consumed_pct": ys}),
+               "table_battery_comparison")
+    _save("g11_battery_comparison.png")
+
+
+def fig_area_comparison(summaries):
+    """g12 - scanned search area (m^2) per run/scenario."""
+    rows = [(_scn(s), _area_of(s)) for s in summaries]
+    rows = [(k, v) for k, v in rows if isinstance(v, (int, float))]
+    if not rows:
+        print("  (skip g12 area comparison: no coverage.area_m2 — redeploy fog_server)")
+        return
+    # mean area per scenario label
+    acc = defaultdict(list)
+    for k, v in rows:
+        acc[k].append(v)
+    labels = sorted(acc)
+    ys = [sum(acc[k]) / len(acc[k]) for k in labels]
+    fig, ax = plt.subplots(figsize=(max(6.0, 1.3 * len(labels)), 4.2))
+    ax.bar(labels, ys, color="#4C72B0")
+    for i, v in enumerate(ys):
+        ax.text(i, v, f"{v:,.0f}", ha="center", va="bottom", fontsize=8)
+    ax.set_ylabel("Search area (m$^2$)")
+    ax.set_title("Graph 12 - Search Area by Scenario")
+    plt.xticks(rotation=20, ha="right")
+    save_table(pd.DataFrame({"scenario": labels, "area_m2": ys}),
+               "table_area")
+    _save("g12_area_comparison.png")
+
+
+def fig_coverage_vs_area(summaries):
+    """g13 - achieved coverage (%) vs scanned area (m^2)."""
+    pts = []
+    for s in summaries:
+        a = _area_of(s)
+        c = s.get("coverage_overall_pct")
+        if isinstance(a, (int, float)) and isinstance(c, (int, float)):
+            pts.append((a, c, s.get("mode")))
+    if len(pts) < 2:
+        print("  (skip g13 coverage-vs-area: need >=2 runs with area_m2 + coverage)")
+        return
+    fig, ax = plt.subplots(figsize=(6.4, 4.4))
+    for m in ordered_modes({p[2] for p in pts}):
+        xs = [a for a, c, mm in pts if mm == m]
+        ys = [c for a, c, mm in pts if mm == m]
+        ax.scatter(xs, ys, s=60, color=MODE_COLOR.get(m, "#888"),
+                   label=MODE_TITLE.get(m, m), edgecolor="white", zorder=3)
+    ax.set_xlabel("Search area (m$^2$)")
+    ax.set_ylabel("Coverage achieved (%)")
+    ax.set_ylim(0, 100)
+    ax.set_title("Graph 13 - Coverage vs Search Area")
+    ax.legend()
+    ax.grid(alpha=0.3)
+    _save("g13_coverage_vs_area.png")
+
+
+def fig_battery_and_area(summaries):
+    """g14 - battery consumed vs scanned area (efficiency: %/m^2 context)."""
+    pts = []
+    for s in summaries:
+        a = _area_of(s)
+        e = _get(s, "energy.mean_consumed_pct")
+        if isinstance(a, (int, float)) and isinstance(e, (int, float)) and a > 0:
+            pts.append((a, e, s.get("mode")))
+    if len(pts) < 2:
+        print("  (skip g14 battery-vs-area: need >=2 runs with area_m2 + energy)")
+        return
+    fig, ax = plt.subplots(figsize=(6.6, 4.4))
+    for m in ordered_modes({p[2] for p in pts}):
+        xs = [a for a, e, mm in pts if mm == m]
+        ys = [e for a, e, mm in pts if mm == m]
+        ax.scatter(xs, ys, s=60, color=MODE_COLOR.get(m, "#888"),
+                   label=MODE_TITLE.get(m, m), edgecolor="white", zorder=3)
+    ax.set_xlabel("Search area (m$^2$)")
+    ax.set_ylabel("Mean battery consumed (%)")
+    ax.set_title("Graph 14 - Battery Consumption vs Search Area")
+    ax.legend()
+    ax.grid(alpha=0.3)
+    rows = [{"scenario": _scn(s), "area_m2": _area_of(s),
+             "battery_consumed_pct": _get(s, "energy.mean_consumed_pct")}
+            for s in summaries
+            if isinstance(_area_of(s), (int, float))]
+    if rows:
+        save_table(pd.DataFrame(rows), "table_battery_area")
+    _save("g14_battery_and_area.png")
+
+
+def fig_failure_recovery(summaries, df):
+    """g15 - drone-failure recovery timeline.
+
+    Prefers a per-run recovery_sec (fog can log it); otherwise falls back to
+    comparing completion time on failure vs no-fault runs so the figure still
+    conveys the recovery cost. Skips cleanly if neither is available.
+    """
+    # direct recovery time if present in summaries
+    rec = []
+    for s in summaries:
+        r = _get(s, "recovery_sec") or _get(s, "failure.recovery_sec")
+        if isinstance(r, (int, float)):
+            rec.append((s.get("run_id", "run"), r))
+    if rec:
+        labels = [r[0] for r in rec]
+        ys = [r[1] for r in rec]
+        fig, ax = plt.subplots(figsize=(max(6.0, 1.2 * len(labels)), 4.2))
+        ax.bar(labels, ys, color="#C44E52")
+        for i, v in enumerate(ys):
+            ax.text(i, v, f"{v:.1f}s", ha="center", va="bottom")
+        ax.set_ylabel("Recovery time (s)")
+        ax.set_title("Graph 15 - Drone-Failure Recovery Time")
+        plt.xticks(rotation=20, ha="right")
+        _save("g15_failure_recovery.png")
+        return
+
+    # fallback: completion time, fault vs no-fault
+    by_fault = defaultdict(list)
+    for s in summaries:
+        f = (s.get("fault") or "none")
+        ct = _get(s, "completion_time_sec.mean")
+        if isinstance(ct, (int, float)):
+            by_fault["with fault" if f not in ("none", None) else "no fault"].append(ct)
+    if len(by_fault) < 2:
+        print("  (skip g15 failure recovery: no recovery_sec, and need "
+              "fault + no-fault completion times to compare)")
+        return
+    labels = ["no fault", "with fault"]
+    ys = [sum(by_fault[k]) / len(by_fault[k]) if by_fault.get(k) else 0.0
+          for k in labels]
+    fig, ax = plt.subplots(figsize=(5.6, 4.2))
+    ax.bar(labels, ys, color=["#2E7D32", "#C44E52"])
+    for i, v in enumerate(ys):
+        ax.text(i, v, f"{v:.1f}s", ha="center", va="bottom")
+    ax.set_ylabel("Mean completion time (s)")
+    ax.set_title("Graph 15 - Recovery Cost: Completion Time under Failure")
+    _save("g15_failure_recovery.png")
+
+
+def fig_fog_utilisation(summaries):
+    """g16 - resource utilisation = which TIERS were active in the normal fog
+    run, and each tier's own work. The three tiers do different kinds of work
+    (edge captures frames, fog runs detection, cloud archives), so this is an
+    activity view, NOT a shared %: a fog run engages all three tiers."""
+    # pick normal (no-fault) fog runs, average each tier's work
+    frames, infers, arch = [], [], []
+    for s in summaries:
+        if s.get("mode") != "fog":
+            continue
+        if (s.get("fault") or "none") not in ("none", None):
+            continue
+        t = _get(s, "tiers")
+        if not isinstance(t, dict):
+            continue
+        frames.append(_get(t, "edge.frames") or 0)
+        infers.append(_get(t, "fog.inferences") or 0)
+        arch.append(_get(t, "cloud.archive_events")
+                    or _get(t, "cloud.archive_batches") or 0)
+    if not frames:
+        print("  (skip g16 fog utilisation: no fog run with `tiers` block — "
+              "redeploy metrics_collector + fog_server)")
+        return
+    edge_w = sum(frames) / len(frames)
+    fog_w = sum(infers) / len(infers)
+    cloud_w = sum(arch) / len(arch)
+    tiers = ["Edge\n(capture frames)", "Fog\n(detection+coord)", "Cloud\n(archival)"]
+    works = [edge_w, fog_w, cloud_w]
+    colors = ["#4C72B0", "#2E7D32", "#C44E52"]
+    fig, ax = plt.subplots(figsize=(6.6, 4.4))
+    bars = ax.bar(tiers, works, color=colors)
+    units = ["frames", "inferences", "events"]
+    for b, w, u in zip(bars, works, units):
+        active = "ACTIVE" if w > 0 else "off"
+        ax.text(b.get_x() + b.get_width() / 2, w,
+                f"{active}\n{w:,.0f} {u}", ha="center", va="bottom", fontsize=9)
+    ax.set_ylabel("Work performed (own unit per tier)")
+    ax.set_ylim(0, max(works) * 1.25 if max(works) > 0 else 1)
+    ax.set_title("Graph 16 - Resource Utilisation: All Three Tiers Active (Normal Fog)")
+    save_table(pd.DataFrame({"tier": ["edge", "fog", "cloud"],
+                             "work": works, "unit": units}),
+               "table_fog_utilisation")
+    _save("g16_fog_utilisation.png")
+
+
+def utilisation_table(summaries):
+    """Per-run tier activity + detection share (%) across all runs."""
+    rows = []
+    for s in summaries:
+        up = (_get(s, "detection_share_pct.total")
+              or _get(s, "utilisation_pct.total") or {})
+        active = _get(s, "tiers_active") or []
+        t = _get(s, "tiers") or {}
+        rows.append({
+            "scenario": _scn(s), "run_id": s.get("run_id"),
+            "fault": s.get("fault", "none"),
+            "tiers_active": "+".join(active) if active else "-",
+            "edge_frames": _get(t, "edge.frames"),
+            "fog_infer": _get(t, "fog.inferences"),
+            "cloud_archive_events": _get(t, "cloud.archive_events"),
+            "detection_share_fog_pct": up.get("fog"),
+            "detection_share_cloud_pct": up.get("cloud"),
+            "detection_share_edge_pct": up.get("edge"),
+        })
+    if rows:
+        save_table(pd.DataFrame(rows), "table_utilisation")
+
+
+# ----------------------------------------------------------------------
 # objectives scaffold (Task 6.14)
 # ----------------------------------------------------------------------
 def objective_table(summaries):
@@ -454,6 +687,14 @@ def main():
     fig_cloud_breakdown(df)
     fig_scalability(summaries)
     fig_reliability(summaries)
+    # --- Task 6.12 checklist additions ---
+    fig_battery_comparison(summaries)     # g11
+    fig_area_comparison(summaries)        # g12
+    fig_coverage_vs_area(summaries)       # g13
+    fig_battery_and_area(summaries)       # g14
+    fig_failure_recovery(summaries, df)   # g15
+    fig_fog_utilisation(summaries)        # g16
+    utilisation_table(summaries)
     objective_table(summaries)
     print("\nDone. Tables in", TABLES_DIR, "| plots in", PLOTS_DIR)
 

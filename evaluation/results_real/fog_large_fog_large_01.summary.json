@@ -1,0 +1,125 @@
+{
+  "mode": "fog",
+  "scenario": "large",
+  "run_id": "fog_large_01",
+  "fault": "none",
+  "num_drones": 3,
+  "duration_sec": 1124.03,
+  "detection_events": 15,
+  "completed": 6,
+  "completion_ratio": 1.0,
+  "events": {
+    "created": 6,
+    "assigned": 3,
+    "resolved": 6
+  },
+  "latency_sec": {
+    "n": 15,
+    "mean": 1.1305,
+    "median": 1.2127,
+    "min": 0.3212,
+    "max": 1.7457,
+    "stdev": 0.3937
+  },
+  "completion_time_sec": {
+    "n": 6,
+    "mean": 0.0026,
+    "median": 0.0022,
+    "min": 0.0011,
+    "max": 0.0047,
+    "stdev": 0.0014
+  },
+  "response_time_sec": {
+    "n": 3,
+    "mean": 0.6509,
+    "median": 0.542,
+    "min": 0.4157,
+    "max": 0.9951,
+    "stdev": 0.2488
+  },
+  "utilisation": {
+    "per_drone": {
+      "drone1": {
+        "local": 0,
+        "fog": 326,
+        "cloud": 0
+      },
+      "drone2": {
+        "local": 0,
+        "fog": 326,
+        "cloud": 0
+      },
+      "drone0": {
+        "local": 0,
+        "fog": 325,
+        "cloud": 0
+      }
+    },
+    "total": {
+      "local": 0,
+      "fog": 977,
+      "cloud": 0
+    }
+  },
+  "tiers": {
+    "edge": {
+      "active": true,
+      "role": "capture + stream frames",
+      "frames": 1633,
+      "on_drone_inferences": 0
+    },
+    "fog": {
+      "active": true,
+      "role": "detection + coordination",
+      "inferences": 977
+    },
+    "cloud": {
+      "active": false,
+      "role": "mission archival",
+      "inferences": 0,
+      "archive_batches": 0,
+      "archive_events": 0
+    }
+  },
+  "tiers_active": [
+    "edge",
+    "fog"
+  ],
+  "tiers_active_count": 2,
+  "coverage": {
+    "overall_pct": 86.64,
+    "covered_bins": 6636,
+    "total_bins": 7659,
+    "area_m2": 30360.0,
+    "frames_total": 1633,
+    "per_drone": {
+      "drone0": 95.57,
+      "drone1": 84.33,
+      "drone2": 80.02
+    },
+    "ts": 1783266350.7745032
+  },
+  "coverage_overall_pct": 86.64,
+  "energy": {
+    "per_drone": {
+      "drone2": {
+        "start_pct": 99.85,
+        "end_pct": 24.63,
+        "consumed_pct": 75.22
+      },
+      "drone1": {
+        "start_pct": 99.71,
+        "end_pct": 24.29,
+        "consumed_pct": 75.42
+      },
+      "drone0": {
+        "start_pct": 99.58,
+        "end_pct": 27.11,
+        "consumed_pct": 72.47
+      }
+    },
+    "total_consumed_pct": 223.11,
+    "mean_consumed_pct": 74.37
+  },
+  "energy_total_pct": 223.11
+}
